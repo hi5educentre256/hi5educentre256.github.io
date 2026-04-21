@@ -12,21 +12,47 @@ body {
   background: #f4f7fb;
 }
 
+/* NAVBAR */
+nav {
+  background: #1a4fa3;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  flex-wrap: wrap;
+}
+
+nav .logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+  margin: 5px 10px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
 /* HEADER */
 header {
-  background: #1a4fa3;
-  color: white;
   text-align: center;
-  padding: 25px;
+  padding: 40px 20px;
+  background: white;
 }
 
 header h1 {
+  color: #1a4fa3;
   margin: 0;
 }
 
 header p {
-  margin: 5px 0 0;
   font-size: 16px;
+  margin-top: 10px;
 }
 
 /* SECTION */
@@ -68,6 +94,19 @@ section {
   color: #1a4fa3;
 }
 
+/* WHATSAPP BUTTON */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 /* FOOTER */
 footer {
   text-align: center;
@@ -80,28 +119,37 @@ footer {
 
 <body>
 
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Hi5 Education Centre</div>
+  <div>
+    <a href="#nursery">Nursery</a>
+    <a href="#primary">Primary</a>
+    <a href="#secondary">Secondary</a>
+    <a href="#tertiary">Tertiary</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
 <header>
   <h1>Hi5 Education Centre</h1>
   <p>Learn Today Lead Tomorrow</p>
 </header>
 
 <!-- NURSERY -->
-<section>
+<section id="nursery">
   <h2 class="section-title">Nursery Section</h2>
   <div class="grid">
-
     <div class="card"><h3>Baby Class</h3></div>
     <div class="card"><h3>Middle Class</h3></div>
     <div class="card"><h3>Top Class</h3></div>
-
   </div>
 </section>
 
 <!-- PRIMARY -->
-<section>
+<section id="primary">
   <h2 class="section-title">Primary Section</h2>
   <div class="grid">
-
     <div class="card"><h3>Primary 1</h3></div>
     <div class="card"><h3>Primary 2</h3></div>
     <div class="card"><h3>Primary 3</h3></div>
@@ -109,49 +157,39 @@ footer {
     <div class="card"><h3>Primary 5</h3></div>
     <div class="card"><h3>Primary 6</h3></div>
     <div class="card"><h3>Primary 7</h3></div>
-
   </div>
 </section>
 
 <!-- SECONDARY -->
-<section>
+<section id="secondary">
   <h2 class="section-title">Secondary Section</h2>
   <div class="grid">
-
     <div class="card"><h3>Senior 1</h3></div>
     <div class="card"><h3>Senior 2</h3></div>
     <div class="card"><h3>Senior 3</h3></div>
     <div class="card"><h3>Senior 4</h3></div>
     <div class="card"><h3>Senior 5</h3></div>
     <div class="card"><h3>Senior 6</h3></div>
-
   </div>
 </section>
 
 <!-- TERTIARY -->
-<section>
+<section id="tertiary">
   <h2 class="section-title">Tertiary Section</h2>
   <div class="grid">
-
-    <div class="card">
-      <h3>Certificate</h3>
-    </div>
-
-    <div class="card">
-      <h3>Diploma</h3>
-    </div>
-
-    <div class="card">
-      <h3>Bachelor</h3>
-    </div>
-
-    <div class="card">
-      <h3>Postgraduate</h3>
-    </div>
-
+    <div class="card"><h3>Certificate</h3></div>
+    <div class="card"><h3>Diploma</h3></div>
+    <div class="card"><h3>Bachelor</h3></div>
+    <div class="card"><h3>Postgraduate</h3></div>
   </div>
 </section>
 
+<!-- WHATSAPP BUTTON -->
+<a class="whatsapp" href="https://wa.me/256757826946" target="_blank">
+  WhatsApp Us
+</a>
+
+<!-- FOOTER -->
 <footer>
   <p>© 2026 Hi5 Education Centre. All rights reserved.</p>
 </footer>
