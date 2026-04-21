@@ -4,53 +4,32 @@
     <title>Hi5 Education Centre</title>
     <style>
         body {
-            margin: 0;
             font-family: Arial;
-            background: #f4f6f9;
             text-align: center;
+            background: #f4f6f9;
         }
 
         header {
             background: #1e7a4c;
             color: white;
-            padding: 40px 20px;
+            padding: 40px;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
-
-        .container {
-            padding: 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .card {
+        .box {
+            margin: 20px;
+            padding: 30px;
             background: white;
-            padding: 25px;
             border-radius: 12px;
+            width: 80%;
+            display: inline-block;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            font-size: 20px;
             font-weight: bold;
         }
 
-        .card a {
+        a {
             text-decoration: none;
             color: #1e7a4c;
-            display: block;
-        }
-
-        footer {
-            background: #222;
-            color: white;
-            padding: 15px;
-            margin-top: 30px;
         }
     </style>
 </head>
@@ -62,30 +41,17 @@
     <p>Uganda New Curriculum Learning Portal</p>
 </header>
 
-<div class="container">
-    <h2>Choose Your Class</h2>
-
-    <div class="grid">
-        <div class="card"><a href="p1/">Primary One (P1)</a></div>
-        <div class="card"><a href="p2/">Primary Two (P2)</a></div>
-        <div class="card"><a href="p3/">Primary Three (P3)</a></div>
-        <div class="card"><a href="p4/">Primary Four (P4)</a></div>
-        <div class="card"><a href="p5/">Primary Five (P5)</a></div>
-        <div class="card"><a href="p6/">Primary Six (P6)</a></div>
-        <div class="card"><a href="p7/">Primary Seven (P7)</a></div>
-
-        <div class="card"><a href="s1/">Senior One (S1)</a></div>
-        <div class="card"><a href="s2/">Senior Two (S2)</a></div>
-        <div class="card"><a href="s3/">Senior Three (S3)</a></div>
-        <div class="card"><a href="s4/">Senior Four (S4)</a></div>
-        <div class="card"><a href="s5/">Senior Five (S5)</a></div>
-        <div class="card"><a href="s6/">Senior Six (S6)</a></div>
-    </div>
+<div class="box">
+    <a href="primary/">📗 Primary Section (P1 – P7)</a>
 </div>
 
-<footer>
-    © 2026 Hi5 Education Centre | Learning for a Better Future
-</footer>
+<div class="box">
+    <a href="secondary/">📘 Secondary Section (S1 – S6)</a>
+</div>
+
+<div class="box">
+    <a href="university/">🎓 University Section</a>
+</div>
 
 </body>
 </html>
