@@ -4,55 +4,89 @@
     <title>Hi5 Education Centre</title>
     <style>
         body {
+            margin: 0;
             font-family: Arial;
-            text-align: center;
-            background: #f0f8ff;
-            margin: 0;
-            padding: 0;
+            background: #f4f6f9;
         }
+
         header {
-            background: #2e8b57;
+            background: #1e7a4c;
             color: white;
-            padding: 30px;
+            text-align: center;
+            padding: 40px 20px;
         }
-        h1 {
+
+        header h1 {
             margin: 0;
+            font-size: 32px;
         }
-        .section {
-            padding: 30px;
+
+        .container {
+            padding: 20px;
+            text-align: center;
         }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+
+        .card:hover {
+            background: #e8fff1;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+
         .btn {
             display: inline-block;
-            margin: 10px;
-            padding: 12px 20px;
+            margin-top: 10px;
+            padding: 10px 15px;
             background: #ff9800;
             color: white;
             text-decoration: none;
             border-radius: 8px;
         }
-        footer {
-            background: #222;
-            color: white;
-            padding: 15px;
-            margin-top: 30px;
-        }
     </style>
 </head>
+
 <body>
 
 <header>
     <h1>📚 Hi5 Education Centre 🇺🇬</h1>
-    <p>Lesson Notes | Schemes of Work | Textbooks | Uganda New Curriculum</p>
+    <p>Lesson Notes | Schemes of Work | Uganda New Curriculum</p>
 </header>
 
-<div class="section">
-    <h2>Welcome to Quality Learning Resources</h2>
-    <p>We provide learning materials for Nursery, Primary, Secondary, and University students.</p>
+<div class="container">
+    <h2>WELCOME TO HI5 E-LIBRARY</h2>
+    <p>Choose a section to continue learning</p>
 
-    <a href="#" class="btn">Nursery Section</a>
-    <a href="#" class="btn">Primary Section</a>
-    <a href="#" class="btn">Secondary Section</a>
-    <a href="#" class="btn">University Section</a>
+    <div class="grid">
+        <div class="card">📘 Nursery Section</div>
+        <div class="card">📗 Primary Section</div>
+        <div class="card">📙 Secondary Section</div>
+        <div class="card">🎓 University Resources</div>
+    </div>
+
+    <br>
+
+    <a class="btn" href="#">Download Notes</a>
+    <a class="btn" href="#">Schemes of Work</a>
 </div>
 
 <footer>
