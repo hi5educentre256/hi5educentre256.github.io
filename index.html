@@ -12,20 +12,20 @@ body {
   background: #f4f7fb;
 }
 
-/* NAVBAR */
+/* NAVIGATION */
 nav {
   background: #1a4fa3;
   padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
   flex-wrap: wrap;
+  color: white;
 }
 
 nav .logo {
-  font-size: 20px;
   font-weight: bold;
+  font-size: 18px;
 }
 
 nav a {
@@ -41,7 +41,7 @@ nav a:hover {
 /* HEADER */
 header {
   text-align: center;
-  padding: 40px 20px;
+  padding: 35px 20px;
   background: white;
 }
 
@@ -51,20 +51,15 @@ header h1 {
 }
 
 header p {
-  font-size: 16px;
   margin-top: 10px;
 }
 
-/* SECTION */
-section {
-  padding: 40px 20px;
-}
-
+/* SECTION TITLE */
 .section-title {
   text-align: center;
   color: #1a4fa3;
-  margin-bottom: 20px;
   text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 /* GRID */
@@ -74,6 +69,7 @@ section {
   gap: 20px;
   max-width: 1100px;
   margin: auto;
+  padding: 0 20px;
 }
 
 /* CARD */
@@ -104,7 +100,6 @@ section {
   padding: 12px 15px;
   border-radius: 50px;
   text-decoration: none;
-  font-weight: bold;
 }
 
 /* FOOTER */
@@ -119,7 +114,7 @@ footer {
 
 <body>
 
-<!-- NAVBAR -->
+<!-- NAVIGATION -->
 <nav>
   <div class="logo">Hi5 Education Centre</div>
   <div>
@@ -127,6 +122,7 @@ footer {
     <a href="#primary">Primary</a>
     <a href="#secondary">Secondary</a>
     <a href="#tertiary">Tertiary</a>
+    <a href="#mvc">About</a>
   </div>
 </nav>
 
@@ -184,7 +180,38 @@ footer {
   </div>
 </section>
 
-<!-- WHATSAPP BUTTON -->
+<!-- MVC -->
+<section id="mvc">
+  <h2 class="section-title">Mission, Vision & Core Values</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>🎯 Mission</h3>
+      <p>To provide accessible, high-quality education from Nursery to Tertiary level, empowering learners with knowledge and skills for success.</p>
+    </div>
+
+    <div class="card">
+      <h3>🌍 Vision</h3>
+      <p>To become a leading digital education centre that transforms learning through innovation and excellence.</p>
+    </div>
+
+    <div class="card">
+      <h3>⭐ Core Values</h3>
+      <p>
+        📚 Excellence<br>
+        🧠 Discipline<br>
+        🤝 Respect for learners and educators<br>
+        🔒 Integrity<br>
+        🚀 Innovation<br>
+        🌐 Accessibility
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHATSAPP -->
 <a class="whatsapp" href="https://wa.me/256757826946" target="_blank">
   WhatsApp Us
 </a>
