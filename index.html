@@ -7,12 +7,12 @@
             margin: 0;
             font-family: Arial;
             background: #f4f6f9;
+            text-align: center;
         }
 
         header {
             background: #1e7a4c;
             color: white;
-            text-align: center;
             padding: 40px 20px;
         }
 
@@ -23,7 +23,6 @@
 
         .container {
             padding: 20px;
-            text-align: center;
         }
 
         .grid {
@@ -35,32 +34,23 @@
 
         .card {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 12px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
             font-weight: bold;
         }
 
-        .card:hover {
-            background: #e8fff1;
+        .card a {
+            text-decoration: none;
+            color: #1e7a4c;
+            display: block;
         }
 
         footer {
             background: #222;
             color: white;
-            text-align: center;
             padding: 15px;
             margin-top: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
-            background: #ff9800;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
         }
     </style>
 </head>
@@ -69,24 +59,28 @@
 
 <header>
     <h1>📚 Hi5 Education Centre 🇺🇬</h1>
-    <p>Lesson Notes | Schemes of Work | Uganda New Curriculum</p>
+    <p>Uganda New Curriculum Learning Portal</p>
 </header>
 
 <div class="container">
-    <h2>WELCOME TO HI5 E-LIBRARY</h2>
-    <p>Choose a section to continue learning</p>
+    <h2>Choose Your Class</h2>
 
     <div class="grid">
-        <div class="card">📘 Nursery Section</div>
-        <div class="card">📗 Primary Section</div>
-        <div class="card">📙 Secondary Section</div>
-        <div class="card">🎓 University Resources</div>
+        <div class="card"><a href="p1/">Primary One (P1)</a></div>
+        <div class="card"><a href="p2/">Primary Two (P2)</a></div>
+        <div class="card"><a href="p3/">Primary Three (P3)</a></div>
+        <div class="card"><a href="p4/">Primary Four (P4)</a></div>
+        <div class="card"><a href="p5/">Primary Five (P5)</a></div>
+        <div class="card"><a href="p6/">Primary Six (P6)</a></div>
+        <div class="card"><a href="p7/">Primary Seven (P7)</a></div>
+
+        <div class="card"><a href="s1/">Senior One (S1)</a></div>
+        <div class="card"><a href="s2/">Senior Two (S2)</a></div>
+        <div class="card"><a href="s3/">Senior Three (S3)</a></div>
+        <div class="card"><a href="s4/">Senior Four (S4)</a></div>
+        <div class="card"><a href="s5/">Senior Five (S5)</a></div>
+        <div class="card"><a href="s6/">Senior Six (S6)</a></div>
     </div>
-
-    <br>
-
-    <a class="btn" href="#">Download Notes</a>
-    <a class="btn" href="#">Schemes of Work</a>
 </div>
 
 <footer>
