@@ -2,7 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title><!-- ICONS --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
+<title>Hi5 Education Centre</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
 :root{
   --primary:#1a4fa3;
   --accent:#25D366;
@@ -19,7 +19,6 @@ body{
   color:#333;
 }
 
-/* NAV */
 nav{
   background:rgba(26,79,163,0.9);
   backdrop-filter:blur(10px);
@@ -38,13 +37,19 @@ nav{
   font-size:18px;
 }
 
-.menu{display:flex;gap:18px;}
+.menu{display:flex;gap:18px;align-items:center;}
 .menu a{color:white;text-decoration:none;font-size:14px;}
 .menu a:hover{color:#ffdd57;}
 
+.menu input{
+  padding:6px 10px;
+  border-radius:6px;
+  border:none;
+  outline:none;
+}
+
 .hamburger{display:none;cursor:pointer;font-size:22px;}
 
-/* HERO */
 header{
   height:60vh;
   display:flex;
@@ -54,32 +59,11 @@ header{
   text-align:center;
   color:white;
   background:linear-gradient(135deg, rgba(26,79,163,0.9), rgba(37,211,102,0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80') center/cover;
-  position:relative;
   padding:20px;
 }
 
-header::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-}
-
-header h1,header p,header a{
-  position:relative;
-  z-index:2;
-}
-
-header h1{
-  font-size:48px;
-  animation:fadeIn 1s ease-in-out;
-}
-
-header p{
-  font-size:20px;
-  margin-top:10px;
-  opacity:0.9;
-}
+header h1{font-size:42px;}
+header p{font-size:18px;opacity:0.9;}
 
 .btn{
   margin-top:20px;
@@ -89,18 +73,14 @@ header p{
   border-radius:8px;
   text-decoration:none;
   font-weight:bold;
-  transition:0.3s;
 }
 
-.btn:hover{transform:scale(1.05);}
-
-/* STATS */
 .stats{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:15px;
   max-width:1000px;
-  margin:20px auto 40px;
+  margin:30px auto;
   padding:0 20px;
 }
 
@@ -112,12 +92,7 @@ header p{
   box-shadow:0 10px 20px rgba(0,0,0,0.08);
 }
 
-.stat h2{color:var(--primary);}
-
-/* SECTIONS */
-section{
-  padding:70px 20px;
-}
+section{padding:70px 20px;}
 
 .section-title{
   text-align:center;
@@ -141,48 +116,15 @@ section{
   border-radius:14px;
   box-shadow:0 10px 25px rgba(0,0,0,0.08);
   transition:0.3s;
-  position:relative;
-  overflow:hidden;
 }
 
-.card::before{
-  content:"";
-  position:absolute;
-  top:0;left:0;
-  width:100%;height:4px;
-  background:var(--primary);
-}
+.card:hover{transform:translateY(-10px);}
 
-.card:hover{
-  transform:translateY(-10px);
-}
+.card h3{color:var(--primary);margin-bottom:12px;display:flex;gap:8px;align-items:center;}
 
-.card h3{
-  color:var(--primary);
-  margin-bottom:12px;
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-
-.card a{
-  display:block;
-  margin:6px 0;
-  text-decoration:none;
-  color:#333;
-  font-size:14px;
-}
-
+.card a{display:block;margin:6px 0;text-decoration:none;color:#333;font-size:14px;}
 .card a:hover{color:var(--primary);}
 
-small{color:#666;}
-
-/* ALTERNATE BACKGROUNDS */
-section:nth-child(even){
-  background:#ffffff;
-}
-
-/* FOOTER */
 footer{
   background:var(--dark);
   color:white;
@@ -190,7 +132,6 @@ footer{
   padding:40px;
 }
 
-/* WHATSAPP */
 .whatsapp{
   position:fixed;
   bottom:20px;
@@ -203,7 +144,6 @@ footer{
   text-decoration:none;
 }
 
-/* TOP BUTTON */
 #topBtn{
   position:fixed;
   bottom:80px;
@@ -216,73 +156,67 @@ footer{
   cursor:pointer;
 }
 
-/* ANIMATION */
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-/* MOBILE */
 @media(max-width:768px){
-  .menu{
-    display:none;
-    flex-direction:column;
-    position:absolute;
-    top:60px;
-    right:0;
-    background:var(--primary);
-    width:200px;
-    padding:10px;
-  }
+  .menu{display:none;flex-direction:column;position:absolute;top:60px;right:0;background:var(--primary);width:200px;padding:10px;}
   .menu.show{display:flex;}
   .hamburger{display:block;}
-  header h1{font-size:34px;}
 }
-</style></head><body><!-- NAV --><nav>
+</style></head><body><nav>
   <div class="logo"><i class="fa-solid fa-graduation-cap"></i> Hi5 Education Centre</div>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <div class="menu" id="menu">
+    <a href="#about">About Us</a>
     <a href="#nursery">Nursery</a>
     <a href="#primary">Primary</a>
     <a href="#secondary">Secondary</a>
     <a href="#tertiary">Tertiary</a>
-    <a href="#about">About Us</a>
-    <input type="text" placeholder="Search..." style="padding:6px;border-radius:6px;border:none;outline:none;" />
+    <input type="text" placeholder="Search materials..." oninput="searchMaterials(this.value)">
   </div>
-</nav><!-- HERO --><header>
+</nav><header>
   <h1>Hi5 Education Centre</h1>
   <p>Learn Today, Lead Tomorrow</p>
   <a class="btn" href="#nursery">Start Learning</a>
-</header><!-- STATS --><div class="stats">
+</header><div class="stats">
   <div class="stat"><h2>100+</h2><p>Learning Materials</p></div>
   <div class="stat"><h2>4 Levels</h2><p>Nursery to Tertiary</p></div>
   <div class="stat"><h2>24/7</h2><p>Access Anytime</p></div>
   <div class="stat"><h2>Free</h2><p>Education Resources</p></div>
-</div><!-- NURSERY --><section id="nursery">
+</div><section id="about">
+<h2 class="section-title">About Us</h2>
+<div class="grid">
+<div class="card">
+<p>Hi5 Education Centre is a digital learning platform providing structured educational materials for all academic levels. It aims to support learners and educators with accessible, organized, and curriculum-based resources.</p>
+</div>
+</div>
+</section><section id="nursery">
 <h2 class="section-title">Nursery Section</h2>
-<div class="grid"><div class="card"><h3><i class="fa-solid fa-baby"></i> Baby Class</h3><a href="nursery/baby/lesson-notes.html">Lesson Notes</a><a href="nursery/baby/schemes.html">Schemes of Work</a><a href="nursery/baby/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3><i class="fa-solid fa-child"></i> Middle Class</h3><a href="nursery/middle/lesson-notes.html">Lesson Notes</a><a href="nursery/middle/schemes.html">Schemes of Work</a><a href="nursery/middle/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3><i class="fa-solid fa-child-reaching"></i> Top Class</h3><a href="nursery/top/lesson-notes.html">Lesson Notes</a><a href="nursery/top/schemes.html">Schemes of Work</a><a href="nursery/top/past-papers.html">Past Papers</a><small>Textbooks Available</small></div></div>
-</section><!-- PRIMARY --><section id="primary">
+<div class="grid">
+<div class="card"><h3>Baby Class</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>Middle Class</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>Top Class</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+</div>
+</section><section id="primary">
 <h2 class="section-title">Primary Section</h2>
-<div class="grid"><div class="card"><h3>P1</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P2</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P3</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P4</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P5</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P6</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P7</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div></div>
-</section><!-- SECONDARY --><section id="secondary">
+<div class="grid">
+<div class="card"><h3>P1</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>P2</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>P3</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>P4</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>P5</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>P6</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>P7</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+</div>
+</section><section id="secondary">
 <h2 class="section-title">Secondary Section</h2>
 <div class="grid">
-<div class="card"><h3>S1</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S2</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S3</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S4</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S5</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S6</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S1</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>S2</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>S3</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>S4</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>S5</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
+<div class="card"><h3>S6</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a></div>
 </div>
-</section><!-- TERTIARY --><section id="tertiary">
+</section><section id="tertiary">
 <h2 class="section-title">Tertiary Section</h2>
 <div class="grid">
 <div class="card"><h3>Certificate</h3><p>Course Materials</p></div>
@@ -290,19 +224,25 @@ footer{
 <div class="card"><h3>Bachelor</h3><p>Course Materials</p></div>
 <div class="card"><h3>Postgraduate</h3><p>Research Materials</p></div>
 </div>
-</section><!-- FOOTER --><footer>
+</section><footer>
 <p><strong>Founder:</strong> Mr. Isa Kiggundu</p>
 <p>📞 +256 702 234 701</p>
 <p>📧 hi5educentre256@gmail.com</p>
-<p>
-  📩 <a href="mailto:hi5educentre256@gmail.com" style="color:white;text-decoration:underline;">Mail Us</a>
-</p>
-<p>💬 <a href="https://wa.me/256702234701" style="color:white;text-decoration:underline;">WhatsApp Us</a></p>
 <p>© 2026 Hi5 Education Centre</p>
-</footer><!-- WHATSAPP --><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
+</footer><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
 
-<!-- TOP BUTTON --><div id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div><script>
+<div id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div><script>
 function toggleMenu(){document.getElementById('menu').classList.toggle('show');}
+
+function searchMaterials(query){
+  query = query.toLowerCase();
+  let cards = document.querySelectorAll('.card');
+  cards.forEach(card=>{
+    let text = card.innerText.toLowerCase();
+    card.style.display = text.includes(query) ? 'block':'none';
+  });
+}
+
 window.onscroll=function(){
   document.getElementById('topBtn').style.display=window.scrollY>200?'block':'none';
 };
