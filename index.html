@@ -210,16 +210,7 @@ footer{
 </div><div id="classModal" onclick="closeModal(event)">
   <div class="modal-box">
     <h3 id="classTitle"></h3>
-    <p><b>Select Class First</b></p>
-    <p>Baby Class / Middle Class / Top Class</p>
-    <p>P1 - P7</p>
-    <p>S1 - S6</p>
-    <p>Certificate / Diploma / University</p>
-    <hr style="margin:10px 0;">
-    <p>📘 Lesson Notes</p>
-    <p>📗 Schemes of Work</p>
-    <p>📕 Past Papers</p>
-    <p>📚 Textbooks</p>
+    <div id="classContent"></div>
   </div>
 </div><footer>
 <p>📞 +256 702 234 701</p>
@@ -238,8 +229,57 @@ function toggleSub(el,id){
 }
 
 function openClass(name){
-  document.getElementById('classTitle').innerText=name;
-  document.getElementById('classModal').style.display='flex';
+  const content = document.getElementById('classContent');
+  document.getElementById('classTitle').innerText = name;
+
+  let html = '';
+
+  if(name === 'Nursery'){
+    html = `
+      <p onclick="openClass('Baby Class')">👶 Baby Class</p>
+      <p onclick="openClass('Middle Class')">🧒 Middle Class</p>
+      <p onclick="openClass('Top Class')">🎓 Top Class</p>
+    `;
+  }
+  else if(name === 'Primary'){
+    html = `
+      <p onclick="openClass('P1')">P1</p>
+      <p onclick="openClass('P2')">P2</p>
+      <p onclick="openClass('P3')">P3</p>
+      <p onclick="openClass('P4')">P4</p>
+      <p onclick="openClass('P5')">P5</p>
+      <p onclick="openClass('P6')">P6</p>
+      <p onclick="openClass('P7')">P7</p>
+    `;
+  }
+  else if(name === 'Secondary'){
+    html = `
+      <p onclick="openClass('S1')">S1</p>
+      <p onclick="openClass('S2')">S2</p>
+      <p onclick="openClass('S3')">S3</p>
+      <p onclick="openClass('S4')">S4</p>
+      <p onclick="openClass('S5')">S5</p>
+      <p onclick="openClass('S6')">S6</p>
+    `;
+  }
+  else if(name === 'Tertiary'){
+    html = `
+      <p onclick="openClass('Certificate')">Certificate</p>
+      <p onclick="openClass('Diploma')">Diploma</p>
+      <p onclick="openClass('University')">University</p>
+    `;
+  }
+  else {
+    html = `
+      <p>📘 Lesson Notes</p>
+      <p>📗 Schemes of Work</p>
+      <p>📕 Past Papers</p>
+      <p>📚 Textbooks</p>
+    `;
+  }
+
+  content.innerHTML = html;
+  document.getElementById('classModal').style.display = 'flex';
 }
 
 function closeModal(e){
