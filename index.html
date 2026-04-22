@@ -19,7 +19,7 @@ body{font-family:Arial,sans-serif;background:var(--bg);color:#333;}
 nav{
   background:linear-gradient(135deg,var(--primary),var(--secondary));
   color:white;
-  padding:12px 16px;
+  padding:10px 14px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -27,12 +27,12 @@ nav{
   top:0;
   z-index:1000;
 }
-.logo{font-weight:bold;font-size:16px;}
+.logo{font-weight:bold;font-size:15px;}
 .hamburger{font-size:22px;cursor:pointer;}
 
-/* HERO (UGANDA STYLE - NO PEOPLE BACKGROUND) */
+/* HERO (REDUCED HEIGHT) */
 header{
-  height:38vh;
+  height:28vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -40,73 +40,51 @@ header{
   text-align:center;
   color:white;
   background:
-    linear-gradient(120deg, rgba(0,128,0,0.65), rgba(0,0,0,0.65)),
+    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
     url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80') center/cover;
-  padding:15px;
+  padding:10px;
 }
-header h1{font-size:34px;}
-header p{margin-top:6px;font-size:15px;opacity:0.95;}
+header h1{font-size:28px;}
+header p{font-size:13px;opacity:0.95;}
 
-/* SEARCH BAR (RESTORED) */
-.search-box{
-  max-width:600px;
-  margin:15px auto;
-  padding:0 15px;
-}
+/* SEARCH */
+.search-box{max-width:600px;margin:10px auto;padding:0 12px;}
 .search-box input{
-  width:100%;
-  padding:12px;
-  border-radius:30px;
-  border:1px solid #ddd;
-  outline:none;
+  width:100%;padding:10px;border-radius:25px;border:1px solid #ddd;
 }
 
 /* DASHBOARD */
-.section-title{text-align:center;margin:20px 0;color:var(--primary);}
+.section-title{text-align:center;margin:15px 0;color:var(--primary);}
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
-  padding:15px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  padding:12px;
   max-width:1100px;
   margin:auto;
 }
 .card{
   background:white;
-  padding:18px;
-  border-radius:14px;
+  padding:16px;
+  border-radius:12px;
   text-align:center;
   cursor:pointer;
-  box-shadow:0 8px 18px rgba(0,0,0,0.08);
-  transition:0.3s;
+  box-shadow:0 6px 14px rgba(0,0,0,0.08);
 }
-.card:hover{transform:translateY(-6px);}
-.card i{font-size:26px;color:var(--primary);margin-bottom:8px;}
-
-/* PANELS */
-.panel{
-  display:none;
-  max-width:1000px;
-  margin:15px auto;
-  background:white;
-  padding:18px;
-  border-radius:12px;
-  box-shadow:0 8px 18px rgba(0,0,0,0.06);
-}
+.card i{font-size:22px;color:var(--primary);margin-bottom:6px;}
 
 /* INFO */
 .info{
   max-width:1000px;
-  margin:15px auto;
+  margin:12px auto;
   background:white;
-  padding:18px;
-  border-radius:12px;
-  box-shadow:0 8px 18px rgba(0,0,0,0.06);
+  padding:16px;
+  border-radius:10px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.06);
 }
 .info h2{color:var(--primary);margin-bottom:6px;}
-.info p{line-height:1.6;}
 
-/* HAMBURGER MENU */
+/* MENU */
 .menu{
   position:fixed;
   top:0;
@@ -115,61 +93,77 @@ header p{margin-top:6px;font-size:15px;opacity:0.95;}
   height:100vh;
   background:linear-gradient(180deg,var(--primary),var(--dark));
   color:white;
-  padding:18px;
+  padding:14px;
   transition:0.3s;
   overflow-y:auto;
   z-index:2000;
 }
 .menu.show{right:0;}
 
-.menu-close{
-  text-align:right;
-  font-size:18px;
-  cursor:pointer;
-  margin-bottom:10px;
-}
+.menu-close{text-align:right;cursor:pointer;font-size:18px;margin-bottom:10px;}
 
 .submenu-title{
-  padding:12px;
-  margin-top:10px;
+  padding:10px;
+  margin-top:8px;
   background:rgba(255,255,255,0.12);
-  border-radius:10px;
+  border-radius:8px;
   cursor:pointer;
-  font-weight:bold;
   display:flex;
   justify-content:space-between;
 }
 .arrow{transition:0.3s;}
 .submenu-title.active .arrow{transform:rotate(90deg);}
 
-.submenu{display:none;margin-left:10px;}
+.submenu{display:none;margin-left:8px;}
 .submenu a{
   display:block;
   padding:8px;
   margin:4px 0;
   background:rgba(255,255,255,0.08);
-  border-radius:8px;
+  border-radius:6px;
   color:white;
   text-decoration:none;
   cursor:pointer;
   font-size:13px;
 }
 
+/* CLASS MODAL */
+#classModal{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:3000;
+}
+.modal-box{
+  background:white;
+  width:90%;max-width:520px;
+  padding:18px;
+  border-radius:12px;
+}
+.modal-box h3{color:var(--primary);margin-bottom:10px;}
+.modal-box p{padding:6px 0;cursor:pointer;color:#333;}
+.modal-box p:hover{color:var(--primary);}
+
+/* FOOTER */
 footer{
   background:var(--dark);
   color:white;
   text-align:center;
-  padding:25px;
-  margin-top:25px;
+  padding:18px;
+  margin-top:20px;
 }
 
 .whatsapp{
   position:fixed;
-  bottom:20px;
-  right:20px;
+  bottom:18px;
+  right:18px;
   background:var(--accent);
   color:white;
-  padding:12px 15px;
+  padding:12px 14px;
   border-radius:50px;
   text-decoration:none;
   font-weight:bold;
@@ -180,58 +174,56 @@ footer{
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 </nav><header>
   <h1>Hi5 Education Centre</h1>
-  <p>Uganda Based Digital Learning Platform</p>
-</header><!-- SEARCH BAR --><div class="search-box">
+  <p>Uganda Digital Learning Platform</p>
+</header><div class="search-box">
   <input type="text" placeholder="Search lesson notes, schemes, past papers...">
-</div><!-- DASHBOARD --><h2 class="section-title">📚 Academic Levels</h2>
+</div><h2 class="section-title">Academic Levels</h2>
 <div class="grid">
-  <div class="card" onclick="openSection('nursery')"><i class="fa fa-school"></i><br>Nursery</div>
-  <div class="card" onclick="openSection('primary')"><i class="fa fa-book"></i><br>Primary</div>
-  <div class="card" onclick="openSection('secondary')"><i class="fa fa-book-open"></i><br>Secondary</div>
-  <div class="card" onclick="openSection('tertiary')"><i class="fa fa-graduation-cap"></i><br>Tertiary</div>
-</div><!-- PANELS (FIXED DISPLAY ISSUE) --><div class="panel" id="nursery">
-<h3>Nursery Section</h3>
-<p>Baby Class • Middle Class • Top Class</p>
-</div><div class="panel" id="primary">
-<h3>Primary Section</h3>
-<p>P1 - P7 Learning Materials</p>
-</div><div class="panel" id="secondary">
-<h3>Secondary Section</h3>
-<p>S1 - S6 Learning Materials</p>
-</div><div class="panel" id="tertiary">
-<h3>Tertiary Section</h3>
-<p>Certificate • Diploma • University</p>
-</div><!-- INFO --><div class="info">
-<h2>Mission</h2>
-<p>To provide structured and accessible learning materials for all academic levels in Uganda.</p>
+  <div class="card" onclick="openClass('Nursery')"><i class="fa fa-school"></i><br>Nursery</div>
+  <div class="card" onclick="openClass('Primary')"><i class="fa fa-book"></i><br>Primary</div>
+  <div class="card" onclick="openClass('Secondary')"><i class="fa fa-book-open"></i><br>Secondary</div>
+  <div class="card" onclick="openClass('Tertiary')"><i class="fa fa-graduation-cap"></i><br>Tertiary</div>
 </div><div class="info">
-<h2>Vision</h2>
-<p>To become a leading digital education platform in Africa offering quality learning resources.</p>
-</div><div class="info">
-<h2>Core Values</h2>
-<p>Integrity • Excellence • Innovation • Discipline • Accessibility</p>
-</div><div class="info">
-<h2>About Us</h2>
-<p>Hi5 Education Centre is a professional digital learning platform founded by Isa Kiggundu, providing organized educational materials for learners in Uganda.</p>
-<p>📞 +256 702 234 701 | 📧 hi5educentre256@gmail.com</p>
-</div><!-- HAMBURGER MENU --><div class="menu" id="menu">  <div class="menu-close" onclick="toggleMenu()">✖ Close</div>  <div class="submenu-title" onclick="toggleSub(this,'nursery')">Nursery <span class="arrow">▶</span></div>
+<h2>Mission</h2><p>Structured learning for all levels.</p>
+</div>
+<div class="info">
+<h2>Vision</h2><p>Leading digital education in Africa.</p>
+</div>
+<div class="info">
+<h2>Core Values</h2><p>Integrity • Excellence • Innovation</p>
+</div>
+<div class="info">
+<h2>About Us</h2><p>Hi5 Education Centre provides learning materials for all levels in Uganda.</p></div><!-- MENU --><div class="menu" id="menu">
+  <div class="menu-close" onclick="toggleMenu()">✖ Close</div>  <div class="submenu-title" onclick="toggleSub(this,'nursery')">Nursery <span class="arrow">▶</span></div>
   <div class="submenu" id="nursery">
-    <a>Baby Class</a>
-    <a>Middle Class</a>
-    <a>Top Class</a>
+    <a onclick="openClass('Baby Class')">Baby Class</a>
+    <a onclick="openClass('Middle Class')">Middle Class</a>
+    <a onclick="openClass('Top Class')">Top Class</a>
   </div>  <div class="submenu-title" onclick="toggleSub(this,'primary')">Primary <span class="arrow">▶</span></div>
   <div class="submenu" id="primary">
-    <a>P1</a><a>P2</a><a>P3</a><a>P4</a><a>P5</a><a>P6</a><a>P7</a>
+    <a onclick="openClass('P1')">P1</a><a onclick="openClass('P2')">P2</a><a onclick="openClass('P3')">P3</a>
+    <a onclick="openClass('P4')">P4</a><a onclick="openClass('P5')">P5</a><a onclick="openClass('P6')">P6</a><a onclick="openClass('P7')">P7</a>
   </div>  <div class="submenu-title" onclick="toggleSub(this,'secondary')">Secondary <span class="arrow">▶</span></div>
   <div class="submenu" id="secondary">
-    <a>S1</a><a>S2</a><a>S3</a><a>S4</a><a>S5</a><a>S6</a>
+    <a onclick="openClass('S1')">S1</a><a onclick="openClass('S2')">S2</a><a onclick="openClass('S3')">S3</a>
+    <a onclick="openClass('S4')">S4</a><a onclick="openClass('S5')">S5</a><a onclick="openClass('S6')">S6</a>
   </div>  <div class="submenu-title" onclick="toggleSub(this,'tertiary')">Tertiary <span class="arrow">▶</span></div>
   <div class="submenu" id="tertiary">
-    <a>Certificate</a>
-    <a>Diploma</a>
-    <a>University</a>
-  </div></div><footer>
-<p>© 2026 Hi5 Education Centre</p>
+    <a onclick="openClass('Certificate')">Certificate</a>
+    <a onclick="openClass('Diploma')">Diploma</a>
+    <a onclick="openClass('University')">University</a>
+  </div>
+</div><!-- CLASS MODAL --><div id="classModal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <h3 id="classTitle"></h3>
+    <p onclick="alert('Open Lesson Notes')">📘 Lesson Notes</p>
+    <p onclick="alert('Open Schemes of Work')">📗 Schemes of Work</p>
+    <p onclick="alert('Open Past Papers')">📕 Past Papers</p>
+    <p onclick="alert('Open Textbooks')">📚 Textbooks</p>
+  </div>
+</div><footer>
+<p>📞 +256 702 234 701</p>
+<p>📧 hi5educentre256@gmail.com</p>
 </footer><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
 
 <script>
@@ -245,11 +237,13 @@ function toggleSub(el,id){
   if(!open){sub.style.display='block';el.classList.add('active');}
 }
 
-function openSection(id){
-  document.querySelectorAll('.panel').forEach(p=>p.style.display='none');
-  let el=document.getElementById(id);
-  if(el) el.style.display='block';
-  document.getElementById('menu').classList.remove('show');
+function openClass(name){
+  document.getElementById('classTitle').innerText=name;
+  document.getElementById('classModal').style.display='flex';
+}
+
+function closeModal(e){
+  if(e.target.id==='classModal') document.getElementById('classModal').style.display='none';
 }
 </script></body>
 </html>
