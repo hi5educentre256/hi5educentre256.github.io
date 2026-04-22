@@ -2,278 +2,225 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hi5 Education Centre</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Hi5 Education Centre | Learning Portal</title>
+<meta name="description" content="Hi5 Education Centre provides lesson notes, schemes of work, textbooks, and learning materials for Nursery, Primary, Secondary, and University levels in Uganda.">
+<meta name="keywords" content="Hi5 Education Centre, Uganda lessons, schemes of work, notes, LMS, education portal">
+
+<link rel="icon" href="logo.png">
+
 <style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#f4f6f9;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-/* HEADER */
-header{
-  background:linear-gradient(135deg,#0d6efd,#198754);
-  color:white;
-  padding:16px;
-  text-align:center;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  font-weight:bold;
-  box-shadow:0 3px 10px rgba(0,0,0,0.2);
+body {
+  background: #f4f7fb;
+  color: #333;
 }
 
-/* MENU */
-.menu{
-  position:absolute;
-  left:15px;
-  top:14px;
-  font-size:24px;
-  cursor:pointer;
+/* NAVBAR */
+nav {
+  background: #0d6efd;
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* SIDEBAR */
-.sidebar{
-  position:fixed;
-  left:-280px;
-  top:0;
-  width:280px;
-  height:100%;
-  background:#1e1e1e;
-  color:white;
-  transition:0.3s;
-  padding-top:60px;
-  z-index:2000;
+nav .logo {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.sidebar a{
-  display:block;
-  padding:12px;
-  color:white;
-  text-decoration:none;
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-.sidebar a:hover{
-  background:#333;
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* CLOSE */
-.close{
-  position:absolute;
-  top:10px;
-  right:10px;
-  font-size:20px;
-  cursor:pointer;
+nav ul li a:hover {
+  text-decoration: underline;
 }
 
-/* MAIN */
-.container{
-  padding:15px;
+/* HERO */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+  url('banner.jpg') center/cover;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
 
-/* DASHBOARD */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:12px;
+.hero h1 {
+  font-size: 32px;
 }
 
-.card{
-  background:white;
-  padding:18px;
-  border-radius:10px;
-  text-align:center;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+.hero p {
+  margin-top: 10px;
 }
 
-.card:hover{
-  background:#eef5ff;
+/* SECTIONS */
+.container {
+  padding: 30px;
 }
 
-/* ITEMS */
-.item{
-  background:white;
-  margin:8px 0;
-  padding:10px;
-  border-radius:8px;
-  cursor:pointer;
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
-.item:hover{
-  background:#eef5ff;
+/* CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
-/* SEARCH */
-.search input{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  border-radius:6px;
-  border:1px solid #ccc;
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
 }
 
-button{
-  padding:6px 10px;
-  margin-bottom:10px;
-  cursor:pointer;
+.card:hover {
+  transform: translateY(-5px);
 }
 
+.card a {
+  text-decoration: none;
+  color: #0d6efd;
+  font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+  background: #0d6efd;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    display: none;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<header>
-<span class="menu" onclick="toggle()">☰</span>
-Hi5 Education Centre
-</header>
+<!-- NAVIGATION -->
+<nav>
+  <div class="logo">Hi5 Education Centre</div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#levels">Levels</a></li>
+    <li><a href="#lms">LMS</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
 
-<!-- SIDEBAR -->
-<div id="sidebar" class="sidebar">
-<div class="close" onclick="toggle()">❌</div>
-
-<a href="#" onclick="home()">🏠 Dashboard</a>
-<a href="#" onclick="openFolder('Nursery')">Nursery</a>
-<a href="#" onclick="openFolder('Primary')">Primary</a>
-<a href="#" onclick="openFolder('Secondary')">Secondary</a>
-<a href="#" onclick="openFolder('Tertiary')">Tertiary</a>
-<a href="#">ℹ About Us</a>
-
+<!-- HERO -->
+<div class="hero">
+  <h1>Hi5 Education Centre</h1>
+  <p>Loving and Caring Minds</p>
 </div>
 
-<!-- MAIN -->
-<div class="container" id="content">
+<!-- LEVELS -->
+<div class="container" id="levels">
+  <h2 class="section-title">Learning Levels</h2>
 
-<h2>Main Dashboard</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Nursery</h3>
+      <a href="#">Enter Section</a>
+    </div>
 
-<div class="search">
-<input type="text" placeholder="Search materials..." onkeyup="search(this.value)">
+    <div class="card">
+      <h3>Primary</h3>
+      <a href="#">Enter Section</a>
+    </div>
+
+    <div class="card">
+      <h3>Secondary</h3>
+      <a href="#">Enter Section</a>
+    </div>
+
+    <div class="card">
+      <h3>University</h3>
+      <a href="#">Enter Section</a>
+    </div>
+  </div>
 </div>
 
-<div class="cards">
-<div class="card" onclick="openFolder('Nursery')">Nursery</div>
-<div class="card" onclick="openFolder('Primary')">Primary</div>
-<div class="card" onclick="openFolder('Secondary')">Secondary</div>
-<div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
+<!-- LMS -->
+<div class="container" id="lms">
+  <h2 class="section-title">Learning Materials</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Lesson Notes</h3>
+      <a href="#">View</a>
+    </div>
+
+    <div class="card">
+      <h3>Schemes of Work</h3>
+      <a href="#">View</a>
+    </div>
+
+    <div class="card">
+      <h3>Textbooks</h3>
+      <a href="#">View</a>
+    </div>
+
+    <div class="card">
+      <h3>Notices</h3>
+      <a href="#">View</a>
+    </div>
+  </div>
 </div>
 
+<!-- ABOUT -->
+<div class="container" id="about">
+  <h2 class="section-title">About Us</h2>
+  <p style="text-align:center; max-width:800px; margin:auto;">
+    Hi5 Education Centre is a digital learning platform providing educational resources
+    for Nursery, Primary, Secondary, and University learners in Uganda.
+  </p>
 </div>
 
-<script>
-
-let repo="hi5educentre256/hi5educentre256.github.io";
-let stack=[];
-
-/* MENU */
-function toggle(){
-  let sb=document.getElementById("sidebar");
-  sb.style.left = (sb.style.left==="0px") ? "-280px" : "0px";
-}
-
-function home(){
-  location.reload();
-}
-
-/* BACK SYSTEM */
-function back(){
-  if(stack.length>0){
-    document.getElementById("content").innerHTML = stack.pop();
-  } else {
-    home();
-  }
-}
-
-/* LEVEL 1 */
-function openFolder(folder){
-
-stack.push(document.getElementById("content").innerHTML);
-
-document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
-
-fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
-.then(r=>r.json())
-.then(data=>{
-
-let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
-
-data.forEach(f=>{
-html+=`<div class='item' onclick="openClass('${folder}/${f.name}')">📁 ${f.name}</div>`;
-});
-
-document.getElementById("content").innerHTML=html;
-
-});
-
-}
-
-/* LEVEL 2 */
-function openClass(path){
-
-stack.push(document.getElementById("content").innerHTML);
-
-fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-.then(r=>r.json())
-.then(data=>{
-
-let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
-
-data.forEach(f=>{
-html+=`<div class='item' onclick="openMaterials('${path}/${f.name}')">📂 ${f.name}</div>`;
-});
-
-document.getElementById("content").innerHTML=html;
-
-});
-
-}
-
-/* LEVEL 3 (FIXED MATERIAL DISPLAY) */
-function openMaterials(path){
-
-stack.push(document.getElementById("content").innerHTML);
-
-fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-.then(r=>r.json())
-.then(data=>{
-
-let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
-
-data.forEach(f=>{
-if(f.name.endsWith(".pdf")){
-html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-}
-});
-
-document.getElementById("content").innerHTML=html;
-
-});
-
-}
-
-/* SEARCH */
-function search(q){
-  if(q.length<2) return;
-
-  fetch(`https://api.github.com/repos/${repo}/contents/`)
-  .then(r=>r.json())
-  .then(data=>{
-
-    let html="<h2>Search Results</h2>";
-
-    data.forEach(f=>{
-      html+=`<div class='item' onclick="openFolder('${f.name}')">📁 ${f.name}</div>`;
-    });
-
-    document.getElementById("content").innerHTML=html;
-
-  });
-}
-
-</script>
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Hi5 Education Centre | Loving and Caring Minds</p>
+</footer>
 
 </body>
 </html>
