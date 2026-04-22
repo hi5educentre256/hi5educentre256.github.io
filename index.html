@@ -1,220 +1,247 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hi5 Education Centre</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
-    }
-
-    body{
-      background:#f4f7fb;
-      color:#222;
-    }
-
-    /* NAVBAR */
-    .navbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:15px 20px;
-      background:#0d47a1;
-      color:white;
-      position:sticky;
-      top:0;
-      z-index:1000;
-    }
-
-    .navbar .logo{
-      font-size:20px;
-      font-weight:bold;
-    }
-
-    .nav-links{
-      display:flex;
-      gap:15px;
-    }
-
-    .nav-links a{
-      color:white;
-      text-decoration:none;
-      padding:6px 10px;
-      border-radius:5px;
-      transition:0.3s;
-    }
-
-    .nav-links a:hover{
-      background:#1565c0;
-    }
-
-    /* HERO */
-    .hero{
-      background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644') center/cover;
-      height:300px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      color:white;
-      padding:20px;
-    }
-
-    .hero h1{
-      font-size:32px;
-    }
-
-    .hero p{
-      margin-top:10px;
-      font-size:16px;
-    }
-
-    .hero button{
-      margin-top:15px;
-      padding:10px 15px;
-      border:none;
-      background:#ff9800;
-      color:white;
-      border-radius:5px;
-      cursor:pointer;
-    }
-
-    /* SECTIONS */
-    .container{
-      padding:20px;
-    }
-
-    .section-title{
-      text-align:center;
-      margin:20px 0;
-      font-size:22px;
-      color:#0d47a1;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
-      gap:15px;
-    }
-
-    .card{
-      background:white;
-      padding:15px;
-      border-radius:10px;
-      text-align:center;
-      box-shadow:0 2px 5px rgba(0,0,0,0.1);
-      transition:0.3s;
-    }
-
-    .card:hover{
-      transform:translateY(-5px);
-    }
-
-    .card a{
-      text-decoration:none;
-      color:#0d47a1;
-      font-weight:bold;
-      display:block;
-      margin-top:10px;
-    }
-
-    /* FOOTER */
-    footer{
-      background:#0d47a1;
-      color:white;
-      text-align:center;
-      padding:15px;
-      margin-top:30px;
-    }
-
-    /* MOBILE */
-    @media(max-width:768px){
-      .nav-links{
-        flex-direction:column;
-        display:none;
-        background:#0d47a1;
-        position:absolute;
-        top:60px;
-        right:0;
-        width:200px;
-      }
-
-      .nav-links.show{
-        display:flex;
-      }
-
-      .menu-btn{
-        display:block;
-        cursor:pointer;
-      }
-    }
-
-    .menu-btn{
-      display:none;
-    }
-  </style></head>
-<body><!-- NAVBAR --><div class="navbar">
-  <div class="logo">Hi5 Education Centre</div>
-  <div class="menu-btn" onclick="toggleMenu()">
-    <i class="fas fa-bars"></i>
-  </div>
-  <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="#about">About</a>
-    <a href="#lms">LMS</a>
-    <a href="#contact">Contact</a>
-  </div>
-</div><!-- HERO --><div class="hero">
-  <h1>Hi5 Education Centre</h1>
-  <p>Loving and Caring Minds</p>
-  <button onclick="document.getElementById('lms').scrollIntoView()">Explore Learning Materials</button>
-</div><!-- ABOUT --><div class="container" id="about">
-  <h2 class="section-title">About Us</h2>
-  <p style="text-align:center; max-width:700px; margin:auto;">
-    Hi5 Education Centre is dedicated to providing quality educational resources including lesson notes, schemes of work, and learning materials for all levels.
-  </p>
-</div><!-- LMS SECTION (DO NOT CHANGE LINKS) --><div class="container" id="lms">
-  <h2 class="section-title">Learning Materials</h2>  <div class="grid"><!-- KEEP YOUR ORIGINAL LINKS HERE -->
-<div class="card">
-  <i class="fas fa-child fa-2x"></i>
-  <h3>Nursery</h3>
-  <a href="#">Open</a>
-</div>
-
-<div class="card">
-  <i class="fas fa-book fa-2x"></i>
-  <h3>Primary</h3>
-  <a href="#">Open</a>
-</div>
-
-<div class="card">
-  <i class="fas fa-school fa-2x"></i>
-  <h3>Secondary</h3>
-  <a href="#">Open</a>
-</div>
-
-<div class="card">
-  <i class="fas fa-graduation-cap fa-2x"></i>
-  <h3>University</h3>
-  <a href="#">Open</a>
-</div>
-
-  </div>
-</div><!-- CONTACT --><div class="container" id="contact">
-  <h2 class="section-title">Contact Us</h2>
-  <p style="text-align:center;">
-    Email: nextofjuniorschool@gmail.com <br>
-    WhatsApp: +256 757 826946
-  </p>
-</div><!-- FOOTER --><footer>
-  © 2026 Hi5 Education Centre | Loving and Caring Minds
-</footer><script>
-function toggleMenu(){
-  document.getElementById('navLinks').classList.toggle('show');
+<meta charset="UTF-8">
+<title>Hi5 Education Centre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f6f9;
+  color:#222;
 }
+
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#0d6efd,#198754);
+  color:white;
+  padding:14px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  position:sticky;
+}
+
+.menu{
+  position:absolute;
+  right:15px;
+  top:12px;
+  font-size:24px;
+  cursor:pointer;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  left:-270px;
+  top:0;
+  width:270px;
+  height:100%;
+  background:#1f1f1f;
+  color:white;
+  transition:0.3s ease;
+  padding-top:60px;
+  z-index:2000;
+  box-shadow:2px 0 10px rgba(0,0,0,0.3);
+}
+
+.sidebar a{
+  display:block;
+  padding:12px;
+  color:white;
+  text-decoration:none;
+  border-left:3px solid transparent;
+}
+
+.sidebar a:hover{
+  background:#333;
+  border-left:3px solid #0d6efd;
+}
+
+/* CLOSE BUTTON */
+.close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  cursor:pointer;
+  font-size:20px;
+}
+
+/* MAIN */
+.container{
+  padding:15px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+  margin-top:10px;
+}
+
+.card{
+  background:white;
+  padding:18px;
+  text-align:center;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  background:#f0f6ff;
+}
+
+/* FILE ITEMS */
+.item{
+  background:white;
+  margin:8px 0;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow:0 1px 4px rgba(0,0,0,0.08);
+}
+
+.item:hover{
+  background:#eef5ff;
+}
+
+/* SEARCH */
+.search{
+  margin:10px 0;
+}
+
+.search input{
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  outline:none;
+}
+
+button{
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  background:#0d6efd;
+  color:white;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#0b5ed7;
+}
+
+/* MOBILE IMPROVEMENT */
+@media(max-width:768px){
+  .sidebar{
+    width:220px;
+  }
+}
+
+</style></head><body><header>
+Hi5 Education Centre
+<span class="menu" onclick="toggle()">☰</span>
+</header><!-- SIDEBAR --><div id="sidebar" class="sidebar">
+<div class="close" onclick="toggle()">❌</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#">ℹ About Us</a>
+
+</div><!-- MAIN --><div class="container" id="content"><h2>Main Dashboard</h2><div class="search">
+<input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
+</div><div class="cards">
+<div class="card" onclick="openFolder('Nursery')">Nursery</div>
+<div class="card" onclick="openFolder('Primary')">Primary</div>
+<div class="card" onclick="openFolder('Secondary')">Secondary</div>
+<div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
+</div></div><script>
+
+let repo="hi5educentre256/hi5educentre256.github.io";
+let historyStack=[];
+
+function toggle(){
+  let sb=document.getElementById("sidebar");
+  sb.style.left = (sb.style.left==="0px") ? "-270px" : "0px";
+}
+
+function home(){
+  location.reload();
+}
+
+function openFolder(folder){
+  historyStack.push(document.getElementById("content").innerHTML);
+
+  document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
+
+  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+  .then(r=>r.json())
+  .then(data=>{
+
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
+
+    data.forEach(f=>{
+
+      if(f.name.endsWith(".pdf")){
+        html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+      } else {
+        html+=`<div class="item" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
+      }
+
+    });
+
+    document.getElementById("content").innerHTML=html;
+  });
+}
+
+function openSub(path){
+
+historyStack.push(document.getElementById("content").innerHTML);
+
+document.getElementById("content").innerHTML="<h2>"+path+"</h2><p>Loading...</p>";
+
+fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+.then(r=>r.json())
+.then(data=>{
+
+let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+
+data.forEach(f=>{
+if(f.name.endsWith(".pdf")){
+html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+}
+});
+
+document.getElementById("content").innerHTML=html;
+
+});
+
+}
+
+function back(){
+  if(historyStack.length>0){
+    document.getElementById("content").innerHTML=historyStack.pop();
+  } else {
+    home();
+  }
+}
+
+function searchFiles(query){
+  if(query.length<2) return;
+
+  fetch(`https://api.github.com/repos/${repo}/contents/`)
+  .then(r=>r.json())
+  .then(data=>{
+    let results="<h2>Search Results</h2>";
+
+    data.forEach(folder=>{
+      results+=`<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
+    });
+
+    document.getElementById("content").innerHTML=results;
+  });
+}
+
 </script></body>
 </html>
