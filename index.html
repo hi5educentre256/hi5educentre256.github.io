@@ -5,7 +5,7 @@
 <title>Hi5 Education Centre</title><link rel="stylesheet" href="https://widget.whautomate.com/css/whatsapp-widget.min.css"><style>
 body{
   margin:0;
-  font-family:Arial, sans-serif;
+  font-family:Arial;
   background:#f4f6f9;
 }
 
@@ -31,9 +31,9 @@ header{
   background:white;
   margin:10px;
   padding:12px;
-  border-radius:10px;
+  border-radius:12px;
   text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
 .banner h3{
@@ -78,39 +78,71 @@ header{
   padding:15px;
 }
 
+.search input{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+/* ===== IMPROVED DASHBOARD CARDS ===== */
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
+  margin-top:15px;
 }
 
 .card{
-  background:white;
-  padding:18px;
-  border-radius:12px;
+  padding:20px;
+  border-radius:16px;
   text-align:center;
   cursor:pointer;
+  color:white;
   font-weight:bold;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  box-shadow:0 6px 14px rgba(0,0,0,0.15);
+  transition:0.3s;
+  position:relative;
+  overflow:hidden;
 }
 
-.card:hover,.item:hover{
-  background:#eef5ff;
+.card span{
+  display:block;
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+/* Individual beautiful gradients */
+.card.nursery{
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+}
+
+.card.primary{
+  background:linear-gradient(135deg,#a18cd1,#fbc2eb);
+}
+
+.card.secondary{
+  background:linear-gradient(135deg,#4facfe,#00f2fe);
+}
+
+.card.tertiary{
+  background:linear-gradient(135deg,#43e97b,#38f9d7);
 }
 
 .item{
   background:white;
   margin:8px 0;
   padding:12px;
-  border-radius:8px;
+  border-radius:10px;
   cursor:pointer;
 }
 
-.search input{
-  width:100%;
-  padding:10px;
-  border:1px solid #ccc;
-  border-radius:8px;
+.item:hover{
+  background:#eef5ff;
 }
 
 button{
@@ -122,19 +154,27 @@ button{
   cursor:pointer;
 }
 
+footer{
+  background:#0d6efd;
+  color:white;
+  text-align:center;
+  padding:15px;
+  margin-top:20px;
+}
+
 .contact-box{
   background:white;
   margin-top:20px;
   padding:15px;
-  border-radius:10px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
 
 .highlight-link{
   display:block;
   margin-top:10px;
   padding:12px;
-  border-radius:8px;
+  border-radius:10px;
   text-decoration:none;
   font-weight:bold;
   text-align:center;
@@ -145,20 +185,12 @@ button{
   color:white;
 }
 
-footer{
-  background:#0d6efd;
-  color:white;
-  text-align:center;
-  padding:15px;
-  margin-top:20px;
-}
-</style></head>
-<body><header>
-  Hi5 Education Centre
-  <span class="menu" onclick="toggle()">☰</span>
+</style></head><body><header>
+Hi5 Education Centre
+<span class="menu" onclick="toggle()">☰</span>
 </header><div class="banner">
   <h3>Learn Today, Lead Tomorrow</h3>
-  <p>Quality Learning Materials for Nursery, Primary, Secondary & Tertiary</p>
+  <p>Quality Learning Materials for All Levels</p>
 </div><div id="sidebar" class="sidebar">
   <div class="close" onclick="toggle()">❌</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#" onclick="showAbout()">ℹ About Us</a>
 
@@ -166,108 +198,84 @@ footer{
   <p style="text-align:center;">Access learning materials quickly and easily</p>  <div class="search">
     <input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
   </div>  <div class="cards">
-    <div class="card" onclick="openFolder('Nursery')">Nursery</div>
-    <div class="card" onclick="openFolder('Primary')">Primary</div>
-    <div class="card" onclick="openFolder('Secondary')">Secondary</div>
-    <div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
+    <div class="card nursery" onclick="openFolder('Nursery')">
+      <span>🧒</span>
+      Nursery
+    </div><div class="card primary" onclick="openFolder('Primary')">
+  <span>📘</span>
+  Primary
+</div>
+
+<div class="card secondary" onclick="openFolder('Secondary')">
+  <span>🎓</span>
+  Secondary
+</div>
+
+<div class="card tertiary" onclick="openFolder('Tertiary')">
+  <span>🏫</span>
+  Tertiary
+</div>
+
   </div>  <div class="contact-box">
     <h3>Contact Us</h3>
-        <a href="https://wa.me/256702234701" target="_blank" class="highlight-link email-link">
-      📱 Phone / WhatsApp: +256702234701
-    </a><a href="mailto:hi5educentre256@gmail.com" class="highlight-link email-link">
-  📧 hi5educentre256@gmail.com
-</a>
-
+    <p><b>Email:</b> hi5educentre256@gmail.com</p>
+    <p><b>WhatsApp:</b> +256702234701</p>
   </div></div><footer>
-  <b>Hi5 Education Centre</b><br>
-  Motto: Learn Today, Lead Tomorrow<br>
-  Founder: Mr Isa Kiggundu
-</footer><form id="whatsapp-chat" class="wa-widget" action="256702234701" data-chat="whatsapp-chat"></form><script src="https://widget.whautomate.com/js/whatsapp-widget.min.js"></script><script>
-let repo = "hi5educentre256/hi5educentre256.github.io";
-let historyStack = [];
+  Hi5 Education Centre<br>
+  Learn Today, Lead Tomorrow
+</footer><script>
+let repo="hi5educentre256/hi5educentre256.github.io";
+let historyStack=[];
 
 function toggle(){
-  let sb = document.getElementById("sidebar");
-  sb.style.left = sb.style.left === "0px" ? "-300px" : "0px";
+  let sb=document.getElementById("sidebar");
+  sb.style.left = sb.style.left==="0px" ? "-300px" : "0px";
 }
 
-function home(){
-  location.reload();
-}
-
-function showAbout(){
-  historyStack.push(document.getElementById("content").innerHTML);
-
-  document.getElementById("content").innerHTML = `
-    <button onclick="back()">⬅ Back</button>
-    <h2>About Us</h2>
-    <p><b>Hi5 Education Centre</b> provides lesson notes, schemes of work, textbooks and past papers for all levels.</p>
-    <p><b>Motto:</b> Learn Today, Lead Tomorrow</p>
-    <p><b>Founder:</b> Mr Isa Kiggundu</p>
-    <p><b>WhatsApp:</b> +256702234701</p>
-    <p><b>Email:</b> hi5educentre256@gmail.com</p>
-  `;
-
-  toggle();
-}
+function home(){ location.reload(); }
 
 function openFolder(folder){
   historyStack.push(document.getElementById("content").innerHTML);
-  document.getElementById("content").innerHTML = "<h2>Loading...</h2>";
+  document.getElementById("content").innerHTML="<h2>Loading...</h2>";
 
   fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
-  .then(r => r.json())
-  .then(data => {
-    let html = `<button onclick='back()'>⬅ Back</button><h2>${folder}</h2>`;
+  .then(r=>r.json())
+  .then(data=>{
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
 
-    if(Array.isArray(data)){
-      data.forEach(f => {
-        if(f.name.endsWith('.pdf')){
-          html += `<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-        } else {
-          html += `<div class="item" onclick="openFolder('${folder}/${f.name}')">📁 ${f.name}</div>`;
-        }
-      });
-    }
+    data.forEach(f=>{
+      if(f.name.endsWith(".pdf")){
+        html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+      } else {
+        html+=`<div class="item" onclick="openFolder('${folder}/${f.name}')">📁 ${f.name}</div>`;
+      }
+    });
 
-    document.getElementById("content").innerHTML = html;
+    document.getElementById("content").innerHTML=html;
   });
 }
 
 function back(){
-  if(historyStack.length > 0){
-    document.getElementById("content").innerHTML = historyStack.pop();
+  if(historyStack.length>0){
+    document.getElementById("content").innerHTML=historyStack.pop();
   } else {
     home();
   }
 }
 
 function searchFiles(query){
-  if(query.length < 2) return;
+  if(query.length<2) return;
 
   fetch(`https://api.github.com/repos/${repo}/contents/`)
-  .then(r => r.json())
-  .then(data => {
-    let results = "<h2>Search Results</h2>";
-
-    data.forEach(folder => {
-      results += `<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
+  .then(r=>r.json())
+  .then(data=>{
+    let results="<h2>Search Results</h2>";
+    data.forEach(folder=>{
+      results+=`<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
     });
-
-    document.getElementById("content").innerHTML = results;
+    document.getElementById("content").innerHTML=results;
   });
 }
 
-var whatsappChat = new WhatsAppWidget(
-  document.getElementById("whatsapp-chat"),
-  {
-    name: "Hi5 Education Centre",
-    division: "Typically replies within a few minutes",
-    photo: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-    introduction: "Welcome to Hi5 Education Centre 👋\nHow can we help you today?",
-    defaultMessage: "Hello, I would like to inquire about learning materials.",
-    buttonText: "Chat with us on WhatsApp"
-  }
-);
 </script></body>
 </html>
