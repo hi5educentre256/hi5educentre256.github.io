@@ -45,9 +45,7 @@ nav{
   border-radius:6px;
 }
 
-.menu a:hover{
-  background:rgba(255,255,255,0.15);
-}
+.menu a:hover{background:rgba(255,255,255,0.15);}
 
 .menu input{
   padding:6px 10px;
@@ -73,16 +71,6 @@ header{
 
 header h1{font-size:42px;}
 header p{font-size:18px;opacity:0.9;}
-
-.btn{
-  margin-top:20px;
-  padding:12px 18px;
-  background:var(--accent);
-  color:white;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
-}
 
 .stats{
   display:grid;
@@ -132,10 +120,7 @@ section{padding:70px 20px;}
 .card h3{color:var(--primary);margin-bottom:10px;display:flex;gap:8px;align-items:center;}
 .card p{line-height:1.5;}
 
-.highlight{
-  background:linear-gradient(135deg,#ffffff,#eef5ff);
-  border-left:6px solid var(--primary);
-}
+.highlight{background:linear-gradient(135deg,#ffffff,#eef5ff);border-left:6px solid var(--primary);}
 
 .mission{border-left-color:#25D366;}
 .vision{border-left-color:#ff9800;}
@@ -181,18 +166,15 @@ footer{
   <div class="logo">🎓 Hi5 Education Centre</div>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <div class="menu" id="menu">
-    <!-- ORDER AS REQUESTED -->
     <a href="#nursery" onclick="closeMenu()">Nursery</a>
     <a href="#primary" onclick="closeMenu()">Primary</a>
     <a href="#secondary" onclick="closeMenu()">Secondary</a>
-    <a href="#tertiary" onclick="closeMenu()">Tertiary</a><a href="#mission" onclick="closeMenu()">Mission</a>
-<a href="#vision" onclick="closeMenu()">Vision</a>
-<a href="#core" onclick="closeMenu()">Core Values</a>
-
-<a href="#about" onclick="closeMenu()">About Us</a>
-
-<input type="text" placeholder="Search materials..." oninput="searchMaterials(this.value)">
-
+    <a href="#tertiary" onclick="closeMenu()">Tertiary</a>
+    <a href="#mission" onclick="closeMenu()">Mission</a>
+    <a href="#vision" onclick="closeMenu()">Vision</a>
+    <a href="#core" onclick="closeMenu()">Core Values</a>
+    <a href="#about" onclick="closeMenu()">About Us</a>
+    <input type="text" placeholder="Search materials..." oninput="searchMaterials(this.value)">
   </div>
 </nav><header>
   <h1>Hi5 Education Centre</h1>
@@ -202,10 +184,42 @@ footer{
   <div class="stat"><h2>4 Levels</h2><p>Nursery to Tertiary</p></div>
   <div class="stat"><h2>24/7</h2><p>Access Anytime</p></div>
   <div class="stat"><h2>Free</h2><p>Education Resources</p></div>
-</div><section id="nursery"><h2 class="section-title">Nursery Section</h2></section>
-<section id="primary"><h2 class="section-title">Primary Section</h2></section>
-<section id="secondary"><h2 class="section-title">Secondary Section</h2></section>
-<section id="tertiary"><h2 class="section-title">Tertiary Section</h2></section><section id="mission">
+</div><section id="nursery">
+<h2 class="section-title">Nursery Section</h2>
+<div class="grid">
+  <div class="card"><h3>Baby Class</h3><p>Lesson Notes, Schemes, Past Papers, Textbooks</p></div>
+  <div class="card"><h3>Middle Class</h3><p>Lesson Notes, Schemes, Past Papers, Textbooks</p></div>
+  <div class="card"><h3>Top Class</h3><p>Lesson Notes, Schemes, Past Papers, Textbooks</p></div>
+</div>
+</section><section id="primary">
+<h2 class="section-title">Primary Section</h2>
+<div class="grid">
+  <div class="card"><h3>P1</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>P2</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>P3</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>P4</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>P5</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>P6</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>P7</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+</div>
+</section><section id="secondary">
+<h2 class="section-title">Secondary Section</h2>
+<div class="grid">
+  <div class="card"><h3>S1</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>S2</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>S3</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>S4</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>S5</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+  <div class="card"><h3>S6</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
+</div>
+</section><section id="tertiary">
+<h2 class="section-title">Tertiary Section</h2>
+<div class="grid">
+  <div class="card"><h3>Certificate Level</h3><p>Course Materials, Notes, Assignments</p></div>
+  <div class="card"><h3>Diploma Level</h3><p>Course Materials, Notes, Assignments</p></div>
+  <div class="card"><h3>University Level</h3><p>Course Materials, Notes, Assignments</p></div>
+</div>
+</section><section id="mission">
 <h2 class="section-title">Mission</h2>
 <div class="card highlight mission">To provide accessible and quality learning materials for all learners.</div>
 </section><section id="vision">
@@ -231,16 +245,7 @@ footer{
 <div id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div><script>
 function toggleMenu(){document.getElementById('menu').classList.toggle('show');}
 function closeMenu(){document.getElementById('menu').classList.remove('show');}
-
-function searchMaterials(q){
-  q=q.toLowerCase();
-  document.querySelectorAll('.card').forEach(c=>{
-    c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';
-  });
-}
-
-window.onscroll=function(){
-  document.getElementById('topBtn').style.display=window.scrollY>200?'block':'none';
-};
+function searchMaterials(q){q=q.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';});}
+window.onscroll=function(){document.getElementById('topBtn').style.display=window.scrollY>200?'block':'none';};
 </script></body>
 </html>
