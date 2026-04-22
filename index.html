@@ -256,24 +256,59 @@ document.getElementById("content").innerHTML=html;
 
 /* SEARCH */
 function search(q){
-  if(q.length<2) return;
+  if(q.length < 2) return;
 
-  fetch(`https://api.github.com/repos/${repo}/contents/`)
-  .then(r=>r.json())
-  .then(data=>{
+  document.getElementById("content").innerHTML = "<h2>Searching...</h2>";
 
-    let html="<h2>Search Results</h2>";
+  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
+  .then(r => r.json())
+  .then(data => {
 
-    data.forEach(f=>{
-      html+=`<div class='item' onclick="openFolder('${f.name}')">📁 ${f.name}</div>`;
+    let html = "<h2>Search Results</h2>";
+
+    let found = false;
+
+    data.tree.forEach(file => {
+      if(file.path.includes(q) && file.path.endsWith(".pdf")){
+        found = true;
+
+        html += `
+        <div class='item' onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${file.path}','_blank')">
+        📄 ${file.path}
+        </div>`;
+      }
     });
 
-    document.getElementById("content").innerHTML=html;
+    if(!found){
+      html += "<p>No results found</p>";
+    }
 
+    document.getElementById("content").innerHTML = html;
   });
 }
+  function about(){
+  stack.push(document.getElementById("content").innerHTML);
 
-</script>
+  document.getElementById("content").innerHTML = `
+  <button onclick="back()">⬅ Back</button>
 
-</body>
-</html>
+  <h2>About Hi5 Education Centre</h2>
+
+  <div class="item">
+  <b>Founder:</b> Hi5 Education Team
+  </div>
+
+  <div class="item">
+  <b>Vision:</b> To provide accessible digital education for all learners.
+  </div>
+
+  <div class="item">
+  <b>Mission:</b> To deliver quality learning materials through a modern online platform.
+  </div>
+
+  <div class="item">
+  <b>Core Values:</b> Excellence, Discipline, Innovation, Accessibility
+  </div>
+  `;
+}
+  <a href="#" onclick="about()">ℹ About Us</a>
