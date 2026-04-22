@@ -1,215 +1,246 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hi5 Education Centre</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
+:root{
+  --primary:#1a4fa3;
+  --secondary:#2b7cff;
+  --accent:#25D366;
+  --dark:#0f2f66;
+  --bg:#f4f7fb;
+}
 
-<style>
-body{margin:0;font-family:Arial;background:#f4f7fb;color:#333}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+body{font-family:Arial,sans-serif;background:var(--bg);color:#333;}
 
-/* NAV */
 nav{
-background:#1a4fa3;
-color:#fff;
-padding:10px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  padding:10px 14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
-.hamburger{cursor:pointer;font-size:22px}
+.logo{font-weight:bold;font-size:15px;}
+.hamburger{font-size:22px;cursor:pointer;}
 
-/* BANNER (SMALL) */
+/* HERO (REDUCED MORE) */
 header{
-height:22vh;
-background:linear-gradient(120deg,#1a4fa3,#2b7cff);
-color:#fff;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
+  height:16vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80') center/cover;
+  padding:6px;
 }
-header h1{margin:0;font-size:22px}
-header p{font-size:13px}
+header h1{font-size:20px;}
+header p{font-size:12px;opacity:0.95;}
 
-/* DASHBOARD */
+.search-box{max-width:600px;margin:8px auto;padding:0 12px;}
+.search-box input{width:100%;padding:10px;border-radius:25px;border:1px solid #ddd;}
+
+.section-title{text-align:center;margin:12px 0;color:var(--primary);}
+
 .grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-padding:10px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  padding:12px;
+  max-width:1100px;
+  margin:auto;
 }
+
 .card{
-background:#fff;
-padding:15px;
-text-align:center;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
-cursor:pointer;
+  background:white;
+  padding:16px;
+  border-radius:12px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 6px 14px rgba(0,0,0,0.08);
 }
-.card:hover{transform:scale(1.03)}
+.card i{font-size:22px;color:var(--primary);margin-bottom:6px;}
 
-/* MENU */
-.menu{
-position:fixed;
-top:0;
-right:-300px;
-width:280px;
-height:100%;
-background:#0f2f66;
-color:#fff;
-padding:10px;
-transition:0.3s;
-overflow:auto;
-}
-.menu.show{right:0}
-.close{cursor:pointer;text-align:right}
-
-/* MENU ITEMS */
-.item{
-padding:10px;
-background:rgba(255,255,255,0.1);
-margin:5px 0;
-border-radius:8px;
-cursor:pointer;
-}
-.sub{display:none;margin-left:10px}
-.sub a{
-display:block;
-padding:6px;
-color:#fff;
-text-decoration:none;
-background:rgba(255,255,255,0.08);
-margin:3px 0;
-border-radius:6px;
-}
-
-/* MODAL */
-.modal{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.6);
-display:none;
-justify-content:center;
-align-items:center;
-}
-.box{
-background:#fff;
-padding:15px;
-border-radius:10px;
-width:80%;
-}
-.box p{cursor:pointer;padding:5px}
-
-/* INFO */
 .info{
-background:#fff;
-margin:10px;
-padding:10px;
-border-radius:10px;
+  max-width:1000px;
+  margin:10px auto;
+  background:white;
+  padding:14px;
+  border-radius:10px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.06);
 }
-</style>
-</head>
+.info h2{color:var(--primary);margin-bottom:6px;}
 
-<body>
+.menu{
+  position:fixed;
+  top:0;
+  right:-330px;
+  width:310px;
+  height:100vh;
+  background:linear-gradient(180deg,var(--primary),var(--dark));
+  color:white;
+  padding:14px;
+  transition:0.3s;
+  overflow-y:auto;
+  z-index:2000;
+}
+.menu.show{right:0;}
+.menu-close{text-align:right;cursor:pointer;font-size:18px;margin-bottom:10px;}
 
-<nav>
-<div>🎓 Hi5 Education Centre</div>
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-</nav>
+.section-block{
+  margin-top:10px;
+  padding:10px;
+  background:rgba(255,255,255,0.08);
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.4;
+}
 
-<header>
-<h1>Hi5 Education Centre</h1>
-<p>Uganda Digital Learning Platform</p>
-</header>
+.submenu-title{
+  padding:10px;
+  margin-top:8px;
+  background:rgba(255,255,255,0.12);
+  border-radius:8px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+}
+.arrow{transition:0.3s;}
+.submenu-title.active .arrow{transform:rotate(90deg);}
 
-<!-- DASHBOARD -->
+.submenu{display:none;margin-left:8px;}
+.submenu a{
+  display:block;
+  padding:8px;
+  margin:4px 0;
+  background:rgba(255,255,255,0.08);
+  border-radius:6px;
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+}
+
+#classModal{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:3000;
+}
+
+.modal-box{
+  background:white;
+  width:90%;max-width:520px;
+  padding:18px;
+  border-radius:12px;
+}
+
+.modal-box h3{color:var(--primary);margin-bottom:10px;}
+.modal-box p{padding:6px 0;cursor:pointer;}
+
+footer{
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:16px;
+  margin-top:18px;
+}
+
+.whatsapp{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  background:var(--accent);
+  color:white;
+  padding:12px 14px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+</style></head><body><nav>
+  <div class="logo">🎓 Hi5 Education Centre</div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</nav><header>
+  <h1>Hi5 Education Centre</h1>
+  <p>Uganda Digital Learning Platform</p>
+</header><div class="search-box">
+  <input type="text" placeholder="Search lesson notes, schemes, past papers...">
+</div><h2 class="section-title">Academic Levels</h2>
 <div class="grid">
-<div class="card" onclick="openClass('Nursery')">Nursery</div>
-<div class="card" onclick="openClass('Primary')">Primary</div>
-<div class="card" onclick="openClass('Secondary')">Secondary</div>
-<div class="card" onclick="openClass('Tertiary')">Tertiary</div>
-</div>
-
-<!-- INFO -->
-<div class="info"><b>Mission:</b> Quality learning materials</div>
-<div class="info"><b>Vision:</b> Leading digital education platform</div>
-<div class="info"><b>Core Values:</b> Integrity • Excellence • Innovation</div>
-
-<!-- MENU -->
-<div class="menu" id="menu">
-<div class="close" onclick="toggleMenu()">✖</div>
-
-<div class="item" onclick="toggleSub('nur')">Nursery</div>
-<div class="sub" id="nur">
-<a onclick="openClass('Baby Class')">Baby</a>
-<a onclick="openClass('Middle Class')">Middle</a>
-<a onclick="openClass('Top Class')">Top</a>
-</div>
-
-<div class="item" onclick="toggleSub('pri')">Primary</div>
-<div class="sub" id="pri">
-<a onclick="openClass('P1')">P1</a>
-<a onclick="openClass('P2')">P2</a>
-<a onclick="openClass('P3')">P3</a>
-<a onclick="openClass('P4')">P4</a>
-<a onclick="openClass('P5')">P5</a>
-<a onclick="openClass('P6')">P6</a>
-<a onclick="openClass('P7')">P7</a>
-</div>
-
-<div class="item" onclick="toggleSub('sec')">Secondary</div>
-<div class="sub" id="sec">
-<a onclick="openClass('S1')">S1</a>
-<a onclick="openClass('S2')">S2</a>
-<a onclick="openClass('S3')">S3</a>
-<a onclick="openClass('S4')">S4</a>
-<a onclick="openClass('S5')">S5</a>
-<a onclick="openClass('S6')">S6</a>
-</div>
-
-<div class="item" onclick="toggleSub('ter')">Tertiary</div>
-<div class="sub" id="ter">
-<a onclick="openClass('Certificate')">Certificate</a>
-<a onclick="openClass('Diploma')">Diploma</a>
-<a onclick="openClass('University')">University</a>
-</div>
-</div>
-
-<!-- CLASS MODAL -->
-<div class="modal" id="modal" onclick="closeModal(event)">
-<div class="box">
-<h3 id="title"></h3>
-<p>📘 Lesson Notes</p>
-<p>📗 Schemes of Work</p>
-<p>📕 Past Papers</p>
-<p>📚 Textbooks</p>
-</div>
-</div>
+  <div class="card" onclick="openClass('Nursery')"><i class="fa fa-school"></i><br>Nursery</div>
+  <div class="card" onclick="openClass('Primary')"><i class="fa fa-book"></i><br>Primary</div>
+  <div class="card" onclick="openClass('Secondary')"><i class="fa fa-book-open"></i><br>Secondary</div>
+  <div class="card" onclick="openClass('Tertiary')"><i class="fa fa-graduation-cap"></i><br>Tertiary</div>
+</div><div class="info">
+<h2>About Us</h2>
+<p><b>Hi5 Education Centre</b> is a professional digital learning platform in Uganda providing structured academic materials for all levels.</p>
+<p><b>Founder:</b> Isa Kiggundu</p>
+<p><b>Contact:</b> +256 702 234 701 | hi5educentre256@gmail.com</p>
+</div><!-- MENU --><div class="menu" id="menu">
+  <div class="menu-close" onclick="toggleMenu()">✖ Close</div>  <div class="section-block"><b>About Founder</b><br>Isa Kiggundu is the founder of Hi5 Education Centre, committed to improving digital education access in Uganda.</div>
+  <div class="section-block"><b>Mission</b><br>To provide quality and accessible learning materials for all learners.</div>
+  <div class="section-block"><b>Vision</b><br>To become a leading digital education platform in Africa.</div>
+  <div class="section-block"><b>Core Values</b><br>Integrity • Excellence • Innovation • Discipline</div>  <div class="submenu-title" onclick="toggleSub(this,'nursery')">Nursery <span class="arrow">▶</span></div>
+  <div class="submenu" id="nursery">
+    <a onclick="openClass('Baby Class')">Baby Class</a>
+    <a onclick="openClass('Middle Class')">Middle Class</a>
+    <a onclick="openClass('Top Class')">Top Class</a>
+  </div>  <div class="submenu-title" onclick="toggleSub(this,'primary')">Primary <span class="arrow">▶</span></div>
+  <div class="submenu" id="primary">
+    <a onclick="openClass('P1')">P1</a><a onclick="openClass('P2')">P2</a><a onclick="openClass('P3')">P3</a>
+    <a onclick="openClass('P4')">P4</a><a onclick="openClass('P5')">P5</a><a onclick="openClass('P6')">P6</a><a onclick="openClass('P7')">P7</a>
+  </div>  <div class="submenu-title" onclick="toggleSub(this,'secondary')">Secondary <span class="arrow">▶</span></div>
+  <div class="submenu" id="secondary">
+    <a onclick="openClass('S1')">S1</a><a onclick="openClass('S2')">S2</a><a onclick="openClass('S3')">S3</a>
+    <a onclick="openClass('S4')">S4</a><a onclick="openClass('S5')">S5</a><a onclick="openClass('S6')">S6</a>
+  </div>  <div class="submenu-title" onclick="toggleSub(this,'tertiary')">Tertiary <span class="arrow">▶</span></div>
+  <div class="submenu" id="tertiary">
+    <a onclick="openClass('Certificate')">Certificate</a>
+    <a onclick="openClass('Diploma')">Diploma</a>
+    <a onclick="openClass('University')">University</a>
+  </div>
+</div><div id="classModal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <h3 id="classTitle"></h3>
+    <p>📘 Lesson Notes</p>
+    <p>📗 Schemes of Work</p>
+    <p>📕 Past Papers</p>
+    <p>📚 Textbooks</p>
+  </div>
+</div><footer>
+<p>📞 +256 702 234 701</p>
+<p>📧 hi5educentre256@gmail.com</p>
+</footer><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
 
 <script>
-function toggleMenu(){
-document.getElementById('menu').classList.toggle('show');
-}
+function toggleMenu(){document.getElementById('menu').classList.toggle('show');}
 
-function toggleSub(id){
-let el=document.getElementById(id);
-el.style.display=(el.style.display==='block')?'none':'block';
+function toggleSub(el,id){
+  let sub=document.getElementById(id);
+  let open=sub.style.display==='block';
+  document.querySelectorAll('.submenu').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.submenu-title').forEach(t=>t.classList.remove('active'));
+  if(!open){sub.style.display='block';el.classList.add('active');}
 }
 
 function openClass(name){
-document.getElementById('title').innerText=name;
-document.getElementById('modal').style.display='flex';
+  document.getElementById('classTitle').innerText=name;
+  document.getElementById('classModal').style.display='flex';
 }
 
 function closeModal(e){
-if(e.target.id==='modal'){
-document.getElementById('modal').style.display='none';
+  if(e.target.id==='classModal') document.getElementById('classModal').style.display='none';
 }
-}
-</script>
-
-</body>
+</script></body>
 </html>
