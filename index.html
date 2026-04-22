@@ -183,14 +183,285 @@ Hi5 Education Centre
 </div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#" onclick="showAbout()">ℹ About Us</a>
 
 </div><div class="container" id="content">  <h2 style="text-align:center;color:#0d6efd;">Main Dashboard</h2>
-  <p style="text-align:center;">Access learning materials quickly and easily</p>  <div class="search">
+  <p style="text-align:center;">Use the menu ☰ to access Nursery, Primary, Secondary, Tertiary and About Us</p>  <div class="search">
     <input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
-  </div>  <div class="cards">
-    <div class="card nursery" onclick="openFolder('Nursery')"><span>🧒</span>Nursery</div>
-    <div class="card primary" onclick="openFolder('Primary')"><span>📘</span>Primary</div>
-    <div class="card secondary" onclick="openFolder('Secondary')"><span>🎓</span>Secondary</div>
-    <div class="card tertiary" onclick="openFolder('Tertiary')"><span>🏫</span>Tertiary</div>
-    <div class="card about" onclick="showAbout()"><span>ℹ️</span>About Us</div>
+  </div><div class="card primary" onclick="openFolder('Primary')"><span>📘</span>Primary</div>
+<div class="card secondary" onclick="openFolder('Secondary')"><span>🎓</span>Secondary</div>
+<div class="card tertiary" onclick="openFolder('Tertiary')"><span>🏫</span>Tertiary</div>
+<div class="card about" onclick="showAbout()"><span>ℹ️</span>About Us</div>
+
+  </div>  <div class="contact-box">
+    <h3>Contact Us</h3><a href="mailto:hi5educentre256@gmail.com" class="highlight-link email-link">
+  📧 Email: hi5educentre256@gmail.com
+</a>
+
+<a href="tel:+256702234701" class="highlight-link email-link">
+  📞 Call Us: +256702234701
+</a>
+
+<a href="https://wa.me/256702234701" target="_blank" class="highlight-link email-link">
+  💬 WhatsApp Chat: +256702234701
+</a>
+
+</div></div><footer>
+Hi5 Education Centre<br>
+Learn Today, Lead Tomorrow
+</footer><form id="whatsapp-chat" class="wa-widget" action="256702234701"></form><script src="https://widget.whautomate.com/js/whatsapp-widget.min.js"></script><script>
+var whatsappChat = new WhatsAppWidget(
+  document.getElementById("whatsapp-chat"),
+  {
+    name: "Hi5 Education Centre",
+    division: "Online Support Available",
+    photo: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png",
+    introduction: "👋 Welcome to Hi5 Education Centre\nHow can we help you today?",
+    defaultMessage: "Hello, I need help with learning materials.",
+    buttonText: "Chat with us on WhatsApp"
+  }
+);
+</script><script>
+let repo="hi5educentre256/hi5educentre256.github.io";
+let historyStack=[];
+
+function toggle(){
+  let sb=document.getElementById("sidebar");
+  sb.style.left = sb.style.left==="0px" ? "-300px" : "0px";
+}
+
+function home(){location.reload();}
+
+function showAbout(){
+  historyStack.push(document.getElementById("content").innerHTML);
+
+  document.getElementById("content").innerHTML=`
+    <button onclick="back()">⬅ Back</button>
+    <h2>About Us</h2>
+    <p><b>Hi5 Education Centre</b> provides quality learning materials for Nursery, Primary, Secondary and Tertiary levels.</p>
+    <p><b>Motto:</b> Learn Today, Lead Tomorrow</p>
+    <p><b>Founder:</b> Mr Isa Kiggundu</p>
+    <p><b>Email:</b> hi5educentre256@gmail.com</p>
+    <p><b>WhatsApp:</b> +256702234701</p>
+  `;
+
+  toggle();
+}
+
+function openFolder(folder){
+  historyStack.push(document.getElementById("content").innerHTML);
+  document.getElementById("content").innerHTML="<h2>Loading...</h2>";
+
+  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+  .then(r=>r.json())
+  .then(data=>{
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
+
+    data.forEach(f=>{
+      if(f.name.endsWith(".pdf")){
+        html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+      } else {
+        html+=`<div class="item" onclick="openFolder('${folder}/${f.name}')">📁 ${f.name}</div>`;
+      }
+    });
+
+    document.getElementById("content").innerHTML=html;
+  });
+}
+
+function back(){
+  if(historyStack.length>0){
+    document.getElementById("content").innerHTML=historyStack.pop();
+  } else {
+    home();<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hi5 Education Centre</title><link rel="stylesheet" href="https://widget.whautomate.com/css/whatsapp-widget.min.css"><style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6f9;
+}
+
+header{
+  background:linear-gradient(90deg,#0d6efd,#198754);
+  color:white;
+  padding:14px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.menu{
+  position:absolute;
+  right:15px;
+  top:10px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+.banner{
+  background:white;
+  margin:10px;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.banner h3{
+  margin:5px;
+  color:#0d6efd;
+}
+
+.sidebar{
+  position:fixed;
+  left:-300px;
+  top:0;
+  width:300px;
+  height:100%;
+  background:#1f1f1f;
+  color:white;
+  transition:0.3s;
+  padding-top:60px;
+  z-index:2000;
+  overflow-y:auto;
+}
+
+.sidebar a{
+  display:block;
+  padding:12px;
+  color:white;
+  text-decoration:none;
+}
+
+.sidebar a:hover{
+  background:#333;
+}
+
+.close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.container{
+  padding:15px;
+}
+
+.search input{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+  margin-top:15px;
+}
+
+.card{
+  padding:14px;
+  border-radius:14px;
+  text-align:center;
+  cursor:pointer;
+  color:white;
+  font-weight:bold;
+  font-size:16px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.12);
+  transition:0.3s;
+}
+
+.card span{
+  display:block;
+  font-size:22px;
+  margin-bottom:5px;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+}
+
+.card.nursery{background:linear-gradient(135deg,#ff9a9e,#fad0c4);}
+.card.primary{background:linear-gradient(135deg,#a18cd1,#fbc2eb);}
+.card.secondary{background:linear-gradient(135deg,#4facfe,#00f2fe);}
+.card.tertiary{background:linear-gradient(135deg,#43e97b,#38f9d7);}
+.card.about{background:linear-gradient(135deg,#667eea,#764ba2);}
+
+.item{
+  background:white;
+  margin:8px 0;
+  padding:12px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.item:hover{
+  background:#eef5ff;
+}
+
+button{
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  background:#0d6efd;
+  color:white;
+  cursor:pointer;
+}
+
+footer{
+  background:#0d6efd;
+  color:white;
+  text-align:center;
+  padding:15px;
+  margin-top:20px;
+}
+
+.contact-box{
+  background:white;
+  margin-top:20px;
+  padding:15px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.highlight-link{
+  display:block;
+  margin-top:10px;
+  padding:12px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+  text-align:center;
+}
+
+.email-link{
+  background:#0d6efd;
+  color:white;
+}
+</style></head><body><header>
+Hi5 Education Centre
+<span class="menu" onclick="toggle()">☰</span>
+</header><div class="banner">
+  <h3>Learn Today, Lead Tomorrow</h3>
+  <p>Quality Learning Materials for All Levels</p>
+</div><div id="sidebar" class="sidebar">
+  <div class="close" onclick="toggle()">❌</div><a href="#" onclick="toggle(); home()">🏠 Dashboard</a> <a href="#" onclick="toggle(); openFolder('Nursery')">Nursery</a> <a href="#" onclick="toggle(); openFolder('Primary')">Primary</a> <a href="#" onclick="toggle(); openFolder('Secondary')">Secondary</a> <a href="#" onclick="toggle(); openFolder('Tertiary')">Tertiary</a> <a href="#" onclick="toggle(); showAbout()">ℹ About Us</a>
+
+</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#" onclick="showAbout()">ℹ About Us</a>
+
+</div><div class="container" id="content">  <h2 style="text-align:center;color:#0d6efd;">Main Dashboard</h2>
+  <p style="text-align:center;">Use the menu ☰ to access Nursery, Primary, Secondary, Tertiary and About Us</p>  <div class="search">
+    <input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
+  </div><div class="card primary" onclick="openFolder('Primary')"><span>📘</span>Primary</div>
+<div class="card secondary" onclick="openFolder('Secondary')"><span>🎓</span>Secondary</div>
+<div class="card tertiary" onclick="openFolder('Tertiary')"><span>🏫</span>Tertiary</div>
+<div class="card about" onclick="showAbout()"><span>ℹ️</span>About Us</div>
+
   </div>  <div class="contact-box">
     <h3>Contact Us</h3><a href="mailto:hi5educentre256@gmail.com" class="highlight-link email-link">
   📧 Email: hi5educentre256@gmail.com
@@ -272,6 +543,24 @@ function back(){
     document.getElementById("content").innerHTML=historyStack.pop();
   } else {
     home();
+  }
+}
+
+function searchFiles(query){
+  if(query.length<2) return;
+
+  fetch(`https://api.github.com/repos/${repo}/contents/`)
+  .then(r=>r.json())
+  .then(data=>{
+    let results="<h2>Search Results</h2>";
+    data.forEach(folder=>{
+      results+=`<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
+    });
+    document.getElementById("content").innerHTML=results;
+  });
+}
+</script></body>
+</html>
   }
 }
 
