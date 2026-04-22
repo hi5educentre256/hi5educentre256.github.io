@@ -1,225 +1,240 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi5 Education Centre</title>  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #333;
+      line-height: 1.6;
+    }
 
-/* NAVIGATION */
-nav {
-  background: #1a4fa3;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  color: white;
-}
+    /* NAVIGATION */
+    nav {
+      background: #1a4fa3;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-nav .logo {
-  font-weight: bold;
-  font-size: 18px;
-}
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-nav a {
-  color: white;
-  margin: 5px 10px;
-  text-decoration: none;
-}
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 8px 12px;
+      font-weight: 500;
+    }
 
-nav a:hover {
-  text-decoration: underline;
-}
+    nav a:hover {
+      text-decoration: underline;
+    }
 
-/* HEADER */
-header {
-  text-align: center;
-  padding: 35px 20px;
-  background: white;
-}
+    /* HEADER */
+    header {
+      background: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
 
-header h1 {
-  color: #1a4fa3;
-  margin: 0;
-}
+    header h1 {
+      color: #1a4fa3;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
 
-header p {
-  margin-top: 10px;
-}
+    header p {
+      font-size: 18px;
+      font-weight: 500;
+    }
 
-/* SECTION TITLE */
-.section-title {
-  text-align: center;
-  color: #1a4fa3;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
+    /* GENERAL SECTION */
+    section {
+      padding: 50px 20px;
+    }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  max-width: 1100px;
-  margin: auto;
-  padding: 0 20px;
-}
+    .section-title {
+      text-align: center;
+      color: #1a4fa3;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
 
-/* CARD */
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  text-align: center;
-  transition: 0.3s;
-}
+    /* ABOUT SECTION */
+    .about-text {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+      text-align: center;
+    }
 
-.card:hover {
-  transform: translateY(-5px);
-}
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
 
-.card h3 {
-  color: #1a4fa3;
-}
+    /* CARD */
+    .card {
+      background: white;
+      padding: 25px 20px;
+      border-radius: 14px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: 0.3s;
+    }
 
-/* WHATSAPP BUTTON */
-.whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  color: white;
-  padding: 12px 15px;
-  border-radius: 50px;
-  text-decoration: none;
-}
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #1a4fa3;
-  color: white;
-}
-</style>
-</head>
+    .card h3 {
+      color: #1a4fa3;
+      margin-bottom: 10px;
+    }
 
-<body>
+    .card p {
+      line-height: 1.7;
+    }
 
-<!-- NAVIGATION -->
-<nav>
-  <div class="logo">Hi5 Education Centre</div>
-  <div>
-    <a href="#nursery">Nursery</a>
-    <a href="#primary">Primary</a>
-    <a href="#secondary">Secondary</a>
-    <a href="#tertiary">Tertiary</a>
-    <a href="#mvc">About</a>
-  </div>
-</nav>
+    /* WHATSAPP */
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
 
-<!-- HEADER -->
-<header>
-  <h1>Hi5 Education Centre</h1>
-  <p>Learn Today Lead Tomorrow</p>
-</header>
-
-<!-- NURSERY -->
-<section id="nursery">
-  <h2 class="section-title">Nursery Section</h2>
-  <div class="grid">
-    <div class="card"><h3>Baby Class</h3></div>
-    <div class="card"><h3>Middle Class</h3></div>
-    <div class="card"><h3>Top Class</h3></div>
-  </div>
-</section>
-
-<!-- PRIMARY -->
-<section id="primary">
-  <h2 class="section-title">Primary Section</h2>
-  <div class="grid">
-    <div class="card"><h3>Primary 1</h3></div>
-    <div class="card"><h3>Primary 2</h3></div>
-    <div class="card"><h3>Primary 3</h3></div>
-    <div class="card"><h3>Primary 4</h3></div>
-    <div class="card"><h3>Primary 5</h3></div>
-    <div class="card"><h3>Primary 6</h3></div>
-    <div class="card"><h3>Primary 7</h3></div>
-  </div>
-</section>
-
-<!-- SECONDARY -->
-<section id="secondary">
-  <h2 class="section-title">Secondary Section</h2>
-  <div class="grid">
-    <div class="card"><h3>Senior 1</h3></div>
-    <div class="card"><h3>Senior 2</h3></div>
-    <div class="card"><h3>Senior 3</h3></div>
-    <div class="card"><h3>Senior 4</h3></div>
-    <div class="card"><h3>Senior 5</h3></div>
-    <div class="card"><h3>Senior 6</h3></div>
-  </div>
-</section>
-
-<!-- TERTIARY -->
-<section id="tertiary">
-  <h2 class="section-title">Tertiary Section</h2>
-  <div class="grid">
-    <div class="card"><h3>Certificate</h3></div>
-    <div class="card"><h3>Diploma</h3></div>
-    <div class="card"><h3>Bachelor</h3></div>
-    <div class="card"><h3>Postgraduate</h3></div>
-  </div>
-</section>
-
-<!-- MVC -->
-<section id="mvc">
-  <h2 class="section-title">Mission, Vision & Core Values</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>🎯 Mission</h3>
-      <p>To provide accessible, high-quality education from Nursery to Tertiary level, empowering learners with knowledge and skills for success.</p>
+    /* FOOTER */
+    footer {
+      background: #1a4fa3;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+  </style></head>
+<body>  <!-- NAVIGATION -->  <nav>
+    <div class="logo">Hi5 Education Centre</div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#nursery">Nursery</a>
+      <a href="#primary">Primary</a>
+      <a href="#secondary">Secondary</a>
+      <a href="#tertiary">Tertiary</a>
+      <a href="#mvc">MVC</a>
     </div>
-
-    <div class="card">
-      <h3>🌍 Vision</h3>
-      <p>To become a leading digital education centre that transforms learning through innovation and excellence.</p>
-    </div>
-
-    <div class="card">
-      <h3>⭐ Core Values</h3>
+  </nav>  <!-- HEADER -->  <header>
+    <h1>Hi5 Education Centre</h1>
+    <p>Learn Today Lead Tomorrow</p>
+  </header>  <!-- ABOUT -->  <section id="about">
+    <h2 class="section-title">About Hi5 Education Centre</h2>
+    <div class="about-text">
       <p>
-        📚 Excellence<br>
-        🧠 Discipline<br>
-        🤝 Respect for learners and educators<br>
-        🔒 Integrity<br>
-        🚀 Innovation<br>
-        🌐 Accessibility
-      </p>
+        Hi5 Education Centre is a modern learning platform that provides structured educational content from Nursery to Tertiary level. It is designed to support learners with clear, organized, and accessible academic materials that promote understanding and success.<br><br>The centre covers Nursery (Baby Class, Middle Class, and Top Class), Primary (Primary 1 to Primary 7), Secondary (Senior 1 to Senior 6), and Tertiary education (Certificate, Diploma, Bachelor, and Postgraduate levels). It aims to make learning simple, accessible, and effective for all learners.<br><br>
+
+    Hi5 Education Centre is committed to academic excellence, discipline, and innovation in education, helping learners achieve their full potential.
+  </p>
+</div>
+
+  </section>  <!-- NURSERY -->  <section id="nursery">
+    <h2 class="section-title">Nursery Section</h2>
+    <div class="grid">
+      <div class="card"><h3>Baby Class</h3></div>
+      <div class="card"><h3>Middle Class</h3></div>
+      <div class="card"><h3>Top Class</h3></div>
     </div>
-
+  </section>  <!-- PRIMARY -->  <section id="primary">
+    <h2 class="section-title">Primary Section</h2>
+    <div class="grid">
+      <div class="card"><h3>Primary 1</h3></div>
+      <div class="card"><h3>Primary 2</h3></div>
+      <div class="card"><h3>Primary 3</h3></div>
+      <div class="card"><h3>Primary 4</h3></div>
+      <div class="card"><h3>Primary 5</h3></div>
+      <div class="card"><h3>Primary 6</h3></div>
+      <div class="card"><h3>Primary 7</h3></div>
+    </div>
+  </section>  <!-- SECONDARY -->  <section id="secondary">
+    <h2 class="section-title">Secondary Section</h2>
+    <div class="grid">
+      <div class="card"><h3>Senior 1</h3></div>
+      <div class="card"><h3>Senior 2</h3></div>
+      <div class="card"><h3>Senior 3</h3></div>
+      <div class="card"><h3>Senior 4</h3></div>
+      <div class="card"><h3>Senior 5</h3></div>
+      <div class="card"><h3>Senior 6</h3></div>
+    </div>
+  </section>  <!-- TERTIARY -->  <section id="tertiary">
+    <h2 class="section-title">Tertiary Section</h2>
+    <div class="grid">
+      <div class="card"><h3>Certificate</h3></div>
+      <div class="card"><h3>Diploma</h3></div>
+      <div class="card"><h3>Bachelor</h3></div>
+      <div class="card"><h3>Postgraduate</h3></div>
+    </div>
+  </section>  <!-- MVC -->  <section id="mvc">
+    <h2 class="section-title">Mission, Vision & Core Values</h2>
+    <div class="grid"><div class="card">
+    <h3>Mission</h3>
+    <p>
+      To provide accessible, high-quality, and well-structured education from Nursery to Tertiary level, empowering learners with knowledge, skills, and confidence to achieve academic and life success.
+    </p>
   </div>
-</section>
 
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/256757826946" target="_blank">
-  WhatsApp Us
-</a>
+  <div class="card">
+    <h3>Vision</h3>
+    <p>
+      To become a leading digital education centre that transforms learning through innovation, accessibility, and academic excellence, producing competent and responsible global citizens.
+    </p>
+  </div>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 Hi5 Education Centre. All rights reserved.</p>
-</footer>
+  <div class="card">
+    <h3>Core Values</h3>
+    <p>
+      Excellence in education<br>
+      Discipline and hard work<br>
+      Respect for all learners and educators<br>
+      Integrity and honesty<br>
+      Innovation and creativity<br>
+      Accessibility and inclusion
+    </p>
+  </div>
 
-</body>
+</div>
+
+  </section>  <!-- WHATSAPP --><a class="whatsapp" href="https://wa.me/256757826946" target="_blank">WhatsApp Us</a>
+
+  <!-- FOOTER -->  <footer>
+    <p>© 2026 Hi5 Education Centre. All rights reserved.</p>
+  </footer></body>
 </html>
