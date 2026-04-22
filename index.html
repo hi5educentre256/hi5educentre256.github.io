@@ -6,6 +6,7 @@
 :root{
   --primary:#1a4fa3;
   --accent:#25D366;
+  --dark:#0f2f66;
   --bg:#f4f7fb;
   --card:#ffffff;
 }
@@ -20,7 +21,8 @@ body{
 
 /* NAV */
 nav{
-  background:rgba(26,79,163,0.95);
+  background:rgba(26,79,163,0.9);
+  backdrop-filter:blur(10px);
   color:white;
   padding:14px 20px;
   display:flex;
@@ -29,7 +31,6 @@ nav{
   position:sticky;
   top:0;
   z-index:1000;
-  backdrop-filter:blur(8px);
 }
 
 .logo{
@@ -39,56 +40,87 @@ nav{
 
 .menu{display:flex;gap:18px;}
 .menu a{color:white;text-decoration:none;font-size:14px;}
-.menu a:hover{opacity:0.8;}
+.menu a:hover{color:#ffdd57;}
 
 .hamburger{display:none;cursor:pointer;font-size:22px;}
 
 /* HERO */
 header{
-  height:85vh;
+  height:90vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
   color:white;
-  background:url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80') center/cover;
+  background:url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80') center/cover;
   position:relative;
 }
 
 header::before{
   content:"";
   position:absolute;
-  top:0;left:0;right:0;bottom:0;
-  background:rgba(0,0,0,0.55);
+  inset:0;
+  background:rgba(0,0,0,0.6);
 }
 
-header h1, header p, header a{
+header h1,header p,header a{
   position:relative;
   z-index:2;
 }
 
-header h1{font-size:42px;margin-bottom:10px;}
-header p{font-size:18px;opacity:0.9;}
+header h1{
+  font-size:48px;
+  animation:fadeIn 1s ease-in-out;
+}
+
+header p{
+  font-size:20px;
+  margin-top:10px;
+  opacity:0.9;
+}
 
 .btn{
   margin-top:20px;
+  padding:12px 18px;
   background:var(--accent);
   color:white;
-  padding:12px 18px;
   border-radius:8px;
   text-decoration:none;
   font-weight:bold;
+  transition:0.3s;
 }
 
-/* SECTION */
+.btn:hover{transform:scale(1.05);}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+  max-width:1000px;
+  margin:-40px auto 40px;
+  padding:0 20px;
+}
+
+.stat{
+  background:white;
+  padding:20px;
+  text-align:center;
+  border-radius:12px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+.stat h2{color:var(--primary);}
+
+/* SECTIONS */
 section{
-  padding:60px 20px;
+  padding:70px 20px;
 }
 
 .section-title{
   text-align:center;
-  font-size:24px;
+  font-size:26px;
   color:var(--primary);
   margin-bottom:30px;
   font-weight:bold;
@@ -102,25 +134,34 @@ section{
   margin:auto;
 }
 
-/* CARD */
 .card{
   background:var(--card);
-  padding:20px;
+  padding:22px;
   border-radius:14px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
   transition:0.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:4px;
+  background:var(--primary);
 }
 
 .card:hover{
-  transform:translateY(-8px);
+  transform:translateY(-10px);
 }
 
 .card h3{
   color:var(--primary);
   margin-bottom:12px;
   display:flex;
-  align-items:center;
   gap:8px;
+  align-items:center;
 }
 
 .card a{
@@ -135,13 +176,17 @@ section{
 
 small{color:#666;}
 
+/* ALTERNATE BACKGROUNDS */
+section:nth-child(even){
+  background:#ffffff;
+}
+
 /* FOOTER */
 footer{
-  background:var(--primary);
+  background:var(--dark);
   color:white;
   text-align:center;
-  padding:30px;
-  margin-top:40px;
+  padding:40px;
 }
 
 /* WHATSAPP */
@@ -162,12 +207,18 @@ footer{
   position:fixed;
   bottom:80px;
   right:20px;
-  background:#000;
-  color:#fff;
+  background:black;
+  color:white;
   padding:10px;
   border-radius:50%;
-  cursor:pointer;
   display:none;
+  cursor:pointer;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
 /* MOBILE */
@@ -184,7 +235,7 @@ footer{
   }
   .menu.show{display:flex;}
   .hamburger{display:block;}
-  header h1{font-size:30px;}
+  header h1{font-size:34px;}
 }
 </style></head><body><!-- NAV --><nav>
   <div class="logo"><i class="fa-solid fa-graduation-cap"></i> Hi5 Education Centre</div>
@@ -196,54 +247,45 @@ footer{
     <a href="#tertiary">Tertiary</a>
   </div>
 </nav><!-- HERO --><header>
-  <h1>Welcome to Hi5 Education Centre</h1>
+  <h1>Hi5 Education Centre</h1>
   <p>Learn Today, Lead Tomorrow</p>
-  <a class="btn" href="#nursery">Explore Learning</a>
-</header><!-- NURSERY --><section id="nursery">
+  <a class="btn" href="#nursery">Start Learning</a>
+</header><!-- STATS --><div class="stats">
+  <div class="stat"><h2>100+</h2><p>Learning Materials</p></div>
+  <div class="stat"><h2>4 Levels</h2><p>Nursery to Tertiary</p></div>
+  <div class="stat"><h2>24/7</h2><p>Access Anytime</p></div>
+  <div class="stat"><h2>Free</h2><p>Education Resources</p></div>
+</div><!-- NURSERY --><section id="nursery">
 <h2 class="section-title">Nursery Section</h2>
-<div class="grid"><div class="card">
-<h3><i class="fa-solid fa-baby"></i> Baby Class</h3>
-<a href="nursery/baby/lesson-notes.html">Lesson Notes</a>
-<a href="nursery/baby/schemes.html">Schemes of Work</a>
-<a href="nursery/baby/past-papers.html">Past Papers</a>
-<small>Textbooks Available</small>
-</div><div class="card">
-<h3><i class="fa-solid fa-child"></i> Middle Class</h3>
-<a href="nursery/middle/lesson-notes.html">Lesson Notes</a>
-<a href="nursery/middle/schemes.html">Schemes of Work</a>
-<a href="nursery/middle/past-papers.html">Past Papers</a>
-<small>Textbooks Available</small>
-</div><div class="card">
-<h3><i class="fa-solid fa-child-reaching"></i> Top Class</h3>
-<a href="nursery/top/lesson-notes.html">Lesson Notes</a>
-<a href="nursery/top/schemes.html">Schemes of Work</a>
-<a href="nursery/top/past-papers.html">Past Papers</a>
-<small>Textbooks Available</small>
-</div></div>
+<div class="grid"><div class="card"><h3><i class="fa-solid fa-baby"></i> Baby Class</h3><a href="nursery/baby/lesson-notes.html">Lesson Notes</a><a href="nursery/baby/schemes.html">Schemes of Work</a><a href="nursery/baby/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3><i class="fa-solid fa-child"></i> Middle Class</h3><a href="nursery/middle/lesson-notes.html">Lesson Notes</a><a href="nursery/middle/schemes.html">Schemes of Work</a><a href="nursery/middle/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3><i class="fa-solid fa-child-reaching"></i> Top Class</h3><a href="nursery/top/lesson-notes.html">Lesson Notes</a><a href="nursery/top/schemes.html">Schemes of Work</a><a href="nursery/top/past-papers.html">Past Papers</a><small>Textbooks Available</small></div></div>
 </section><!-- PRIMARY --><section id="primary">
 <h2 class="section-title">Primary Section</h2>
-<div class="grid"><div class="card"><h3><i class="fa-solid fa-school"></i> P1</h3><a href="primary/p1/lesson-notes.html">Lesson Notes</a><a href="primary/p1/schemes.html">Schemes of Work</a><a href="primary/p1/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P2</h3><a href="primary/p2/lesson-notes.html">Lesson Notes</a><a href="primary/p2/schemes.html">Schemes of Work</a><a href="primary/p2/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P3</h3><a href="primary/p3/lesson-notes.html">Lesson Notes</a><a href="primary/p3/schemes.html">Schemes of Work</a><a href="primary/p3/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P4</h3><a href="primary/p4/lesson-notes.html">Lesson Notes</a><a href="primary/p4/schemes.html">Schemes of Work</a><a href="primary/p4/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P5</h3><a href="primary/p5/lesson-notes.html">Lesson Notes</a><a href="primary/p5/schemes.html">Schemes of Work</a><a href="primary/p5/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P6</h3><a href="primary/p6/lesson-notes.html">Lesson Notes</a><a href="primary/p6/schemes.html">Schemes of Work</a><a href="primary/p6/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>P7</h3><a href="primary/p7/lesson-notes.html">Lesson Notes</a><a href="primary/p7/schemes.html">Schemes of Work</a><a href="primary/p7/past-papers.html">Past Papers</a><small>Textbooks Available</small></div></div>
+<div class="grid"><div class="card"><h3>P1</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P2</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P3</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P4</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P5</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P6</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P7</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div></div>
 </section><!-- SECONDARY --><section id="secondary">
 <h2 class="section-title">Secondary Section</h2>
-<div class="grid"><div class="card"><h3>S1</h3><a href="secondary/s1/lesson-notes.html">Lesson Notes</a><a href="secondary/s1/schemes.html">Schemes of Work</a><a href="secondary/s1/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S2</h3><a href="secondary/s2/lesson-notes.html">Lesson Notes</a><a href="secondary/s2/schemes.html">Schemes of Work</a><a href="secondary/s2/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S3</h3><a href="secondary/s3/lesson-notes.html">Lesson Notes</a><a href="secondary/s3/schemes.html">Schemes of Work</a><a href="secondary/s3/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S4</h3><a href="secondary/s4/lesson-notes.html">Lesson Notes</a><a href="secondary/s4/schemes.html">Schemes of Work</a><a href="secondary/s4/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S5</h3><a href="secondary/s5/lesson-notes.html">Lesson Notes</a><a href="secondary/s5/schemes.html">Schemes of Work</a><a href="secondary/s5/past-papers.html">Past Papers</a><small>Textbooks Available</small></div>
-<div class="card"><h3>S6</h3><a href="secondary/s6/lesson-notes.html">Lesson Notes</a><a href="secondary/s6/schemes.html">Schemes of Work</a><a href="secondary/s6/past-papers.html">Past Papers</a><small>Textbooks Available</small></div></div>
+<div class="grid">
+<div class="card"><h3>S1</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S2</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S3</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S4</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S5</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S6</h3><a href="#">Lesson Notes</a><a href="#">Schemes</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+</div>
 </section><!-- TERTIARY --><section id="tertiary">
 <h2 class="section-title">Tertiary Section</h2>
 <div class="grid">
-<div class="card"><h3>Certificate</h3><small>Course Materials</small></div>
-<div class="card"><h3>Diploma</h3><small>Course Materials</small></div>
-<div class="card"><h3>Bachelor</h3><small>Course Materials</small></div>
-<div class="card"><h3>Postgraduate</h3><small>Research Materials</small></div>
+<div class="card"><h3>Certificate</h3><p>Course Materials</p></div>
+<div class="card"><h3>Diploma</h3><p>Course Materials</p></div>
+<div class="card"><h3>Bachelor</h3><p>Course Materials</p></div>
+<div class="card"><h3>Postgraduate</h3><p>Research Materials</p></div>
 </div>
 </section><!-- FOOTER --><footer>
 <p><strong>Founder:</strong> Mr. Isa Kiggundu</p>
