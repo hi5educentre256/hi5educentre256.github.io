@@ -2,7 +2,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
+<title>Hi5 Education Centre</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
 :root{
   --primary:#1a4fa3;
   --secondary:#2b7cff;
@@ -29,7 +30,58 @@ nav{
 .logo{font-weight:bold;font-size:16px;}
 .hamburger{font-size:22px;cursor:pointer;}
 
-/* SIDE MENU */
+/* HERO (IMPROVED BANNER) */
+header{
+  height:55vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  background:
+    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+    url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80') center/cover;
+  padding:20px;
+}
+header h1{font-size:42px;}
+header p{margin-top:10px;font-size:16px;opacity:0.9;}
+
+/* DASHBOARD */
+.section-title{text-align:center;margin:25px 0;color:var(--primary);}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:15px;
+  padding:15px;
+  max-width:1100px;
+  margin:auto;
+}
+.card{
+  background:white;
+  padding:18px;
+  border-radius:14px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+.card:hover{transform:translateY(-6px);}
+.card i{font-size:26px;color:var(--primary);margin-bottom:8px;}
+
+/* INFO */
+.info{
+  max-width:1000px;
+  margin:25px auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.06);
+}
+.info h2{color:var(--primary);margin-bottom:8px;}
+.info p{line-height:1.6;}
+
+/* HAMBURGER MENU */
 .menu{
   position:fixed;
   top:0;
@@ -52,7 +104,13 @@ nav{
   border-radius:10px;
   cursor:pointer;
   font-weight:bold;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
+.arrow{transition:0.3s;}
+.submenu-title.active .arrow{transform:rotate(90deg);}
+
 .submenu{display:none;margin-left:10px;}
 .submenu a{
   display:block;
@@ -66,75 +124,6 @@ nav{
   font-size:13px;
 }
 
-/* HERO */
-header{
-  height:45vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:white;
-  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80') center/cover;
-}
-header h1{font-size:38px;}
-
-/* DASHBOARD */
-.section-title{text-align:center;margin:25px 0;color:var(--primary);}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
-  padding:15px;
-  max-width:1100px;
-  margin:auto;
-}
-.card{
-  background:white;
-  padding:18px;
-  border-radius:14px;
-  text-align:center;
-  cursor:pointer;
-  box-shadow:0 8px 18px rgba(0,0,0,0.08);
-  transition:0.3s;
-}
-.card:hover{transform:translateY(-5px);}
-.card i{font-size:26px;color:var(--primary);margin-bottom:8px;}
-
-/* INFO */
-.info{
-  max-width:1000px;
-  margin:25px auto;
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 8px 18px rgba(0,0,0,0.06);
-}
-.info h2{color:var(--primary);margin-bottom:8px;}
-.info p{line-height:1.6;}
-
-/* CLASS MODAL (NO LOGIN SYSTEM AS REQUESTED) */
-#classModal{
-  position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:3000;
-}
-.modal-box{
-  background:white;
-  width:90%;max-width:500px;
-  padding:20px;
-  border-radius:12px;
-}
-.modal-box h3{color:var(--primary);margin-bottom:10px;}
-.modal-box p{padding:6px 0;}
-.close{float:right;cursor:pointer;font-size:18px;}
-
-/* FOOTER */
 footer{
   background:var(--dark);
   color:white;
@@ -158,63 +147,59 @@ footer{
 </style></head><body><nav>
   <div class="logo">🎓 Hi5 Education Centre</div>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
-</nav><!-- HAMBURGER MENU --><div class="menu" id="menu">  <div class="submenu-title" onclick="toggleSub('nursery')">Nursery</div>
-  <div class="submenu" id="nursery">
-    <a onclick="openClass('Baby Class')">Baby Class</a>
-    <a onclick="openClass('Middle Class')">Middle Class</a>
-    <a onclick="openClass('Top Class')">Top Class</a>
-  </div>  <div class="submenu-title" onclick="toggleSub('primary')">Primary</div>
-  <div class="submenu" id="primary">
-    <a onclick="openClass('P1')">P1</a><a onclick="openClass('P2')">P2</a><a onclick="openClass('P3')">P3</a>
-    <a onclick="openClass('P4')">P4</a><a onclick="openClass('P5')">P5</a><a onclick="openClass('P6')">P6</a><a onclick="openClass('P7')">P7</a>
-  </div>  <div class="submenu-title" onclick="toggleSub('secondary')">Secondary</div>
-  <div class="submenu" id="secondary">
-    <a onclick="openClass('S1')">S1</a><a onclick="openClass('S2')">S2</a><a onclick="openClass('S3')">S3</a>
-    <a onclick="openClass('S4')">S4</a><a onclick="openClass('S5')">S5</a><a onclick="openClass('S6')">S6</a>
-  </div>  <div class="submenu-title" onclick="toggleSub('tertiary')">Tertiary</div>
-  <div class="submenu" id="tertiary">
-    <a onclick="openClass('Certificate')">Certificate</a>
-    <a onclick="openClass('Diploma')">Diploma</a>
-    <a onclick="openClass('University')">University</a>
-  </div></div><header>
+</nav><header>
   <h1>Hi5 Education Centre</h1>
-  <p>Professional Digital Learning Platform</p>
+  <p>Well Organized Digital Learning Platform</p>
 </header><h2 class="section-title">📚 Academic Levels</h2>
 <div class="grid">
   <div class="card" onclick="openSection('nursery')"><i class="fa fa-school"></i><br>Nursery</div>
   <div class="card" onclick="openSection('primary')"><i class="fa fa-book"></i><br>Primary</div>
   <div class="card" onclick="openSection('secondary')"><i class="fa fa-book-open"></i><br>Secondary</div>
   <div class="card" onclick="openSection('tertiary')"><i class="fa fa-graduation-cap"></i><br>Tertiary</div>
-</div><!-- INFO SECTIONS --><div class="info">
-<h2>Mission</h2>
-<p>To provide structured, accessible and high-quality educational materials for learners at all levels.</p>
 </div><div class="info">
-<h2>Vision</h2>
-<p>To become a leading African digital learning platform empowering education through innovation.</p>
-</div><div class="info">
-<h2>Core Values</h2>
-<p>Integrity • Excellence • Innovation • Discipline • Accessibility</p>
-</div><div class="info">
-<h2>About Us</h2>
-<p>Hi5 Education Centre is a digital learning platform founded by Isa Kiggundu, offering lesson notes, schemes of work, past papers and textbooks for all academic levels.</p>
-<p>📞 +256 702 234 701 | 📧 hi5educentre256@gmail.com</p>
-</div><!-- CLASS MODAL --><div id="classModal" onclick="this.style.display='none'">
-  <div class="modal-box">
-    <span class="close">✖</span>
-    <h3 id="classTitle"></h3>
-    <p>📘 Lesson Notes</p>
-    <p>📗 Schemes of Work</p>
-    <p>📕 Past Papers</p>
-    <p>📚 Textbooks</p>
-  </div>
-</div><footer>
-<p>© 2026 Hi5 Education Centre</p>
+<h2>Mission</h2><p>To provide structured learning materials for all levels.</p>
+</div>
+<div class="info">
+<h2>Vision</h2><p>To become a leading digital education platform in Africa.</p>
+</div>
+<div class="info">
+<h2>Core Values</h2><p>Integrity • Excellence • Innovation • Discipline</p>
+</div>
+<div class="info">
+<h2>About Us</h2><p>Hi5 Education Centre provides organized learning materials for all academic levels.</p></div><div class="menu" id="menu">  <div class="submenu-title" onclick="toggleSub(this,'nursery')">Nursery <span class="arrow">▶</span></div>
+  <div class="submenu" id="nursery">
+    <a>Baby Class</a>
+    <a>Middle Class</a>
+    <a>Top Class</a>
+  </div>  <div class="submenu-title" onclick="toggleSub(this,'primary')">Primary <span class="arrow">▶</span></div>
+  <div class="submenu" id="primary">
+    <a>P1</a><a>P2</a><a>P3</a><a>P4</a><a>P5</a><a>P6</a><a>P7</a>
+  </div>  <div class="submenu-title" onclick="toggleSub(this,'secondary')">Secondary <span class="arrow">▶</span></div>
+  <div class="submenu" id="secondary">
+    <a>S1</a><a>S2</a><a>S3</a><a>S4</a><a>S5</a><a>S6</a>
+  </div>  <div class="submenu-title" onclick="toggleSub(this,'tertiary')">Tertiary <span class="arrow">▶</span></div>
+  <div class="submenu" id="tertiary">
+    <a>Certificate</a>
+    <a>Diploma</a>
+    <a>University</a>
+  </div></div><footer>
+<p>📞 +256 702 234 701</p>
+<p>📧 hi5educentre256@gmail.com</p>
 </footer><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
 
 <script>
 function toggleMenu(){document.getElementById('menu').classList.toggle('show');}
-function toggleSub(id){let el=document.getElementById(id);el.style.display=el.style.display==='block'?'none':'block';}
-function openSection(id){alert('Open '+id+' section from hamburger or menu');}
-function openClass(name){document.getElementById('classTitle').innerText=name;document.getElementById('classModal').style.display='flex';}
+
+function toggleSub(el,id){
+  let sub=document.getElementById(id);
+  let open=sub.style.display==='block';
+  document.querySelectorAll('.submenu').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.submenu-title').forEach(t=>t.classList.remove('active'));
+  if(!open){sub.style.display='block';el.classList.add('active');}
+}
+
+function openSection(id){
+  document.getElementById('menu').classList.remove('show');
+}
 </script></body>
 </html>
