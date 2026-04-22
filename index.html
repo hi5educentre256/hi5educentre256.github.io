@@ -3,239 +3,257 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hi5 Education Centre</title><style>
+:root{
+  --primary:#1a4fa3;
+  --accent:#25D366;
+  --bg:#f4f7fb;
+  --card:#ffffff;
+}
+
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:Arial,sans-serif;
-  background:#f4f7fb;
+  background:var(--bg);
   color:#333;
+  line-height:1.6;
 }
 
+/* NAV */
 nav{
-  background:#1a4fa3;
+  background:var(--primary);
   color:white;
-  padding:15px 25px;
+  padding:15px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  flex-wrap:wrap;
   position:sticky;
   top:0;
-  z-index:999;
+  z-index:1000;
 }
 
-nav .logo{
+.logo{
   font-weight:bold;
-  font-size:20px;
+  font-size:18px;
 }
 
-nav a{
+.menu{
+  display:flex;
+  gap:15px;
+}
+
+.menu a{
   color:white;
   text-decoration:none;
-  margin:5px 10px;
+  font-size:14px;
 }
 
-nav a:hover{text-decoration:underline;}
+.menu a:hover{
+  text-decoration:underline;
+}
 
+.hamburger{
+  display:none;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* HERO */
 header{
-  background:white;
   text-align:center;
-  padding:40px 20px;
+  padding:60px 20px;
+  background:linear-gradient(135deg,#1a4fa3,#3a7bd5);
+  color:white;
 }
 
-header h1{color:#1a4fa3;}
-header p{margin-top:10px;font-size:18px;}
+header h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
 
-section{padding:40px 20px;}
+header p{
+  font-size:18px;
+  opacity:0.95;
+}
+
+.btn{
+  margin-top:15px;
+  display:inline-block;
+  background:white;
+  color:var(--primary);
+  padding:10px 15px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* SECTIONS */
+section{
+  padding:50px 20px;
+}
 
 .section-title{
   text-align:center;
-  color:#1a4fa3;
-  text-transform:uppercase;
-  margin-bottom:20px;
+  color:var(--primary);
+  margin-bottom:25px;
+  font-size:22px;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
-  max-width:1200px;
+  max-width:1100px;
   margin:auto;
 }
 
 .card{
-  background:white;
-  padding:20px;
+  background:var(--card);
+  padding:18px;
   border-radius:12px;
-  box-shadow:0 0 10px rgba(0,0,0,0.08);
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
   transition:0.3s;
 }
 
-.card:hover{transform:translateY(-5px);}
+.card:hover{
+  transform:translateY(-5px);
+}
 
-.card h3{color:#1a4fa3;margin-bottom:10px;}
-
-.small-list{font-size:14px;line-height:1.6;color:#444;}
+.card h3{
+  color:var(--primary);
+  margin-bottom:10px;
+}
 
 .card a{
   display:block;
   text-decoration:none;
   color:#333;
-  margin:3px 0;
+  margin:4px 0;
+  font-size:14px;
 }
 
-.card a:hover{color:#1a4fa3;}
+.card a:hover{
+  color:var(--primary);
+}
 
+small{
+  display:block;
+  margin-top:5px;
+  color:#666;
+}
+
+/* FOOTER */
 footer{
-  background:#1a4fa3;
+  background:var(--primary);
   color:white;
   text-align:center;
-  padding:20px;
-  margin-top:30px;
+  padding:25px;
+  margin-top:40px;
 }
 
+/* WHATSAPP */
 .whatsapp{
   position:fixed;
   bottom:20px;
   right:20px;
-  background:#25D366;
+  background:var(--accent);
   color:white;
   padding:12px 15px;
   border-radius:50px;
   text-decoration:none;
   font-weight:bold;
 }
-</style></head><body><nav>
+
+/* MOBILE */
+@media(max-width:768px){
+  .menu{
+    display:none;
+    flex-direction:column;
+    background:var(--primary);
+    position:absolute;
+    top:60px;
+    right:0;
+    width:200px;
+    padding:10px;
+  }
+
+  .menu.show{
+    display:flex;
+  }
+
+  .hamburger{
+    display:block;
+  }
+}
+</style></head><body><!-- NAV --><nav>
   <div class="logo">Hi5 Education Centre</div>
-  <div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="menu" id="menu">
     <a href="#nursery">Nursery</a>
     <a href="#primary">Primary</a>
     <a href="#secondary">Secondary</a>
     <a href="#tertiary">Tertiary</a>
-    <a href="#mvc">MVC</a>
   </div>
-</nav><header>
+</nav><!-- HERO --><header>
   <h1>Hi5 Education Centre</h1>
   <p>Learn Today Lead Tomorrow</p>
+  <a class="btn" href="#nursery">Start Learning</a>
 </header><!-- NURSERY --><section id="nursery">
 <h2 class="section-title">Nursery Section</h2>
 <div class="grid"><div class="card">
 <h3>Baby Class</h3>
-<div class="small-list">
-<a href="nursery/baby/lesson-notes.html">Lesson Notes</a>
-<a href="nursery/baby/schemes.html">Schemes of Work</a>
-<a href="nursery/baby/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div>
+<a href="#">Lesson Notes</a>
+<a href="#">Schemes of Work</a>
+<a href="#">Past Papers</a>
+<small>Textbooks Available</small>
 </div><div class="card">
 <h3>Middle Class</h3>
-<div class="small-list">
-<a href="nursery/middle/lesson-notes.html">Lesson Notes</a>
-<a href="nursery/middle/schemes.html">Schemes of Work</a>
-<a href="nursery/middle/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div>
+<a href="#">Lesson Notes</a>
+<a href="#">Schemes of Work</a>
+<a href="#">Past Papers</a>
+<small>Textbooks Available</small>
 </div><div class="card">
 <h3>Top Class</h3>
-<div class="small-list">
-<a href="nursery/top/lesson-notes.html">Lesson Notes</a>
-<a href="nursery/top/schemes.html">Schemes of Work</a>
-<a href="nursery/top/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div>
+<a href="#">Lesson Notes</a>
+<a href="#">Schemes of Work</a>
+<a href="#">Past Papers</a>
+<small>Textbooks Available</small>
 </div></div>
 </section><!-- PRIMARY --><section id="primary">
 <h2 class="section-title">Primary Section</h2>
-<div class="grid"><div class="card"><h3>P1</h3><div class="small-list">
-<a href="primary/p1/lesson-notes.html">Lesson Notes</a>
-<a href="primary/p1/schemes.html">Schemes of Work</a>
-<a href="primary/p1/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>P2</h3><div class="small-list">
-<a href="primary/p2/lesson-notes.html">Lesson Notes</a>
-<a href="primary/p2/schemes.html">Schemes of Work</a>
-<a href="primary/p2/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>P3</h3><div class="small-list">
-<a href="primary/p3/lesson-notes.html">Lesson Notes</a>
-<a href="primary/p3/schemes.html">Schemes of Work</a>
-<a href="primary/p3/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>P4</h3><div class="small-list">
-<a href="primary/p4/lesson-notes.html">Lesson Notes</a>
-<a href="primary/p4/schemes.html">Schemes of Work</a>
-<a href="primary/p4/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>P5</h3><div class="small-list">
-<a href="primary/p5/lesson-notes.html">Lesson Notes</a>
-<a href="primary/p5/schemes.html">Schemes of Work</a>
-<a href="primary/p5/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>P6</h3><div class="small-list">
-<a href="primary/p6/lesson-notes.html">Lesson Notes</a>
-<a href="primary/p6/schemes.html">Schemes of Work</a>
-<a href="primary/p6/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>P7</h3><div class="small-list">
-<a href="primary/p7/lesson-notes.html">Lesson Notes</a>
-<a href="primary/p7/schemes.html">Schemes of Work</a>
-<a href="primary/p7/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div></div>
+<div class="grid"><div class="card"><h3>P1</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P2</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P3</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P4</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P5</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P6</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>P7</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div></div>
 </section><!-- SECONDARY --><section id="secondary">
 <h2 class="section-title">Secondary Section</h2>
-<div class="grid"><div class="card"><h3>S1</h3><div class="small-list">
-<a href="secondary/s1/lesson-notes.html">Lesson Notes</a>
-<a href="secondary/s1/schemes.html">Schemes of Work</a>
-<a href="secondary/s1/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>S2</h3><div class="small-list">
-<a href="secondary/s2/lesson-notes.html">Lesson Notes</a>
-<a href="secondary/s2/schemes.html">Schemes of Work</a>
-<a href="secondary/s2/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>S3</h3><div class="small-list">
-<a href="secondary/s3/lesson-notes.html">Lesson Notes</a>
-<a href="secondary/s3/schemes.html">Schemes of Work</a>
-<a href="secondary/s3/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>S4</h3><div class="small-list">
-<a href="secondary/s4/lesson-notes.html">Lesson Notes</a>
-<a href="secondary/s4/schemes.html">Schemes of Work</a>
-<a href="secondary/s4/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>S5</h3><div class="small-list">
-<a href="secondary/s5/lesson-notes.html">Lesson Notes</a>
-<a href="secondary/s5/schemes.html">Schemes of Work</a>
-<a href="secondary/s5/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div><div class="card"><h3>S6</h3><div class="small-list">
-<a href="secondary/s6/lesson-notes.html">Lesson Notes</a>
-<a href="secondary/s6/schemes.html">Schemes of Work</a>
-<a href="secondary/s6/past-papers.html">Past Papers</a>
-<p>Textbooks Available</p>
-</div></div></div>
-</section><!-- TERTIARY (UNCHANGED) --><section id="tertiary">
+<div class="grid"><div class="card"><h3>S1</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S2</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S3</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S4</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S5</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div>
+<div class="card"><h3>S6</h3><a href="#">Lesson Notes</a><a href="#">Schemes of Work</a><a href="#">Past Papers</a><small>Textbooks Available</small></div></div>
+</section><!-- TERTIARY --><section id="tertiary">
 <h2 class="section-title">Tertiary Section</h2>
 <div class="grid">
-<div class="card"><h3>Certificate</h3><p>Notes, Course Materials, Past Papers</p></div>
-<div class="card"><h3>Diploma</h3><p>Notes, Course Materials, Past Papers</p></div>
-<div class="card"><h3>Bachelor</h3><p>Notes, Course Materials, Past Papers</p></div>
-<div class="card"><h3>Postgraduate</h3><p>Research Materials, Thesis Guides</p></div>
+<div class="card"><h3>Certificate</h3><small>Course Materials & Past Papers</small></div>
+<div class="card"><h3>Diploma</h3><small>Course Materials & Past Papers</small></div>
+<div class="card"><h3>Bachelor</h3><small>Course Materials & Past Papers</small></div>
+<div class="card"><h3>Postgraduate</h3><small>Research Materials</small></div>
 </div>
-</section><!-- MVC --><section id="mvc">
-<h2 class="section-title">Mission, Vision & Core Values</h2>
-<div class="grid">
-<div class="card"><h3>Mission</h3><p>To provide quality education from Nursery to Tertiary level.</p></div>
-<div class="card"><h3>Vision</h3><p>To become a leading digital education centre.</p></div>
-<div class="card"><h3>Core Values</h3><p>Excellence, Discipline, Integrity, Innovation, Respect</p></div>
-</div>
-</section><!-- WHATSAPP --><a class="whatsapp" href="https://wa.me/256702234701" target="_blank">WhatsApp Us</a>
-
-<!-- FOOTER --><footer>
+</section><!-- FOOTER --><footer>
 <p><strong>Founder:</strong> Mr. Isa Kiggundu</p>
 <p>📞 +256 702 234 701</p>
 <p>📧 hi5educentre256@gmail.com</p>
-<p>© 2026 Hi5 Education Centre. All rights reserved.</p>
-</footer></body>
+<p>© 2026 Hi5 Education Centre</p>
+</footer><!-- WHATSAPP --><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
+
+<script>
+function toggleMenu(){
+  document.getElementById('menu').classList.toggle('show');
+}
+</script></body>
 </html>
