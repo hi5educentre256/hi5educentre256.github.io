@@ -2,22 +2,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
+<title>Hi5 Education Centre</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
 :root{
   --primary:#1a4fa3;
+  --secondary:#2b7cff;
   --accent:#25D366;
   --dark:#0f2f66;
   --bg:#f4f7fb;
 }
+
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
 body{font-family:Arial,sans-serif;background:var(--bg);color:#333;}
 
 /* NAV */
 nav{
-  background:linear-gradient(135deg,#1a4fa3,#2b7cff);
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
   color:white;
-  padding:14px 18px;
+  padding:12px 16px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -25,8 +26,8 @@ nav{
   top:0;
   z-index:1000;
 }
-.logo{font-weight:bold;font-size:18px;}
-.hamburger{cursor:pointer;font-size:22px;}
+.logo{font-weight:bold;font-size:16px;}
+.hamburger{font-size:22px;cursor:pointer;}
 
 /* SIDE MENU */
 .menu{
@@ -35,7 +36,7 @@ nav{
   right:-320px;
   width:300px;
   height:100vh;
-  background:linear-gradient(180deg,#1a4fa3,#0f2f66);
+  background:linear-gradient(180deg,var(--primary),var(--dark));
   color:white;
   padding:18px;
   transition:0.3s;
@@ -43,9 +44,27 @@ nav{
   z-index:2000;
 }
 .menu.show{right:0;}
-.submenu-title{padding:12px;margin-top:10px;background:rgba(255,255,255,0.12);border-radius:10px;cursor:pointer;font-weight:bold;}
+
+.submenu-title{
+  padding:12px;
+  margin-top:10px;
+  background:rgba(255,255,255,0.12);
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
 .submenu{display:none;margin-left:10px;}
-.submenu a{display:block;padding:8px;margin:4px 0;background:rgba(255,255,255,0.08);border-radius:8px;color:white;text-decoration:none;font-size:13px;}
+.submenu a{
+  display:block;
+  padding:8px;
+  margin:4px 0;
+  background:rgba(255,255,255,0.08);
+  border-radius:8px;
+  color:white;
+  text-decoration:none;
+  cursor:pointer;
+  font-size:13px;
+}
 
 /* HERO */
 header{
@@ -56,28 +75,46 @@ header{
   align-items:center;
   text-align:center;
   color:white;
-  background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80') center/cover;
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80') center/cover;
 }
 header h1{font-size:38px;}
 
 /* DASHBOARD */
 .section-title{text-align:center;margin:25px 0;color:var(--primary);}
-.door-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;padding:20px;max-width:1100px;margin:auto;}
-.door{background:linear-gradient(135deg,#fff,#e9f1ff);padding:18px;text-align:center;border-radius:15px;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,0.08);transition:0.3s;}
-.door:hover{transform:translateY(-6px);}
-.door i{font-size:26px;color:var(--primary);margin-bottom:8px;}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
+  padding:15px;
+  max-width:1100px;
+  margin:auto;
+}
+.card{
+  background:white;
+  padding:18px;
+  border-radius:14px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+.card:hover{transform:translateY(-5px);}
+.card i{font-size:26px;color:var(--primary);margin-bottom:8px;}
 
-/* PANELS */
-.panel{display:none;max-width:1000px;margin:20px auto;padding:20px;background:white;border-radius:12px;box-shadow:0 10px 20px rgba(0,0,0,0.08);}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
-.card{padding:15px;background:#f9fbff;border-radius:10px;cursor:pointer;}
-.card:hover{background:#eaf2ff;}
+/* INFO */
+.info{
+  max-width:1000px;
+  margin:25px auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.06);
+}
+.info h2{color:var(--primary);margin-bottom:8px;}
+.info p{line-height:1.6;}
 
-footer{background:var(--dark);color:white;text-align:center;padding:30px;margin-top:40px;}
-.whatsapp{position:fixed;bottom:20px;right:20px;background:var(--accent);color:white;padding:12px 15px;border-radius:50px;text-decoration:none;font-weight:bold;}
-
-/* CLASS MODAL */
-#classPanel{
+/* CLASS MODAL (NO LOGIN SYSTEM AS REQUESTED) */
+#classModal{
   position:fixed;
   top:0;left:0;
   width:100%;height:100%;
@@ -87,18 +124,41 @@ footer{background:var(--dark);color:white;text-align:center;padding:30px;margin-
   align-items:center;
   z-index:3000;
 }
-.class-box{
+.modal-box{
   background:white;
   width:90%;max-width:500px;
   padding:20px;
   border-radius:12px;
 }
-.class-box h3{color:var(--primary);}
+.modal-box h3{color:var(--primary);margin-bottom:10px;}
+.modal-box p{padding:6px 0;}
 .close{float:right;cursor:pointer;font-size:18px;}
+
+/* FOOTER */
+footer{
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:30px;
+}
+
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:var(--accent);
+  color:white;
+  padding:12px 15px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
 </style></head><body><nav>
   <div class="logo">🎓 Hi5 Education Centre</div>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
-</nav><div class="menu" id="menu">  <div class="submenu-title" onclick="toggleSub('nursery')">Nursery</div>
+</nav><!-- HAMBURGER MENU --><div class="menu" id="menu">  <div class="submenu-title" onclick="toggleSub('nursery')">Nursery</div>
   <div class="submenu" id="nursery">
     <a onclick="openClass('Baby Class')">Baby Class</a>
     <a onclick="openClass('Middle Class')">Middle Class</a>
@@ -118,14 +178,28 @@ footer{background:var(--dark);color:white;text-align:center;padding:30px;margin-
     <a onclick="openClass('University')">University</a>
   </div></div><header>
   <h1>Hi5 Education Centre</h1>
-</header><h2 class="section-title">Learning Doors</h2>
-<div class="door-grid">
-  <div class="door" onclick="openPanel('nursery')"><i class="fa fa-school"></i><br>Nursery</div>
-  <div class="door" onclick="openPanel('primary')"><i class="fa fa-book"></i><br>Primary</div>
-  <div class="door" onclick="openPanel('secondary')"><i class="fa fa-book-open"></i><br>Secondary</div>
-  <div class="door" onclick="openPanel('tertiary')"><i class="fa fa-graduation-cap"></i><br>Tertiary</div>
-</div><!-- PANELS --><div class="panel" id="nursery"><h3>Nursery Classes</h3><div class="grid"><div class="card">Baby Class</div><div class="card">Middle Class</div><div class="card">Top Class</div></div></div><div class="panel" id="primary"><h3>Primary Classes</h3><div class="grid"><div class="card">P1</div><div class="card">P2</div><div class="card">P3</div><div class="card">P4</div><div class="card">P5</div><div class="card">P6</div><div class="card">P7</div></div></div><div class="panel" id="secondary"><h3>Secondary Classes</h3><div class="grid"><div class="card">S1</div><div class="card">S2</div><div class="card">S3</div><div class="card">S4</div><div class="card">S5</div><div class="card">S6</div></div></div><div class="panel" id="tertiary"><h3>Tertiary Classes</h3><div class="grid"><div class="card">Certificate</div><div class="card">Diploma</div><div class="card">University</div></div></div><!-- CLASS POPUP --><div id="classPanel" onclick="this.style.display='none'">
-  <div class="class-box">
+  <p>Professional Digital Learning Platform</p>
+</header><h2 class="section-title">📚 Academic Levels</h2>
+<div class="grid">
+  <div class="card" onclick="openSection('nursery')"><i class="fa fa-school"></i><br>Nursery</div>
+  <div class="card" onclick="openSection('primary')"><i class="fa fa-book"></i><br>Primary</div>
+  <div class="card" onclick="openSection('secondary')"><i class="fa fa-book-open"></i><br>Secondary</div>
+  <div class="card" onclick="openSection('tertiary')"><i class="fa fa-graduation-cap"></i><br>Tertiary</div>
+</div><!-- INFO SECTIONS --><div class="info">
+<h2>Mission</h2>
+<p>To provide structured, accessible and high-quality educational materials for learners at all levels.</p>
+</div><div class="info">
+<h2>Vision</h2>
+<p>To become a leading African digital learning platform empowering education through innovation.</p>
+</div><div class="info">
+<h2>Core Values</h2>
+<p>Integrity • Excellence • Innovation • Discipline • Accessibility</p>
+</div><div class="info">
+<h2>About Us</h2>
+<p>Hi5 Education Centre is a digital learning platform founded by Isa Kiggundu, offering lesson notes, schemes of work, past papers and textbooks for all academic levels.</p>
+<p>📞 +256 702 234 701 | 📧 hi5educentre256@gmail.com</p>
+</div><!-- CLASS MODAL --><div id="classModal" onclick="this.style.display='none'">
+  <div class="modal-box">
     <span class="close">✖</span>
     <h3 id="classTitle"></h3>
     <p>📘 Lesson Notes</p>
@@ -133,21 +207,14 @@ footer{background:var(--dark);color:white;text-align:center;padding:30px;margin-
     <p>📕 Past Papers</p>
     <p>📚 Textbooks</p>
   </div>
-</div><!-- MISSION VISION CORE RESTORED --><section class="panel" style="display:block;">
-<h3>Mission</h3><p>Provide quality education resources.</p>
-<h3>Vision</h3><p>Lead digital learning in Africa.</p>
-<h3>Core Values</h3><p>Integrity, Excellence, Innovation, Accessibility.</p>
-</section><section class="panel" style="display:block;">
-<h3>About Us</h3><p>Hi5 Education Centre supports all learners.</p>
-</section><footer>
-<p>📞 +256 702 234 701</p>
-<p>📧 hi5educentre256@gmail.com</p>
+</div><footer>
+<p>© 2026 Hi5 Education Centre</p>
 </footer><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
 
 <script>
 function toggleMenu(){document.getElementById('menu').classList.toggle('show');}
 function toggleSub(id){let el=document.getElementById(id);el.style.display=el.style.display==='block'?'none':'block';}
-function openPanel(id){document.querySelectorAll('.panel').forEach(p=>p.style.display='none');let el=document.getElementById(id);if(el)el.style.display='block';document.getElementById('menu').classList.remove('show');}
-function openClass(name){document.getElementById('classTitle').innerText=name;document.getElementById('classPanel').style.display='flex';}
+function openSection(id){alert('Open '+id+' section from hamburger or menu');}
+function openClass(name){document.getElementById('classTitle').innerText=name;document.getElementById('classModal').style.display='flex';}
 </script></body>
 </html>
