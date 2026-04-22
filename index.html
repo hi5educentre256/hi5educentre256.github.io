@@ -1,113 +1,274 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hi5 Education Centre</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>  <!-- Header -->  <header>
-    <nav class="navbar">
-      <div class="logo">Hi5 Education Centre</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#levels">Education Levels</a></li>
-        <li><a href="#materials">Learning Materials</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>  <!-- Hero Section -->  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Welcome to Hi5 Education Centre</h1>
-      <p>
-        Your trusted learning centre for Nursery, Primary, Secondary, and University learning materials.
-        We provide lesson notes, schemes of work, textbooks, notices, and academic support based on Uganda's curriculum.
-      </p>
-      <a href="#levels" class="btn">Explore Classes</a>
-    </div>
-  </section>  <!-- About Section -->  <section id="about" class="about">
+<meta charset="UTF-8">
+<title>Hi5 Education Centre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6f9;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#0d6efd,#198754);
+  color:white;
+  padding:12px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.menu{
+  position:absolute;
+  right:15px;
+  top:10px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* SMALL BANNER */
+.banner{
+  background:#ffffff;
+  margin:10px;
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.banner h3{
+  margin:5px;
+  color:#0d6efd;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  left:-300px;
+  top:0;
+  width:300px;
+  height:100%;
+  background:#1f1f1f;
+  color:white;
+  transition:0.3s;
+  padding-top:60px;
+  z-index:2000;
+  overflow-y:auto;
+}
+
+.sidebar a{
+  display:block;
+  padding:10px;
+  color:white;
+  text-decoration:none;
+}
+
+.sidebar a:hover{
+  background:#333;
+}
+
+.close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  cursor:pointer;
+  font-size:20px;
+}
+
+/* MAIN */
+.container{
+  padding:15px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+}
+
+.card{
+  background:white;
+  padding:18px;
+  text-align:center;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  font-weight:bold;
+}
+
+.item{
+  background:white;
+  margin:8px 0;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.item:hover{
+  background:#eef5ff;
+}
+
+.search input{
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+button{
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  background:#0d6efd;
+  color:white;
+  cursor:pointer;
+  margin:5px;
+}
+
+button:hover{
+  background:#0b5ed7;
+}
+
+/* FOOTER */
+/* WHATSAPP FLOAT BUTTON */
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  text-decoration:none;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  z-index:3000;
+}
+
+.whatsapp-float:hover{
+  transform:scale(1.05);
+}
+
+footer{
+  background:#0d6efd;
+  color:white;
+  text-align:center;
+  padding:15px;
+  margin-top:20px;
+}
+
+</style></head><body><header>
+Hi5 Education Centre
+<span class="menu" onclick="toggle()">☰</span>
+</header><!-- SMALL BANNER --><div class="banner">
+  <h3>Learn Today, Lead Tomorrow</h3>
+  <p>Quality Learning Materials for Nursery, Primary, Secondary & Tertiary</p>
+</div><!-- SIDEBAR --><div id="sidebar" class="sidebar">
+<div class="close" onclick="toggle()">❌</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#" onclick="showAbout()">ℹ About Us</a>
+
+</div><!-- MAIN --><div class="container" id="content"><h2 style="text-align:center; color:#0d6efd;">Main Dashboard</h2>
+<p style="text-align:center; margin-top:-5px;">Access learning materials quickly and easily</p><div class="search">
+<input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
+</div><div class="cards">
+<div class="card" onclick="openFolder('Nursery')">Nursery</div>
+<div class="card" onclick="openFolder('Primary')">Primary</div>
+<div class="card" onclick="openFolder('Secondary')">Secondary</div>
+<div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
+</div></div><!-- FOOTER --><footer>
+  <b>Hi5 Education Centre</b><br>
+  Motto: Learn Today, Lead Tomorrow<br>
+  Email: hi5educentre256@gmail.com<br>
+  Contact: +256702234701<br>
+  WhatsApp: <a href="https://wa.me/256702234701" style="color:white;">Chat on WhatsApp</a><br>
+  Founder: Mr Isa Kiggundu
+</footer><a href="https://wa.me/256702234701" target="_blank" class="whatsapp-float">💬</a>
+
+<script>
+
+let repo="hi5educentre256/hi5educentre256.github.io";
+let historyStack=[];
+
+function toggle(){
+  let sb=document.getElementById("sidebar");
+  sb.style.left = (sb.style.left==="0px") ? "-300px" : "0px";
+}
+
+function home(){ location.reload(); }
+
+function showAbout(){
+  historyStack.push(document.getElementById("content").innerHTML);
+
+  document.getElementById("content").innerHTML=`
+    <button onclick="back()">⬅ Back</button>
     <h2>About Us</h2>
-    <p>
-      Hi5 Education Centre is a professional learning centre dedicated to supporting learners,
-      teachers, and parents with quality educational resources. We provide organized lesson notes,
-      schemes of work, textbooks, revision materials, and school notices for different education levels.
-    </p>
-    <p>
-      Our aim is to simplify learning and make education accessible for all learners across Uganda.
-      We also hope to establish a physical school in the future.
-    </p>
-    <p><strong>Founder:</strong> Mr Isa Kiggundu</p>
-  </section>  <!-- Education Levels -->  <section id="levels" class="levels">
-    <h2>Education Levels</h2>
-    <div class="cards"><a href="nursery.html" class="card clickable">
-    <h3>Nursery Section</h3>
-    <p>Baby Class, Middle Class, and Top Class learning resources.</p>
-  </a>
+    <p><b>Hi5 Education Centre</b> provides quality lesson notes, schemes of work, textbooks, and past papers for Nursery, Primary, Secondary and Tertiary learners.</p>
+    <p><b>Motto:</b> Learn Today, Lead Tomorrow</p>
+    <p><b>WhatsApp:</b> +256702234701</p>
+    <p><b>Email:</b> hi5educentre256@gmail.com</p>
+    <p><b>Contact:</b> +256702234701</p>
+    <p><b>WhatsApp:</b> <a href="https://wa.me/256702234701" target="_blank">Chat with us</a></p>
+    <p><b>Founder:</b> Mr Isa Kiggundu</p>
+  `;
 
-  <a href="primary.html" class="card clickable">
-    <h3>Primary Section</h3>
-    <p>P1 to P7 lesson notes, schemes of work, and revision materials.</p>
-  </a>
+  toggle();
+}
 
-  <a href="secondary.html" class="card clickable">
-    <h3>Secondary Section</h3>
-    <p>S1 to S6 academic content based on Uganda curriculum.</p>
-  </a>
 
-  <a href="university.html" class="card clickable">
-    <h3>University Section</h3>
-    <p>Common university courses, notes, and academic guidance.</p>
-  </a>
+function openFolder(folder){
 
-</div>
+historyStack.push(document.getElementById("content").innerHTML);
 
-  </section>  <!-- Learning Materials -->  <section id="materials" class="materials">
-    <h2>Learning Materials</h2>
-    <div class="cards"><a href="#" class="card clickable">
-    <h3>Lesson Notes</h3>
-    <p>Well-organized notes for learners and teachers.</p>
-  </a>
+document.getElementById("content").innerHTML="<h2>Loading...</h2>";
 
-  <a href="#" class="card clickable">
-    <h3>Schemes of Work</h3>
-    <p>Professional schemes aligned with Uganda curriculum.</p>
-  </a>
+fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+.then(r=>r.json())
+.then(data=>{
 
-  <a href="#" class="card clickable">
-    <h3>Textbooks</h3>
-    <p>Reference books and supporting educational resources.</p>
-  </a>
+let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
 
-  <a href="#" class="card clickable">
-    <h3>School Notices</h3>
-    <p>Updates, announcements, and important learning information.</p>
-  </a>
+if(Array.isArray(data)){
+  data.forEach(f=>{
+    if(f.name.endsWith(".pdf")){
+      html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+    } else {
+      html+=`<div class="item" onclick="openFolder('${folder}/${f.name}')">📁 ${f.name}</div>`;
+    }
+  });
+}
 
-</div>
+document.getElementById("content").innerHTML=html;
+});
+}
 
-  </section>  <!-- Contact -->  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <p><strong>Email:</strong> hi5educentre256@gmail.com</p>
-    <p><strong>Phone / WhatsApp:</strong> +256702234701</p>
-    <p>
-      Reach us directly on WhatsApp for quick support, learning materials,
-      admissions guidance, and academic inquiries.
-    </p>
-  </section>  <!-- Footer -->  <footer>
-    <p>© 2026 Hi5 Education Centre | All Rights Reserved</p>
-  </footer>  <!-- Floating WhatsApp Button --><a href="https://wa.me/256702234701" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp"
+function back(){
+  if(historyStack.length>0){
+    document.getElementById("content").innerHTML=historyStack.pop();
+  } else {
+    home();
+  }
+}
 
-> 
+function searchFiles(query){
+  if(query.length<2) return;
 
-<img
-  src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-  alt="WhatsApp"
-  width="55"
-  height="55"
-/>
+  fetch(`https://api.github.com/repos/${repo}/contents/`)
+  .then(r=>r.json())
+  .then(data=>{
+    let results="<h2>Search Results</h2>";
 
-  </a></body>
+    data.forEach(folder=>{
+      results+=`<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
+    });
+
+    document.getElementById("content").innerHTML=results;
+  });
+}
+
+</script></body>
 </html>
