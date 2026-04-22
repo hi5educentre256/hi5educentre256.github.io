@@ -30,10 +30,32 @@ nav{
 
 .logo{font-weight:bold;font-size:18px;}
 
-.menu{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
-.menu a{color:white;text-decoration:none;font-size:14px;padding:6px 8px;border-radius:6px;}
-.menu a:hover{background:rgba(255,255,255,0.15);}
-.menu input{padding:6px 10px;border-radius:6px;border:none;outline:none;min-width:160px;}
+.menu{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.menu a{
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  padding:6px 8px;
+  border-radius:6px;
+}
+
+.menu a:hover{
+  background:rgba(255,255,255,0.15);
+}
+
+.menu input{
+  padding:6px 10px;
+  border-radius:6px;
+  border:none;
+  outline:none;
+  min-width:160px;
+}
 
 .hamburger{display:none;cursor:pointer;font-size:22px;}
 
@@ -107,8 +129,17 @@ section{padding:70px 20px;}
 
 .card:hover{transform:translateY(-10px);}
 
-.card h3{color:var(--primary);margin-bottom:12px;display:flex;gap:8px;align-items:center;}
+.card h3{color:var(--primary);margin-bottom:10px;display:flex;gap:8px;align-items:center;}
 .card p{line-height:1.5;}
+
+.highlight{
+  background:linear-gradient(135deg,#ffffff,#eef5ff);
+  border-left:6px solid var(--primary);
+}
+
+.mission{border-left-color:#25D366;}
+.vision{border-left-color:#ff9800;}
+.core{border-left-color:#e91e63;}
 
 footer{
   background:var(--dark);
@@ -141,98 +172,65 @@ footer{
   cursor:pointer;
 }
 
-/* MOBILE BOTTOM NAV */
-.bottom-nav{
-  display:none;
-}
-
 @media(max-width:768px){
-  .menu{display:none;flex-direction:column;position:absolute;top:60px;right:0;background:var(--primary);width:230px;padding:10px;}
+  .menu{display:none;flex-direction:column;position:absolute;top:60px;right:0;background:var(--primary);width:240px;padding:10px;}
   .menu.show{display:flex;}
   .hamburger{display:block;}
-
-  .bottom-nav{
-    display:flex;
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:white;
-    justify-content:space-around;
-    padding:10px;
-    box-shadow:0 -2px 10px rgba(0,0,0,0.1);
-    z-index:999;
-  }
-
-  .bottom-nav a{
-    text-decoration:none;
-    font-size:12px;
-    color:var(--primary);
-    text-align:center;
-  }
 }
 </style></head><body><nav>
   <div class="logo">🎓 Hi5 Education Centre</div>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
   <div class="menu" id="menu">
-    <a href="#about">About</a>
-    <a href="#mission">Mission</a>
-    <a href="#vision">Vision</a>
-    <a href="#core">Core</a>
-    <a href="#nursery">Nursery</a>
-    <a href="#primary">Primary</a>
-    <a href="#secondary">Secondary</a>
-    <a href="#tertiary">Tertiary</a>
-    <input type="text" placeholder="Search materials..." oninput="searchMaterials(this.value)">
+    <!-- ORDER AS REQUESTED -->
+    <a href="#nursery" onclick="closeMenu()">Nursery</a>
+    <a href="#primary" onclick="closeMenu()">Primary</a>
+    <a href="#secondary" onclick="closeMenu()">Secondary</a>
+    <a href="#tertiary" onclick="closeMenu()">Tertiary</a><a href="#mission" onclick="closeMenu()">Mission</a>
+<a href="#vision" onclick="closeMenu()">Vision</a>
+<a href="#core" onclick="closeMenu()">Core Values</a>
+
+<a href="#about" onclick="closeMenu()">About Us</a>
+
+<input type="text" placeholder="Search materials..." oninput="searchMaterials(this.value)">
+
   </div>
 </nav><header>
   <h1>Hi5 Education Centre</h1>
   <p>Learn Today, Lead Tomorrow</p>
-  <a class="btn" href="#nursery">Start Learning</a>
 </header><div class="stats">
   <div class="stat"><h2>100+</h2><p>Learning Materials</p></div>
   <div class="stat"><h2>4 Levels</h2><p>Nursery to Tertiary</p></div>
   <div class="stat"><h2>24/7</h2><p>Access Anytime</p></div>
   <div class="stat"><h2>Free</h2><p>Education Resources</p></div>
-</div><section id="about">
-<h2 class="section-title">About Us</h2>
-<div class="card">Hi5 Education Centre is a digital learning platform providing structured and accessible educational resources for all academic levels.</div>
-</section><section id="mission">
+</div><section id="nursery"><h2 class="section-title">Nursery Section</h2></section>
+<section id="primary"><h2 class="section-title">Primary Section</h2></section>
+<section id="secondary"><h2 class="section-title">Secondary Section</h2></section>
+<section id="tertiary"><h2 class="section-title">Tertiary Section</h2></section><section id="mission">
 <h2 class="section-title">Mission</h2>
-<div class="card">To deliver accessible, organized, and quality learning materials that support academic excellence.</div>
+<div class="card highlight mission">To provide accessible and quality learning materials for all learners.</div>
 </section><section id="vision">
 <h2 class="section-title">Vision</h2>
-<div class="card">To become a leading digital education platform empowering learners globally.</div>
+<div class="card highlight vision">To become a leading digital education platform empowering learners globally.</div>
 </section><section id="core">
 <h2 class="section-title">Core Values</h2>
 <div class="grid">
-  <div class="card"><h3>Integrity</h3><p>Honesty in all educational services.</p></div>
-  <div class="card"><h3>Excellence</h3><p>Commitment to high-quality learning.</p></div>
-  <div class="card"><h3>Innovation</h3><p>Using modern digital learning methods.</p></div>
-  <div class="card"><h3>Accessibility</h3><p>Learning for everyone, everywhere.</p></div>
+  <div class="card highlight core"><h3>Integrity</h3><p>Honesty in education.</p></div>
+  <div class="card highlight core"><h3>Excellence</h3><p>Quality learning.</p></div>
+  <div class="card highlight core"><h3>Innovation</h3><p>Modern methods.</p></div>
+  <div class="card highlight core"><h3>Accessibility</h3><p>For all learners.</p></div>
 </div>
-</section><section id="nursery">
-<h2 class="section-title">Nursery Section</h2>
-<div class="grid">
-<div class="card"><h3>Baby Class</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
-<div class="card"><h3>Middle Class</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
-<div class="card"><h3>Top Class</h3><p>Lesson Notes, Schemes, Past Papers</p></div>
-</div>
-</section><section id="primary"><h2 class="section-title">Primary</h2><div class="grid"></div></section>
-<section id="secondary"><h2 class="section-title">Secondary</h2><div class="grid"></div></section>
-<section id="tertiary"><h2 class="section-title">Tertiary</h2><div class="grid"></div></section><footer>
+</section><section id="about">
+<h2 class="section-title">About Us</h2>
+<div class="card">Hi5 Education Centre provides structured educational resources for all academic levels.</div>
+</section><footer>
 <p>📞 +256 702 234 701</p>
 <p>📧 hi5educentre256@gmail.com</p>
 <p>© 2026 Hi5 Education Centre</p>
 </footer><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
 
-<div id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div><!-- MOBILE BOTTOM NAV --><div class="bottom-nav">
-  <a href="#about">About</a>
-  <a href="#nursery">Nursery</a>
-  <a href="#primary">Primary</a>
-  <a href="#menu">Menu</a>
-</div><script>
+<div id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div><script>
 function toggleMenu(){document.getElementById('menu').classList.toggle('show');}
+function closeMenu(){document.getElementById('menu').classList.remove('show');}
 
 function searchMaterials(q){
   q=q.toLowerCase();
