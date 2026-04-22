@@ -31,6 +31,8 @@ nav{
 
 /* HERO (REDUCED MORE) */
 header{
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
   height:16vh;
   display:flex;
   flex-direction:column;
@@ -59,6 +61,8 @@ header p{font-size:12px;opacity:0.95;}
 }
 
 .card{
+  border: 1px solid rgba(43,124,255,0.12);
+  background: linear-gradient(180deg,#ffffff,#f8fbff);
   background:white;
   padding:16px;
   border-radius:12px;
@@ -117,6 +121,8 @@ header p{font-size:12px;opacity:0.95;}
 
 .submenu{display:none;margin-left:8px;}
 .submenu a{
+  transition:0.3s;
+
   display:block;
   padding:8px;
   margin:4px 0;
@@ -126,6 +132,25 @@ header p{font-size:12px;opacity:0.95;}
   text-decoration:none;
   font-size:13px;
 }
+.submenu a:hover{
+  transform:translateX(4px);
+  background:rgba(255,255,255,0.16);
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  transition:0.3s;
+}
+
+.info{
+  border-left:4px solid var(--secondary);
+}
+
+.section-title{
+  font-weight:700;
+  letter-spacing:0.5px;
+}
+
 
 #classModal{
   position:fixed;
@@ -139,6 +164,8 @@ header p{font-size:12px;opacity:0.95;}
 }
 
 .modal-box{
+  border: 2px solid rgba(26,79,163,0.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   background:white;
   width:90%;max-width:520px;
   padding:18px;
@@ -149,6 +176,8 @@ header p{font-size:12px;opacity:0.95;}
 .modal-box p{padding:6px 0;cursor:pointer;}
 
 footer{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   background:var(--dark);
   color:white;
   text-align:center;
