@@ -6,96 +6,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f5f7fb;
 }
 
 /* HEADER */
-header {
-  background: linear-gradient(90deg, #0b5ed7, #198754);
-  color: white;
-  padding: 15px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+header{
+  background:#0d6efd;
+  color:white;
+  padding:15px;
+  text-align:center;
+  position:sticky;
+  top:0;
 }
 
-/* HAMBURGER */
-.menu-btn {
-  position: absolute;
-  left: 15px;
-  top: 15px;
-  font-size: 26px;
-  cursor: pointer;
+/* MENU */
+.menu{
+  position:absolute;
+  left:15px;
+  top:15px;
+  font-size:24px;
+  cursor:pointer;
 }
 
 /* SIDEBAR */
-.sidebar {
-  position: fixed;
-  left: -250px;
-  top: 0;
-  width: 250px;
-  height: 100%;
-  background: #222;
-  color: white;
-  transition: 0.3s;
-  padding-top: 60px;
+.sidebar{
+  position:fixed;
+  left:-260px;
+  top:0;
+  width:260px;
+  height:100%;
+  background:#1c1c1c;
+  color:white;
+  transition:0.3s;
+  padding-top:60px;
 }
 
-.sidebar a {
-  display: block;
-  padding: 12px;
-  color: white;
-  text-decoration: none;
+.sidebar a{
+  display:block;
+  padding:12px;
+  color:white;
+  text-decoration:none;
 }
 
-.sidebar a:hover {
-  background: #444;
+.sidebar a:hover{
+  background:#333;
 }
 
-/* DASHBOARD */
-.container {
-  padding: 20px;
+/* MAIN */
+.container{
+  padding:20px;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
 }
 
-.card {
-  background: white;
-  padding: 20px;
-  text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  cursor: pointer;
-  font-weight: bold;
+.card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
-.card:hover {
-  background: #e9f2ff;
+/* FILES */
+.file{
+  background:white;
+  margin:8px 0;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-/* FILE LIST */
-.files {
-  margin-top: 20px;
-}
-
-.file {
-  background: white;
-  margin: 8px 0;
-  padding: 12px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.file:hover {
-  background: #e6f7ff;
+.file:hover{
+  background:#eef5ff;
 }
 
 </style>
@@ -104,104 +94,96 @@ header {
 <body>
 
 <header>
-  <span class="menu-btn" onclick="toggleMenu()">☰</span>
-  Hi5 Education Centre
+<span class="menu" onclick="toggle()">☰</span>
+Hi5 Education Centre
 </header>
 
-<!-- SIDEBAR -->
 <div id="sidebar" class="sidebar">
-  <a href="#" onclick="loadDashboard()">🏠 Dashboard</a>
-  <a href="#" onclick="loadFolder('Nursery')">Nursery</a>
-  <a href="#" onclick="loadFolder('Primary')">Primary</a>
-  <a href="#" onclick="loadFolder('Secondary')">Secondary</a>
-  <a href="#" onclick="loadFolder('Tertiary')">Tertiary</a>
-  <a href="#">🔍 Search (coming soon)</a>
-  <a href="#">ℹ About Us</a>
+<a href="#" onclick="home()">🏠 Dashboard</a>
+<a href="#" onclick="openFolder('Nursery')">Nursery</a>
+<a href="#" onclick="openFolder('Primary')">Primary</a>
+<a href="#" onclick="openFolder('Secondary')">Secondary</a>
+<a href="#" onclick="openFolder('Tertiary')">Tertiary</a>
+<a href="#">🔍 Search</a>
+<a href="#">ℹ About Us</a>
 </div>
 
-<!-- MAIN -->
-<div class="container">
-  <div id="content">
-    
-    <h2>Main Dashboard</h2>
+<div class="container" id="content">
 
-    <div class="cards">
-      <div class="card" onclick="loadFolder('Nursery')">Nursery</div>
-      <div class="card" onclick="loadFolder('Primary')">Primary</div>
-      <div class="card" onclick="loadFolder('Secondary')">Secondary</div>
-      <div class="card" onclick="loadFolder('Tertiary')">Tertiary</div>
-    </div>
+<h2>Main Dashboard</h2>
 
-  </div>
+<div class="cards">
+<div class="card" onclick="openFolder('Nursery')">Nursery</div>
+<div class="card" onclick="openFolder('Primary')">Primary</div>
+<div class="card" onclick="openFolder('Secondary')">Secondary</div>
+<div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
+</div>
+
 </div>
 
 <script>
 
-let repo = "hi5educentre256/hi5educentre256.github.io";
+let repo="hi5educentre256/hi5educentre256.github.io";
 
-function toggleMenu(){
-  let sb = document.getElementById("sidebar");
-  sb.style.left = (sb.style.left === "0px") ? "-250px" : "0px";
+function toggle(){
+  let sb=document.getElementById("sidebar");
+  sb.style.left = sb.style.left=="0px" ? "-260px" : "0px";
 }
 
-function loadDashboard(){
-  document.getElementById("content").innerHTML = `
-    <h2>Main Dashboard</h2>
-    <div class="cards">
-      <div class="card" onclick="loadFolder('Nursery')">Nursery</div>
-      <div class="card" onclick="loadFolder('Primary')">Primary</div>
-      <div class="card" onclick="loadFolder('Secondary')">Secondary</div>
-      <div class="card" onclick="loadFolder('Tertiary')">Tertiary</div>
-    </div>
-  `;
+function home(){
+  location.reload();
 }
 
-/* AUTO FILE LOADER */
-function loadFolder(folder){
-  document.getElementById("content").innerHTML = "<h2>" + folder + "</h2><div class='files'>Loading...</div>";
+/* STABLE FILE LOADER */
+function openFolder(folder){
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
-  .then(res => res.json())
-  .then(data => {
-    let html = "<h2>" + folder + "</h2><div class='files'>";
-    
-    data.forEach(file => {
-      if(file.name.endsWith(".pdf")){
-        html += `<div class='file' onclick="window.open('${file.download_url}','_blank')">
-        📄 ${file.name}
-        </div>`;
-      } else {
-        html += `<div class='file' onclick="loadSubFolder('${folder}/${file.name}')">
-        📁 ${file.name}
-        </div>`;
-      }
-    });
+document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
 
-    html += "</div>";
-    document.getElementById("content").innerHTML = html;
-  });
+fetch("https://api.github.com/repos/"+repo+"/contents/"+folder)
+.then(r=>r.json())
+.then(data=>{
+
+let html="<h2>"+folder+"</h2>";
+
+data.forEach(f=>{
+
+if(f.name.endsWith(".pdf")){
+html+=`<div class="file" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
 }
 
-/* SUBFOLDERS */
-function loadSubFolder(path){
-  document.getElementById("content").innerHTML = "<h2>" + path + "</h2><div class='files'>Loading...</div>";
+else{
+html+=`<div class="file" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
+}
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-  .then(res => res.json())
-  .then(data => {
-    let html = "<h2>" + path + "</h2><div class='files'>";
-    
-    data.forEach(file => {
-      if(file.name.endsWith(".pdf")){
-        html += `<div class='file' onclick="window.open('${file.download_url}','_blank')">
-        📄 ${file.name}
-        </div>`;
-      }
-    });
+});
 
-    html += "</div>";
-    document.getElementById("content").innerHTML = html;
-  });
+document.getElementById("content").innerHTML=html;
+
+});
+
+}
+
+/* SUB FOLDERS */
+function openSub(path){
+
+document.getElementById("content").innerHTML="<h2>"+path+"</h2><p>Loading...</p>";
+
+fetch("https://api.github.com/repos/"+repo+"/contents/"+path)
+.then(r=>r.json())
+.then(data=>{
+
+let html="<h2>"+path+"</h2>";
+
+data.forEach(f=>{
+if(f.name.endsWith(".pdf")){
+html+=`<div class="file" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+}
+});
+
+document.getElementById("content").innerHTML=html;
+
+});
+
 }
 
 </script>
