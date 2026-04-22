@@ -30,9 +30,9 @@ nav{
 .logo{font-weight:bold;font-size:16px;}
 .hamburger{font-size:22px;cursor:pointer;}
 
-/* HERO (IMPROVED BANNER) */
+/* HERO (UGANDA STYLE - NO PEOPLE BACKGROUND) */
 header{
-  height:55vh;
+  height:38vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -40,18 +40,32 @@ header{
   text-align:center;
   color:white;
   background:
-    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
-    url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80') center/cover;
-  padding:20px;
+    linear-gradient(120deg, rgba(0,128,0,0.65), rgba(0,0,0,0.65)),
+    url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80') center/cover;
+  padding:15px;
 }
-header h1{font-size:42px;}
-header p{margin-top:10px;font-size:16px;opacity:0.9;}
+header h1{font-size:34px;}
+header p{margin-top:6px;font-size:15px;opacity:0.95;}
+
+/* SEARCH BAR (RESTORED) */
+.search-box{
+  max-width:600px;
+  margin:15px auto;
+  padding:0 15px;
+}
+.search-box input{
+  width:100%;
+  padding:12px;
+  border-radius:30px;
+  border:1px solid #ddd;
+  outline:none;
+}
 
 /* DASHBOARD */
-.section-title{text-align:center;margin:25px 0;color:var(--primary);}
+.section-title{text-align:center;margin:20px 0;color:var(--primary);}
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:15px;
   padding:15px;
   max-width:1100px;
@@ -69,16 +83,27 @@ header p{margin-top:10px;font-size:16px;opacity:0.9;}
 .card:hover{transform:translateY(-6px);}
 .card i{font-size:26px;color:var(--primary);margin-bottom:8px;}
 
-/* INFO */
-.info{
+/* PANELS */
+.panel{
+  display:none;
   max-width:1000px;
-  margin:25px auto;
+  margin:15px auto;
   background:white;
-  padding:20px;
+  padding:18px;
   border-radius:12px;
   box-shadow:0 8px 18px rgba(0,0,0,0.06);
 }
-.info h2{color:var(--primary);margin-bottom:8px;}
+
+/* INFO */
+.info{
+  max-width:1000px;
+  margin:15px auto;
+  background:white;
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.06);
+}
+.info h2{color:var(--primary);margin-bottom:6px;}
 .info p{line-height:1.6;}
 
 /* HAMBURGER MENU */
@@ -97,6 +122,13 @@ header p{margin-top:10px;font-size:16px;opacity:0.9;}
 }
 .menu.show{right:0;}
 
+.menu-close{
+  text-align:right;
+  font-size:18px;
+  cursor:pointer;
+  margin-bottom:10px;
+}
+
 .submenu-title{
   padding:12px;
   margin-top:10px;
@@ -106,7 +138,6 @@ header p{margin-top:10px;font-size:16px;opacity:0.9;}
   font-weight:bold;
   display:flex;
   justify-content:space-between;
-  align-items:center;
 }
 .arrow{transition:0.3s;}
 .submenu-title.active .arrow{transform:rotate(90deg);}
@@ -129,7 +160,7 @@ footer{
   color:white;
   text-align:center;
   padding:25px;
-  margin-top:30px;
+  margin-top:25px;
 }
 
 .whatsapp{
@@ -149,24 +180,41 @@ footer{
   <div class="hamburger" onclick="toggleMenu()">☰</div>
 </nav><header>
   <h1>Hi5 Education Centre</h1>
-  <p>Well Organized Digital Learning Platform</p>
-</header><h2 class="section-title">📚 Academic Levels</h2>
+  <p>Uganda Based Digital Learning Platform</p>
+</header><!-- SEARCH BAR --><div class="search-box">
+  <input type="text" placeholder="Search lesson notes, schemes, past papers...">
+</div><!-- DASHBOARD --><h2 class="section-title">📚 Academic Levels</h2>
 <div class="grid">
   <div class="card" onclick="openSection('nursery')"><i class="fa fa-school"></i><br>Nursery</div>
   <div class="card" onclick="openSection('primary')"><i class="fa fa-book"></i><br>Primary</div>
   <div class="card" onclick="openSection('secondary')"><i class="fa fa-book-open"></i><br>Secondary</div>
   <div class="card" onclick="openSection('tertiary')"><i class="fa fa-graduation-cap"></i><br>Tertiary</div>
+</div><!-- PANELS (FIXED DISPLAY ISSUE) --><div class="panel" id="nursery">
+<h3>Nursery Section</h3>
+<p>Baby Class • Middle Class • Top Class</p>
+</div><div class="panel" id="primary">
+<h3>Primary Section</h3>
+<p>P1 - P7 Learning Materials</p>
+</div><div class="panel" id="secondary">
+<h3>Secondary Section</h3>
+<p>S1 - S6 Learning Materials</p>
+</div><div class="panel" id="tertiary">
+<h3>Tertiary Section</h3>
+<p>Certificate • Diploma • University</p>
+</div><!-- INFO --><div class="info">
+<h2>Mission</h2>
+<p>To provide structured and accessible learning materials for all academic levels in Uganda.</p>
 </div><div class="info">
-<h2>Mission</h2><p>To provide structured learning materials for all levels.</p>
-</div>
-<div class="info">
-<h2>Vision</h2><p>To become a leading digital education platform in Africa.</p>
-</div>
-<div class="info">
-<h2>Core Values</h2><p>Integrity • Excellence • Innovation • Discipline</p>
-</div>
-<div class="info">
-<h2>About Us</h2><p>Hi5 Education Centre provides organized learning materials for all academic levels.</p></div><div class="menu" id="menu">  <div class="submenu-title" onclick="toggleSub(this,'nursery')">Nursery <span class="arrow">▶</span></div>
+<h2>Vision</h2>
+<p>To become a leading digital education platform in Africa offering quality learning resources.</p>
+</div><div class="info">
+<h2>Core Values</h2>
+<p>Integrity • Excellence • Innovation • Discipline • Accessibility</p>
+</div><div class="info">
+<h2>About Us</h2>
+<p>Hi5 Education Centre is a professional digital learning platform founded by Isa Kiggundu, providing organized educational materials for learners in Uganda.</p>
+<p>📞 +256 702 234 701 | 📧 hi5educentre256@gmail.com</p>
+</div><!-- HAMBURGER MENU --><div class="menu" id="menu">  <div class="menu-close" onclick="toggleMenu()">✖ Close</div>  <div class="submenu-title" onclick="toggleSub(this,'nursery')">Nursery <span class="arrow">▶</span></div>
   <div class="submenu" id="nursery">
     <a>Baby Class</a>
     <a>Middle Class</a>
@@ -183,8 +231,7 @@ footer{
     <a>Diploma</a>
     <a>University</a>
   </div></div><footer>
-<p>📞 +256 702 234 701</p>
-<p>📧 hi5educentre256@gmail.com</p>
+<p>© 2026 Hi5 Education Centre</p>
 </footer><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
 
 <script>
@@ -199,6 +246,9 @@ function toggleSub(el,id){
 }
 
 function openSection(id){
+  document.querySelectorAll('.panel').forEach(p=>p.style.display='none');
+  let el=document.getElementById(id);
+  if(el) el.style.display='block';
   document.getElementById('menu').classList.remove('show');
 }
 </script></body>
