@@ -9,24 +9,24 @@
 body{
   margin:0;
   font-family:Arial;
-  background:#f5f7fb;
+  background:#f4f6f9;
 }
 
 /* HEADER */
 header{
-  background:#0d6efd;
+  background:linear-gradient(90deg,#0d6efd,#198754);
   color:white;
-  padding:15px;
+  padding:14px;
   text-align:center;
   position:sticky;
   top:0;
+  z-index:1000;
 }
 
-/* MENU */
 .menu{
   position:absolute;
   left:15px;
-  top:15px;
+  top:12px;
   font-size:24px;
   cursor:pointer;
 }
@@ -34,14 +34,15 @@ header{
 /* SIDEBAR */
 .sidebar{
   position:fixed;
-  left:-260px;
+  left:-270px;
   top:0;
-  width:260px;
+  width:270px;
   height:100%;
-  background:#1c1c1c;
+  background:#1f1f1f;
   color:white;
   transition:0.3s;
   padding-top:60px;
+  z-index:2000;
 }
 
 .sidebar a{
@@ -55,28 +56,38 @@ header{
   background:#333;
 }
 
+/* CLOSE BUTTON */
+.close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  cursor:pointer;
+  font-size:20px;
+}
+
 /* MAIN */
 .container{
-  padding:20px;
+  padding:15px;
 }
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:15px;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
 }
 
 .card{
   background:white;
-  padding:20px;
-  border-radius:10px;
+  padding:18px;
   text-align:center;
+  border-radius:10px;
   cursor:pointer;
   box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  font-weight:bold;
 }
 
-/* FILES */
-.file{
+/* FILE ITEMS */
+.item{
   background:white;
   margin:8px 0;
   padding:10px;
@@ -84,8 +95,20 @@ header{
   cursor:pointer;
 }
 
-.file:hover{
+.item:hover{
   background:#eef5ff;
+}
+
+/* SEARCH */
+.search{
+  margin:10px 0;
+}
+
+.search input{
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
 }
 
 </style>
@@ -98,19 +121,27 @@ header{
 Hi5 Education Centre
 </header>
 
+<!-- SIDEBAR -->
 <div id="sidebar" class="sidebar">
+<div class="close" onclick="toggle()">❌</div>
+
 <a href="#" onclick="home()">🏠 Dashboard</a>
 <a href="#" onclick="openFolder('Nursery')">Nursery</a>
 <a href="#" onclick="openFolder('Primary')">Primary</a>
 <a href="#" onclick="openFolder('Secondary')">Secondary</a>
 <a href="#" onclick="openFolder('Tertiary')">Tertiary</a>
-<a href="#">🔍 Search</a>
 <a href="#">ℹ About Us</a>
+
 </div>
 
+<!-- MAIN -->
 <div class="container" id="content">
 
 <h2>Main Dashboard</h2>
+
+<div class="search">
+<input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
+</div>
 
 <div class="cards">
 <div class="card" onclick="openFolder('Nursery')">Nursery</div>
@@ -124,59 +155,59 @@ Hi5 Education Centre
 <script>
 
 let repo="hi5educentre256/hi5educentre256.github.io";
+let historyStack=[];
 
 function toggle(){
   let sb=document.getElementById("sidebar");
-  sb.style.left = sb.style.left=="0px" ? "-260px" : "0px";
+  sb.style.left = sb.style.left==="0px" ? "-270px" : "0px";
 }
 
 function home(){
   location.reload();
 }
 
-/* STABLE FILE LOADER */
+/* STACK NAVIGATION */
 function openFolder(folder){
+  historyStack.push(document.getElementById("content").innerHTML);
 
-document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
+  document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
 
-fetch("https://api.github.com/repos/"+repo+"/contents/"+folder)
-.then(r=>r.json())
-.then(data=>{
+  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+  .then(r=>r.json())
+  .then(data=>{
 
-let html="<h2>"+folder+"</h2>";
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
 
-data.forEach(f=>{
+    data.forEach(f=>{
 
-if(f.name.endsWith(".pdf")){
-html+=`<div class="file" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-}
+      if(f.name.endsWith(".pdf")){
+        html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+      } else {
+        html+=`<div class="item" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
+      }
 
-else{
-html+=`<div class="file" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
-}
+    });
 
-});
-
-document.getElementById("content").innerHTML=html;
-
-});
-
+    document.getElementById("content").innerHTML=html;
+  });
 }
 
 /* SUB FOLDERS */
 function openSub(path){
 
+historyStack.push(document.getElementById("content").innerHTML);
+
 document.getElementById("content").innerHTML="<h2>"+path+"</h2><p>Loading...</p>";
 
-fetch("https://api.github.com/repos/"+repo+"/contents/"+path)
+fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
 .then(r=>r.json())
 .then(data=>{
 
-let html="<h2>"+path+"</h2>";
+let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
 
 data.forEach(f=>{
 if(f.name.endsWith(".pdf")){
-html+=`<div class="file" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
 }
 });
 
@@ -184,6 +215,32 @@ document.getElementById("content").innerHTML=html;
 
 });
 
+}
+
+/* BACK BUTTON */
+function back(){
+  if(historyStack.length>0){
+    document.getElementById("content").innerHTML=historyStack.pop();
+  } else {
+    home();
+  }
+}
+
+/* SIMPLE SEARCH */
+function searchFiles(query){
+  if(query.length<2) return;
+
+  fetch(`https://api.github.com/repos/${repo}/contents/`)
+  .then(r=>r.json())
+  .then(data=>{
+    let results="<h2>Search Results</h2>";
+
+    data.forEach(folder=>{
+      results+=`<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
+    });
+
+    document.getElementById("content").innerHTML=results;
+  });
 }
 
 </script>
