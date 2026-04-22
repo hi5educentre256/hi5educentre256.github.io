@@ -1,226 +1,220 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hi5 Education Centre</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
 
-<title>Hi5 Education Centre | Learning Portal</title>
-<meta name="description" content="Hi5 Education Centre provides lesson notes, schemes of work, textbooks, and learning materials for Nursery, Primary, Secondary, and University levels in Uganda.">
-<meta name="keywords" content="Hi5 Education Centre, Uganda lessons, schemes of work, notes, LMS, education portal">
+    body{
+      background:#f4f7fb;
+      color:#222;
+    }
 
-<link rel="icon" href="logo.png">
+    /* NAVBAR */
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 20px;
+      background:#0d47a1;
+      color:white;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+    .navbar .logo{
+      font-size:20px;
+      font-weight:bold;
+    }
 
-body {
-  background: #f4f7fb;
-  color: #333;
-}
+    .nav-links{
+      display:flex;
+      gap:15px;
+    }
 
-/* NAVBAR */
-nav {
-  background: #0d6efd;
-  padding: 15px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      padding:6px 10px;
+      border-radius:5px;
+      transition:0.3s;
+    }
 
-nav .logo {
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-}
+    .nav-links a:hover{
+      background:#1565c0;
+    }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
+    /* HERO */
+    .hero{
+      background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644') center/cover;
+      height:300px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+      padding:20px;
+    }
 
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
+    .hero h1{
+      font-size:32px;
+    }
 
-nav ul li a:hover {
-  text-decoration: underline;
-}
+    .hero p{
+      margin-top:10px;
+      font-size:16px;
+    }
 
-/* HERO */
-.hero {
-  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
-  url('banner.jpg') center/cover;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
+    .hero button{
+      margin-top:15px;
+      padding:10px 15px;
+      border:none;
+      background:#ff9800;
+      color:white;
+      border-radius:5px;
+      cursor:pointer;
+    }
 
-.hero h1 {
-  font-size: 32px;
-}
+    /* SECTIONS */
+    .container{
+      padding:20px;
+    }
 
-.hero p {
-  margin-top: 10px;
-}
+    .section-title{
+      text-align:center;
+      margin:20px 0;
+      font-size:22px;
+      color:#0d47a1;
+    }
 
-/* SECTIONS */
-.container {
-  padding: 30px;
-}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+      gap:15px;
+    }
 
-.section-title {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-}
+    .card{
+      background:white;
+      padding:15px;
+      border-radius:10px;
+      text-align:center;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
 
-/* CARDS */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
+    .card:hover{
+      transform:translateY(-5px);
+    }
 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: 0.3s;
-}
+    .card a{
+      text-decoration:none;
+      color:#0d47a1;
+      font-weight:bold;
+      display:block;
+      margin-top:10px;
+    }
 
-.card:hover {
-  transform: translateY(-5px);
-}
+    /* FOOTER */
+    footer{
+      background:#0d47a1;
+      color:white;
+      text-align:center;
+      padding:15px;
+      margin-top:30px;
+    }
 
-.card a {
-  text-decoration: none;
-  color: #0d6efd;
-  font-weight: bold;
-}
+    /* MOBILE */
+    @media(max-width:768px){
+      .nav-links{
+        flex-direction:column;
+        display:none;
+        background:#0d47a1;
+        position:absolute;
+        top:60px;
+        right:0;
+        width:200px;
+      }
 
-/* FOOTER */
-footer {
-  background: #0d6efd;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 40px;
-}
+      .nav-links.show{
+        display:flex;
+      }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    display: none;
-  }
-}
-</style>
-</head>
+      .menu-btn{
+        display:block;
+        cursor:pointer;
+      }
+    }
 
-<body>
-
-<!-- NAVIGATION -->
-<nav>
+    .menu-btn{
+      display:none;
+    }
+  </style></head>
+<body><!-- NAVBAR --><div class="navbar">
   <div class="logo">Hi5 Education Centre</div>
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#levels">Levels</a></li>
-    <li><a href="#lms">LMS</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
+  <div class="menu-btn" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="#about">About</a>
+    <a href="#lms">LMS</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div><!-- HERO --><div class="hero">
   <h1>Hi5 Education Centre</h1>
   <p>Loving and Caring Minds</p>
-</div>
-
-<!-- LEVELS -->
-<div class="container" id="levels">
-  <h2 class="section-title">Learning Levels</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Nursery</h3>
-      <a href="#">Enter Section</a>
-    </div>
-
-    <div class="card">
-      <h3>Primary</h3>
-      <a href="#">Enter Section</a>
-    </div>
-
-    <div class="card">
-      <h3>Secondary</h3>
-      <a href="#">Enter Section</a>
-    </div>
-
-    <div class="card">
-      <h3>University</h3>
-      <a href="#">Enter Section</a>
-    </div>
-  </div>
-</div>
-
-<!-- LMS -->
-<div class="container" id="lms">
-  <h2 class="section-title">Learning Materials</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Lesson Notes</h3>
-      <a href="#">View</a>
-    </div>
-
-    <div class="card">
-      <h3>Schemes of Work</h3>
-      <a href="#">View</a>
-    </div>
-
-    <div class="card">
-      <h3>Textbooks</h3>
-      <a href="#">View</a>
-    </div>
-
-    <div class="card">
-      <h3>Notices</h3>
-      <a href="#">View</a>
-    </div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<div class="container" id="about">
+  <button onclick="document.getElementById('lms').scrollIntoView()">Explore Learning Materials</button>
+</div><!-- ABOUT --><div class="container" id="about">
   <h2 class="section-title">About Us</h2>
-  <p style="text-align:center; max-width:800px; margin:auto;">
-    Hi5 Education Centre is a digital learning platform providing educational resources
-    for Nursery, Primary, Secondary, and University learners in Uganda.
+  <p style="text-align:center; max-width:700px; margin:auto;">
+    Hi5 Education Centre is dedicated to providing quality educational resources including lesson notes, schemes of work, and learning materials for all levels.
   </p>
+</div><!-- LMS SECTION (DO NOT CHANGE LINKS) --><div class="container" id="lms">
+  <h2 class="section-title">Learning Materials</h2>  <div class="grid"><!-- KEEP YOUR ORIGINAL LINKS HERE -->
+<div class="card">
+  <i class="fas fa-child fa-2x"></i>
+  <h3>Nursery</h3>
+  <a href="#">Open</a>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2026 Hi5 Education Centre | Loving and Caring Minds</p>
-</footer>
+<div class="card">
+  <i class="fas fa-book fa-2x"></i>
+  <h3>Primary</h3>
+  <a href="#">Open</a>
+</div>
 
-</body>
+<div class="card">
+  <i class="fas fa-school fa-2x"></i>
+  <h3>Secondary</h3>
+  <a href="#">Open</a>
+</div>
+
+<div class="card">
+  <i class="fas fa-graduation-cap fa-2x"></i>
+  <h3>University</h3>
+  <a href="#">Open</a>
+</div>
+
+  </div>
+</div><!-- CONTACT --><div class="container" id="contact">
+  <h2 class="section-title">Contact Us</h2>
+  <p style="text-align:center;">
+    Email: nextofjuniorschool@gmail.com <br>
+    WhatsApp: +256 757 826946
+  </p>
+</div><!-- FOOTER --><footer>
+  © 2026 Hi5 Education Centre | Loving and Caring Minds
+</footer><script>
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('show');
+}
+</script></body>
 </html>
