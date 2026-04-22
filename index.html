@@ -35,9 +35,7 @@ nav a{
   margin:5px 10px;
 }
 
-nav a:hover{
-  text-decoration:underline;
-}
+nav a:hover{text-decoration:underline;}
 
 header{
   background:white;
@@ -45,19 +43,10 @@ header{
   padding:40px 20px;
 }
 
-header h1{
-  color:#1a4fa3;
-  font-size:32px;
-}
+header h1{color:#1a4fa3;}
+header p{margin-top:10px;font-size:18px;}
 
-header p{
-  margin-top:10px;
-  font-size:18px;
-}
-
-section{
-  padding:40px 20px;
-}
+section{padding:40px 20px;}
 
 .section-title{
   text-align:center;
@@ -68,7 +57,7 @@ section{
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
   max-width:1200px;
   margin:auto;
@@ -79,22 +68,36 @@ section{
   padding:20px;
   border-radius:12px;
   box-shadow:0 0 10px rgba(0,0,0,0.08);
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
 }
 
 .card h3{
   color:#1a4fa3;
   margin-bottom:10px;
+  cursor:pointer;
 }
 
 .small-list{
   font-size:14px;
   line-height:1.6;
   color:#444;
+  margin-left:10px;
+}
+
+.term{
+  margin-left:15px;
+  font-size:13px;
+  color:#555;
+}
+
+.term a{
+  display:block;
+  text-decoration:none;
+  color:#333;
+  margin:3px 0;
+}
+
+.term a:hover{
+  color:#1a4fa3;
 }
 
 footer{
@@ -116,114 +119,122 @@ footer{
   text-decoration:none;
   font-weight:bold;
 }
-</style></head><body><!-- NAVIGATION --><nav>
+</style></head><body><nav>
   <div class="logo">Hi5 Education Centre</div>
   <div>
-    <a href="#about">About</a>
     <a href="#nursery">Nursery</a>
     <a href="#primary">Primary</a>
     <a href="#secondary">Secondary</a>
     <a href="#tertiary">Tertiary</a>
     <a href="#mvc">MVC</a>
   </div>
-</nav><!-- HEADER --><header>
+</nav><header>
   <h1>Hi5 Education Centre</h1>
   <p>Learn Today Lead Tomorrow</p>
-</header><!-- ABOUT / EXTENDED DESCRIPTION --><section id="about">
-  <h2 class="section-title">About Hi5 Education Centre</h2>
-  <div class="card">
-    <p>
-      Hi5 Education Centre is a modern digital learning platform offering structured educational content from Nursery to Tertiary level. It provides lesson notes, schemes of work, textbooks, and past papers to support effective learning for all learners.
-      <br><br>
-      The platform is organized into Nursery, Primary, Secondary, and Tertiary sections to ensure clear and easy access to learning materials for all levels.
-    </p>
-  </div>
-</section><!-- NURSERY --><section id="nursery">
-  <h2 class="section-title">Nursery Section</h2>
-  <div class="grid"><div class="card">
-  <h3>Baby Class</h3>
-  <div class="small-list">
-    Lesson Notes<br>
-    Schemes of Work<br>
-    Textbooks<br>
-    Past Papers
-  </div>
-</div>
+</header><!-- NURSERY --><section id="nursery">
+<h2 class="section-title">Nursery Section</h2><div class="grid"><!-- BABY CLASS --><div class="card">
+<h3>Baby Class</h3><div class="small-list"><strong>Lesson Notes</strong>
 
-<div class="card">
-  <h3>Middle Class</h3>
-  <div class="small-list">
-    Lesson Notes<br>
-    Schemes of Work<br>
-    Textbooks<br>
-    Past Papers
-  </div>
-</div>
+<div class="term">
+<a href="#">Term 1</a>
+<a href="#">Term 2</a>
+<a href="#">Term 3</a>
+</div><strong>Schemes of Work</strong>
 
-<div class="card">
-  <h3>Top Class</h3>
-  <div class="small-list">
-    Lesson Notes<br>
-    Schemes of Work<br>
-    Textbooks<br>
-    Past Papers
-  </div>
-</div>
+<div class="term">
+<a href="#">Term 1</a>
+<a href="#">Term 2</a>
+<a href="#">Term 3</a>
+</div><strong>Past Papers</strong>
 
-  </div>
+<div class="term">
+<a href="#">Term 1</a>
+<a href="#">Term 2</a>
+<a href="#">Term 3</a>
+</div><strong>Textbooks</strong>
+
+<p>Available</p></div>
+</div><!-- MIDDLE CLASS --><div class="card">
+<h3>Middle Class</h3>
+<div class="small-list"><strong>Lesson Notes</strong>
+
+<div class="term">
+<a href="#">Term 1</a>
+<a href="#">Term 2</a>
+<a href="#">Term 3</a>
+</div><strong>Schemes of Work</strong>
+
+<div class="term">
+<a href="#">Term 1</a>
+<a href="#">Term 2</a>
+<a href="#">Term 3</a>
+</div><strong>Past Papers</strong>
+
+<div class="term">
+<a href="#">Term 1</a>
+<a href="#">Term 2</a>
+<a href="#">Term 3</a>
+</div><strong>Textbooks</strong>
+
+<p>Available</p></div>
+</div><!-- TOP CLASS --><div class="card">
+<h3>Top Class</h3>
+<div class="small-list"><strong>Lesson Notes</strong>
+
+<div class="term">
+<a href="#">Term 1</a>
+<a href="#">Term 2</a>
+<a href="#">Term 3</a>
+</div><strong>Schemes of Work</strong>
+
+<div class="term">
+<a href="#">Term 1</a>
+<a href="#">Term 2</a>
+<a href="#">Term 3</a>
+</div><strong>Past Papers</strong>
+
+<div class="term">
+<a href="#">Term 1</a>
+<a href="#">Term 2</a>
+<a href="#">Term 3</a>
+</div><strong>Textbooks</strong>
+
+<p>Available</p></div>
+</div></div>
 </section><!-- PRIMARY --><section id="primary">
-  <h2 class="section-title">Primary Section</h2>
-  <div class="grid"><div class="card"><h3>P1</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>P2</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>P3</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>P4</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>P5</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>P6</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>P7</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-
-  </div>
+<h2 class="section-title">Primary Section</h2>
+<div class="grid"><div class="card"><h3>P1</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>P2</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>P3</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>P4</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>P5</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>P6</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>P7</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div></div>
 </section><!-- SECONDARY --><section id="secondary">
-  <h2 class="section-title">Secondary Section</h2>
-  <div class="grid"><div class="card"><h3>S1</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>S2</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>S3</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>S4</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>S5</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-<div class="card"><h3>S6</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Textbooks<br>Past Papers</div></div>
-
-  </div>
-</section><!-- TERTIARY --><section id="tertiary">
-  <h2 class="section-title">Tertiary Section</h2>
-  <div class="grid"><div class="card"><h3>Certificate</h3><div class="small-list">Notes<br>Course Materials<br>Past Papers</div></div>
-<div class="card"><h3>Diploma</h3><div class="small-list">Notes<br>Course Materials<br>Past Papers</div></div>
-<div class="card"><h3>Bachelor</h3><div class="small-list">Notes<br>Course Materials<br>Past Papers</div></div>
-<div class="card"><h3>Postgraduate</h3><div class="small-list">Research Materials<br>Thesis Guides<br>Past Papers</div></div>
-
-  </div>
+<h2 class="section-title">Secondary Section</h2>
+<div class="grid"><div class="card"><h3>S1</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>S2</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>S3</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>S4</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>S5</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div>
+<div class="card"><h3>S6</h3><div class="small-list">Lesson Notes<br>Schemes of Work<br>Past Papers<br>Textbooks</div></div></div>
+</section><!-- TERTIARY (UNCHANGED STYLE) --><section id="tertiary">
+<h2 class="section-title">Tertiary Section</h2>
+<div class="grid"><div class="card"><h3>Certificate</h3><p>Notes, Course Materials, Past Papers</p></div>
+<div class="card"><h3>Diploma</h3><p>Notes, Course Materials, Past Papers</p></div>
+<div class="card"><h3>Bachelor</h3><p>Notes, Course Materials, Past Papers</p></div>
+<div class="card"><h3>Postgraduate</h3><p>Research Materials, Thesis Guides</p></div></div>
 </section><!-- MVC --><section id="mvc">
-  <h2 class="section-title">Mission, Vision & Core Values</h2>
-  <div class="grid"><div class="card">
-  <h3>Mission</h3>
-  <p>To provide accessible and quality education from Nursery to Tertiary level.</p>
-</div>
-
-<div class="card">
-  <h3>Vision</h3>
-  <p>To become a leading digital education centre that transforms learning through innovation and excellence.</p>
-</div>
-
-<div class="card">
-  <h3>Core Values</h3>
-  <p>Excellence<br>Discipline<br>Integrity<br>Innovation<br>Respect</p>
-</div>
-
-  </div>
+<h2 class="section-title">Mission, Vision & Core Values</h2>
+<div class="grid"><div class="card"><h3>Mission</h3><p>To provide quality education from Nursery to Tertiary level.</p></div>
+<div class="card"><h3>Vision</h3><p>To become a leading digital education centre.</p></div>
+<div class="card"><h3>Core Values</h3><p>Excellence, Discipline, Integrity, Innovation, Respect</p></div></div>
 </section><!-- WHATSAPP --><a class="whatsapp" href="https://wa.me/256702234701" target="_blank">WhatsApp Us</a>
 
 <!-- FOOTER --><footer>
-  <p><strong>Founder:</strong> Mr. Isa Kiggundu</p>
-  <p>📞 +256 702 234 701</p>
-  <p>📧 hi5educentre256@gmail.com</p>
-  <p>© 2026 Hi5 Education Centre. All rights reserved.</p>
+<p><strong>Founder:</strong> Mr. Isa Kiggundu</p>
+<p>📞 +256 702 234 701</p>
+<p>📧 hi5educentre256@gmail.com</p>
+<p>© 2026 Hi5 Education Centre. All rights reserved.</p>
 </footer></body>
 </html>
