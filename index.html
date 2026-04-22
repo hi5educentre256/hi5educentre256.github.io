@@ -13,7 +13,7 @@ body{
 header{
   background:linear-gradient(90deg,#0d6efd,#198754);
   color:white;
-  padding:14px;
+  padding:12px;
   text-align:center;
   position:sticky;
   top:0;
@@ -22,29 +22,45 @@ header{
 
 .menu{
   position:absolute;
-  left:15px;
-  top:12px;
-  font-size:24px;
+  right:15px;
+  top:10px;
+  font-size:26px;
   cursor:pointer;
+}
+
+/* SMALL BANNER */
+.banner{
+  background:#ffffff;
+  margin:10px;
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.banner h3{
+  margin:5px;
+  color:#0d6efd;
 }
 
 /* SIDEBAR */
 .sidebar{
   position:fixed;
-  left:-270px;
+  left:-300px;
   top:0;
-  width:270px;
+  width:300px;
   height:100%;
   background:#1f1f1f;
   color:white;
   transition:0.3s;
   padding-top:60px;
   z-index:2000;
+  overflow-y:auto;
 }
 
 .sidebar a{
   display:block;
-  padding:12px;
+  padding:10px;
   color:white;
   text-decoration:none;
 }
@@ -53,7 +69,6 @@ header{
   background:#333;
 }
 
-/* CLOSE BUTTON */
 .close{
   position:absolute;
   top:10px;
@@ -83,7 +98,6 @@ header{
   font-weight:bold;
 }
 
-/* FILE ITEMS */
 .item{
   background:white;
   margin:8px 0;
@@ -96,11 +110,6 @@ header{
   background:#eef5ff;
 }
 
-/* SEARCH */
-.search{
-  margin:10px 0;
-}
-
 .search input{
   width:100%;
   padding:10px;
@@ -108,11 +117,37 @@ header{
   border:1px solid #ccc;
 }
 
+button{
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  background:#0d6efd;
+  color:white;
+  cursor:pointer;
+  margin:5px;
+}
+
+button:hover{
+  background:#0b5ed7;
+}
+
+/* FOOTER */
+footer{
+  background:#0d6efd;
+  color:white;
+  text-align:center;
+  padding:15px;
+  margin-top:20px;
+}
+
 </style></head><body><header>
-<span class="menu" onclick="toggle()">☰</span>
 Hi5 Education Centre
-</header><!-- SIDEBAR --><div id="sidebar" class="sidebar">
-<div class="close" onclick="toggle()">❌</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#">ℹ About Us</a>
+<span class="menu" onclick="toggle()">☰</span>
+</header><!-- SMALL BANNER --><div class="banner">
+  <h3>Learn Today, Lead Tomorrow</h3>
+  <p>Quality Learning Materials for Nursery, Primary, Secondary & Tertiary</p>
+</div><!-- SIDEBAR --><div id="sidebar" class="sidebar">
+<div class="close" onclick="toggle()">❌</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#" onclick="showAbout()">ℹ About Us</a>
 
 </div><!-- MAIN --><div class="container" id="content"><h2>Main Dashboard</h2><div class="search">
 <input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
@@ -121,72 +156,66 @@ Hi5 Education Centre
 <div class="card" onclick="openFolder('Primary')">Primary</div>
 <div class="card" onclick="openFolder('Secondary')">Secondary</div>
 <div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
-</div></div><script>
+</div></div><!-- FOOTER --><footer>
+  <b>Hi5 Education Centre</b><br>
+  Motto: Learn Today, Lead Tomorrow<br>
+  Email: nextofjuniorschool@gmail.com<br>
+  Contact: +256 757 826946<br>
+  Founder: [Please confirm founder name]
+</footer><script>
 
 let repo="hi5educentre256/hi5educentre256.github.io";
 let historyStack=[];
 
 function toggle(){
   let sb=document.getElementById("sidebar");
-  sb.style.left = sb.style.left==="0px" ? "-270px" : "0px";
+  sb.style.left = (sb.style.left==="0px") ? "-300px" : "0px";
 }
 
-function home(){
-  location.reload();
-}
+function home(){ location.reload(); }
 
-/* STACK NAVIGATION */
-function openFolder(folder){
+function showAbout(){
   historyStack.push(document.getElementById("content").innerHTML);
 
-  document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
+  document.getElementById("content").innerHTML=`
+    <button onclick="back()">⬅ Back</button>
+    <h2>About Us</h2>
+    <p><b>Hi5 Education Centre</b> is an online learning platform providing quality educational materials for all levels.</p>
+    <p><b>Motto:</b> Learn Today, Lead Tomorrow</p>
+    <p><b>Email:</b> nextofjuniorschool@gmail.com</p>
+    <p><b>Contact:</b> +256 757 826946</p>
+    <p><b>Founder:</b> [Please confirm founder name]</p>
+  `;
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
-  .then(r=>r.json())
-  .then(data=>{
-
-    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
-
-    data.forEach(f=>{
-
-      if(f.name.endsWith(".pdf")){
-        html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-      } else {
-        html+=`<div class="item" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
-      }
-
-    });
-
-    document.getElementById("content").innerHTML=html;
-  });
+  toggle();
 }
 
-/* SUB FOLDERS */
-function openSub(path){
+function openFolder(folder){
 
 historyStack.push(document.getElementById("content").innerHTML);
 
-document.getElementById("content").innerHTML="<h2>"+path+"</h2><p>Loading...</p>";
+document.getElementById("content").innerHTML="<h2>Loading...</h2>";
 
-fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
 .then(r=>r.json())
 .then(data=>{
 
-let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
 
-data.forEach(f=>{
-if(f.name.endsWith(".pdf")){
-html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+if(Array.isArray(data)){
+  data.forEach(f=>{
+    if(f.name.endsWith(".pdf")){
+      html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+    } else {
+      html+=`<div class="item" onclick="openFolder('${folder}/${f.name}')">📁 ${f.name}</div>`;
+    }
+  });
 }
-});
 
 document.getElementById("content").innerHTML=html;
-
 });
-
 }
 
-/* BACK BUTTON */
 function back(){
   if(historyStack.length>0){
     document.getElementById("content").innerHTML=historyStack.pop();
@@ -195,7 +224,6 @@ function back(){
   }
 }
 
-/* SIMPLE SEARCH */
 function searchFiles(query){
   if(query.length<2) return;
 
