@@ -1,8 +1,13 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title><link rel="stylesheet" href="https://widget.whautomate.com/css/whatsapp-widget.min.css"><style>
+<title>Hi5 Education Centre</title>
+
+<link rel="stylesheet" href="https://widget.whautomate.com/css/whatsapp-widget.min.css">
+
+<style>
 body{
   margin:0;
   font-family:Arial;
@@ -186,45 +191,77 @@ footer{
   color:white;
 }
 
-</style></head><body><header>
+</style>
+</head>
+
+<body>
+
+<header>
 Hi5 Education Centre
 <span class="menu" onclick="toggle()">☰</span>
-</header><div class="banner">
+</header>
+
+<div class="banner">
   <h3>Learn Today, Lead Tomorrow</h3>
   <p>Quality Learning Materials for All Levels</p>
-</div><div id="sidebar" class="sidebar">
-  <div class="close" onclick="toggle()">❌</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#" onclick="showAbout()">ℹ About Us</a>
+</div>
 
-</div><div class="container" id="content">  <h2 style="text-align:center;color:#0d6efd;">Main Dashboard</h2>
-  <p style="text-align:center;">Access learning materials quickly and easily</p>  <div class="search">
+<div id="sidebar" class="sidebar">
+  <div class="close" onclick="toggle()">❌</div>
+
+  <a href="#" onclick="home()">🏠 Dashboard</a>
+  <a href="#" onclick="openFolder('Nursery')">Nursery</a>
+  <a href="#" onclick="openFolder('Primary')">Primary</a>
+  <a href="#" onclick="openFolder('Secondary')">Secondary</a>
+  <a href="#" onclick="openFolder('Tertiary')">Tertiary</a>
+  <a href="#" onclick="showAbout()">ℹ About Us</a>
+</div>
+
+<div class="container" id="content">
+
+  <h2 style="text-align:center;color:#0d6efd;">Main Dashboard</h2>
+  <p style="text-align:center;">Access learning materials quickly and easily</p>
+
+  <div class="search">
     <input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
-  </div>  <div class="cards">
+  </div>
+
+  <div class="cards">
     <div class="card nursery" onclick="openFolder('Nursery')">
       <span>🧒</span>
       Nursery
-    </div><div class="card primary" onclick="openFolder('Primary')">
-  <span>📘</span>
-  Primary
-</div>
+    </div>
 
-<div class="card secondary" onclick="openFolder('Secondary')">
-  <span>🎓</span>
-  Secondary
-</div>
+    <div class="card primary" onclick="openFolder('Primary')">
+      <span>📘</span>
+      Primary
+    </div>
 
-<div class="card tertiary" onclick="openFolder('Tertiary')">
-  <span>🏫</span>
-  Tertiary
-</div>
+    <div class="card secondary" onclick="openFolder('Secondary')">
+      <span>🎓</span>
+      Secondary
+    </div>
 
-  </div>  <div class="contact-box">
+    <div class="card tertiary" onclick="openFolder('Tertiary')">
+      <span>🏫</span>
+      Tertiary
+    </div>
+  </div>
+
+  <div class="contact-box">
     <h3>Contact Us</h3>
     <p><b>Email:</b> hi5educentre256@gmail.com</p>
     <p><b>WhatsApp:</b> +256702234701</p>
-  </div></div><footer>
+  </div>
+
+</div>
+
+<footer>
   Hi5 Education Centre<br>
   Learn Today, Lead Tomorrow
-</footer><script>
+</footer>
+
+<script>
 let repo="hi5educentre256/hi5educentre256.github.io";
 let historyStack=[];
 
@@ -278,5 +315,7 @@ function searchFiles(query){
   });
 }
 
-</script></body>
+</script>
+
+</body>
 </html>
