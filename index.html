@@ -1,324 +1,126 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
-:root{
-  --primary:#1a4fa3;
-  --secondary:#2b7cff;
-  --accent:#25D366;
-  --dark:#0f2f66;
-  --bg:#f4f7fb;
-}
+  <title>Hi5 Education Centre</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-body{font-family:Arial,sans-serif;background:var(--bg);color:#333;}
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f4f6f9;
+    }
 
-nav{
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:white;
-  padding:10px 14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
-.logo{font-weight:bold;font-size:15px;}
-.hamburger{font-size:22px;cursor:pointer;}
+    header {
+      background: #1e88e5;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-/* HERO (REDUCED MORE) */
-header{
-  position: relative;
+    .container {
+      padding: 15px;
+    }
 
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
-  height:16vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  color:white;
-  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80') center/cover;
-  padding:6px;
-}
-header h1{font-size:20px;}
-header p{font-size:12px;opacity:0.95;}
+    .card {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
 
-.search-box{max-width:600px;margin:8px auto;padding:0 12px;}
-.search-box input{width:100%;padding:10px;border-radius:25px;border:1px solid #ddd;}
+    .card:hover {
+      background: #e3f2fd;
+    }
 
-.section-title{text-align:center;margin:12px 0;color:var(--primary);}
+    .file {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:12px;
-  padding:12px;
-  max-width:1100px;
-  margin:auto;
-}
+    .file a {
+      text-decoration: none;
+      color: #1e88e5;
+    }
 
-.card{
-  background: linear-gradient(135deg,#ffffff,#eef5ff);
-  border-top: 4px solid var(--secondary);
+    button {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      background: #1e88e5;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
 
-  border: 1px solid rgba(43,124,255,0.12);
-  background: linear-gradient(180deg,#ffffff,#f8fbff);
-  background:white;
-  padding:16px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
-  box-shadow:0 6px 14px rgba(0,0,0,0.08);
-}
-.card i{font-size:22px;color:var(--primary);margin-bottom:6px;}
+<body>
 
-.info{
-  max-width:1000px;
-  margin:10px auto;
-  background:white;
-  padding:14px;
-  border-radius:10px;
-  box-shadow:0 6px 14px rgba(0,0,0,0.06);
-}
-.info h2{color:var(--primary);margin-bottom:6px;}
+<header>
+  <h2>Hi5 Education Centre LMS</h2>
+</header>
 
-.menu{
-  position:fixed;
-  top:0;
-  right:-330px;
-  width:310px;
-  height:100vh;
-  background:linear-gradient(180deg,var(--primary),var(--dark));
-  color:white;
-  padding:14px;
-  transition:0.3s;
-  overflow-y:auto;
-  z-index:2000;
-}
-.menu.show{right:0;}
-.menu-close{text-align:right;cursor:pointer;font-size:18px;margin-bottom:10px;}
+<div class="container">
 
-.section-block{
-  margin-top:10px;
-  padding:10px;
-  background:rgba(255,255,255,0.08);
-  border-radius:10px;
-  font-size:13px;
-  line-height:1.4;
-}
+  <h3>Select Level</h3>
 
-.submenu-title{
-  padding:10px;
-  margin-top:8px;
-  background:rgba(255,255,255,0.12);
-  border-radius:8px;
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-}
-.arrow{transition:0.3s;}
-.submenu-title.active .arrow{transform:rotate(90deg);}
+  <button onclick="loadFolder('Nursery')">Nursery</button>
+  <button onclick="loadFolder('Primary')">Primary</button>
+  <button onclick="loadFolder('Secondary')">Secondary</button>
+  <button onclick="loadFolder('Tertiary')">Tertiary</button>
 
-.submenu{display:none;margin-left:8px;}
-.submenu a{
-  transition:0.3s;
+  <div id="output"></div>
 
-  display:block;
-  padding:8px;
-  margin:4px 0;
-  background:rgba(255,255,255,0.08);
-  border-radius:6px;
-  color:white;
-  text-decoration:none;
-  font-size:13px;
-}
-.submenu a:hover{
-  transform:translateX(4px);
-  background:rgba(255,255,255,0.16);
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  transition:0.3s;
-}
-
-.info{
-  border-left:4px solid var(--secondary);
-}
-
-.section-title{
-  font-weight:700;
-  letter-spacing:0.5px;
-}
-
-
-#classModal{
-  position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:3000;
-}
-
-.modal-box{
-  border: 2px solid rgba(26,79,163,0.08);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  background:white;
-  width:90%;max-width:520px;
-  padding:18px;
-  border-radius:12px;
-}
-
-.modal-box h3{color:var(--primary);margin-bottom:10px;}
-.modal-box p{padding:6px 0;cursor:pointer;}
-
-footer{
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background:var(--dark);
-  color:white;
-  text-align:center;
-  padding:16px;
-  margin-top:18px;
-}
-
-.whatsapp{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  background:var(--accent);
-  color:white;
-  padding:12px 14px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-</style></head><body><nav>
-  <div class="logo">🎓 Hi5 Education Centre</div>
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
-</nav><header>
-  <div style="position:absolute; top:12px; right:20px; font-size:32px; opacity:0.18;">✋🎓📚</div>
-  <h1>Hi5 Education Centre</h1>
-  <p>Uganda Digital Learning Platform</p>
-</header><div class="search-box">
-  <input type="text" placeholder="Search lesson notes, schemes, past papers...">
-</div><h2 class="section-title">📘 Academic Levels</h2>
-<div class="grid">
-  <div class="card" onclick="openClass('Nursery')"><i class="fa fa-school"></i><br><b>Nursery</b></div>
-  <div class="card" onclick="openClass('Primary')"><i class="fa fa-book"></i><br><b>Primary</b></div>
-  <div class="card" onclick="openClass('Secondary')"><i class="fa fa-book-open"></i><br><b>Secondary</b></div>
-  <div class="card" onclick="openClass('Tertiary')"><i class="fa fa-graduation-cap"></i><br><b>Tertiary</b></div>
-</div><div class="info">
-<h2>About Us</h2>
-<p><b>Hi5 Education Centre</b> is a professional digital learning platform in Uganda providing structured academic materials for all levels.</p>
-<p><b>Founder:</b> Isa Kiggundu</p>
-<p><b>Contact:</b> +256 702 234 701 | hi5educentre256@gmail.com</p>
-</div><!-- MENU --><div class="menu" id="menu">
-  <div class="menu-close" onclick="toggleMenu()">✖ Close</div>  <div class="submenu-title" onclick="toggleSub(this,'nursery')">Nursery <span class="arrow">▶</span></div>
-  <div class="submenu" id="nursery">
-    <a onclick="openClass('Baby Class')">Baby Class</a>
-    <a onclick="openClass('Middle Class')">Middle Class</a>
-    <a onclick="openClass('Top Class')">Top Class</a>
-  </div>  <div class="submenu-title" onclick="toggleSub(this,'primary')">Primary <span class="arrow">▶</span></div>
-  <div class="submenu" id="primary">
-    <a onclick="openClass('P1')">P1</a><a onclick="openClass('P2')">P2</a><a onclick="openClass('P3')">P3</a>
-    <a onclick="openClass('P4')">P4</a><a onclick="openClass('P5')">P5</a><a onclick="openClass('P6')">P6</a><a onclick="openClass('P7')">P7</a>
-  </div>  <div class="submenu-title" onclick="toggleSub(this,'secondary')">Secondary <span class="arrow">▶</span></div>
-  <div class="submenu" id="secondary">
-    <a onclick="openClass('S1')">S1</a><a onclick="openClass('S2')">S2</a><a onclick="openClass('S3')">S3</a>
-    <a onclick="openClass('S4')">S4</a><a onclick="openClass('S5')">S5</a><a onclick="openClass('S6')">S6</a>
-  </div>  <div class="submenu-title" onclick="toggleSub(this,'tertiary')">Tertiary <span class="arrow">▶</span></div>
-  <div class="submenu" id="tertiary">
-    <a onclick="openClass('Certificate')">Certificate</a>
-    <a onclick="openClass('Diploma')">Diploma</a>
-    <a onclick="openClass('University')">University</a>
-  </div>
-</div><div id="classModal" onclick="closeModal(event)">
-  <div class="modal-box">
-    <h3 id="classTitle"></h3>
-    <div id="classContent"></div>
-  </div>
-</div><footer>
-<p>📞 +256 702 234 701</p>
-<p>📧 hi5educentre256@gmail.com</p>
-</footer><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
+</div>
 
 <script>
-function toggleMenu(){document.getElementById('menu').classList.toggle('show');}
+async function loadFolder(folder) {
+  document.getElementById("output").innerHTML = "Loading...";
 
-function toggleSub(el,id){
-  let sub=document.getElementById(id);
-  let open=sub.style.display==='block';
-  document.querySelectorAll('.submenu').forEach(s=>s.style.display='none');
-  document.querySelectorAll('.submenu-title').forEach(t=>t.classList.remove('active'));
-  if(!open){sub.style.display='block';el.classList.add('active');}
+  let url = `https://api.github.com/repos/hi5educentre256/hi5educentre256.github.io/contents/${folder}`;
+
+  let res = await fetch(url);
+  let data = await res.json();
+
+  let html = `<h3>${folder}</h3>`;
+
+  data.forEach(item => {
+    if(item.type === "dir") {
+      html += `<div class="card" onclick="loadSubFolder('${folder}/${item.name}')">📁 ${item.name}</div>`;
+    }
+  });
+
+  document.getElementById("output").innerHTML = html;
 }
 
-function openClass(name){
-  const content = document.getElementById('classContent');
-  document.getElementById('classTitle').innerText = name;
+async function loadSubFolder(path) {
+  document.getElementById("output").innerHTML = "Loading...";
 
-  let html = '';
+  let url = `https://api.github.com/repos/hi5educentre256/hi5educentre256.github.io/contents/${path}`;
 
-  if(name === 'Nursery'){
-    html = `
-      <p onclick="openClass('Baby Class')">👶 Baby Class</p>
-      <p onclick="openClass('Middle Class')">🧒 Middle Class</p>
-      <p onclick="openClass('Top Class')">🎓 Top Class</p>
-    `;
-  }
-  else if(name === 'Primary'){
-    html = `
-      <p onclick="openClass('P1')">P1</p>
-      <p onclick="openClass('P2')">P2</p>
-      <p onclick="openClass('P3')">P3</p>
-      <p onclick="openClass('P4')">P4</p>
-      <p onclick="openClass('P5')">P5</p>
-      <p onclick="openClass('P6')">P6</p>
-      <p onclick="openClass('P7')">P7</p>
-    `;
-  }
-  else if(name === 'Secondary'){
-    html = `
-      <p onclick="openClass('S1')">S1</p>
-      <p onclick="openClass('S2')">S2</p>
-      <p onclick="openClass('S3')">S3</p>
-      <p onclick="openClass('S4')">S4</p>
-      <p onclick="openClass('S5')">S5</p>
-      <p onclick="openClass('S6')">S6</p>
-    `;
-  }
-  else if(name === 'Tertiary'){
-    html = `
-      <p onclick="openClass('Certificate')">Certificate</p>
-      <p onclick="openClass('Diploma')">Diploma</p>
-      <p onclick="openClass('University')">University</p>
-    `;
-  }
-  else {
-    html = `
-      <p>📘 Lesson Notes</p>
-      <p>📗 Schemes of Work</p>
-      <p>📕 Past Papers</p>
-      <p>📚 Textbooks</p>
-    `;
-  }
+  let res = await fetch(url);
+  let data = await res.json();
 
-  content.innerHTML = html;
-  document.getElementById('classModal').style.display = 'flex';
+  let html = `<h3>${path}</h3>`;
+
+  data.forEach(item => {
+    if(item.type === "file") {
+      html += `<div class="file">
+        📄 <a href="${item.download_url}" target="_blank">${item.name}</a>
+      </div>`;
+    }
+
+    if(item.type === "dir") {
+      html += `<div class="card" onclick="loadSubFolder('${path}/${item.name}')">📁 ${item.name}</div>`;
+    }
+  });
+
+  document.getElementById("output").innerHTML = html;
 }
+</script>
 
-function closeModal(e){
-  if(e.target.id==='classModal') document.getElementById('classModal').style.display='none';
-}
-</script></body>
+</body>
 </html>
