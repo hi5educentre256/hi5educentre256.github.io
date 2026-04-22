@@ -14,19 +14,22 @@ body{
 
 /* HEADER */
 header{
-  background:linear-gradient(90deg,#0d6efd,#198754);
+  background:linear-gradient(135deg,#0d6efd,#198754);
   color:white;
-  padding:14px;
+  padding:16px;
   text-align:center;
   position:sticky;
   top:0;
   z-index:1000;
+  font-weight:bold;
+  box-shadow:0 3px 10px rgba(0,0,0,0.2);
 }
 
+/* MENU */
 .menu{
   position:absolute;
   left:15px;
-  top:12px;
+  top:14px;
   font-size:24px;
   cursor:pointer;
 }
@@ -34,11 +37,11 @@ header{
 /* SIDEBAR */
 .sidebar{
   position:fixed;
-  left:-270px;
+  left:-280px;
   top:0;
-  width:270px;
+  width:280px;
   height:100%;
-  background:#1f1f1f;
+  background:#1e1e1e;
   color:white;
   transition:0.3s;
   padding-top:60px;
@@ -56,13 +59,13 @@ header{
   background:#333;
 }
 
-/* CLOSE BUTTON */
+/* CLOSE */
 .close{
   position:absolute;
   top:10px;
   right:10px;
-  cursor:pointer;
   font-size:20px;
+  cursor:pointer;
 }
 
 /* MAIN */
@@ -70,6 +73,7 @@ header{
   padding:15px;
 }
 
+/* DASHBOARD */
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
@@ -79,14 +83,18 @@ header{
 .card{
   background:white;
   padding:18px;
-  text-align:center;
   border-radius:10px;
+  text-align:center;
+  font-weight:bold;
   cursor:pointer;
   box-shadow:0 2px 8px rgba(0,0,0,0.1);
-  font-weight:bold;
 }
 
-/* FILE ITEMS */
+.card:hover{
+  background:#eef5ff;
+}
+
+/* ITEMS */
 .item{
   background:white;
   margin:8px 0;
@@ -100,15 +108,18 @@ header{
 }
 
 /* SEARCH */
-.search{
-  margin:10px 0;
-}
-
 .search input{
   width:100%;
   padding:10px;
+  margin:10px 0;
   border-radius:6px;
   border:1px solid #ccc;
+}
+
+button{
+  padding:6px 10px;
+  margin-bottom:10px;
+  cursor:pointer;
 }
 
 </style>
@@ -140,7 +151,7 @@ Hi5 Education Centre
 <h2>Main Dashboard</h2>
 
 <div class="search">
-<input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
+<input type="text" placeholder="Search materials..." onkeyup="search(this.value)">
 </div>
 
 <div class="cards">
@@ -155,49 +166,75 @@ Hi5 Education Centre
 <script>
 
 let repo="hi5educentre256/hi5educentre256.github.io";
-let historyStack=[];
+let stack=[];
 
+/* MENU */
 function toggle(){
   let sb=document.getElementById("sidebar");
-  sb.style.left = sb.style.left==="0px" ? "-270px" : "0px";
+  sb.style.left = (sb.style.left==="0px") ? "-280px" : "0px";
 }
 
 function home(){
   location.reload();
 }
 
-/* STACK NAVIGATION */
-function openFolder(folder){
-  historyStack.push(document.getElementById("content").innerHTML);
-
-  document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
-
-  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
-  .then(r=>r.json())
-  .then(data=>{
-
-    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
-
-    data.forEach(f=>{
-
-      if(f.name.endsWith(".pdf")){
-        html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-      } else {
-        html+=`<div class="item" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
-      }
-
-    });
-
-    document.getElementById("content").innerHTML=html;
-  });
+/* BACK SYSTEM */
+function back(){
+  if(stack.length>0){
+    document.getElementById("content").innerHTML = stack.pop();
+  } else {
+    home();
+  }
 }
 
-/* SUB FOLDERS */
-function openSub(path){
+/* LEVEL 1 */
+function openFolder(folder){
 
-historyStack.push(document.getElementById("content").innerHTML);
+stack.push(document.getElementById("content").innerHTML);
 
-document.getElementById("content").innerHTML="<h2>"+path+"</h2><p>Loading...</p>";
+document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
+
+fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+.then(r=>r.json())
+.then(data=>{
+
+let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
+
+data.forEach(f=>{
+html+=`<div class='item' onclick="openClass('${folder}/${f.name}')">📁 ${f.name}</div>`;
+});
+
+document.getElementById("content").innerHTML=html;
+
+});
+
+}
+
+/* LEVEL 2 */
+function openClass(path){
+
+stack.push(document.getElementById("content").innerHTML);
+
+fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+.then(r=>r.json())
+.then(data=>{
+
+let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+
+data.forEach(f=>{
+html+=`<div class='item' onclick="openMaterials('${path}/${f.name}')">📂 ${f.name}</div>`;
+});
+
+document.getElementById("content").innerHTML=html;
+
+});
+
+}
+
+/* LEVEL 3 (FIXED MATERIAL DISPLAY) */
+function openMaterials(path){
+
+stack.push(document.getElementById("content").innerHTML);
 
 fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
 .then(r=>r.json())
@@ -207,7 +244,7 @@ let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
 
 data.forEach(f=>{
 if(f.name.endsWith(".pdf")){
-html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
 }
 });
 
@@ -217,29 +254,22 @@ document.getElementById("content").innerHTML=html;
 
 }
 
-/* BACK BUTTON */
-function back(){
-  if(historyStack.length>0){
-    document.getElementById("content").innerHTML=historyStack.pop();
-  } else {
-    home();
-  }
-}
-
-/* SIMPLE SEARCH */
-function searchFiles(query){
-  if(query.length<2) return;
+/* SEARCH */
+function search(q){
+  if(q.length<2) return;
 
   fetch(`https://api.github.com/repos/${repo}/contents/`)
   .then(r=>r.json())
   .then(data=>{
-    let results="<h2>Search Results</h2>";
 
-    data.forEach(folder=>{
-      results+=`<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
+    let html="<h2>Search Results</h2>";
+
+    data.forEach(f=>{
+      html+=`<div class='item' onclick="openFolder('${f.name}')">📁 ${f.name}</div>`;
     });
 
-    document.getElementById("content").innerHTML=results;
+    document.getElementById("content").innerHTML=html;
+
   });
 }
 
