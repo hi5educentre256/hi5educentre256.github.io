@@ -2,15 +2,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
+<title>Hi5 Education Centre</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"><style>
 :root{
   --primary:#1a4fa3;
   --accent:#25D366;
   --dark:#0f2f66;
   --bg:#f4f7fb;
-  --card:#ffffff;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
 body{font-family:Arial,sans-serif;background:var(--bg);color:#333;}
 
@@ -44,170 +43,111 @@ nav{
   z-index:2000;
 }
 .menu.show{right:0;}
-
-.submenu-title{
-  padding:12px;
-  margin-top:10px;
-  background:rgba(255,255,255,0.12);
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-  display:flex;
-  justify-content:space-between;
-}
-.submenu{
-  display:none;
-  margin-left:10px;
-}
-.submenu a{
-  display:block;
-  padding:8px;
-  margin:4px 0;
-  background:rgba(255,255,255,0.08);
-  border-radius:8px;
-  color:white;
-  text-decoration:none;
-  font-size:13px;
-}
+.submenu-title{padding:12px;margin-top:10px;background:rgba(255,255,255,0.12);border-radius:10px;cursor:pointer;font-weight:bold;}
+.submenu{display:none;margin-left:10px;}
+.submenu a{display:block;padding:8px;margin:4px 0;background:rgba(255,255,255,0.08);border-radius:8px;color:white;text-decoration:none;font-size:13px;}
 
 /* HERO */
 header{
-  height:55vh;
+  height:45vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
   color:white;
-  background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
-  url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80') center/cover;
+  background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80') center/cover;
 }
-header h1{font-size:40px;}
+header h1{font-size:38px;}
 
-/* DASHBOARD DOORS */
-.section-title{
-  text-align:center;
-  margin:30px 0 10px;
-  color:var(--primary);
-}
-
-.door-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
-  padding:20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-.door{
-  background:linear-gradient(135deg,#ffffff,#e9f1ff);
-  border-radius:15px;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 8px 18px rgba(0,0,0,0.08);
-  cursor:pointer;
-  transition:0.3s;
-  border-left:6px solid var(--primary);
-}
-.door:hover{
-  transform:translateY(-8px);
-  background:linear-gradient(135deg,#dfeaff,#ffffff);
-}
-.door i{font-size:28px;margin-bottom:10px;color:var(--primary);}
+/* DASHBOARD */
+.section-title{text-align:center;margin:25px 0;color:var(--primary);}
+.door-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px;padding:20px;max-width:1100px;margin:auto;}
+.door{background:linear-gradient(135deg,#fff,#e9f1ff);padding:18px;text-align:center;border-radius:15px;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,0.08);transition:0.3s;}
+.door:hover{transform:translateY(-6px);}
+.door i{font-size:26px;color:var(--primary);margin-bottom:8px;}
 
 /* PANELS */
-.panel{
-  display:none;
-  max-width:1000px;
-  margin:20px auto;
-  padding:20px;
-  background:white;
-  border-radius:12px;
-  box-shadow:0 10px 20px rgba(0,0,0,0.08);
-}
-.panel h3{color:var(--primary);margin-bottom:10px;}
+.panel{display:none;max-width:1000px;margin:20px auto;padding:20px;background:white;border-radius:12px;box-shadow:0 10px 20px rgba(0,0,0,0.08);}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.card{padding:15px;background:#f9fbff;border-radius:10px;cursor:pointer;}
+.card:hover{background:#eaf2ff;}
 
-footer{
-  background:var(--dark);
-  color:white;
-  text-align:center;
-  padding:30px;
-  margin-top:40px;
-}
+footer{background:var(--dark);color:white;text-align:center;padding:30px;margin-top:40px;}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:var(--accent);color:white;padding:12px 15px;border-radius:50px;text-decoration:none;font-weight:bold;}
 
-.whatsapp{
+/* CLASS MODAL */
+#classPanel{
   position:fixed;
-  bottom:20px;
-  right:20px;
-  background:var(--accent);
-  color:white;
-  padding:12px 15px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:bold;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:3000;
 }
-
+.class-box{
+  background:white;
+  width:90%;max-width:500px;
+  padding:20px;
+  border-radius:12px;
+}
+.class-box h3{color:var(--primary);}
+.close{float:right;cursor:pointer;font-size:18px;}
 </style></head><body><nav>
   <div class="logo">🎓 Hi5 Education Centre</div>
   <div class="hamburger" onclick="toggleMenu()">☰</div>
-</nav><!-- SIDE MENU (HAMBERGER FOLDERS) --><div class="menu" id="menu">  <div class="submenu-title" onclick="toggleSub('nursery')">📘 Nursery <span>+</span></div>
+</nav><div class="menu" id="menu">  <div class="submenu-title" onclick="toggleSub('nursery')">Nursery</div>
   <div class="submenu" id="nursery">
-    <a onclick="openPanel('baby')">Baby Class</a>
-    <a onclick="openPanel('middle')">Middle Class</a>
-    <a onclick="openPanel('top')">Top Class</a>
-  </div>  <div class="submenu-title" onclick="toggleSub('primary')">📗 Primary <span>+</span></div>
+    <a onclick="openClass('Baby Class')">Baby Class</a>
+    <a onclick="openClass('Middle Class')">Middle Class</a>
+    <a onclick="openClass('Top Class')">Top Class</a>
+  </div>  <div class="submenu-title" onclick="toggleSub('primary')">Primary</div>
   <div class="submenu" id="primary">
-    <a onclick="openPanel('p1')">P1</a>
-    <a onclick="openPanel('p2')">P2</a>
-    <a onclick="openPanel('p3')">P3</a>
-    <a onclick="openPanel('p4')">P4</a>
-    <a onclick="openPanel('p5')">P5</a>
-    <a onclick="openPanel('p6')">P6</a>
-    <a onclick="openPanel('p7')">P7</a>
-  </div>  <div class="submenu-title" onclick="toggleSub('secondary')">📙 Secondary <span>+</span></div>
+    <a onclick="openClass('P1')">P1</a><a onclick="openClass('P2')">P2</a><a onclick="openClass('P3')">P3</a>
+    <a onclick="openClass('P4')">P4</a><a onclick="openClass('P5')">P5</a><a onclick="openClass('P6')">P6</a><a onclick="openClass('P7')">P7</a>
+  </div>  <div class="submenu-title" onclick="toggleSub('secondary')">Secondary</div>
   <div class="submenu" id="secondary">
-    <a onclick="openPanel('s1')">S1</a>
-    <a onclick="openPanel('s2')">S2</a>
-    <a onclick="openPanel('s3')">S3</a>
-    <a onclick="openPanel('s4')">S4</a>
-    <a onclick="openPanel('s5')">S5</a>
-    <a onclick="openPanel('s6')">S6</a>
-  </div>  <div class="submenu-title" onclick="toggleSub('tertiary')">🎓 Tertiary <span>+</span></div>
+    <a onclick="openClass('S1')">S1</a><a onclick="openClass('S2')">S2</a><a onclick="openClass('S3')">S3</a>
+    <a onclick="openClass('S4')">S4</a><a onclick="openClass('S5')">S5</a><a onclick="openClass('S6')">S6</a>
+  </div>  <div class="submenu-title" onclick="toggleSub('tertiary')">Tertiary</div>
   <div class="submenu" id="tertiary">
-    <a onclick="openPanel('cert')">Certificate</a>
-    <a onclick="openPanel('dip')">Diploma</a>
-    <a onclick="openPanel('uni')">University</a>
+    <a onclick="openClass('Certificate')">Certificate</a>
+    <a onclick="openClass('Diploma')">Diploma</a>
+    <a onclick="openClass('University')">University</a>
   </div></div><header>
   <h1>Hi5 Education Centre</h1>
-  <p>Interactive Learning Platform</p>
-</header><h2 class="section-title">📂 Open Learning Doors</h2><div class="door-grid">
-  <div class="door" onclick="openPanel('nurseryMain')"><i class="fa-solid fa-school"></i><br>Nursery</div>
-  <div class="door" onclick="openPanel('primaryMain')"><i class="fa-solid fa-book"></i><br>Primary</div>
-  <div class="door" onclick="openPanel('secondaryMain')"><i class="fa-solid fa-book-open"></i><br>Secondary</div>
-  <div class="door" onclick="openPanel('tertiaryMain')"><i class="fa-solid fa-graduation-cap"></i><br>Tertiary</div>
-</div><!-- PANELS --><div class="panel" id="nurseryMain"><h3>Nursery Overview</h3><p>Baby, Middle, Top Class resources available.</p></div>
-<div class="panel" id="primaryMain"><h3>Primary Overview</h3><p>P1 to P7 learning materials available.</p></div>
-<div class="panel" id="secondaryMain"><h3>Secondary Overview</h3><p>S1 to S6 structured content available.</p></div>
-<div class="panel" id="tertiaryMain"><h3>Tertiary Overview</h3><p>Certificate, Diploma, University materials.</p></div><footer>
+</header><h2 class="section-title">Learning Doors</h2>
+<div class="door-grid">
+  <div class="door" onclick="openPanel('nursery')"><i class="fa fa-school"></i><br>Nursery</div>
+  <div class="door" onclick="openPanel('primary')"><i class="fa fa-book"></i><br>Primary</div>
+  <div class="door" onclick="openPanel('secondary')"><i class="fa fa-book-open"></i><br>Secondary</div>
+  <div class="door" onclick="openPanel('tertiary')"><i class="fa fa-graduation-cap"></i><br>Tertiary</div>
+</div><!-- PANELS --><div class="panel" id="nursery"><h3>Nursery Classes</h3><div class="grid"><div class="card">Baby Class</div><div class="card">Middle Class</div><div class="card">Top Class</div></div></div><div class="panel" id="primary"><h3>Primary Classes</h3><div class="grid"><div class="card">P1</div><div class="card">P2</div><div class="card">P3</div><div class="card">P4</div><div class="card">P5</div><div class="card">P6</div><div class="card">P7</div></div></div><div class="panel" id="secondary"><h3>Secondary Classes</h3><div class="grid"><div class="card">S1</div><div class="card">S2</div><div class="card">S3</div><div class="card">S4</div><div class="card">S5</div><div class="card">S6</div></div></div><div class="panel" id="tertiary"><h3>Tertiary Classes</h3><div class="grid"><div class="card">Certificate</div><div class="card">Diploma</div><div class="card">University</div></div></div><!-- CLASS POPUP --><div id="classPanel" onclick="this.style.display='none'">
+  <div class="class-box">
+    <span class="close">✖</span>
+    <h3 id="classTitle"></h3>
+    <p>📘 Lesson Notes</p>
+    <p>📗 Schemes of Work</p>
+    <p>📕 Past Papers</p>
+    <p>📚 Textbooks</p>
+  </div>
+</div><!-- MISSION VISION CORE RESTORED --><section class="panel" style="display:block;">
+<h3>Mission</h3><p>Provide quality education resources.</p>
+<h3>Vision</h3><p>Lead digital learning in Africa.</p>
+<h3>Core Values</h3><p>Integrity, Excellence, Innovation, Accessibility.</p>
+</section><section class="panel" style="display:block;">
+<h3>About Us</h3><p>Hi5 Education Centre supports all learners.</p>
+</section><footer>
 <p>📞 +256 702 234 701</p>
 <p>📧 hi5educentre256@gmail.com</p>
-<p>© 2026 Hi5 Education Centre</p>
 </footer><a class="whatsapp" href="https://wa.me/256702234701">WhatsApp</a>
 
 <script>
 function toggleMenu(){document.getElementById('menu').classList.toggle('show');}
-
-function toggleSub(id){
-  let el=document.getElementById(id);
-  el.style.display=el.style.display==='block'?'none':'block';
-}
-
-function openPanel(id){
-  document.querySelectorAll('.panel').forEach(p=>p.style.display='none');
-  let el=document.getElementById(id);
-  if(el){el.style.display='block';}
-  document.getElementById('menu').classList.remove('show');
-}
+function toggleSub(id){let el=document.getElementById(id);el.style.display=el.style.display==='block'?'none':'block';}
+function openPanel(id){document.querySelectorAll('.panel').forEach(p=>p.style.display='none');let el=document.getElementById(id);if(el)el.style.display='block';document.getElementById('menu').classList.remove('show');}
+function openClass(name){document.getElementById('classTitle').innerText=name;document.getElementById('classPanel').style.display='flex';}
 </script></body>
 </html>
