@@ -1,8 +1,11 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Hi5 Education Centre</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
 body{
   margin:0;
   font-family:Arial;
@@ -101,20 +104,46 @@ header{
   border-radius:6px;
   border:1px solid #ccc;
 }
-</style></head><body><header>
+</style>
+</head>
+
+<body>
+
+<header>
 <span class="menu" onclick="toggle()">☰</span>
 Hi5 Education Centre
-</header><div id="sidebar" class="sidebar">
-<div class="close" onclick="toggle()">❌</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#">ℹ About Us</a>
+</header>
 
-</div><div class="container" id="content"><h2>Main Dashboard</h2><div class="search">
+<div id="sidebar" class="sidebar">
+<div class="close" onclick="toggle()">❌</div>
+
+<a href="#" onclick="home()">🏠 Dashboard</a>
+<a href="#" onclick="openFolder('Nursery')">Nursery</a>
+<a href="#" onclick="openFolder('Primary')">Primary</a>
+<a href="#" onclick="openFolder('Secondary')">Secondary</a>
+<a href="#" onclick="openFolder('Tertiary')">Tertiary</a>
+<a href="#">ℹ About Us</a>
+
+</div>
+
+<div class="container" id="content">
+
+<h2>Main Dashboard</h2>
+
+<div class="search">
 <input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
-</div><div class="cards">
+</div>
+
+<div class="cards">
 <div class="card" onclick="openFolder('Nursery')">Nursery</div>
 <div class="card" onclick="openFolder('Primary')">Primary</div>
 <div class="card" onclick="openFolder('Secondary')">Secondary</div>
 <div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
-</div></div><script>
+</div>
+
+</div>
+
+<script>
 let repo="hi5educentre256/hi5educentre256.github.io";
 let allFiles = [];
 
@@ -257,5 +286,7 @@ function searchFiles(query){
   });
 }
 
-</script></body>
+</script>
+
+</body>
 </html>
