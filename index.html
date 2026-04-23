@@ -7,11 +7,11 @@
 
 <style>
 
-/* HEADER (softer design) */
+/* ================= HEADER ================= */
 header{
-  background: linear-gradient(135deg,#2b6cb0,#2f855a);
+  background: #0d6efd;
   color:white;
-  padding:20px 18px;
+  padding:18px;
   text-align:center;
   font-size:22px;
   font-weight:800;
@@ -28,7 +28,7 @@ header{
   cursor:pointer;
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
 .sidebar{
   position:fixed;
   left:-300px;
@@ -63,7 +63,7 @@ header{
   cursor:pointer;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
 .container{
   padding:15px;
 }
@@ -71,50 +71,57 @@ header{
 h1{
   font-size:30px;
   font-weight:900;
-  color:#1f2937;
+  color:#111;
 }
 
 /* SEARCH */
 .search input{
   width:100%;
-  padding:16px;
+  padding:14px;
   font-size:16px;
-  border-radius:12px;
-  border:1px solid #d1d5db;
+  border-radius:10px;
+  border:1px solid #ccc;
 }
 
-/* ================= MAIN FOLDERS (SOFT COLORS) ================= */
+/* ================= CLEAN DASHBOARD CARDS ================= */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:15px;
+  margin-top:15px;
+}
+
 .card{
-  background:#f9fafb;
+  background:#ffffff;
   padding:28px;
-  border-radius:16px;
+  border-radius:14px;
   text-align:center;
   font-weight:700;
-  font-size:18px;
+  font-size:17px;
   cursor:pointer;
-  box-shadow:0 4px 10px rgba(0,0,0,0.06);
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
   transition:0.2s;
-  border:1px solid #e5e7eb;
+  border:1px solid #eee;
 }
 
 .card:hover{
-  transform:scale(1.02);
-  background:#f3f4f6;
+  transform:translateY(-3px);
+  background:#f8fafc;
 }
 
-/* INNER FOLDERS */
+/* ================= FILE ITEMS ================= */
 .item{
-  background:#ffffff;
+  background:#fff;
   margin:10px 0;
   padding:14px;
-  border-radius:12px;
+  border-radius:10px;
   cursor:pointer;
-  box-shadow:0 2px 6px rgba(0,0,0,0.05);
-  border-left:4px solid #9ca3af;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  border-left:3px solid #0d6efd;
 }
 
 .item:hover{
-  background:#f9fafb;
+  background:#f1f5f9;
 }
 
 /* BUTTON */
@@ -122,16 +129,16 @@ button{
   padding:8px 12px;
   border:none;
   border-radius:8px;
-  background:#374151;
+  background:#0d6efd;
   color:white;
   cursor:pointer;
   margin-bottom:10px;
 }
 
-/* CONTACT (KEEP HIGHLIGHTED) */
+/* ================= CONTACT HIGHLIGHT ================= */
 .contact-phone{
   background:#e8f5e9;
-  border-left:5px solid #22c55e;
+  border-left:5px solid #2e7d32;
   padding:14px;
   border-radius:10px;
   margin:10px 0;
@@ -139,29 +146,30 @@ button{
 
 .contact-email{
   background:#e3f2fd;
-  border-left:5px solid #3b82f6;
+  border-left:5px solid #1565c0;
   padding:14px;
   border-radius:10px;
   margin:10px 0;
 }
 
-/* ================= WHATSAPP (REAL ICON STYLE - NO GREEN BLOCK) ================= */
+/* ================= WHATSAPP FLOAT (REAL ICON) ================= */
 .whatsapp{
   position:fixed;
   bottom:20px;
   right:20px;
-  width:55px;
-  height:55px;
+  width:60px;
+  height:60px;
+  background:white;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  cursor:pointer;
+  box-shadow:0 6px 14px rgba(0,0,0,0.25);
   z-index:9999;
-  background:none;
-  border:none;
+  cursor:pointer;
 }
 
-/* chat box */
+/* CHAT BOX */
 .wa-box{
   position:fixed;
   bottom:90px;
@@ -176,7 +184,7 @@ button{
 }
 
 .wa-header{
-  background:#111827;
+  background:#075E54;
   color:white;
   padding:10px;
   font-weight:bold;
@@ -191,7 +199,7 @@ button{
 .wa-body a{
   display:block;
   margin-top:10px;
-  background:#111827;
+  background:#25D366;
   color:white;
   padding:10px;
   text-align:center;
@@ -262,7 +270,7 @@ document.getElementById("content").innerHTML = stack.pop();
 }
 }
 
-/* NAV */
+/* OPEN FOLDERS */
 function openFolder(folder){
 stack.push(document.getElementById("content").innerHTML);
 
@@ -347,44 +355,18 @@ document.getElementById("content").innerHTML=`
 
 }
 
-/* SEARCH */
-function search(q){
-if(q.length<2) return;
-
-fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
-.then(r=>r.json())
-.then(data=>{
-
-let html="<h2>Search Results</h2>";
-let found=false;
-
-data.tree.forEach(f=>{
-if(f.path.includes(q) && f.path.endsWith(".pdf")){
-found=true;
-html+=`<div class='item' onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">📄 ${f.path}</div>`;
-}
-});
-
-if(!found) html+="<p>No results found</p>";
-
-document.getElementById("content").innerHTML=html;
-
-});
-}
-
 </script>
 
-<!-- WHATSAPP REAL ICON -->
+<!-- WHATSAPP ICON -->
 <div class="whatsapp" onclick="openWA()">
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="40" height="40" fill="#25D366">
-<path d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30">
+<path fill="#25D366" d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
 </svg>
 
 </div>
 
 <div id="waBox" class="wa-box">
-
 <div class="wa-header">
 💬 Support
 <span onclick="closeWA()" style="cursor:pointer;">✖</span>
@@ -392,9 +374,8 @@ document.getElementById("content").innerHTML=html;
 
 <div class="wa-body">
 <p>Hello 👋 How can we help?</p>
-<a href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre" target="_blank">Start Chat</a>
+<a href="https://wa.me/256702234701" target="_blank">Start Chat</a>
 </div>
-
 </div>
 
 <script>
