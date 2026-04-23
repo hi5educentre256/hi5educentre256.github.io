@@ -7,14 +7,13 @@
 
 <style>
 
-/* ===== GLOBAL STYLE ===== */
 body{
   margin:0;
   font-family:"Segoe UI", Arial, sans-serif;
   background:#f3f6fb;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header{
   background: linear-gradient(135deg,#0d6efd,#198754);
   color:white;
@@ -25,7 +24,7 @@ header{
   box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* MENU ICON */
+/* MENU */
 .menu{
   position:absolute;
   left:15px;
@@ -34,7 +33,7 @@ header{
   cursor:pointer;
 }
 
-/* ===== SIDEBAR ===== */
+/* SIDEBAR */
 .sidebar{
   position:fixed;
   left:-280px;
@@ -68,12 +67,12 @@ header{
   font-size:20px;
 }
 
-/* ===== MAIN ===== */
+/* MAIN */
 .container{
   padding:15px;
 }
 
-/* ===== DASHBOARD CARDS ===== */
+/* DASHBOARD */
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
@@ -96,7 +95,7 @@ header{
   background:#eef5ff;
 }
 
-/* ===== ITEMS ===== */
+/* ITEMS */
 .item{
   background:white;
   margin:10px 0;
@@ -112,14 +111,13 @@ header{
   background:#f0f7ff;
 }
 
-/* ===== SEARCH ===== */
+/* SEARCH */
 .search input{
   width:100%;
   padding:12px;
   border-radius:10px;
   border:1px solid #d0d7e2;
   outline:none;
-  font-size:14px;
 }
 
 /* BUTTON */
@@ -183,18 +181,18 @@ Hi5 Education Centre
 let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 
-/* ===== MENU ===== */
+/* MENU */
 function toggle(){
   let sb=document.getElementById("sidebar");
   sb.style.left = (sb.style.left==="0px") ? "-280px" : "0px";
 }
 
-/* ===== HOME ===== */
+/* HOME */
 function home(){
   location.reload();
 }
 
-/* ===== BACK ===== */
+/* BACK */
 function back(){
   if(stack.length>0){
     document.getElementById("content").innerHTML = stack.pop();
@@ -203,12 +201,10 @@ function back(){
   }
 }
 
-/* ===== LEVEL 1 ===== */
+/* LEVEL 1 */
 function openFolder(folder){
 
 stack.push(document.getElementById("content").innerHTML);
-
-document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
 
 fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
 .then(r=>r.json())
@@ -226,7 +222,7 @@ document.getElementById("content").innerHTML=html;
 
 }
 
-/* ===== LEVEL 2 ===== */
+/* LEVEL 2 */
 function openClass(path){
 
 stack.push(document.getElementById("content").innerHTML);
@@ -247,7 +243,7 @@ document.getElementById("content").innerHTML=html;
 
 }
 
-/* ===== LEVEL 3 ===== */
+/* LEVEL 3 */
 function openMaterials(path){
 
 stack.push(document.getElementById("content").innerHTML);
@@ -270,7 +266,7 @@ document.getElementById("content").innerHTML=html;
 
 }
 
-/* ===== SEARCH (REAL) ===== */
+/* SEARCH */
 function search(q){
   if(q.length<2) return;
 
@@ -300,7 +296,7 @@ function search(q){
   });
 }
 
-/* ===== ABOUT ===== */
+/* ABOUT + CONTACT (FIXED FINAL) */
 function about(){
 
 stack.push(document.getElementById("content").innerHTML);
@@ -310,10 +306,17 @@ document.getElementById("content").innerHTML=`
 
 <h2>About Hi5 Education Centre</h2>
 
-<div class="item"><b>Founder:</b> Hi5 Education Centre Team</div>
+<div class="item"><b>Founder:</b> Isa Kiggundu</div>
+<div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
 <div class="item"><b>Vision:</b> Quality digital education for all learners</div>
-<div class="item"><b>Mission:</b> Accessible learning materials online</div>
-<div class="item"><b>Core Values:</b> Excellence, Discipline, Innovation</div>
+<div class="item"><b>Mission:</b> Deliver structured learning materials for all levels</div>
+<div class="item"><b>Core Values:</b> Excellence, Discipline, Innovation, Integrity</div>
+
+<h2>Contact Us</h2>
+
+<div class="item">📞 Phone: +256702234701</div>
+<div class="item">📧 Email: hi5educentre256@gmail.com</div>
+
 `;
 
 }
