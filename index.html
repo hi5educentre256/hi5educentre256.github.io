@@ -7,7 +7,6 @@
 
 <style>
 
-/* ================= STEP 1: HEADER ================= */
 header{
   background: linear-gradient(135deg,#0d6efd,#198754);
   color:white;
@@ -15,7 +14,6 @@ header{
   text-align:center;
   font-size:22px;
   font-weight:800;
-  letter-spacing:0.5px;
   box-shadow:0 6px 18px rgba(0,0,0,0.2);
   position:sticky;
   top:0;
@@ -30,7 +28,7 @@ header{
   cursor:pointer;
 }
 
-/* ================= STEP 2: SIDEBAR ================= */
+/* SIDEBAR */
 .sidebar{
   position:fixed;
   left:-300px;
@@ -55,7 +53,6 @@ header{
 
 .sidebar a:hover{
   background:#1f2937;
-  padding-left:20px;
 }
 
 .close{
@@ -66,15 +63,9 @@ header{
   cursor:pointer;
 }
 
-/* ================= STEP 3: DASHBOARD ================= */
+/* MAIN */
 .container{
   padding:15px;
-  animation:fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(10px);}
-  to{opacity:1; transform:translateY(0);}
 }
 
 h1{
@@ -93,15 +84,12 @@ h1{
   border-radius:12px;
   border:1px solid #d0d7e2;
   outline:none;
-  box-shadow:0 3px 10px rgba(0,0,0,0.05);
 }
 
-/* ================= STEP 4: CARDS ================= */
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
   gap:16px;
-  margin-top:15px;
 }
 
 .card{
@@ -114,7 +102,6 @@ h1{
   cursor:pointer;
   box-shadow:0 6px 16px rgba(0,0,0,0.1);
   transition:0.25s;
-  animation:pop 0.3s ease-in-out;
 }
 
 .card:hover{
@@ -122,16 +109,6 @@ h1{
   background:#eef5ff;
 }
 
-.card:active{
-  transform:scale(0.97);
-}
-
-@keyframes pop{
-  from{opacity:0; transform:scale(0.9);}
-  to{opacity:1; transform:scale(1);}
-}
-
-/* ITEMS */
 .item{
   background:white;
   margin:10px 0;
@@ -139,49 +116,6 @@ h1{
   border-radius:12px;
   cursor:pointer;
   box-shadow:0 2px 8px rgba(0,0,0,0.05);
-  transition:0.2s;
-}
-
-.item:hover{
-  transform:scale(1.01);
-  background:#f0f7ff;
-}
-
-button{
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  background:#0d6efd;
-  color:white;
-  cursor:pointer;
-  margin-bottom:10px;
-}
-
-button:hover{
-  background:#0b5ed7;
-}
-
-/* ================= STEP 5: RESPONSIVE ================= */
-@media(max-width:600px){
-
-header{
-  font-size:18px;
-  padding:16px;
-}
-
-.card{
-  font-size:16px;
-  padding:22px;
-}
-
-.sidebar{
-  width:260px;
-}
-
-h1{
-  font-size:26px;
-}
-
 }
 
 /* WHATSAPP */
@@ -190,17 +124,38 @@ h1{
   bottom:20px;
   right:20px;
   background:#25D366;
-  width:55px;
-  height:55px;
+  width:60px;
+  height:60px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:28px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  box-shadow:0 6px 14px rgba(0,0,0,0.3);
   z-index:9999;
+}
+
+/* CONTACT HIGHLIGHT STYLES */
+.contact-phone{
+  background:#e8f5e9;
+  border-left:5px solid #25D366;
+  padding:14px;
+  border-radius:12px;
+  margin:10px 0;
+}
+
+.contact-email{
+  background:#e3f2fd;
+  border-left:5px solid #0d6efd;
+  padding:14px;
+  border-radius:12px;
+  margin:10px 0;
+}
+
+.contact-phone a,
+.contact-email a{
+  color:#111;
   text-decoration:none;
-  color:white;
+  font-weight:600;
 }
 
 </style>
@@ -208,7 +163,6 @@ h1{
 
 <body>
 
-<!-- HEADER -->
 <header>
 <span class="menu" onclick="toggle()">☰</span>
 Hi5 Education Centre
@@ -227,7 +181,7 @@ Hi5 Education Centre
 
 </div>
 
-<!-- MAIN DASHBOARD -->
+<!-- MAIN -->
 <div class="container" id="content">
 
 <h1>Main Dashboard</h1>
@@ -250,123 +204,36 @@ Hi5 Education Centre
 let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 
-/* MENU */
 function toggle(){
   let sb=document.getElementById("sidebar");
   sb.style.left = (sb.style.left==="0px") ? "-300px" : "0px";
 }
 
-/* HOME */
-function home(){
-  location.reload();
-}
-
-/* BACK */
-function back(){
-  if(stack.length>0){
-    document.getElementById("content").innerHTML = stack.pop();
-  } else {
-    home();
-  }
-}
-
-/* NAV */
 function go(target){
 document.getElementById("sidebar").style.left = "-300px";
-if(target==="home") home();
+if(target==="home") location.reload();
 else openFolder(target);
 }
 
-/* LEVEL 1 */
 function openFolder(folder){
-
 stack.push(document.getElementById("content").innerHTML);
 
 fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
 .then(r=>r.json())
 .then(data=>{
 
-let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
+let html="<button onclick='history.back()'>⬅ Back</button><h2>"+folder+"</h2>";
 
 data.forEach(f=>{
-html+=`<div class='item' onclick="openClass('${folder}/${f.name}')">📁 ${f.name}</div>`;
+html+=`<div class='item'>📁 ${f.name}</div>`;
 });
 
 document.getElementById("content").innerHTML=html;
 
 });
-
 }
 
-/* LEVEL 2 */
-function openClass(path){
-
-stack.push(document.getElementById("content").innerHTML);
-
-fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-.then(r=>r.json())
-.then(data=>{
-
-let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
-
-data.forEach(f=>{
-html+=`<div class='item' onclick="openMaterials('${path}/${f.name}')">📂 ${f.name}</div>`;
-});
-
-document.getElementById("content").innerHTML=html;
-
-});
-
-}
-
-/* LEVEL 3 */
-function openMaterials(path){
-
-stack.push(document.getElementById("content").innerHTML);
-
-fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-.then(r=>r.json())
-.then(data=>{
-
-let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
-
-data.forEach(f=>{
-if(f.name.endsWith(".pdf")){
-html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-}
-});
-
-document.getElementById("content").innerHTML=html;
-
-});
-
-}
-
-/* SEARCH */
-function search(q){
-  if(q.length<2) return;
-
-  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
-  .then(r=>r.json())
-  .then(data=>{
-
-    let html="<h2>Search Results</h2>";
-    let found=false;
-
-    data.tree.forEach(f=>{
-      if(f.path.includes(q) && f.path.endsWith(".pdf")){
-        found=true;
-        html+=`<div class='item' onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">📄 ${f.path}</div>`;
-      }
-    });
-
-    if(!found) html+="<p>No results found</p>";
-
-    document.getElementById("content").innerHTML=html;
-  });
-}
-
-/* ABOUT */
+/* ABOUT (UPDATED CONTACT ONLY) */
 function about(){
 
 document.getElementById("sidebar").style.left = "-300px";
@@ -381,18 +248,32 @@ document.getElementById("content").innerHTML=`
 <div class="item"><b>Founder:</b> Isa Kiggundu</div>
 <div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
 
-<h2>Contact</h2>
+<h2>Contact Us</h2>
 
-<div class="item">📞 +256702234701</div>
-<div class="item">📧 hi5educentre256@gmail.com</div>
+<div class="contact-phone">
+📞 Phone:
+<a href="tel:+256702234701">+256 702 234 701</a>
+</div>
+
+<div class="contact-email">
+📧 Email:
+<a href="mailto:hi5educentre256@gmail.com">hi5educentre256@gmail.com</a>
+</div>
 `;
 
 }
 
 </script>
 
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/256702234701" target="_blank">💬</a>
+<!-- WHATSAPP ICON -->
+<a class="whatsapp" href="https://wa.me/256702234701" target="_blank">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+width="30" height="30" fill="white">
+<path d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396zm0 28.207a12.64 12.64 0 0 1-6.45-1.75l-.46-.27-4.9 1.284 1.31-4.77-.3-.49A12.63 12.63 0 1 1 16 28.603z"/>
+</svg>
+
+</a>
 
 </body>
 </html>
