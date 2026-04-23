@@ -111,6 +111,12 @@ Hi5 Education Centre
     <div class="card" onclick="go(['Secondary'])">🎓 Secondary</div>
     <div class="card" onclick="go(['Tertiary'])">🏫 Tertiary</div>
     <div class="card" onclick="loadAbout()">ℹ About Us</div>
+    <div class="card" onclick="loadContact()">📞 Contact Us</div>
+  </div>
+    <div class="card" onclick="go(['Primary'])">📘 Primary</div>
+    <div class="card" onclick="go(['Secondary'])">🎓 Secondary</div>
+    <div class="card" onclick="go(['Tertiary'])">🏫 Tertiary</div>
+    <div class="card" onclick="loadAbout()">ℹ About Us</div>
   </div></div><script>
 let repo="hi5educentre256/hi5educentre256.github.io";
 let historyStack=[];
@@ -172,6 +178,15 @@ function loadAbout(){
     <p><b>Vision:</b> Quality digital learning for all learners</p>
     <p><b>Mission:</b> Provide accessible education materials</p>
     <p><b>Core Values:</b> Excellence, Integrity, Discipline</p>
+  </div>`;
+}
+function loadContact(){
+  document.getElementById("content").innerHTML=`
+  <div class='card'>
+    <h2>Contact Us</h2>
+    <p><b>📧 Email:</b> hi5educentre256@gmail.com</p>
+    <p><b>📞 Phone / WhatsApp:</b> +256702234701</p>
+    <p><b>🏫 Founder:</b> Mr Isa Kiggundu</p>
   </div>`;
 }
 </script><!-- WhatsApp Widget --><a href="https://wa.me/256702234701" target="_blank" style="position:fixed;bottom:18px;right:18px;background:#25D366;color:white;padding:14px 16px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 4px 10px rgba(0,0,0,0.3);z-index:9999;">
