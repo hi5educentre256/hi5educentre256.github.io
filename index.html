@@ -76,6 +76,7 @@ h1{
   -webkit-text-fill-color:transparent;
 }
 
+/* SEARCH */
 .search input{
   width:100%;
   padding:16px;
@@ -128,37 +129,28 @@ button{
   margin-bottom:10px;
 }
 
-/* WHATSAPP */
+/* ================= STEP 2: WHATSAPP CHAT STYLE ================= */
 .whatsapp{
   position:fixed;
   bottom:20px;
   right:20px;
   background:#25D366;
-  width:60px;
-  height:60px;
+  width:62px;
+  height:62px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 6px 14px rgba(0,0,0,0.3);
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
   z-index:9999;
+  text-decoration:none;
+  animation:pulse 1.5s infinite;
 }
 
-/* CONTACT STYLE */
-.contact-phone{
-  background:#e8f5e9;
-  border-left:5px solid #25D366;
-  padding:14px;
-  border-radius:10px;
-  margin:10px 0;
-}
-
-.contact-email{
-  background:#e3f2fd;
-  border-left:5px solid #0d6efd;
-  padding:14px;
-  border-radius:10px;
-  margin:10px 0;
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
 }
 
 </style>
@@ -220,7 +212,7 @@ if(target==="home") location.reload();
 else openFolder(target);
 }
 
-/* BACK (FIXED STRONG STACK) */
+/* BACK */
 function back(){
 if(stack.length>0){
 document.getElementById("content").innerHTML = stack.pop();
@@ -317,7 +309,7 @@ document.getElementById("content").innerHTML=html;
 });
 }
 
-/* ABOUT (FIXED CONTACT) */
+/* ABOUT */
 function about(){
 
 document.getElementById("sidebar").style.left = "-300px";
@@ -334,22 +326,20 @@ document.getElementById("content").innerHTML=`
 
 <h2>Contact</h2>
 
-<div class="contact-phone">
-📞 <a href="tel:+256702234701">+256 702 234 701</a>
-</div>
-
-<div class="contact-email">
-📧 <a href="mailto:hi5educentre256@gmail.com">hi5educentre256@gmail.com</a>
-</div>
+<div class="item">📞 +256702234701</div>
+<div class="item">📧 hi5educentre256@gmail.com</div>
 `;
 
 }
 
 </script>
 
-<!-- WHATSAPP ICON -->
-<a class="whatsapp" href="https://wa.me/256702234701" target="_blank">
+<!-- STEP 1: WHATSAPP CHAT LINK -->
+<a class="whatsapp"
+href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre%2C%20I%20need%20help"
+target="_blank">
 
+<!-- REAL ICON -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
 width="30" height="30" fill="white">
 <path d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
