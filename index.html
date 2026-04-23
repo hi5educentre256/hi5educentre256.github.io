@@ -17,17 +17,24 @@ header{
 
 .menu{position:absolute;right:12px;top:10px;font-size:26px;cursor:pointer;}
 
+/* ANIMATED BANNER (RESTORED) */
 .banner{
   background:#fff;
-  margin:8px;
-  padding:10px;
-  border-radius:12px;
+  margin:10px;
+  padding:12px;
+  border-radius:14px;
   text-align:center;
   box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  animation:fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(-10px);}
+  to{opacity:1; transform:translateY(0);}
 }
 
 .banner h3{
-  font-size:24px;
+  font-size:26px;
   color:#0d6efd;
   margin:5px;
   text-transform:uppercase;
@@ -35,7 +42,7 @@ header{
 }
 
 .banner p{
-  font-size:9px;
+  font-size:10px;
   color:#333;
   margin:4px;
 }
@@ -80,7 +87,10 @@ header{
   text-align:center;
   font-weight:bold;
   cursor:pointer;
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
+
+.card:hover{background:#eef5ff;}
 
 .item{
   background:#fff;
@@ -115,18 +125,12 @@ button{
 
 #pdfFrame{width:100%;height:90%;border:none;}
 
-/* ABOUT + CONTACT DESIGN */
 .info-box{
   background:#fff;
   padding:15px;
   border-radius:12px;
   margin:10px 0;
   box-shadow:0 2px 10px rgba(0,0,0,0.1);
-  border-left:4px solid #0d6efd;
-}
-
-.info-box h3{
-  color:#0d6efd;
 }
 
 .info-item{
@@ -134,15 +138,10 @@ button{
   margin:8px 0;
   background:#eef4ff;
   border-radius:8px;
-  cursor:pointer;
   font-weight:600;
-  border-left:3px solid #198754;
 }
 
-.info-item:hover{background:#e3eeff;}
-
-</style></head>
-<body><header>
+</style></head><body><header>
 Hi5 Education Centre
 <span class="menu" onclick="toggle()">☰</span>
 </header><div class="banner">
@@ -192,10 +191,7 @@ function loadRoot(){location.reload();}
 
 function loadLevel(level){
   document.getElementById("content").innerHTML="Loading...";
-
-  let ref = storage.ref(level);
-
-  ref.listAll().then(async res=>{
+  storage.ref(level).listAll().then(async res=>{
     let html="<button onclick='loadRoot()'>⬅ Back</button><h2>"+level+"</h2>";
     currentList=[];
 
@@ -221,7 +217,7 @@ function loadAbout(){
   <div class='info-box'>
     <h3>About Us</h3>
     <div class='info-item'>🎯 Vision: To become a leading digital learning centre in Uganda.</div>
-    <div class='info-item'>📘 Mission: To provide quality, accessible learning materials for all learners.</div>
+    <div class='info-item'>📘 Mission: To provide quality learning materials for all learners.</div>
     <div class='info-item'>💡 Core Values: Excellence, Discipline, Integrity, Innovation.</div>
   </div>`;
 }
@@ -230,9 +226,9 @@ function loadContact(){
   document.getElementById("content").innerHTML=`
   <div class='info-box'>
     <h3>Contact Us</h3>
-    <div class='info-item'>📞 Phone / WhatsApp: +256702234701</div>
-    <div class='info-item'>📧 Email: hi5educentre256@gmail.com</div>
-    <div class='info-item'>🏫 Founder: Mr Isa Kiggundu</div>
+    <div class='info-item'>📞 +256702234701 (Call / WhatsApp)</div>
+    <div class='info-item'>📧 hi5educentre256@gmail.com</div>
+    <div class='info-item'>🏫 Mr Isa Kiggundu (Founder)</div>
   </div>`;
 }
 </script></body>
