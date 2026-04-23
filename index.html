@@ -7,7 +7,7 @@
 
 <style>
 
-/* HEADER */
+/* ================= STEP 1: HEADER ================= */
 header{
   background: linear-gradient(135deg,#0d6efd,#198754);
   color:white;
@@ -76,17 +76,6 @@ h1{
   -webkit-text-fill-color:transparent;
 }
 
-/* DASHBOARD DESCRIPTION */
-.desc{
-  text-align:center;
-  color:#555;
-  font-size:15px;
-  margin-top:-8px;
-  margin-bottom:15px;
-  line-height:1.5;
-}
-
-/* SEARCH */
 .search input{
   width:100%;
   padding:16px;
@@ -170,7 +159,7 @@ button{
   margin:10px 0;
 }
 
-/* WHATSAPP FLOAT */
+/* WHATSAPP */
 .wa-float{
   position:fixed;
   bottom:20px;
@@ -225,6 +214,55 @@ button{
   text-decoration:none;
 }
 
+/* ================= STEP 2: PDF PREVIEW MODAL ================= */
+#pdfModal{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  z-index:99999;
+}
+
+#pdfBox{
+  width:90%;
+  height:90%;
+  margin:3% auto;
+  background:white;
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+}
+
+#pdfFrame{
+  width:100%;
+  height:100%;
+  border:none;
+}
+
+/* ================= STEP 3: PDF BUTTONS ================= */
+.pdf-btn{
+  position:absolute;
+  top:10px;
+  padding:8px 12px;
+  border-radius:6px;
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+  z-index:100000;
+}
+
+.close-btn{
+  right:10px;
+  background:red;
+}
+
+.download-btn{
+  left:10px;
+  background:#0d6efd;
+}
+
 </style>
 </head>
 
@@ -253,13 +291,6 @@ Hi5 Education Centre
 
 <h1>Main Dashboard</h1>
 
-<!-- NEW DESCRIPTION -->
-<p class="desc">
-📚 Welcome to Hi5 Education Centre LMS — access lesson notes, schemes of work, past papers, and textbooks anytime, anywhere.  
-<br>
-🚀 Learn today, lead tomorrow.
-</p>
-
 <div class="search">
 <input type="text" placeholder="🔍 Search materials..." onkeyup="search(this.value)">
 </div>
@@ -275,10 +306,10 @@ Hi5 Education Centre
 
 <script>
 
-/* YOUR ORIGINAL LOGIC (UNCHANGED) */
 let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 
+/* MENU */
 function toggle(){
   let sb=document.getElementById("sidebar");
   sb.style.left = (sb.style.left==="0px") ? "-300px" : "0px";
@@ -296,6 +327,7 @@ document.getElementById("content").innerHTML = stack.pop();
 }
 }
 
+/* OPEN FOLDER */
 function openFolder(folder){
 stack.push(document.getElementById("content").innerHTML);
 
@@ -314,6 +346,7 @@ document.getElementById("content").innerHTML=html;
 });
 }
 
+/* OPEN CLASS */
 function openClass(path){
 stack.push(document.getElementById("content").innerHTML);
 
@@ -332,6 +365,7 @@ document.getElementById("content").innerHTML=html;
 });
 }
 
+/* OPEN MATERIALS (PDF PREVIEW) */
 function openMaterials(path){
 stack.push(document.getElementById("content").innerHTML);
 
@@ -343,7 +377,7 @@ let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
 
 data.forEach(f=>{
 if(f.name.endsWith(".pdf")){
-html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+html+=`<div class='item' onclick="openPDF('${f.download_url}')">📄 ${f.name}</div>`;
 }
 });
 
@@ -352,6 +386,19 @@ document.getElementById("content").innerHTML=html;
 });
 }
 
+/* ================= STEP 4: PDF PREVIEW ================= */
+function openPDF(url){
+document.getElementById("pdfModal").style.display="block";
+document.getElementById("pdfFrame").src=url;
+document.getElementById("downloadLink").href=url;
+}
+
+function closePDF(){
+document.getElementById("pdfModal").style.display="none";
+document.getElementById("pdfFrame").src="";
+}
+
+/* ABOUT */
 function about(){
 
 document.getElementById("sidebar").style.left = "-300px";
@@ -379,6 +426,7 @@ document.getElementById("content").innerHTML=`
 
 }
 
+/* SEARCH */
 function search(q){
 if(q.length<2) return;
 
@@ -392,7 +440,7 @@ let found=false;
 data.tree.forEach(f=>{
 if(f.path.includes(q) && f.path.endsWith(".pdf")){
 found=true;
-html+=`<div class='item' onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">📄 ${f.path}</div>`;
+html+=`<div class='item' onclick="openPDF('https://raw.githubusercontent.com/${repo}/main/${f.path}')">📄 ${f.path}</div>`;
 }
 });
 
@@ -405,15 +453,22 @@ document.getElementById("content").innerHTML=html;
 
 </script>
 
-<!-- REAL WHATSAPP ICON -->
-<div class="wa-float" onclick="openWA()">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="white">
-<path d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
-</svg>
+<!-- PDF MODAL -->
+<div id="pdfModal">
+<div id="pdfBox">
+
+<a class="pdf-btn download-btn" id="downloadLink" target="_blank">⬇ Download</a>
+<button class="pdf-btn close-btn" onclick="closePDF()">✖ Close</button>
+
+<iframe id="pdfFrame"></iframe>
+
+</div>
 </div>
 
-<div id="waBox" class="wa-box">
+<!-- WHATSAPP -->
+<div class="wa-float" onclick="openWA()"></div>
 
+<div id="waBox" class="wa-box">
 <div class="wa-header">
 💬 Support
 <span onclick="closeWA()" style="cursor:pointer;">✖</span>
@@ -423,16 +478,11 @@ document.getElementById("content").innerHTML=html;
 <p>Hello 👋 How can we help?</p>
 <a href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre" target="_blank">Start Chat</a>
 </div>
-
 </div>
 
 <script>
-function openWA(){
-document.getElementById("waBox").style.display="block";
-}
-function closeWA(){
-document.getElementById("waBox").style.display="none";
-}
+function openWA(){document.getElementById("waBox").style.display="block";}
+function closeWA(){document.getElementById("waBox").style.display="none";}
 </script>
 
 </body>
