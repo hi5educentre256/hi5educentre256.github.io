@@ -197,7 +197,7 @@ async function fetchAll(path=""){
   let files=[];
 
   for(let item of data){
-    if(item.type==='file') files.push(item);
+    if(item.type==='file' || item.type==='dir') files.push(item);
     if(item.type==='dir'){
       let sub=await fetchAll(item.path);
       files=files.concat(sub);
@@ -221,7 +221,10 @@ function searchFiles(q){
   if(results.length===0) html+='<p>No results found</p>';
 
   results.forEach(f=>{
-    if(f.name.endsWith('.pdf')){
+    if(f.type === 'dir'){
+        html+=`<div class="item" onclick="openSub('${f.path || folder + '/' + f.name}')">📁 ${f.name}</div>`;
+      }
+      else if(f.name.endsWith('.pdf')){
       html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
     }else{
       html+=`<div class="item" onclick="openSub('${f.path}')">📁 ${f.name}</div>`;
@@ -242,7 +245,10 @@ function openFolder(folder){
     let html=`<button onclick="back()">⬅ Back</button><h2>${folder}</h2>`;
 
     data.forEach(f=>{
-      if(f.name.endsWith('.pdf')){
+      if(f.type === 'dir'){
+        html+=`<div class="item" onclick="openSub('${f.path || folder + '/' + f.name}')">📁 ${f.name}</div>`;
+      }
+      else if(f.name.endsWith('.pdf')){
         html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
       }else{
         html+=`<div class="item" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
@@ -264,7 +270,10 @@ function openSub(path){
     let html=`<button onclick="back()">⬅ Back</button><h2>${path}</h2>`;
 
     data.forEach(f=>{
-      if(f.name.endsWith('.pdf')){
+      if(f.type === 'dir'){
+        html+=`<div class="item" onclick="openSub('${f.path || folder + '/' + f.name}')">📁 ${f.name}</div>`;
+      }
+      else if(f.name.endsWith('.pdf')){
         html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
       }else{
         html+=`<div class="item" onclick="openSub('${path}/${f.name}')">📁 ${f.name}</div>`;
