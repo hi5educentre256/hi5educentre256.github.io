@@ -132,89 +132,83 @@ Hi5 Education Centre
   <p>Learn Today, Lead Tomorrow</p>
 </div><div id="sidebar" class="sidebar">
   <div class="close" onclick="toggle()">❌</div>
-  <a href="#" onclick="loadHome()">🏠 Dashboard</a>
-  <a href="#" onclick="loadFolder('Nursery')">Nursery</a>
-  <a href="#" onclick="loadFolder('Primary')">Primary</a>
-  <a href="#" onclick="loadFolder('Secondary')">Secondary</a>
-  <a href="#" onclick="loadFolder('Tertiary')">Tertiary</a>
-  <a href="#" onclick="loadAbout()">ℹ About Us</a>
-  <a href="#" onclick="loadContact()">📞 Contact Us</a>
+  <a href="#" onclick="goHome()">🏠 Dashboard</a>
+  <a href="#" onclick="go(['Nursery'])">Nursery</a>
+  <a href="#" onclick="go(['Primary'])">Primary</a>
+  <a href="#" onclick="go(['Secondary'])">Secondary</a>
+  <a href="#" onclick="go(['Tertiary'])">Tertiary</a>
 </div><div class="container" id="content">
   <h2>Main Dashboard</h2>
   <div class="cards">
-    <div class="card" onclick="loadFolder('Nursery')">Nursery</div>
-    <div class="card" onclick="loadFolder('Primary')">Primary</div>
-    <div class="card" onclick="loadFolder('Secondary')">Secondary</div>
-    <div class="card" onclick="loadFolder('Tertiary')">Tertiary</div>
+    <div class="card" onclick="go(['Nursery'])">Nursery</div>
+    <div class="card" onclick="go(['Primary'])">Primary</div>
+    <div class="card" onclick="go(['Secondary'])">Secondary</div>
+    <div class="card" onclick="go(['Tertiary'])">Tertiary</div>
   </div>
 </div><div id="pdfModal">
   <button onclick="closePdf()">Close</button>
   <iframe id="pdfFrame"></iframe>
 </div><script>
-let repo = "hi5educentre256/hi5educentre256.github.io";
-let historyStack = [];
-let pdfList = [];
-let currentIndex = 0;
+let repo="hi5educentre256/hi5educentre256.github.io";
+let historyStack=[];
+let pdfList=[];
 
 function toggle(){
   let sb=document.getElementById("sidebar");
-  sb.style.left = sb.style.left === "0px" ? "-300px" : "0px";
+  sb.style.left = sb.style.left==="0px"?"-300px":"0px";
 }
 
-function loadHome(){ location.reload(); }
+function goHome(){ location.reload(); }
 
-function loadFolder(folder){
+// MAIN NAVIGATION SYSTEM (HIERARCHY FIX)
+function go(pathArr){
   historyStack.push(document.getElementById("content").innerHTML);
   document.getElementById("content").innerHTML="Loading...";
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+  let path = pathArr.join("/");
+
+  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
   .then(r=>r.json())
   .then(data=>{
 
-    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+pathArr[pathArr.length-1]+"</h2>";
     pdfList=[];
 
-    data.forEach((f,i)=>{
-      if(f.name.endsWith(".pdf")){
-        pdfList.push(f.download_url);
-        html += `<div class='item' onclick='openPdf(${pdfList.length-1})'>📄 ${f.name}</div>`;
-      }else{
-        html += `<div class='item' onclick="loadFolder('${folder}/${f.name}')">📁 ${f.name}</div>`;
+    data.forEach(item=>{
+
+      if(item.name.toLowerCase().includes("lesson") ||
+         item.name.toLowerCase().includes("scheme") ||
+         item.name.toLowerCase().includes("past") ||
+         item.name.toLowerCase().includes("text")){
+        html+=`<div class='item' onclick='openFolder("${path}/${item.name}")'>📁 ${item.name}</div>`;
       }
+      else if(item.name.endsWith(".pdf")){
+        pdfList.push(item.download_url);
+        html+=`<div class='item' onclick='openPdf(${pdfList.length-1})'>📄 ${item.name}</div>`;
+      }
+      else{
+        html+=`<div class='item' onclick='go(["${path}","${item.name}"])'>📁 ${item.name}</div>`;
+      }
+
     });
 
-    document.getElementById("content").innerHTML = html;
+    document.getElementById("content").innerHTML=html;
   });
 }
 
-function openPdf(i){
-  currentIndex=i;
-  document.getElementById("pdfFrame").src = pdfList[i];
-  document.getElementById("pdfModal").style.display="block";
-}
-
-function closePdf(){ document.getElementById("pdfModal").style.display="none"; }
-
 function back(){
   if(historyStack.length>0){
-    document.getElementById("content").innerHTML = historyStack.pop();
+    document.getElementById("content").innerHTML=historyStack.pop();
   }
 }
 
-function loadAbout(){
-  document.getElementById("content").innerHTML=`
-  <h2>About Us</h2>
-  <p><b>Vision:</b> Quality digital education for all learners</p>
-  <p><b>Mission:</b> Provide accessible learning materials</p>
-  <p><b>Core Values:</b> Excellence, Discipline, Integrity</p>`;
+function openPdf(i){
+  document.getElementById("pdfFrame").src=pdfList[i];
+  document.getElementById("pdfModal").style.display="block";
 }
 
-function loadContact(){
-  document.getElementById("content").innerHTML=`
-  <h2>Contact Us</h2>
-  <p>📞 +256702234701 (WhatsApp)</p>
-  <p>📧 hi5educentre256@gmail.com</p>
-  <p>🏫 Mr Isa Kiggundu</p>`;
+function closePdf(){
+  document.getElementById("pdfModal").style.display="none";
 }
 </script></body>
 </html>
