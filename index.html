@@ -76,6 +76,17 @@ h1{
   -webkit-text-fill-color:transparent;
 }
 
+/* DASHBOARD DESCRIPTION */
+.desc{
+  text-align:center;
+  color:#555;
+  font-size:15px;
+  margin-top:-8px;
+  margin-bottom:15px;
+  line-height:1.5;
+}
+
+/* SEARCH */
 .search input{
   width:100%;
   padding:16px;
@@ -84,10 +95,10 @@ h1{
   border:1px solid #ccc;
 }
 
-/* ================= UPDATED CARD (ONLY CHANGE HERE) ================= */
+/* CARDS */
 .card{
-  background: linear-gradient(135deg,#ffd166,#ff9f1c);
-  color:#1a1a1a;
+  background: linear-gradient(135deg,#4cc9f0,#4361ee);
+  color:white;
   padding:32px;
   border-radius:20px;
   text-align:center;
@@ -98,19 +109,12 @@ h1{
   transition:0.25s;
 }
 
-.card:nth-child(1){
-  background: linear-gradient(135deg,#4cc9f0,#4361ee);
-  color:white;
-}
-
 .card:nth-child(2){
   background: linear-gradient(135deg,#06d6a0,#1b9aaa);
-  color:white;
 }
 
 .card:nth-child(3){
   background: linear-gradient(135deg,#ef476f,#ff5c8a);
-  color:white;
 }
 
 .card:nth-child(4){
@@ -120,10 +124,9 @@ h1{
 
 .card:hover{
   transform:translateY(-6px) scale(1.03);
-  filter:brightness(1.05);
 }
 
-/* INNER ITEMS */
+/* ITEMS */
 .item{
   background:#ffffff;
   margin:10px 0;
@@ -132,7 +135,6 @@ h1{
   cursor:pointer;
   box-shadow:0 2px 10px rgba(0,0,0,0.06);
   transition:0.2s;
-  border-left:4px solid #0d6efd;
 }
 
 .item:hover{
@@ -251,6 +253,13 @@ Hi5 Education Centre
 
 <h1>Main Dashboard</h1>
 
+<!-- NEW DESCRIPTION -->
+<p class="desc">
+📚 Welcome to Hi5 Education Centre LMS — access lesson notes, schemes of work, past papers, and textbooks anytime, anywhere.  
+<br>
+🚀 Learn today, lead tomorrow.
+</p>
+
 <div class="search">
 <input type="text" placeholder="🔍 Search materials..." onkeyup="search(this.value)">
 </div>
@@ -266,7 +275,7 @@ Hi5 Education Centre
 
 <script>
 
-/* ALL YOUR ORIGINAL LOGIC KEPT UNCHANGED */
+/* YOUR ORIGINAL LOGIC (UNCHANGED) */
 let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 
@@ -354,7 +363,7 @@ document.getElementById("content").innerHTML=`
 
 <h2>About Hi5 Education Centre</h2>
 
-<div class="item"><b>Founder:</b> Mr. Isa Kiggundu</div>
+<div class="item"><b>Founder:</b> Isa Kiggundu</div>
 <div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
 
 <h2>Contact</h2>
@@ -396,8 +405,12 @@ document.getElementById("content").innerHTML=html;
 
 </script>
 
-<!-- WHATSAPP CHAT -->
-<div class="wa-float" onclick="openWA()"></div>
+<!-- REAL WHATSAPP ICON -->
+<div class="wa-float" onclick="openWA()">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="white">
+<path d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
+</svg>
+</div>
 
 <div id="waBox" class="wa-box">
 
