@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Hi5 Education Centre</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
 body{
   margin:0;
   font-family:Arial;
@@ -104,47 +101,48 @@ header{
   border-radius:6px;
   border:1px solid #ccc;
 }
-</style>
-</head>
-
-<body>
-
-<header>
+</style></head><body><header>
 <span class="menu" onclick="toggle()">☰</span>
 Hi5 Education Centre
-</header>
+</header><div id="sidebar" class="sidebar">
+<div class="close" onclick="toggle()">❌</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#">ℹ About Us</a>
 
-<div id="sidebar" class="sidebar">
-<div class="close" onclick="toggle()">❌</div>
-
-<a href="#" onclick="home()">🏠 Dashboard</a>
-<a href="#" onclick="openFolder('Nursery')">Nursery</a>
-<a href="#" onclick="openFolder('Primary')">Primary</a>
-<a href="#" onclick="openFolder('Secondary')">Secondary</a>
-<a href="#" onclick="openFolder('Tertiary')">Tertiary</a>
-<a href="#">ℹ About Us</a>
-
-</div>
-
-<div class="container" id="content">
-
-<h2>Main Dashboard</h2>
-
-<div class="search">
+</div><div class="container" id="content"><h2>Main Dashboard</h2><div class="search">
 <input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
-</div>
-
-<div class="cards">
+</div><div class="cards">
 <div class="card" onclick="openFolder('Nursery')">Nursery</div>
 <div class="card" onclick="openFolder('Primary')">Primary</div>
 <div class="card" onclick="openFolder('Secondary')">Secondary</div>
 <div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
-</div>
-
-</div>
-
-<script>
+</div></div><script>
 let repo="hi5educentre256/hi5educentre256.github.io";
+let allFiles = [];
+
+async function loadAllFiles(path=""){
+  let res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`);
+  let data = await res.json();
+
+  let files = [];
+
+  for(let item of data){
+
+    if(item.type === "file"){
+      files.push(item);
+    }
+
+    if(item.type === "dir"){
+      let sub = await loadAllFiles(item.path);
+      files = files.concat(sub);
+    }
+  }
+
+  return files;
+}
+
+loadAllFiles().then(data=>{
+  allFiles = data;
+});
+}
 let historyStack=[];
 
 function toggle(){
@@ -214,9 +212,39 @@ function back(){
 }
 
 function searchFiles(query){
-  if(query.length<2) return;
 
-  fetch(`https://api.github.com/repos/${repo}/contents/`)
+  query = query.toLowerCase();
+
+  if(query.length < 2){
+    return;
+  }
+
+  let results = allFiles.filter(f =>
+    f.name.toLowerCase().includes(query)
+  );
+
+  let html = "<h2>Search Results</h2>";
+
+  if(results.length === 0){
+    html += "<p>No results found</p>";
+  }
+
+  results.forEach(f => {
+    if(f.name.endsWith(".pdf")){
+      html += `
+        <div class="item" onclick="window.open('${f.download_url}','_blank')">
+          📄 ${f.name}
+        </div>`;
+    } else {
+      html += `
+        <div class="item" onclick="openFolder('${f.path.replace(/\/g,'/')}')">
+          📁 ${f.name}
+        </div>`;
+    }
+  });
+
+  document.getElementById("content").innerHTML = html;
+}/contents/`)
   .then(r=>r.json())
   .then(data=>{
     let results="<h2>Search Results</h2>";
@@ -229,7 +257,5 @@ function searchFiles(query){
   });
 }
 
-</script>
-
-</body>
+</script></body>
 </html>
