@@ -7,9 +7,9 @@
 
 <style>
 
-/* HEADER */
+/* HEADER (softer design) */
 header{
-  background: linear-gradient(135deg,#1f3c88,#2c7be5);
+  background: linear-gradient(135deg,#2b6cb0,#2f855a);
   color:white;
   padding:20px 18px;
   text-align:center;
@@ -69,60 +69,52 @@ header{
 }
 
 h1{
-  font-size:32px;
+  font-size:30px;
   font-weight:900;
-  background: linear-gradient(135deg,#1f3c88,#2c7be5);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:#1f2937;
 }
 
 /* SEARCH */
 .search input{
   width:100%;
-  padding:14px;
-  font-size:15px;
-  border-radius:10px;
-  border:1px solid #ccc;
+  padding:16px;
+  font-size:16px;
+  border-radius:12px;
+  border:1px solid #d1d5db;
 }
 
-/* ================= CLEAN DASHBOARD FOLDERS ================= */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-  gap:16px;
-}
-
+/* ================= MAIN FOLDERS (SOFT COLORS) ================= */
 .card{
-  background:#f8fafc;
-  padding:26px;
+  background:#f9fafb;
+  padding:28px;
   border-radius:16px;
   text-align:center;
   font-weight:700;
-  font-size:17px;
+  font-size:18px;
   cursor:pointer;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  box-shadow:0 4px 10px rgba(0,0,0,0.06);
   transition:0.2s;
   border:1px solid #e5e7eb;
 }
 
 .card:hover{
-  transform:translateY(-4px);
-  background:#eef4ff;
+  transform:scale(1.02);
+  background:#f3f4f6;
 }
 
-/* INNER ITEMS */
+/* INNER FOLDERS */
 .item{
   background:#ffffff;
   margin:10px 0;
   padding:14px;
   border-radius:12px;
   cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
-  border-left:4px solid #2c7be5;
+  box-shadow:0 2px 6px rgba(0,0,0,0.05);
+  border-left:4px solid #9ca3af;
 }
 
 .item:hover{
-  background:#f3f7ff;
+  background:#f9fafb;
 }
 
 /* BUTTON */
@@ -130,45 +122,46 @@ button{
   padding:8px 12px;
   border:none;
   border-radius:8px;
-  background:#2c7be5;
+  background:#374151;
   color:white;
   cursor:pointer;
   margin-bottom:10px;
 }
 
-/* CONTACT */
+/* CONTACT (KEEP HIGHLIGHTED) */
 .contact-phone{
-  background:#ecfdf5;
-  border-left:5px solid #10b981;
+  background:#e8f5e9;
+  border-left:5px solid #22c55e;
   padding:14px;
   border-radius:10px;
   margin:10px 0;
 }
 
 .contact-email{
-  background:#eff6ff;
-  border-left:5px solid #2c7be5;
+  background:#e3f2fd;
+  border-left:5px solid #3b82f6;
   padding:14px;
   border-radius:10px;
   margin:10px 0;
 }
 
-/* ================= WHATSAPP CLEAN ICON ================= */
-.wa-float{
+/* ================= WHATSAPP (REAL ICON STYLE - NO GREEN BLOCK) ================= */
+.whatsapp{
   position:fixed;
   bottom:20px;
   right:20px;
-  width:58px;
-  height:58px;
-  cursor:pointer;
-  z-index:9999;
+  width:55px;
+  height:55px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:transparent;
+  cursor:pointer;
+  z-index:9999;
+  background:none;
+  border:none;
 }
 
-/* popup */
+/* chat box */
 .wa-box{
   position:fixed;
   bottom:90px;
@@ -198,7 +191,7 @@ button{
 .wa-body a{
   display:block;
   margin-top:10px;
-  background:#2c7be5;
+  background:#111827;
   color:white;
   padding:10px;
   text-align:center;
@@ -269,7 +262,7 @@ document.getElementById("content").innerHTML = stack.pop();
 }
 }
 
-/* FOLDER SYSTEM */
+/* NAV */
 function openFolder(folder){
 stack.push(document.getElementById("content").innerHTML);
 
@@ -338,7 +331,7 @@ document.getElementById("content").innerHTML=`
 
 <h2>About Hi5 Education Centre</h2>
 
-<div class="item"><b>Founder:</b> Isa Kiggundu</div>
+<div class="item"><b>Founder:</b> Mr Isa Kiggundu</div>
 <div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
 
 <h2>Contact</h2>
@@ -381,11 +374,11 @@ document.getElementById("content").innerHTML=html;
 
 </script>
 
-<!-- WHATSAPP CLEAN ICON -->
-<div class="wa-float" onclick="openWA()">
+<!-- WHATSAPP REAL ICON -->
+<div class="whatsapp" onclick="openWA()">
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="50" height="50">
-<path fill="#25D366" d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="40" height="40" fill="#25D366">
+<path d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
 </svg>
 
 </div>
@@ -398,7 +391,7 @@ document.getElementById("content").innerHTML=html;
 </div>
 
 <div class="wa-body">
-<p>Hello 👋</p>
+<p>Hello 👋 How can we help?</p>
 <a href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre" target="_blank">Start Chat</a>
 </div>
 
