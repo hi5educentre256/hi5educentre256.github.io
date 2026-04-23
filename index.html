@@ -1,23 +1,19 @@
 <!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title><style>
-*{box-sizing:border-box;}
+<title>Hi5 Education Centre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
 body{
   margin:0;
-  font-family:Arial, sans-serif;
+  font-family:Arial;
   background:#f4f6f9;
-  color:#222;
 }
 
 header{
   background:linear-gradient(90deg,#0d6efd,#198754);
-  color:#fff;
-  padding:16px;
+  color:white;
+  padding:14px;
   text-align:center;
-  font-weight:bold;
-  font-size:22px;
   position:sticky;
   top:0;
   z-index:1000;
@@ -25,283 +21,184 @@ header{
 
 .menu{
   position:absolute;
-  right:15px;
+  left:15px;
   top:12px;
-  font-size:28px;
+  font-size:24px;
   cursor:pointer;
-}
-
-.banner{
-  margin:14px;
-  padding:18px;
-  border-radius:18px;
-  text-align:center;
-  color:#fff;
-  background:linear-gradient(270deg,#0d6efd,#198754,#6610f2);
-  background-size:600% 600%;
-  animation:moveBg 10s ease infinite;
-  box-shadow:0 8px 24px rgba(0,0,0,.12);
-}
-
-@keyframes moveBg{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-.banner h2{
-  margin:0;
-  font-size:28px;
-  text-transform:uppercase;
-}
-
-.banner p{
-  margin:6px 0 0;
-  font-size:13px;
 }
 
 .sidebar{
   position:fixed;
-  left:-300px;
+  left:-270px;
   top:0;
-  width:300px;
+  width:270px;
   height:100%;
-  background:#111;
-  color:#fff;
-  z-index:2000;
-  transition:.3s;
+  background:#1f1f1f;
+  color:white;
+  transition:0.3s;
   padding-top:60px;
+  z-index:2000;
 }
 
 .sidebar a{
   display:block;
-  padding:14px;
-  color:#fff;
+  padding:12px;
+  color:white;
   text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.sidebar a:hover{background:#222;}
+.sidebar a:hover{
+  background:#333;
+}
 
 .close{
   position:absolute;
   top:10px;
-  right:12px;
+  right:10px;
   cursor:pointer;
   font-size:20px;
 }
 
-.container{padding:15px;}
-
-.search input{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccc;
-  border-radius:10px;
-  margin-bottom:14px;
+.container{
+  padding:15px;
 }
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
 }
 
 .card{
-  background:#fff;
-  border-radius:18px;
-  padding:22px;
+  background:white;
+  padding:18px;
   text-align:center;
+  border-radius:10px;
   cursor:pointer;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
-  transition:.2s;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
   font-weight:bold;
 }
 
-.card:hover{transform:translateY(-4px);}
-.card span{display:block;font-size:30px;margin-bottom:8px;}
-
 .item{
-  background:#fff;
+  background:white;
   margin:8px 0;
-  padding:12px;
-  border-radius:10px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-  cursor:pointer;
-}
-
-.item:hover{background:#eef5ff;}
-
-button{
-  background:#0d6efd;
-  color:#fff;
-  border:none;
-  padding:8px 14px;
+  padding:10px;
   border-radius:8px;
   cursor:pointer;
 }
 
-.whatsapp{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  background:#25D366;
-  color:#fff;
-  text-decoration:none;
-  padding:14px 16px;
-  border-radius:50px;
-  font-weight:bold;
-  z-index:9999;
+.item:hover{
+  background:#eef5ff;
 }
-</style></head>
-<body><header>
-  Hi5 Education Centre
-  <span class="menu" onclick="openMenu()">☰</span>
-</header><div class="banner">
-  <h2>HI5 EDUCATION CENTRE</h2>
-  <p>Learn Today, Lead Tomorrow</p>
-</div><div id="sidebar" class="sidebar">
-  <div class="close" onclick="closeMenu()">❌</div>
-  <a href="#" onclick="home();closeMenu()">➜ Dashboard</a>
-  <a href="#" onclick="openFolder('Nursery');closeMenu()">➜ Nursery</a>
-  <a href="#" onclick="openFolder('Primary');closeMenu()">➜ Primary</a>
-  <a href="#" onclick="openFolder('Secondary');closeMenu()">➜ Secondary</a>
-  <a href="#" onclick="openFolder('Tertiary');closeMenu()">➜ Tertiary</a>
-  <a href="#" onclick="aboutUs();closeMenu()">➜ About Us</a>
-</div><div class="container">
-  <h2>Main Dashboard</h2>  <div class="search">
-    <input type="text" placeholder="🔍 Search files, PDFs, folders..." onkeyup="searchFiles(this.value)">
-  </div>  <div id="searchResults"></div>  <div id="content">
-    <div class="cards">
-      <div class="card" onclick="openFolder('Nursery')"><span>🧒</span>Nursery</div>
-      <div class="card" onclick="openFolder('Primary')"><span>📘</span>Primary</div>
-      <div class="card" onclick="openFolder('Secondary')"><span>🎓</span>Secondary</div>
-      <div class="card" onclick="openFolder('Tertiary')"><span>🏫</span>Tertiary</div>
-      <div class="card" onclick="aboutUs()"><span>ℹ</span>About Us</div>
-    </div>
-  </div>
-</div><a class="whatsapp" href="https://wa.me/256702234701" target="_blank">💬 WhatsApp</a>
 
-<script>
+.search{
+  margin:10px 0;
+}
+
+.search input{
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+</style></head><body><header>
+<span class="menu" onclick="toggle()">☰</span>
+Hi5 Education Centre
+</header><div id="sidebar" class="sidebar">
+<div class="close" onclick="toggle()">❌</div><a href="#" onclick="home()">🏠 Dashboard</a> <a href="#" onclick="openFolder('Nursery')">Nursery</a> <a href="#" onclick="openFolder('Primary')">Primary</a> <a href="#" onclick="openFolder('Secondary')">Secondary</a> <a href="#" onclick="openFolder('Tertiary')">Tertiary</a> <a href="#">ℹ About Us</a>
+
+</div><div class="container" id="content"><h2>Main Dashboard</h2><div class="search">
+<input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
+</div><div class="cards">
+<div class="card" onclick="openFolder('Nursery')">Nursery</div>
+<div class="card" onclick="openFolder('Primary')">Primary</div>
+<div class="card" onclick="openFolder('Secondary')">Secondary</div>
+<div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
+</div></div><script>
 let repo="hi5educentre256/hi5educentre256.github.io";
 let historyStack=[];
-let allFiles=[];
 
-function openMenu(){document.getElementById('sidebar').style.left='0px';}
-function closeMenu(){document.getElementById('sidebar').style.left='-300px';}
-function home(){location.reload();}
-
-async function fetchAll(path=""){
-  let res=await fetch(`https://api.github.com/repos/${repo}/contents/${path}`);
-  let data=await res.json();
-  let files=[];
-
-  for(let item of data){
-    if(item.type==='file' || item.type==='dir') files.push(item);
-    if(item.type==='dir'){
-      let sub=await fetchAll(item.path);
-      files=files.concat(sub);
-    }
-  }
-  return files;
+function toggle(){
+  let sb=document.getElementById("sidebar");
+  sb.style.left = sb.style.left==="0px" ? "-270px" : "0px";
 }
 
-fetchAll().then(data=>allFiles=data);
-
-function searchFiles(q){
-  q=q.toLowerCase();
-  if(q.length<2){
-    document.getElementById('searchResults').innerHTML='';
-    return;
-  }
-
-  let results=allFiles.filter(f=>f.name.toLowerCase().includes(q));
-  let html='<h3>Search Results</h3>';
-
-  if(results.length===0) html+='<p>No results found</p>';
-
-  results.forEach(f=>{
-    if(f.type === 'dir'){
-        html+=`<div class="item" onclick="openSub('${f.path || folder + '/' + f.name}')">📁 ${f.name}</div>`;
-      }
-      else if(f.name.endsWith('.pdf')){
-      html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-    }else{
-      html+=`<div class="item" onclick="openSub('${f.path}')">📁 ${f.name}</div>`;
-    }
-  });
-
-  document.getElementById('searchResults').innerHTML=html;
+function home(){
+  location.reload();
 }
 
 function openFolder(folder){
-  closeMenu();
-  historyStack.push(document.getElementById('content').innerHTML);
-  document.getElementById('content').innerHTML='Loading...';
+  historyStack.push(document.getElementById("content").innerHTML);
+
+  document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
 
   fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
   .then(r=>r.json())
   .then(data=>{
-    let html=`<button onclick="back()">⬅ Back</button><h2>${folder}</h2>`;
+
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
 
     data.forEach(f=>{
-      if(f.type === 'dir'){
-        html+=`<div class="item" onclick="openSub('${f.path || folder + '/' + f.name}')">📁 ${f.name}</div>`;
-      }
-      else if(f.name.endsWith('.pdf')){
+
+      if(f.name.endsWith(".pdf")){
         html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-      }else{
+      } else {
         html+=`<div class="item" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
       }
+
     });
 
-    document.getElementById('content').innerHTML=html;
+    document.getElementById("content").innerHTML=html;
   });
 }
 
 function openSub(path){
-  closeMenu();
-  historyStack.push(document.getElementById('content').innerHTML);
-  document.getElementById('content').innerHTML='Loading...';
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-  .then(r=>r.json())
-  .then(data=>{
-    let html=`<button onclick="back()">⬅ Back</button><h2>${path}</h2>`;
+historyStack.push(document.getElementById("content").innerHTML);
 
-    data.forEach(f=>{
-      if(f.type === 'dir'){
-        html+=`<div class="item" onclick="openSub('${f.path || folder + '/' + f.name}')">📁 ${f.name}</div>`;
-      }
-      else if(f.name.endsWith('.pdf')){
-        html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-      }else{
-        html+=`<div class="item" onclick="openSub('${path}/${f.name}')">📁 ${f.name}</div>`;
-      }
-    });
+document.getElementById("content").innerHTML="<h2>"+path+"</h2><p>Loading...</p>";
 
-    document.getElementById('content').innerHTML=html;
-  });
+fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+.then(r=>r.json())
+.then(data=>{
+
+let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+
+data.forEach(f=>{
+if(f.name.endsWith(".pdf")){
+html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+}
+});
+
+document.getElementById("content").innerHTML=html;
+
+});
+
 }
 
 function back(){
   if(historyStack.length>0){
-    document.getElementById('content').innerHTML=historyStack.pop();
+    document.getElementById("content").innerHTML=historyStack.pop();
+  } else {
+    home();
   }
 }
 
-function aboutUs(){
-  document.getElementById('content').innerHTML=`
-    <button onclick="back()">⬅ Back</button>
-    <div class="card" style="margin-top:12px; text-align:left;">
-      <h2>About Us</h2>
-      <p><b>Vision:</b> Quality digital learning for all learners</p>
-      <p><b>Mission:</b> Provide accessible education materials for all levels</p>
-      <p><b>Core Values:</b> Excellence, Integrity, Discipline</p>
-      <p><b>Founder:</b> Mr Isa Kiggundu</p>
-      <p><b>Phone / WhatsApp:</b> +256702234701</p>
-      <p><b>Email:</b> hi5educentre256@gmail.com</p>
-    </div>`;
+function searchFiles(query){
+  if(query.length<2) return;
+
+  fetch(`https://api.github.com/repos/${repo}/contents/`)
+  .then(r=>r.json())
+  .then(data=>{
+    let results="<h2>Search Results</h2>";
+
+    data.forEach(folder=>{
+      results+=`<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
+    });
+
+    document.getElementById("content").innerHTML=results;
+  });
 }
+
 </script></body>
 </html>
