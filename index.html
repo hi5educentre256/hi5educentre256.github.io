@@ -149,12 +149,12 @@ Hi5 Education Centre
 <div id="sidebar" class="sidebar">
 <div class="close" onclick="toggle()">❌</div>
 
-<a href="#" onclick="home()">🏠 Dashboard</a>
-<a href="#" onclick="openFolder('Nursery')">Nursery</a>
-<a href="#" onclick="openFolder('Primary')">Primary</a>
-<a href="#" onclick="openFolder('Secondary')">Secondary</a>
-<a href="#" onclick="openFolder('Tertiary')">Tertiary</a>
-<a href="#" onclick="about()">ℹ About Us</a>
+<a href="#" onclick="go('home')">🏠 Dashboard ➜</a>
+<a href="#" onclick="go('Nursery')">📚 Nursery ➜</a>
+<a href="#" onclick="go('Primary')">📘 Primary ➜</a>
+<a href="#" onclick="go('Secondary')">📗 Secondary ➜</a>
+<a href="#" onclick="go('Tertiary')">🎓 Tertiary ➜</a>
+<a href="#" onclick="about()">ℹ About Us ➜</a>
 
 </div>
 
@@ -199,6 +199,28 @@ function back(){
   } else {
     home();
   }
+}
+
+/* STEP A + STEP B FIX (HAMBURGER AUTO CLOSE + NAVIGATION) */
+function go(target){
+
+document.getElementById("sidebar").style.left = "-280px";
+
+if(target==="home"){
+  home();
+}
+else if(target==="Nursery"){
+  openFolder("Nursery");
+}
+else if(target==="Primary"){
+  openFolder("Primary");
+}
+else if(target==="Secondary"){
+  openFolder("Secondary");
+}
+else if(target==="Tertiary"){
+  openFolder("Tertiary");
+}
 }
 
 /* LEVEL 1 */
@@ -296,7 +318,7 @@ function search(q){
   });
 }
 
-/* ABOUT + CONTACT (FIXED FINAL) */
+/* ABOUT */
 function about(){
 
 stack.push(document.getElementById("content").innerHTML);
@@ -309,19 +331,41 @@ document.getElementById("content").innerHTML=`
 <div class="item"><b>Founder:</b> Isa Kiggundu</div>
 <div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
 <div class="item"><b>Vision:</b> Quality digital education for all learners</div>
-<div class="item"><b>Mission:</b> Deliver structured learning materials for all levels</div>
-<div class="item"><b>Core Values:</b> Excellence, Discipline, Innovation, Integrity</div>
+<div class="item"><b>Mission:</b> Structured learning for all levels</div>
+<div class="item"><b>Core Values:</b> Excellence, Discipline, Innovation</div>
 
-<h2>Contact Us</h2>
+<h2>Contact</h2>
 
-<div class="item">📞 Phone: +256702234701</div>
-<div class="item">📧 Email: hi5educentre256@gmail.com</div>
+<div class="item">📞 +256702234701</div>
+<div class="item">📧 hi5educentre256@gmail.com</div>
 
 `;
 
 }
 
 </script>
+
+<!-- WHATSAPP WIDGET -->
+<a href="https://wa.me/256702234701" target="_blank"
+style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+z-index:9999;
+text-decoration:none;
+">
+💬
+</a>
 
 </body>
 </html>
