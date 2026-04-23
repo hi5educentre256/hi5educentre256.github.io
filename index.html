@@ -170,7 +170,7 @@ Hi5 Education Centre
   <div class="close" onclick="closeSidebar()">❌</div>
   <a href="#" onclick="goHome(); closeSidebar();">🏠 Dashboard</a>
   <a href="#" onclick="loadAbout(); closeSidebar();">ℹ About Us</a>
-</div><!-- MAIN --><div class="container" id="content">  <h2>Main Dashboard</h2>  <div class="cards">
+</div><!-- MAIN --><div class="container" id="content">  <h2>Main Dashboard</h2>  <!-- SEARCH BAR -->  <input type="text" placeholder="🔍 Search materials..." onkeyup="searchFiles(this.value)" style="width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">  <div class="cards">
     <div class="card" onclick="go(['Nursery'])"><span>🧒</span>Nursery</div>
     <div class="card" onclick="go(['Primary'])"><span>📘</span>Primary</div>
     <div class="card" onclick="go(['Secondary'])"><span>🎓</span>Secondary</div>
@@ -227,6 +227,7 @@ function back(){
 
 function loadAbout(){
   document.getElementById("content").innerHTML=`
+  <button onclick="goHome()">⬅ Back</button>
   <div class='card'>
     <h2>About Us</h2>
     <p><b>Vision:</b> Quality digital learning for all learners</p>
