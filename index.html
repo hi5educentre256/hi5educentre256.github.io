@@ -241,39 +241,9 @@ function back(){
 }
 
 function searchFiles(query){
+  if(query.length<2) return;
 
-  query = query.toLowerCase();
-
-  if(query.length < 2){
-    return;
-  }
-
-  let results = allFiles.filter(f =>
-    f.name.toLowerCase().includes(query)
-  );
-
-  let html = "<h2>Search Results</h2>";
-
-  if(results.length === 0){
-    html += "<p>No results found</p>";
-  }
-
-  results.forEach(f => {
-    if(f.name.endsWith(".pdf")){
-      html += `
-        <div class="item" onclick="window.open('${f.download_url}','_blank')">
-          📄 ${f.name}
-        </div>`;
-    } else {
-      html += `
-        <div class="item" onclick="openFolder('${f.path.replace(/\/g,'/')}')">
-          📁 ${f.name}
-        </div>`;
-    }
-  });
-
-  document.getElementById("content").innerHTML = html;
-}/contents/`)
+  fetch(`https://api.github.com/repos/${repo}/contents/`)
   .then(r=>r.json())
   .then(data=>{
     let results="<h2>Search Results</h2>";
