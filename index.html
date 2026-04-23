@@ -7,8 +7,6 @@
 
 <style>
 
-/* KEEP ALL YOUR EXISTING STYLES (UNCHANGED) */
-
 /* HEADER */
 header{
   background: linear-gradient(135deg,#0d6efd,#198754);
@@ -78,6 +76,17 @@ h1{
   -webkit-text-fill-color:transparent;
 }
 
+/* DASHBOARD DESCRIPTION */
+.desc{
+  text-align:center;
+  color:#555;
+  font-size:15px;
+  margin-top:-8px;
+  margin-bottom:15px;
+  line-height:1.5;
+}
+
+/* SEARCH */
 .search input{
   width:100%;
   padding:16px;
@@ -86,7 +95,7 @@ h1{
   border:1px solid #ccc;
 }
 
-/* CARDS (KEEP YOUR DESIGN) */
+/* CARDS */
 .card{
   background: linear-gradient(135deg,#4cc9f0,#4361ee);
   color:white;
@@ -144,7 +153,7 @@ button{
   margin-bottom:10px;
 }
 
-/* CONTACT (KEEP HIGHLIGHT) */
+/* CONTACT */
 .contact-phone{
   background:#e8f5e9;
   border-left:5px solid #25D366;
@@ -161,7 +170,7 @@ button{
   margin:10px 0;
 }
 
-/* WHATSAPP (UNCHANGED) */
+/* WHATSAPP FLOAT */
 .wa-float{
   position:fixed;
   bottom:20px;
@@ -226,13 +235,29 @@ button{
 Hi5 Education Centre
 </header>
 
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
+<div class="close" onclick="toggle()">❌</div>
+
+<a href="#" onclick="go('home')">🏠 Dashboard ➜</a>
+<a href="#" onclick="go('Nursery')">📚 Nursery ➜</a>
+<a href="#" onclick="go('Primary')">📘 Primary ➜</a>
+<a href="#" onclick="go('Secondary')">📗 Secondary ➜</a>
+<a href="#" onclick="go('Tertiary')">🎓 Tertiary ➜</a>
+<a href="#" onclick="about()">ℹ About Us ➜</a>
+
+</div>
+
+<!-- MAIN -->
 <div class="container" id="content">
 
 <h1>Main Dashboard</h1>
 
-<p style="text-align:center;color:#555;font-size:15px;">
-📚 Welcome to Hi5 Education Centre LMS — access lesson notes, schemes, past papers, and textbooks anytime.  
-<br>🚀 Learn today, lead tomorrow.
+<!-- NEW DESCRIPTION -->
+<p class="desc">
+📚 Welcome to Hi5 Education Centre LMS — access lesson notes, schemes of work, past papers, and textbooks anytime, anywhere.  
+<br>
+🚀 Learn today, lead tomorrow.
 </p>
 
 <div class="search">
@@ -250,7 +275,7 @@ Hi5 Education Centre
 
 <script>
 
-/* YOUR SYSTEM (UNCHANGED) */
+/* YOUR ORIGINAL LOGIC (UNCHANGED) */
 let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 
@@ -271,7 +296,6 @@ document.getElementById("content").innerHTML = stack.pop();
 }
 }
 
-/* STEP 1: OPEN FOLDERS */
 function openFolder(folder){
 stack.push(document.getElementById("content").innerHTML);
 
@@ -290,7 +314,6 @@ document.getElementById("content").innerHTML=html;
 });
 }
 
-/* STEP 2: OPEN SUBFOLDERS */
 function openClass(path){
 stack.push(document.getElementById("content").innerHTML);
 
@@ -309,7 +332,6 @@ document.getElementById("content").innerHTML=html;
 });
 }
 
-/* STEP 3: PDF PREVIEW (NEW ADDITION) */
 function openMaterials(path){
 stack.push(document.getElementById("content").innerHTML);
 
@@ -321,10 +343,7 @@ let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
 
 data.forEach(f=>{
 if(f.name.endsWith(".pdf")){
-html+=`
-<div class='item' onclick="openPDF('${f.download_url}')">
-📄 ${f.name}
-</div>`;
+html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
 }
 });
 
@@ -333,28 +352,33 @@ document.getElementById("content").innerHTML=html;
 });
 }
 
-/* STEP 4: PDF VIEWER */
-function openPDF(url){
-let modal = document.getElementById("pdfModal");
-if(!modal){
-document.body.insertAdjacentHTML("beforeend", `
-<div id="pdfModal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:99999;">
-<div style="width:90%;height:90%;margin:3% auto;background:white;position:relative;border-radius:10px;">
-<button onclick="closePDF()" style="position:absolute;top:10px;right:10px;">✖</button>
-<a href="${url}" target="_blank" style="position:absolute;top:10px;left:10px;background:#0d6efd;color:white;padding:8px;border-radius:6px;text-decoration:none;">⬇ Download</a>
-<iframe src="${url}" style="width:100%;height:100%;border:none;"></iframe>
-</div></div>
-`);
-}else{
-modal.style.display="block";
-}
+function about(){
+
+document.getElementById("sidebar").style.left = "-300px";
+
+stack.push(document.getElementById("content").innerHTML);
+
+document.getElementById("content").innerHTML=`
+<button onclick="back()">⬅ Back</button>
+
+<h2>About Hi5 Education Centre</h2>
+
+<div class="item"><b>Founder:</b> Isa Kiggundu</div>
+<div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
+
+<h2>Contact</h2>
+
+<div class="contact-phone">
+📞 <a href="tel:+256702234701">+256 702 234 701</a>
+</div>
+
+<div class="contact-email">
+📧 <a href="mailto:hi5educentre256@gmail.com">hi5educentre256@gmail.com</a>
+</div>
+`;
+
 }
 
-function closePDF(){
-document.getElementById("pdfModal").remove();
-}
-
-/* SEARCH (UNCHANGED) */
 function search(q){
 if(q.length<2) return;
 
@@ -381,24 +405,34 @@ document.getElementById("content").innerHTML=html;
 
 </script>
 
-<!-- WHATSAPP (UNCHANGED) -->
-<div class="wa-float" onclick="openWA()"></div>
+<!-- REAL WHATSAPP ICON -->
+<div class="wa-float" onclick="openWA()">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="white">
+<path d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
+</svg>
+</div>
 
 <div id="waBox" class="wa-box">
+
 <div class="wa-header">
 💬 Support
-<span onclick="closeWA()">✖</span>
+<span onclick="closeWA()" style="cursor:pointer;">✖</span>
 </div>
 
 <div class="wa-body">
-<p>Hello 👋</p>
-<a href="https://wa.me/256702234701" target="_blank">Start Chat</a>
+<p>Hello 👋 How can we help?</p>
+<a href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre" target="_blank">Start Chat</a>
 </div>
+
 </div>
 
 <script>
-function openWA(){document.getElementById("waBox").style.display="block";}
-function closeWA(){document.getElementById("waBox").style.display="none";}
+function openWA(){
+document.getElementById("waBox").style.display="block";
+}
+function closeWA(){
+document.getElementById("waBox").style.display="none";
+}
 </script>
 
 </body>
