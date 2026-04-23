@@ -147,7 +147,12 @@ Hi5 Education Centre
   <div class="close" onclick="closeSidebar()">❌</div>
   <a href="#" onclick="goHome();closeSidebar()">🏠 Dashboard</a>
   <a href="#" onclick="loadAbout();closeSidebar()">ℹ About Us</a>
-</div><div class="container" id="content">  <h2>Main Dashboard</h2>  <!-- SEARCH BAR -->  <input type="text" placeholder="🔍 Search files, PDFs, folders..." onkeyup="searchFiles(this.value)" style="width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">  <div class="cards">
+</div><div class="container">  <h2>Main Dashboard</h2>  <!-- SEARCH BAR (fixed, never disappears) --><input type="text"
+placeholder="🔍 Search files, PDFs, folders..."
+onkeyup="searchFiles(this.value)"
+style="width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">
+
+  <!-- SEARCH RESULTS AREA -->  <div id="searchResults"></div>  <!-- MAIN DASHBOARD -->  <div id="content">  <h2>Main Dashboard</h2>  <!-- SEARCH BAR -->  <input type="text" placeholder="🔍 Search files, PDFs, folders..." onkeyup="searchFiles(this.value)" style="width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">  <div class="cards">
     <div class="card" onclick="go(['Nursery'])"><span>🧒</span>Nursery</div>
     <div class="card" onclick="go(['Primary'])"><span>📘</span>Primary</div>
     <div class="card" onclick="go(['Secondary'])"><span>🎓</span>Secondary</div>
@@ -180,22 +185,35 @@ async function fetchAllFiles(path=""){
 fetchAllFiles().then(f=>allFiles=f);
 
 function searchFiles(q){
-  q=q.toLowerCase();
-  if(q.length<2){return;}
+  q = q.toLowerCase();
 
-  let filtered = allFiles.filter(f=>f.name.toLowerCase().includes(q));
+  if(q.length < 2){
+    document.getElementById("searchResults").innerHTML = "";
+    return;
+  }
 
-  let html="<button onclick='goHome()'>⬅ Back</button><h2>Search Results</h2>";
+  let filtered = allFiles.filter(f =>
+    f.name.toLowerCase().includes(q)
+  );
 
-  filtered.forEach(f=>{
+  let html = `<h2>Search Results</h2>`;
+
+  if(filtered.length === 0){
+    html += "<p>No results found</p>";
+  }
+
+  filtered.forEach(f => {
     if(f.name.endsWith(".pdf")){
-      html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-    }else{
-      html+=`<div class='item'>📁 ${f.name}</div>`;
+      html += `
+        <div class='item' onclick="window.open('${f.download_url}','_blank')">
+          📄 ${f.name}
+        </div>`;
+    } else {
+      html += `<div class='item'>📁 ${f.name}</div>`;
     }
   });
 
-  document.getElementById("content").innerHTML=html;
+  document.getElementById("searchResults").innerHTML = html;
 }
 
 function toggleSidebar(){document.getElementById("sidebar").style.left="0px";}
