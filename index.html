@@ -40,8 +40,8 @@ header{
 .banner h3{
   margin:5px;
   color:#0d6efd;
-  font-size:22px;
-  font-weight:800;
+  font-size:30px;
+  font-weight:900;
   letter-spacing:1px;
   text-transform:uppercase;
   text-shadow:0 2px 6px rgba(0,0,0,0.15);
@@ -63,14 +63,26 @@ header{
 
 .sidebar a{
   display:block;
-  padding:14px;
+  padding:14px 16px;
   color:white;
   text-decoration:none;
   border-bottom:1px solid rgba(255,255,255,0.08);
   font-size:15px;
+  font-weight:600;
+  position:relative;
 }
 
-.sidebar a:hover{background:#333;}
+/* ARROW DESIGN IN HAMBURGER */
+.sidebar a::after{
+  content:" ➜";
+  position:absolute;
+  right:15px;
+  color:#0d6efd;
+}
+
+.sidebar a:hover{
+  background:#333;
+}
 
 .close{
   position:absolute;
@@ -181,6 +193,21 @@ footer{
 .pdf-controls button{
   background:#198754;
 }
+
+/* INSTALL BUTTON */
+#installBtn{
+  display:none;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#0d6efd;
+  color:white;
+  padding:12px 14px;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  z-index:9999;
+}
 </style></head><body><header>
 Hi5 Education Centre
 <span class="menu" onclick="toggle()">☰</span>
@@ -188,7 +215,7 @@ Hi5 Education Centre
   <h3>Learn Today, Lead Tomorrow</h3>
   <p>Quality Learning Materials for All Levels</p>
 </div><div id="sidebar" class="sidebar">
-  <div class="close" onclick="toggle()">❌</div><a href="#" onclick="navigateHome()">🏠 Dashboard</a> <a href="#" onclick="navigate('Nursery')">Nursery</a> <a href="#" onclick="navigate('Primary')">Primary</a> <a href="#" onclick="navigate('Secondary')">Secondary</a> <a href="#" onclick="navigate('Tertiary')">Tertiary</a> <a href="#" onclick="navigateAbout()">ℹ About Us</a>
+  <div class="close" onclick="toggle()">❌</div><a href="#" onclick="navigateHome()">🏠 Dashboard</a> <a href="#" onclick="navigate('Nursery')">Nursery</a> <a href="#" onclick="navigate('Primary')">Primary</a> <a href="#" onclick="navigate('Secondary')">Secondary</a> <a href="#" onclick="navigate('Tertiary')">Tertiary</a> <a href="#" onclick="navigateAbout()">ℹ About Us</a> <a href="#" onclick="installApp()">📲 Install App</a>
 
 </div><div class="container" id="content">  <h2 style="text-align:center;color:#0d6efd;">Main Dashboard</h2>  <div class="search">
     <input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
@@ -198,7 +225,9 @@ Hi5 Education Centre
     <div class="card secondary" onclick="openFolder('Secondary')"><span>🎓</span>Secondary</div>
     <div class="card tertiary" onclick="openFolder('Tertiary')"><span>🏫</span>Tertiary</div>
     <div class="card about" onclick="showAbout()"><span>ℹ️</span>About Us</div>
-  </div></div><!-- PDF VIEWER --><div id="pdfModal">
+  </div></div><button id="installBtn" onclick="triggerInstall()">Install App</button>
+
+<!-- PDF VIEWER --><div id="pdfModal">
   <div class="pdf-controls">
     <button onclick="prevPdf()">⬅ Prev</button>
     <button onclick="nextPdf()">Next ➡</button>
@@ -211,7 +240,7 @@ Hi5 Education Centre<br>Learn Today, Lead Tomorrow
 </footer><form id="whatsapp-chat" class="wa-widget" action="256702234701"></form>
 <script src="https://widget.whautomate.com/js/whatsapp-widget.min.js"></script>
 <script>
-var whatsappChat = new WhatsAppWidget(document.getElementById("whatsapp-chat"),{
+var whatsappChat=new WhatsAppWidget(document.getElementById("whatsapp-chat"),{
 name:"Hi5 Education Centre",
 division:"Online Support",
 photo:"https://cdn-icons-png.flaticon.com/512/4712/4712035.png",
@@ -230,8 +259,8 @@ function toggle(){
   sb.style.left=sb.style.left==="0px"?"-300px":"0px";
 }
 
-function navigateHome(){toggle();location.reload();}
 function navigate(f){toggle();openFolder(f);}
+function navigateHome(){toggle();location.reload();}
 function navigateAbout(){toggle();showAbout();}
 
 function showAbout(){
@@ -271,35 +300,34 @@ function openPdf(i){
   document.getElementById("pdfModal").style.display="flex";
 }
 
-function closePdf(){
-  document.getElementById("pdfModal").style.display="none";
-}
+function closePdf(){document.getElementById("pdfModal").style.display="none";}
+function nextPdf(){if(currentPdf<pdfList.length-1)openPdf(currentPdf+1);}
+function prevPdf(){if(currentPdf>0)openPdf(currentPdf-1);}
+function downloadPdf(){window.open(pdfList[currentPdf].download_url,"_blank");}
 
-function nextPdf(){
-  if(currentPdf<pdfList.length-1){openPdf(currentPdf+1);}
-}
+function back(){if(historyStack.length>0)content.innerHTML=historyStack.pop();}
 
-function prevPdf(){
-  if(currentPdf>0){openPdf(currentPdf-1);}
-}
+function searchFiles(q){if(q.length<2)return;fetch(`https://api.github.com/repos/${repo}/contents/`)
+.then(r=>r.json())
+.then(d=>{let r="<h2>Search</h2>";d.forEach(f=>r+=`<div class='item'>📁 ${f.name}</div>`);content.innerHTML=r;});}
 
-function downloadPdf(){
-  window.open(pdfList[currentPdf].download_url,"_blank");
-}
+// INSTALL APP
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt',(e)=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  document.getElementById('installBtn').style.display='block';
+});
 
-function back(){
-  if(historyStack.length>0){content.innerHTML=historyStack.pop();}
-}
-
-function searchFiles(q){
-  if(q.length<2)return;
-  fetch(`https://api.github.com/repos/${repo}/contents/`)
-  .then(r=>r.json())
-  .then(d=>{
-    let r="<h2>Search</h2>";
-    d.forEach(f=>r+=`<div class='item'>📁 ${f.name}</div>`);
-    content.innerHTML=r;
-  });
+function installApp(){toggle();triggerInstall();}
+function triggerInstall(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(()=>{
+      deferredPrompt=null;
+      document.getElementById('installBtn').style.display='none';
+    });
+  }
 }
 </script></body>
 </html>
