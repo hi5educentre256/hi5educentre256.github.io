@@ -3,43 +3,58 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hi5 Education Centre</title><style>
-body{margin:0;font-family:Arial;background:#f4f6f9;}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f6f9;
+  color:#222;
+}
 
+/* HEADER */
 header{
   background:linear-gradient(90deg,#0d6efd,#198754);
   color:white;
-  padding:12px 50px 12px 14px;
+  padding:14px;
   text-align:center;
   position:sticky;
   top:0;
   z-index:1000;
+  font-weight:bold;
 }
 
-.menu{position:absolute;right:12px;top:10px;font-size:26px;cursor:pointer;}
+.menu{
+  position:absolute;
+  right:12px;
+  top:10px;
+  font-size:28px;
+  cursor:pointer;
+}
 
+/* BANNER */
 .banner{
-  background:#fff;
-  margin:10px;
-  padding:12px;
-  border-radius:14px;
+  margin:12px;
+  padding:16px;
+  background:white;
+  border-radius:18px;
   text-align:center;
-  box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
 .banner h3{
-  font-size:26px;
+  margin:0;
+  font-size:24px;
   color:#0d6efd;
-  margin:5px;
   text-transform:uppercase;
-  font-weight:900;
+  letter-spacing:1px;
 }
 
 .banner p{
-  font-size:10px;
-  color:#333;
-  margin:4px;
+  margin:4px 0 0 0;
+  font-size:11px;
+  color:#555;
 }
 
+/* SIDEBAR */
 .sidebar{
   position:fixed;
   left:-300px;
@@ -48,7 +63,7 @@ header{
   height:100%;
   background:#111;
   color:white;
-  transition:0.3s;
+  transition:0.3s ease;
   padding-top:60px;
   z-index:2000;
 }
@@ -58,33 +73,52 @@ header{
   padding:14px;
   color:white;
   text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,0.1);
-  font-weight:600;
+  border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-.sidebar a:hover{background:#333;}
+.sidebar a:hover{background:#222;}
 
-.close{position:absolute;top:10px;right:10px;cursor:pointer;}
+.close{
+  position:absolute;
+  top:10px;
+  right:12px;
+  cursor:pointer;
+  font-size:20px;
+}
 
-.container{padding:15px;}
+/* MAIN */
+.container{
+  padding:15px;
+}
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:14px;
+  margin-top:10px;
 }
 
 .card{
-  background:linear-gradient(135deg,#ffffff,#eef5ff);
-  padding:16px;
-  border-radius:14px;
+  background:linear-gradient(145deg,#ffffff,#eef3ff);
+  padding:24px;
+  border-radius:18px;
   text-align:center;
   font-weight:bold;
   cursor:pointer;
-  box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  transition:0.25s ease;
 }
 
-.card:hover{transform:scale(1.03);}
+.card:hover{
+  transform:translateY(-5px);
+  background:#eaf2ff;
+}
+
+.card span{
+  display:block;
+  font-size:30px;
+  margin-bottom:8px;
+}
 
 .item{
   background:#fff;
@@ -92,9 +126,19 @@ header{
   padding:12px;
   border-radius:10px;
   cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 .item:hover{background:#eef5ff;}
+
+button{
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  background:#0d6efd;
+  color:white;
+  cursor:pointer;
+}
 
 </style></head><body><header>
 Hi5 Education Centre
@@ -103,47 +147,26 @@ Hi5 Education Centre
   <h3>HI5 EDUCATION CENTRE</h3>
   <p>Learn Today, Lead Tomorrow</p>
 </div><div id="sidebar" class="sidebar">
-  <div class="close" onclick="closeSidebar()">❌</div><a href="#" onclick="goHome(); closeSidebar();">🏠 ➜ Dashboard</a> <a href="#" onclick="go(['Nursery']); closeSidebar();">🧒 ➜ Nursery</a> <a href="#" onclick="go(['Primary']); closeSidebar();">📘 ➜ Primary</a> <a href="#" onclick="go(['Secondary']); closeSidebar();">🎓 ➜ Secondary</a> <a href="#" onclick="go(['Tertiary']); closeSidebar();">🏫 ➜ Tertiary</a> <a href="#" onclick="loadAbout(); closeSidebar();">ℹ ➜ About Us</a>
-
+  <div class="close" onclick="closeSidebar()">❌</div>
+  <a href="#" onclick="goHome(); closeSidebar();">🏠 Dashboard</a>
+  <a href="#" onclick="loadAbout(); closeSidebar();">ℹ About Us</a>
 </div><div class="container" id="content">  <h2>Main Dashboard</h2>  <div class="cards">
-    <div class="card" onclick="go(['Nursery'])">🧒 Nursery</div>
-  </div>
-    <div class="card" onclick="go(['Primary'])">📘 Primary</div>
-    <div class="card" onclick="go(['Secondary'])">🎓 Secondary</div>
-    <div class="card" onclick="go(['Tertiary'])">🏫 Tertiary</div>
-    <div class="card" onclick="loadAbout()">ℹ About Us</div>
-    <div class="card" onclick="loadContact()">📞 Contact Us</div>
-  </div>
-    <div class="card" onclick="go(['Primary'])">📘 Primary</div>
-    <div class="card" onclick="go(['Secondary'])">🎓 Secondary</div>
-    <div class="card" onclick="go(['Tertiary'])">🏫 Tertiary</div>
-    <div class="card" onclick="loadAbout()">ℹ About Us</div>
-    <div class="card" onclick="loadContact()">📞 Contact Us</div>
-  </div>
-    <div class="card" onclick="loadContact()">📞 Contact Us</div>
-  </div>
-    <div class="card" onclick="go(['Primary'])">📘 Primary</div>
-    <div class="card" onclick="go(['Secondary'])">🎓 Secondary</div>
-    <div class="card" onclick="go(['Tertiary'])">🏫 Tertiary</div>
-    <div class="card" onclick="loadAbout()">ℹ About Us</div>
-    <div class="card" onclick="loadContact()">📞 Contact Us</div>
-  </div>
-    <div class="card" onclick="go(['Primary'])">📘 Primary</div>
-    <div class="card" onclick="go(['Secondary'])">🎓 Secondary</div>
-    <div class="card" onclick="go(['Tertiary'])">🏫 Tertiary</div>
-    <div class="card" onclick="loadAbout()">ℹ About Us</div>
+    <div class="card" onclick="go(['Nursery'])"><span>🧒</span>Nursery</div>
+    <div class="card" onclick="go(['Primary'])"><span>📘</span>Primary</div>
+    <div class="card" onclick="go(['Secondary'])"><span>🎓</span>Secondary</div>
+    <div class="card" onclick="go(['Tertiary'])"><span>🏫</span>Tertiary</div>
+    <div class="card" onclick="loadAbout()"><span>ℹ</span>About Us</div>
   </div></div><script>
 let repo="hi5educentre256/hi5educentre256.github.io";
 let historyStack=[];
 let pdfList=[];
 
 function toggleSidebar(){
-  let sb=document.getElementById("sidebar");
-  sb.style.left = "0px";
+  document.getElementById("sidebar").style.left="0px";
 }
 
 function closeSidebar(){
-  document.getElementById("sidebar").style.left = "-300px";
+  document.getElementById("sidebar").style.left="-300px";
 }
 
 function goHome(){ location.reload(); }
@@ -152,7 +175,7 @@ function go(pathArr){
   historyStack.push(document.getElementById("content").innerHTML);
   document.getElementById("content").innerHTML="Loading...";
 
-  let path = pathArr.join("/");
+  let path=pathArr.join("/");
 
   fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
   .then(r=>r.json())
@@ -162,14 +185,12 @@ function go(pathArr){
     pdfList=[];
 
     data.forEach(item=>{
-
       if(item.name.endsWith(".pdf")){
         pdfList.push(item.download_url);
-        html+=`<div class='item' onclick='openPdf(${pdfList.length-1})'>📄 ${item.name}</div>`;
+        html+=`<div class='item' onclick='window.open(pdfList[${pdfList.length-1}],"_blank")'>📄 ${item.name}</div>`;
       }else{
         html+=`<div class='item' onclick='go(["${path}","${item.name}"])'>📁 ${item.name}</div>`;
       }
-
     });
 
     document.getElementById("content").innerHTML=html;
@@ -182,10 +203,6 @@ function back(){
   }
 }
 
-function openPdf(i){
-  window.open(pdfList[i],"_blank");
-}
-
 function loadAbout(){
   document.getElementById("content").innerHTML=`
   <div class='card'>
@@ -193,19 +210,8 @@ function loadAbout(){
     <p><b>Vision:</b> Quality digital learning for all learners</p>
     <p><b>Mission:</b> Provide accessible education materials</p>
     <p><b>Core Values:</b> Excellence, Integrity, Discipline</p>
+    <p><b>Founder:</b> Mr Isa Kiggundu</p>
   </div>`;
 }
-function loadContact(){
-  document.getElementById("content").innerHTML=`
-  <div class='card'>
-    <h2>Contact Us</h2>
-    <p><b>📧 Email:</b> hi5educentre256@gmail.com</p>
-    <p><b>📞 Phone / WhatsApp:</b> +256702234701</p>
-    <p><b>🏫 Founder:</b> Mr Isa Kiggundu</p>
-  </div>`;
-}
-</script><!-- WhatsApp Widget --><a href="https://wa.me/256702234701" target="_blank" style="position:fixed;bottom:18px;right:18px;background:#25D366;color:white;padding:14px 16px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 4px 10px rgba(0,0,0,0.3);z-index:9999;">
-💬 WhatsApp
-</a>
-</body>
+</script></body>
 </html>
