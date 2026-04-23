@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title>
-
-<style>
+<title>Hi5 Education Centre</title><style>
 body{margin:0;font-family:Arial;background:#f4f6f9;}
 
 header{
   background:linear-gradient(90deg,#0d6efd,#198754);
   color:white;
-  padding:14px 50px 14px 14px;
+  padding:12px 50px 12px 14px;
   text-align:center;
   position:sticky;
   top:0;
@@ -22,23 +19,25 @@ header{
 
 .banner{
   background:#fff;
-  margin:10px;
-  padding:16px;
-  border-radius:14px;
+  margin:8px;
+  padding:10px;
+  border-radius:12px;
   text-align:center;
   box-shadow:0 6px 18px rgba(0,0,0,0.1);
 }
 
 .banner h3{
-  font-size:34px;
+  font-size:24px;
   color:#0d6efd;
   margin:5px;
   text-transform:uppercase;
+  font-weight:900;
 }
 
 .banner p{
-  font-size:11px;
+  font-size:9px;
   color:#333;
+  margin:4px;
 }
 
 .sidebar{
@@ -114,52 +113,51 @@ button{
   z-index:9999;
 }
 
-#pdfFrame{
-  width:100%;
-  height:90%;
-  border:none;
-}
+#pdfFrame{width:100%;height:90%;border:none;}
 
-/* ABOUT & CONTACT PAGES */
-.pageBox{
-  background:white;
+/* ABOUT + CONTACT DESIGN */
+.info-box{
+  background:#fff;
   padding:15px;
-  margin:10px;
   border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  margin:10px 0;
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
+  border-left:4px solid #0d6efd;
 }
 
-.highlight{
+.info-box h3{
   color:#0d6efd;
-  font-weight:bold;
 }
 
-</style>
-</head>
-<body>
+.info-item{
+  padding:10px;
+  margin:8px 0;
+  background:#eef4ff;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  border-left:3px solid #198754;
+}
 
-<header>
+.info-item:hover{background:#e3eeff;}
+
+</style></head>
+<body><header>
 Hi5 Education Centre
 <span class="menu" onclick="toggle()">☰</span>
-</header>
-
-<div class="banner">
+</header><div class="banner">
   <h3>HI5 EDUCATION CENTRE</h3>
   <p>Learn Today, Lead Tomorrow</p>
-</div>
-
-<div id="sidebar" class="sidebar">
+</div><div id="sidebar" class="sidebar">
   <div class="close" onclick="toggle()">❌</div>
   <a href="#" onclick="loadRoot()">🏠 Dashboard</a>
   <a href="#" onclick="loadLevel('Nursery')">Nursery</a>
   <a href="#" onclick="loadLevel('Primary')">Primary</a>
   <a href="#" onclick="loadLevel('Secondary')">Secondary</a>
   <a href="#" onclick="loadLevel('Tertiary')">Tertiary</a>
-  <a href="#" onclick="openAbout()">📘 About Us</a>
-  <a href="#" onclick="openContact()">📞 Contact Us</a>
-</div>
-
-<div class="container" id="content">
+  <a href="#" onclick="loadAbout()">ℹ About Us</a>
+  <a href="#" onclick="loadContact()">📞 Contact Us</a>
+</div><div class="container" id="content">
   <h2>Main Dashboard</h2>
   <div class="cards">
     <div class="card" onclick="loadLevel('Nursery')">Nursery</div>
@@ -167,17 +165,10 @@ Hi5 Education Centre
     <div class="card" onclick="loadLevel('Secondary')">Secondary</div>
     <div class="card" onclick="loadLevel('Tertiary')">Tertiary</div>
   </div>
-</div>
-
-<div id="pdfModal">
+</div><div id="pdfModal">
   <button onclick="closePdf()">Close</button>
   <iframe id="pdfFrame"></iframe>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
-
-<script>
+</div><script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script><script>
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -191,18 +182,18 @@ firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 
 let currentList=[];
-let currentIndex=0;
 
 function toggle(){
   let sb=document.getElementById("sidebar");
-  sb.style.left=sb.style.left==="0px"?"-300px":"0px";
+  sb.style.left = sb.style.left==="0px"?"-300px":"0px";
 }
 
 function loadRoot(){location.reload();}
 
 function loadLevel(level){
   document.getElementById("content").innerHTML="Loading...";
-  let ref=storage.ref(level);
+
+  let ref = storage.ref(level);
 
   ref.listAll().then(async res=>{
     let html="<button onclick='loadRoot()'>⬅ Back</button><h2>"+level+"</h2>";
@@ -219,36 +210,30 @@ function loadLevel(level){
 }
 
 function openPdf(i){
-  currentIndex=i;
   document.getElementById("pdfFrame").src=currentList[i];
   document.getElementById("pdfModal").style.display="block";
 }
 
-function closePdf(){
-  document.getElementById("pdfModal").style.display="none";
-}
+function closePdf(){document.getElementById("pdfModal").style.display="none";}
 
-function openAbout(){
+function loadAbout(){
   document.getElementById("content").innerHTML=`
-  <div class='pageBox'>
-    <h2>About Us</h2>
-    <p><span class='highlight'>Vision:</span> To provide quality education for all learners in Uganda and beyond.</p>
-    <p><span class='highlight'>Mission:</span> To support learners with digital learning materials and improve academic performance.</p>
-    <p><span class='highlight'>Core Values:</span> Discipline, Excellence, Integrity, Hard work.</p>
+  <div class='info-box'>
+    <h3>About Us</h3>
+    <div class='info-item'>🎯 Vision: To become a leading digital learning centre in Uganda.</div>
+    <div class='info-item'>📘 Mission: To provide quality, accessible learning materials for all learners.</div>
+    <div class='info-item'>💡 Core Values: Excellence, Discipline, Integrity, Innovation.</div>
   </div>`;
 }
 
-function openContact(){
+function loadContact(){
   document.getElementById("content").innerHTML=`
-  <div class='pageBox'>
-    <h2>Contact Us</h2>
-    <p><span class='highlight'>Phone / WhatsApp:</span> +256702234701</p>
-    <p><span class='highlight'>Email:</span> hi5educentre256@gmail.com</p>
-    <p><span class='highlight'>Founder:</span> Mr Isa Kiggundu</p>
+  <div class='info-box'>
+    <h3>Contact Us</h3>
+    <div class='info-item'>📞 Phone / WhatsApp: +256702234701</div>
+    <div class='info-item'>📧 Email: hi5educentre256@gmail.com</div>
+    <div class='info-item'>🏫 Founder: Mr Isa Kiggundu</div>
   </div>`;
 }
-
-</script>
-
-</body>
+</script></body>
 </html>
