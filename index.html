@@ -10,7 +10,6 @@ body{
   color:#222;
 }
 
-/* HEADER */
 header{
   background:linear-gradient(90deg,#0d6efd,#198754);
   color:white;
@@ -30,7 +29,6 @@ header{
   cursor:pointer;
 }
 
-/* ANIMATED BANNER */
 .banner{
   margin:12px;
   padding:18px;
@@ -49,20 +47,9 @@ header{
   100%{background-position:0% 50%;}
 }
 
-.banner h3{
-  margin:0;
-  font-size:24px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
+.banner h3{margin:0;font-size:24px;text-transform:uppercase;}
+.banner p{margin:4px 0 0;font-size:12px;opacity:0.9;}
 
-.banner p{
-  margin:4px 0 0 0;
-  font-size:12px;
-  opacity:0.9;
-}
-
-/* SIDEBAR */
 .sidebar{
   position:fixed;
   left:-300px;
@@ -94,7 +81,6 @@ header{
   font-size:20px;
 }
 
-/* MAIN */
 .container{padding:15px;}
 
 .cards{
@@ -138,7 +124,6 @@ button{
   cursor:pointer;
 }
 
-/* WHATSAPP BUTTON */
 .whatsapp{
   position:fixed;
   bottom:18px;
@@ -149,49 +134,73 @@ button{
   border-radius:50px;
   text-decoration:none;
   font-weight:bold;
-  box-shadow:0 6px 18px rgba(0,0,0,0.25);
   z-index:9999;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.whatsapp:hover{
-  transform:scale(1.05);
 }
 
 </style></head><body><header>
 Hi5 Education Centre
 <span class="menu" onclick="toggleSidebar()">☰</span>
-</header><!-- ANIMATED BANNER --><div class="banner">
+</header><div class="banner">
   <h3>HI5 EDUCATION CENTRE</h3>
   <p>Learn Today, Lead Tomorrow</p>
-</div><!-- SIDEBAR --><div id="sidebar" class="sidebar">
+</div><div id="sidebar" class="sidebar">
   <div class="close" onclick="closeSidebar()">❌</div>
-  <a href="#" onclick="goHome(); closeSidebar();">🏠 Dashboard</a>
-  <a href="#" onclick="loadAbout(); closeSidebar();">ℹ About Us</a>
-</div><!-- MAIN --><div class="container" id="content">  <h2>Main Dashboard</h2>  <!-- SEARCH BAR -->  <input type="text" placeholder="🔍 Search materials..." onkeyup="searchFiles(this.value)" style="width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">  <div class="cards">
+  <a href="#" onclick="goHome();closeSidebar()">🏠 Dashboard</a>
+  <a href="#" onclick="loadAbout();closeSidebar()">ℹ About Us</a>
+</div><div class="container" id="content">  <h2>Main Dashboard</h2>  <!-- SEARCH BAR -->  <input type="text" placeholder="🔍 Search files, PDFs, folders..." onkeyup="searchFiles(this.value)" style="width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">  <div class="cards">
     <div class="card" onclick="go(['Nursery'])"><span>🧒</span>Nursery</div>
     <div class="card" onclick="go(['Primary'])"><span>📘</span>Primary</div>
     <div class="card" onclick="go(['Secondary'])"><span>🎓</span>Secondary</div>
     <div class="card" onclick="go(['Tertiary'])"><span>🏫</span>Tertiary</div>
     <div class="card" onclick="loadAbout()"><span>ℹ</span>About Us</div>
-  </div></div><!-- WHATSAPP BUTTON --><a class="whatsapp" href="https://wa.me/256702234701" target="_blank">
-💬 WhatsApp
-</a><script>
+  </div></div><a class="whatsapp" href="https://wa.me/256702234701" target="_blank">💬 WhatsApp</a>
+
+<script>
 let repo="hi5educentre256/hi5educentre256.github.io";
 let historyStack=[];
-let pdfList=[];
+let allFiles=[];
 
-function toggleSidebar(){
-  document.getElementById("sidebar").style.left="0px";
+async function fetchAllFiles(path=""){
+  let res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`);
+  let data = await res.json();
+  let files=[];
+
+  for(let item of data){
+    if(item.type=="file"){
+      files.push(item);
+    }
+    if(item.type=="dir"){
+      let sub = await fetchAllFiles(item.path);
+      files = files.concat(sub);
+    }
+  }
+  return files;
 }
 
-function closeSidebar(){
-  document.getElementById("sidebar").style.left="-300px";
+fetchAllFiles().then(f=>allFiles=f);
+
+function searchFiles(q){
+  q=q.toLowerCase();
+  if(q.length<2){return;}
+
+  let filtered = allFiles.filter(f=>f.name.toLowerCase().includes(q));
+
+  let html="<button onclick='goHome()'>⬅ Back</button><h2>Search Results</h2>";
+
+  filtered.forEach(f=>{
+    if(f.name.endsWith(".pdf")){
+      html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+    }else{
+      html+=`<div class='item'>📁 ${f.name}</div>`;
+    }
+  });
+
+  document.getElementById("content").innerHTML=html;
 }
 
-function goHome(){ location.reload(); }
+function toggleSidebar(){document.getElementById("sidebar").style.left="0px";}
+function closeSidebar(){document.getElementById("sidebar").style.left="-300px";}
+function goHome(){location.reload();}
 
 function go(pathArr){
   historyStack.push(document.getElementById("content").innerHTML);
@@ -202,14 +211,11 @@ function go(pathArr){
   fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
   .then(r=>r.json())
   .then(data=>{
-
     let html="<button onclick='back()'>⬅ Back</button><h2>"+pathArr[pathArr.length-1]+"</h2>";
-    pdfList=[];
 
     data.forEach(item=>{
       if(item.name.endsWith(".pdf")){
-        pdfList.push(item.download_url);
-        html+=`<div class='item' onclick='window.open(pdfList[${pdfList.length-1}],"_blank")'>📄 ${item.name}</div>`;
+        html+=`<div class='item' onclick="window.open('${item.download_url}','_blank')">📄 ${item.name}</div>`;
       }else{
         html+=`<div class='item' onclick='go(["${path}","${item.name}"])'>📁 ${item.name}</div>`;
       }
