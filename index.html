@@ -1,146 +1,235 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hi5 Education Centre LMS</title>  <style>
-    body{
-      font-family:Arial, sans-serif;
-      margin:0;
-      background:#f4f6f9;
-    }
+<meta charset="UTF-8">
+<title>Hi5 Education Centre</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .header{
-      background:#1e88e5;
-      color:#fff;
-      padding:20px;
-      text-align:center;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6f9;
+}
 
-    .container{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:15px;
-      padding:20px;
-    }
+header{
+  background:linear-gradient(90deg,#0d6efd,#198754);
+  color:white;
+  padding:14px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
 
-    .card{
-      background:#fff;
-      border-radius:12px;
-      padding:15px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.1);
-      cursor:pointer;
-      transition:0.3s;
-      text-align:center;
-    }
+.menu{
+  position:absolute;
+  left:15px;
+  top:12px;
+  font-size:24px;
+  cursor:pointer;
+}
 
-    .card:hover{
-      transform:scale(1.05);
-    }
+.sidebar{
+  position:fixed;
+  left:-270px;
+  top:0;
+  width:270px;
+  height:100%;
+  background:#1f1f1f;
+  color:white;
+  transition:0.3s;
+  padding-top:60px;
+  z-index:2000;
+}
 
-    .card h3{
-      margin:0;
-      color:#1e88e5;
-    }
+.sidebar a{
+  display:block;
+  padding:12px;
+  color:white;
+  text-decoration:none;
+}
 
-    #files{
-      padding:20px;
-    }
+.sidebar a:hover{
+  background:#333;
+}
 
-    ul{
-      list-style:none;
-      padding:0;
-    }
+.close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  cursor:pointer;
+  font-size:20px;
+}
 
-    li{
-      background:#fff;
-      margin:8px 0;
-      padding:12px;
-      border-radius:8px;
-      box-shadow:0 2px 5px rgba(0,0,0,0.05);
-    }
+.container{
+  padding:15px;
+}
 
-    a{
-      text-decoration:none;
-      color:#333;
-      font-weight:bold;
-    }
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+}
 
-    .whatsapp{
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      background:#25D366;
-      color:#fff;
-      padding:14px 16px;
-      border-radius:50px;
-      text-decoration:none;
-      font-weight:bold;
-      box-shadow:0 4px 10px rgba(0,0,0,0.3);
-    }
+.card{
+  background:white;
+  padding:18px;
+  text-align:center;
+  border-radius:10px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  font-weight:bold;
+}
 
-    .loading{
-      padding:20px;
-      font-weight:bold;
-      color:#555;
-    }
-  </style></head>
-<body>  <div class="header">
-    <h1>Hi5 Education Centre LMS</h1>
-    <p>Loving and Caring Minds</p>
-  </div>  <div class="container">
-    <div class="card" onclick="loadFolder('nursery')">
-      <h3>Nursery</h3>
-      <p>Baby, Middle, Top</p>
-    </div><div class="card" onclick="loadFolder('primary')">
-  <h3>Primary</h3>
-  <p>P1 - P7</p>
+.item{
+  background:white;
+  margin:8px 0;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.item:hover{
+  background:#eef5ff;
+}
+
+.search{
+  margin:10px 0;
+}
+
+.search input{
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<span class="menu" onclick="toggle()">☰</span>
+Hi5 Education Centre
+</header>
+
+<div id="sidebar" class="sidebar">
+<div class="close" onclick="toggle()">❌</div>
+
+<a href="#" onclick="home()">🏠 Dashboard</a>
+<a href="#" onclick="openFolder('Nursery')">Nursery</a>
+<a href="#" onclick="openFolder('Primary')">Primary</a>
+<a href="#" onclick="openFolder('Secondary')">Secondary</a>
+<a href="#" onclick="openFolder('Tertiary')">Tertiary</a>
+<a href="#">ℹ About Us</a>
+
 </div>
 
-<div class="card" onclick="loadFolder('secondary')">
-  <h3>Secondary</h3>
-  <p>S1 - S6</p>
+<div class="container" id="content">
+
+<h2>Main Dashboard</h2>
+
+<div class="search">
+<input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
 </div>
 
-<div class="card" onclick="loadFolder('university')">
-  <h3>University</h3>
-  <p>Courses</p>
+<div class="cards">
+<div class="card" onclick="openFolder('Nursery')">Nursery</div>
+<div class="card" onclick="openFolder('Primary')">Primary</div>
+<div class="card" onclick="openFolder('Secondary')">Secondary</div>
+<div class="card" onclick="openFolder('Tertiary')">Tertiary</div>
 </div>
 
-  </div>  <div id="files">
-    <div class="loading">Select a section to view files...</div>
-  </div>  <a class="whatsapp" href="https://wa.me/256757826946" target="_blank">
-    WhatsApp
-  </a><script>
-const repo = "hi5educentre256/hi5educentre256.github.io";
+</div>
 
-function loadFolder(folder){
-  document.getElementById("files").innerHTML = "<div class='loading'>Loading...</div>";
+<script>
+let repo="hi5educentre256/hi5educentre256.github.io";
+let historyStack=[];
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${encodeURIComponent(folder)}`)
-    .then(res => res.json())
-    .then(data => {
+function toggle(){
+  let sb=document.getElementById("sidebar");
+  sb.style.left = sb.style.left==="0px" ? "-270px" : "0px";
+}
 
-      if(!Array.isArray(data)){
-        document.getElementById("files").innerHTML = "No files found or folder missing.";
-        return;
+function home(){
+  location.reload();
+}
+
+function openFolder(folder){
+  historyStack.push(document.getElementById("content").innerHTML);
+
+  document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
+
+  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+  .then(r=>r.json())
+  .then(data=>{
+
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
+
+    data.forEach(f=>{
+
+      if(f.name.endsWith(".pdf")){
+        html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+      } else {
+        html+=`<div class="item" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
       }
 
-      let html = `<h2>${folder.toUpperCase()}</h2><ul>`;
-
-      data.forEach(item => {
-        if(item.type === "dir"){
-          html += `<li>📁 <a href='${item.path}/index.html'>${item.name}</a></li>`;
-        }else{
-          html += `<li>📄 <a href='${item.path}' target='_blank'>${item.name}</a></li>`;
-        }
-      });
-
-      html += "</ul>";
-      document.getElementById("files").innerHTML = html;
-    })
-    .catch(err => {
-      document.getElementById("files").innerHTML = "Error loading files.";
     });
+
+    document.getElementById("content").innerHTML=html;
+  });
 }
-</script></body>
+
+function openSub(path){
+
+historyStack.push(document.getElementById("content").innerHTML);
+
+document.getElementById("content").innerHTML="<h2>"+path+"</h2><p>Loading...</p>";
+
+fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+.then(r=>r.json())
+.then(data=>{
+
+let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+
+data.forEach(f=>{
+if(f.name.endsWith(".pdf")){
+html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+}
+});
+
+document.getElementById("content").innerHTML=html;
+
+});
+
+}
+
+function back(){
+  if(historyStack.length>0){
+    document.getElementById("content").innerHTML=historyStack.pop();
+  } else {
+    home();
+  }
+}
+
+function searchFiles(query){
+  if(query.length<2) return;
+
+  fetch(`https://api.github.com/repos/${repo}/contents/`)
+  .then(r=>r.json())
+  .then(data=>{
+    let results="<h2>Search Results</h2>";
+
+    data.forEach(folder=>{
+      results+=`<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
+    });
+
+    document.getElementById("content").innerHTML=results;
+  });
+}
+
+</script>
+
+</body>
 </html>
