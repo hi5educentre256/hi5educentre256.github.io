@@ -30,28 +30,36 @@ header{
   cursor:pointer;
 }
 
-/* BANNER */
+/* ANIMATED BANNER */
 .banner{
   margin:12px;
-  padding:16px;
-  background:white;
+  padding:18px;
   border-radius:18px;
   text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  color:white;
+  background:linear-gradient(270deg,#0d6efd,#198754,#6610f2);
+  background-size:600% 600%;
+  animation:gradientMove 10s ease infinite;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
 
 .banner h3{
   margin:0;
   font-size:24px;
-  color:#0d6efd;
   text-transform:uppercase;
   letter-spacing:1px;
 }
 
 .banner p{
   margin:4px 0 0 0;
-  font-size:11px;
-  color:#555;
+  font-size:12px;
+  opacity:0.9;
 }
 
 /* SIDEBAR */
@@ -63,7 +71,7 @@ header{
   height:100%;
   background:#111;
   color:white;
-  transition:0.3s ease;
+  transition:0.3s;
   padding-top:60px;
   z-index:2000;
 }
@@ -87,15 +95,12 @@ header{
 }
 
 /* MAIN */
-.container{
-  padding:15px;
-}
+.container{padding:15px;}
 
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:14px;
-  margin-top:10px;
 }
 
 .card{
@@ -106,19 +111,12 @@ header{
   font-weight:bold;
   cursor:pointer;
   box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  transition:0.25s ease;
+  transition:0.25s;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  background:#eaf2ff;
-}
+.card:hover{transform:translateY(-5px);}
 
-.card span{
-  display:block;
-  font-size:30px;
-  margin-bottom:8px;
-}
+.card span{font-size:30px;display:block;margin-bottom:8px;}
 
 .item{
   background:#fff;
@@ -140,23 +138,47 @@ button{
   cursor:pointer;
 }
 
+/* WHATSAPP BUTTON */
+.whatsapp{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  background:#25D366;
+  color:white;
+  padding:14px 16px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.whatsapp:hover{
+  transform:scale(1.05);
+}
+
 </style></head><body><header>
 Hi5 Education Centre
 <span class="menu" onclick="toggleSidebar()">☰</span>
-</header><div class="banner">
+</header><!-- ANIMATED BANNER --><div class="banner">
   <h3>HI5 EDUCATION CENTRE</h3>
   <p>Learn Today, Lead Tomorrow</p>
-</div><div id="sidebar" class="sidebar">
+</div><!-- SIDEBAR --><div id="sidebar" class="sidebar">
   <div class="close" onclick="closeSidebar()">❌</div>
   <a href="#" onclick="goHome(); closeSidebar();">🏠 Dashboard</a>
   <a href="#" onclick="loadAbout(); closeSidebar();">ℹ About Us</a>
-</div><div class="container" id="content">  <h2>Main Dashboard</h2>  <div class="cards">
+</div><!-- MAIN --><div class="container" id="content">  <h2>Main Dashboard</h2>  <div class="cards">
     <div class="card" onclick="go(['Nursery'])"><span>🧒</span>Nursery</div>
     <div class="card" onclick="go(['Primary'])"><span>📘</span>Primary</div>
     <div class="card" onclick="go(['Secondary'])"><span>🎓</span>Secondary</div>
     <div class="card" onclick="go(['Tertiary'])"><span>🏫</span>Tertiary</div>
     <div class="card" onclick="loadAbout()"><span>ℹ</span>About Us</div>
-  </div></div><script>
+  </div></div><!-- WHATSAPP BUTTON --><a class="whatsapp" href="https://wa.me/256702234701" target="_blank">
+💬 WhatsApp
+</a><script>
 let repo="hi5educentre256/hi5educentre256.github.io";
 let historyStack=[];
 let pdfList=[];
