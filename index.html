@@ -6,37 +6,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+
+/* ===== GLOBAL STYLE ===== */
 body{
   margin:0;
-  font-family:Arial;
-  background:#f4f6f9;
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:#f3f6fb;
 }
 
+/* ===== HEADER ===== */
 header{
-  background:linear-gradient(90deg,#0d6efd,#198754);
+  background: linear-gradient(135deg,#0d6efd,#198754);
   color:white;
-  padding:14px;
+  padding:18px;
   text-align:center;
-  position:sticky;
-  top:0;
-  z-index:1000;
+  font-size:18px;
+  font-weight:600;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
+/* MENU ICON */
 .menu{
   position:absolute;
   left:15px;
-  top:12px;
+  top:14px;
   font-size:24px;
   cursor:pointer;
 }
 
+/* ===== SIDEBAR ===== */
 .sidebar{
   position:fixed;
-  left:-270px;
+  left:-280px;
   top:0;
-  width:270px;
+  width:280px;
   height:100%;
-  background:#1f1f1f;
+  background:#111827;
   color:white;
   transition:0.3s;
   padding-top:60px;
@@ -48,10 +53,11 @@ header{
   padding:12px;
   color:white;
   text-decoration:none;
+  border-bottom:1px solid #1f2937;
 }
 
 .sidebar a:hover{
-  background:#333;
+  background:#1f2937;
 }
 
 .close{
@@ -62,48 +68,75 @@ header{
   font-size:20px;
 }
 
+/* ===== MAIN ===== */
 .container{
   padding:15px;
 }
 
+/* ===== DASHBOARD CARDS ===== */
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:14px;
 }
 
 .card{
   background:white;
-  padding:18px;
+  padding:22px;
+  border-radius:16px;
   text-align:center;
-  border-radius:10px;
+  font-weight:600;
   cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
-  font-weight:bold;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  transition:0.25s;
 }
 
-.item{
-  background:white;
-  margin:8px 0;
-  padding:10px;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-.item:hover{
+.card:hover{
+  transform:translateY(-4px);
   background:#eef5ff;
 }
 
-.search{
+/* ===== ITEMS ===== */
+.item{
+  background:white;
   margin:10px 0;
+  padding:14px;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  transition:0.2s;
 }
 
+.item:hover{
+  transform:scale(1.01);
+  background:#f0f7ff;
+}
+
+/* ===== SEARCH ===== */
 .search input{
   width:100%;
-  padding:10px;
-  border-radius:6px;
-  border:1px solid #ccc;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #d0d7e2;
+  outline:none;
+  font-size:14px;
 }
+
+/* BUTTON */
+button{
+  padding:8px 12px;
+  border:none;
+  border-radius:8px;
+  background:#0d6efd;
+  color:white;
+  cursor:pointer;
+  margin-bottom:10px;
+}
+
+button:hover{
+  background:#0b5ed7;
+}
+
 </style>
 </head>
 
@@ -114,6 +147,7 @@ header{
 Hi5 Education Centre
 </header>
 
+<!-- SIDEBAR -->
 <div id="sidebar" class="sidebar">
 <div class="close" onclick="toggle()">❌</div>
 
@@ -122,16 +156,17 @@ Hi5 Education Centre
 <a href="#" onclick="openFolder('Primary')">Primary</a>
 <a href="#" onclick="openFolder('Secondary')">Secondary</a>
 <a href="#" onclick="openFolder('Tertiary')">Tertiary</a>
-<a href="#">ℹ About Us</a>
+<a href="#" onclick="about()">ℹ About Us</a>
 
 </div>
 
+<!-- MAIN -->
 <div class="container" id="content">
 
 <h2>Main Dashboard</h2>
 
 <div class="search">
-<input type="text" placeholder="Search materials..." onkeyup="searchFiles(this.value)">
+<input type="text" placeholder="Search materials..." onkeyup="search(this.value)">
 </div>
 
 <div class="cards">
@@ -144,75 +179,78 @@ Hi5 Education Centre
 </div>
 
 <script>
+
 let repo="hi5educentre256/hi5educentre256.github.io";
-let allFiles = [];
+let stack=[];
 
-async function loadAllFiles(path=""){
-  let res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`);
-  let data = await res.json();
-
-  let files = [];
-
-  for(let item of data){
-
-    if(item.type === "file"){
-      files.push(item);
-    }
-
-    if(item.type === "dir"){
-      let sub = await loadAllFiles(item.path);
-      files = files.concat(sub);
-    }
-  }
-
-  return files;
-}
-
-loadAllFiles().then(data=>{
-  allFiles = data;
-});
-}
-let historyStack=[];
-
+/* ===== MENU ===== */
 function toggle(){
   let sb=document.getElementById("sidebar");
-  sb.style.left = sb.style.left==="0px" ? "-270px" : "0px";
+  sb.style.left = (sb.style.left==="0px") ? "-280px" : "0px";
 }
 
+/* ===== HOME ===== */
 function home(){
   location.reload();
 }
 
-function openFolder(folder){
-  historyStack.push(document.getElementById("content").innerHTML);
-
-  document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
-
-  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
-  .then(r=>r.json())
-  .then(data=>{
-
-    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
-
-    data.forEach(f=>{
-
-      if(f.name.endsWith(".pdf")){
-        html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
-      } else {
-        html+=`<div class="item" onclick="openSub('${folder}/${f.name}')">📁 ${f.name}</div>`;
-      }
-
-    });
-
-    document.getElementById("content").innerHTML=html;
-  });
+/* ===== BACK ===== */
+function back(){
+  if(stack.length>0){
+    document.getElementById("content").innerHTML = stack.pop();
+  } else {
+    home();
+  }
 }
 
-function openSub(path){
+/* ===== LEVEL 1 ===== */
+function openFolder(folder){
 
-historyStack.push(document.getElementById("content").innerHTML);
+stack.push(document.getElementById("content").innerHTML);
 
-document.getElementById("content").innerHTML="<h2>"+path+"</h2><p>Loading...</p>";
+document.getElementById("content").innerHTML="<h2>"+folder+"</h2><p>Loading...</p>";
+
+fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+.then(r=>r.json())
+.then(data=>{
+
+let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
+
+data.forEach(f=>{
+html+=`<div class='item' onclick="openClass('${folder}/${f.name}')">📁 ${f.name}</div>`;
+});
+
+document.getElementById("content").innerHTML=html;
+
+});
+
+}
+
+/* ===== LEVEL 2 ===== */
+function openClass(path){
+
+stack.push(document.getElementById("content").innerHTML);
+
+fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+.then(r=>r.json())
+.then(data=>{
+
+let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+
+data.forEach(f=>{
+html+=`<div class='item' onclick="openMaterials('${path}/${f.name}')">📂 ${f.name}</div>`;
+});
+
+document.getElementById("content").innerHTML=html;
+
+});
+
+}
+
+/* ===== LEVEL 3 ===== */
+function openMaterials(path){
+
+stack.push(document.getElementById("content").innerHTML);
 
 fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
 .then(r=>r.json())
@@ -222,7 +260,7 @@ let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
 
 data.forEach(f=>{
 if(f.name.endsWith(".pdf")){
-html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
 }
 });
 
@@ -232,28 +270,52 @@ document.getElementById("content").innerHTML=html;
 
 }
 
-function back(){
-  if(historyStack.length>0){
-    document.getElementById("content").innerHTML=historyStack.pop();
-  } else {
-    home();
-  }
-}
+/* ===== SEARCH (REAL) ===== */
+function search(q){
+  if(q.length<2) return;
 
-function searchFiles(query){
-  if(query.length<2) return;
-
-  fetch(`https://api.github.com/repos/${repo}/contents/`)
+  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
   .then(r=>r.json())
   .then(data=>{
-    let results="<h2>Search Results</h2>";
 
-    data.forEach(folder=>{
-      results+=`<div class='item' onclick="openFolder('${folder.name}')">📁 ${folder.name}</div>`;
+    let html="<h2>Search Results</h2>";
+    let found=false;
+
+    data.tree.forEach(f=>{
+      if(f.path.includes(q) && f.path.endsWith(".pdf")){
+        found=true;
+
+        html+=`
+        <div class='item' onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">
+        📄 ${f.path}
+        </div>`;
+      }
     });
 
-    document.getElementById("content").innerHTML=results;
+    if(!found){
+      html+="<p>No results found</p>";
+    }
+
+    document.getElementById("content").innerHTML=html;
   });
+}
+
+/* ===== ABOUT ===== */
+function about(){
+
+stack.push(document.getElementById("content").innerHTML);
+
+document.getElementById("content").innerHTML=`
+<button onclick="back()">⬅ Back</button>
+
+<h2>About Hi5 Education Centre</h2>
+
+<div class="item"><b>Founder:</b> Hi5 Education Centre Team</div>
+<div class="item"><b>Vision:</b> Quality digital education for all learners</div>
+<div class="item"><b>Mission:</b> Accessible learning materials online</div>
+<div class="item"><b>Core Values:</b> Excellence, Discipline, Innovation</div>
+`;
+
 }
 
 </script>
