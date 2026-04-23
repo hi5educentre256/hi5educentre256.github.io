@@ -221,13 +221,18 @@ function searchFiles(q){
   if(results.length===0) html+='<p>No results found</p>';
 
   results.forEach(f=>{
-    html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+    if(f.name.endsWith('.pdf')){
+      html+=`<div class="item" onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+    }else{
+      html+=`<div class="item" onclick="openSub('${f.path}')">📁 ${f.name}</div>`;
+    }
   });
 
   document.getElementById('searchResults').innerHTML=html;
 }
 
 function openFolder(folder){
+  closeMenu();
   historyStack.push(document.getElementById('content').innerHTML);
   document.getElementById('content').innerHTML='Loading...';
 
@@ -249,6 +254,7 @@ function openFolder(folder){
 }
 
 function openSub(path){
+  closeMenu();
   historyStack.push(document.getElementById('content').innerHTML);
   document.getElementById('content').innerHTML='Loading...';
 
