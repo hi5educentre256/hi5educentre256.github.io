@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title>
-
-<style>
+<title>Hi5 Education Centre</title><style>
 body{margin:0;font-family:Arial;background:#f4f6f9;}
 
 header{
   background:linear-gradient(90deg,#0d6efd,#198754);
   color:white;
-  padding:14px 50px 14px 14px;
+  padding:12px 50px 12px 14px;
   text-align:center;
   position:sticky;
   top:0;
@@ -23,22 +20,30 @@ header{
 .banner{
   background:#fff;
   margin:10px;
-  padding:16px;
+  padding:12px;
   border-radius:14px;
   text-align:center;
   box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  animation:fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(-10px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
 .banner h3{
-  font-size:34px;
+  font-size:26px;
   color:#0d6efd;
   margin:5px;
   text-transform:uppercase;
+  font-weight:900;
 }
 
 .banner p{
-  font-size:11px;
+  font-size:10px;
   color:#333;
+  margin:4px;
 }
 
 .sidebar{
@@ -81,7 +86,10 @@ header{
   text-align:center;
   font-weight:bold;
   cursor:pointer;
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
+
+.card:hover{background:#eef5ff;}
 
 .item{
   background:#fff;
@@ -114,141 +122,99 @@ button{
   z-index:9999;
 }
 
-#pdfFrame{
-  width:100%;
-  height:90%;
-  border:none;
-}
+#pdfFrame{width:100%;height:90%;border:none;}
 
-/* ABOUT & CONTACT PAGES */
-.pageBox{
-  background:white;
-  padding:15px;
-  margin:10px;
-  border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-}
-
-.highlight{
-  color:#0d6efd;
-  font-weight:bold;
-}
-
-</style>
-</head>
-<body>
-
-<header>
+</style></head><body><header>
 Hi5 Education Centre
 <span class="menu" onclick="toggle()">☰</span>
-</header>
-
-<div class="banner">
+</header><div class="banner">
   <h3>HI5 EDUCATION CENTRE</h3>
   <p>Learn Today, Lead Tomorrow</p>
-</div>
-
-<div id="sidebar" class="sidebar">
+</div><div id="sidebar" class="sidebar">
   <div class="close" onclick="toggle()">❌</div>
-  <a href="#" onclick="loadRoot()">🏠 Dashboard</a>
-  <a href="#" onclick="loadLevel('Nursery')">Nursery</a>
-  <a href="#" onclick="loadLevel('Primary')">Primary</a>
-  <a href="#" onclick="loadLevel('Secondary')">Secondary</a>
-  <a href="#" onclick="loadLevel('Tertiary')">Tertiary</a>
-  <a href="#" onclick="openAbout()">📘 About Us</a>
-  <a href="#" onclick="openContact()">📞 Contact Us</a>
-</div>
-
-<div class="container" id="content">
+  <a href="#" onclick="loadHome()">🏠 Dashboard</a>
+  <a href="#" onclick="loadFolder('Nursery')">Nursery</a>
+  <a href="#" onclick="loadFolder('Primary')">Primary</a>
+  <a href="#" onclick="loadFolder('Secondary')">Secondary</a>
+  <a href="#" onclick="loadFolder('Tertiary')">Tertiary</a>
+  <a href="#" onclick="loadAbout()">ℹ About Us</a>
+  <a href="#" onclick="loadContact()">📞 Contact Us</a>
+</div><div class="container" id="content">
   <h2>Main Dashboard</h2>
   <div class="cards">
-    <div class="card" onclick="loadLevel('Nursery')">Nursery</div>
-    <div class="card" onclick="loadLevel('Primary')">Primary</div>
-    <div class="card" onclick="loadLevel('Secondary')">Secondary</div>
-    <div class="card" onclick="loadLevel('Tertiary')">Tertiary</div>
+    <div class="card" onclick="loadFolder('Nursery')">Nursery</div>
+    <div class="card" onclick="loadFolder('Primary')">Primary</div>
+    <div class="card" onclick="loadFolder('Secondary')">Secondary</div>
+    <div class="card" onclick="loadFolder('Tertiary')">Tertiary</div>
   </div>
-</div>
-
-<div id="pdfModal">
+</div><div id="pdfModal">
   <button onclick="closePdf()">Close</button>
   <iframe id="pdfFrame"></iframe>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "XXXX",
-  appId: "XXXX"
-};
-
-firebase.initializeApp(firebaseConfig);
-const storage = firebase.storage();
-
-let currentList=[];
-let currentIndex=0;
+</div><script>
+let repo = "hi5educentre256/hi5educentre256.github.io";
+let historyStack = [];
+let pdfList = [];
+let currentIndex = 0;
 
 function toggle(){
   let sb=document.getElementById("sidebar");
-  sb.style.left=sb.style.left==="0px"?"-300px":"0px";
+  sb.style.left = sb.style.left === "0px" ? "-300px" : "0px";
 }
 
-function loadRoot(){location.reload();}
+function loadHome(){ location.reload(); }
 
-function loadLevel(level){
+function loadFolder(folder){
+  historyStack.push(document.getElementById("content").innerHTML);
   document.getElementById("content").innerHTML="Loading...";
-  let ref=storage.ref(level);
 
-  ref.listAll().then(async res=>{
-    let html="<button onclick='loadRoot()'>⬅ Back</button><h2>"+level+"</h2>";
-    currentList=[];
+  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+  .then(r=>r.json())
+  .then(data=>{
 
-    for(let item of res.items){
-      let url=await item.getDownloadURL();
-      currentList.push(url);
-      html+=`<div class='item' onclick='openPdf(${currentList.length-1})'>📄 ${item.name}</div>`;
-    }
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
+    pdfList=[];
 
-    document.getElementById("content").innerHTML=html;
+    data.forEach((f,i)=>{
+      if(f.name.endsWith(".pdf")){
+        pdfList.push(f.download_url);
+        html += `<div class='item' onclick='openPdf(${pdfList.length-1})'>📄 ${f.name}</div>`;
+      }else{
+        html += `<div class='item' onclick="loadFolder('${folder}/${f.name}')">📁 ${f.name}</div>`;
+      }
+    });
+
+    document.getElementById("content").innerHTML = html;
   });
 }
 
 function openPdf(i){
   currentIndex=i;
-  document.getElementById("pdfFrame").src=currentList[i];
+  document.getElementById("pdfFrame").src = pdfList[i];
   document.getElementById("pdfModal").style.display="block";
 }
 
-function closePdf(){
-  document.getElementById("pdfModal").style.display="none";
+function closePdf(){ document.getElementById("pdfModal").style.display="none"; }
+
+function back(){
+  if(historyStack.length>0){
+    document.getElementById("content").innerHTML = historyStack.pop();
+  }
 }
 
-function openAbout(){
+function loadAbout(){
   document.getElementById("content").innerHTML=`
-  <div class='pageBox'>
-    <h2>About Us</h2>
-    <p><span class='highlight'>Vision:</span> To provide quality education for all learners in Uganda and beyond.</p>
-    <p><span class='highlight'>Mission:</span> To support learners with digital learning materials and improve academic performance.</p>
-    <p><span class='highlight'>Core Values:</span> Discipline, Excellence, Integrity, Hard work.</p>
-  </div>`;
+  <h2>About Us</h2>
+  <p><b>Vision:</b> Quality digital education for all learners</p>
+  <p><b>Mission:</b> Provide accessible learning materials</p>
+  <p><b>Core Values:</b> Excellence, Discipline, Integrity</p>`;
 }
 
-function openContact(){
+function loadContact(){
   document.getElementById("content").innerHTML=`
-  <div class='pageBox'>
-    <h2>Contact Us</h2>
-    <p><span class='highlight'>Phone / WhatsApp:</span> +256702234701</p>
-    <p><span class='highlight'>Email:</span> hi5educentre256@gmail.com</p>
-    <p><span class='highlight'>Founder:</span> Mr Isa Kiggundu</p>
-  </div>`;
+  <h2>Contact Us</h2>
+  <p>📞 +256702234701 (WhatsApp)</p>
+  <p>📧 hi5educentre256@gmail.com</p>
+  <p>🏫 Mr Isa Kiggundu</p>`;
 }
-
-</script>
-
-</body>
+</script></body>
 </html>
