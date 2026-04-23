@@ -1,54 +1,47 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hi5 Education Centre</title><style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f6f9;
-  color:#222;
-}
+<title>Hi5 Education Centre</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#f4f6f9;}
 
 header{
   background:linear-gradient(90deg,#0d6efd,#198754);
   color:white;
-  padding:14px;
+  padding:12px 50px 12px 14px;
   text-align:center;
   position:sticky;
   top:0;
   z-index:1000;
-  font-weight:bold;
 }
 
-.menu{
-  position:absolute;
-  right:12px;
-  top:10px;
-  font-size:28px;
-  cursor:pointer;
-}
+.menu{position:absolute;right:12px;top:10px;font-size:26px;cursor:pointer;}
 
 .banner{
-  margin:12px;
-  padding:18px;
-  border-radius:18px;
+  background:#fff;
+  margin:10px;
+  padding:12px;
+  border-radius:14px;
   text-align:center;
-  color:white;
-  background:linear-gradient(270deg,#0d6efd,#198754,#6610f2);
-  background-size:600% 600%;
-  animation:gradientMove 10s ease infinite;
-  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  box-shadow:0 6px 18px rgba(0,0,0,0.1);
 }
 
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+.banner h3{
+  font-size:26px;
+  color:#0d6efd;
+  margin:5px;
+  text-transform:uppercase;
+  font-weight:900;
 }
 
-.banner h3{margin:0;font-size:24px;text-transform:uppercase;}
-.banner p{margin:4px 0 0;font-size:12px;opacity:0.9;}
+.banner p{
+  font-size:10px;
+  color:#333;
+  margin:4px;
+}
 
 .sidebar{
   position:fixed;
@@ -68,41 +61,33 @@ header{
   padding:14px;
   color:white;
   text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,0.08);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  font-weight:600;
 }
 
-.sidebar a:hover{background:#222;}
+.sidebar a:hover{background:#333;}
 
-.close{
-  position:absolute;
-  top:10px;
-  right:12px;
-  cursor:pointer;
-  font-size:20px;
-}
+.close{position:absolute;top:10px;right:10px;cursor:pointer;}
 
 .container{padding:15px;}
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:14px;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
 }
 
 .card{
-  background:linear-gradient(145deg,#ffffff,#eef3ff);
-  padding:24px;
-  border-radius:18px;
+  background:linear-gradient(135deg,#ffffff,#eef5ff);
+  padding:16px;
+  border-radius:14px;
   text-align:center;
   font-weight:bold;
   cursor:pointer;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  transition:0.25s;
+  box-shadow:0 3px 12px rgba(0,0,0,0.08);
 }
 
-.card:hover{transform:translateY(-5px);}
-
-.card span{font-size:30px;display:block;margin-bottom:8px;}
+.card:hover{transform:scale(1.03);}
 
 .item{
   background:#fff;
@@ -110,133 +95,88 @@ header{
   padding:12px;
   border-radius:10px;
   cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 .item:hover{background:#eef5ff;}
 
-button{
-  padding:8px 12px;
-  border:none;
-  border-radius:6px;
-  background:#0d6efd;
-  color:white;
-  cursor:pointer;
-}
+</style>
+</head>
 
-.whatsapp{
-  position:fixed;
-  bottom:18px;
-  right:18px;
-  background:#25D366;
-  color:white;
-  padding:14px 16px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:bold;
-  z-index:9999;
-}
+<body>
 
-</style></head><body><header>
+<header>
 Hi5 Education Centre
 <span class="menu" onclick="toggleSidebar()">☰</span>
-</header><div class="banner">
+</header>
+
+<div class="banner">
   <h3>HI5 EDUCATION CENTRE</h3>
   <p>Learn Today, Lead Tomorrow</p>
-</div><div id="sidebar" class="sidebar">
-  <div class="close" onclick="closeSidebar()">❌</div>
-  <a href="#" onclick="goHome();closeSidebar()">🏠 Dashboard</a>
-  <a href="#" onclick="loadAbout();closeSidebar()">ℹ About Us</a>
-</div><div class="container">  <h2>Main Dashboard</h2>  <!-- SEARCH BAR (fixed, never disappears) --><input type="text"
-placeholder="🔍 Search files, PDFs, folders..."
-onkeyup="searchFiles(this.value)"
-style="width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">
+</div>
 
-  <!-- SEARCH RESULTS AREA -->  <div id="searchResults"></div>  <!-- MAIN DASHBOARD -->  <div id="content">  <h2>Main Dashboard</h2>  <!-- SEARCH BAR -->  <input type="text" placeholder="🔍 Search files, PDFs, folders..." onkeyup="searchFiles(this.value)" style="width:100%;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">  <div class="cards">
-    <div class="card" onclick="go(['Nursery'])"><span>🧒</span>Nursery</div>
-    <div class="card" onclick="go(['Primary'])"><span>📘</span>Primary</div>
-    <div class="card" onclick="go(['Secondary'])"><span>🎓</span>Secondary</div>
-    <div class="card" onclick="go(['Tertiary'])"><span>🏫</span>Tertiary</div>
-    <div class="card" onclick="loadAbout()"><span>ℹ</span>About Us</div>
-  </div></div><a class="whatsapp" href="https://wa.me/256702234701" target="_blank">💬 WhatsApp</a>
+<div id="sidebar" class="sidebar">
+  <div class="close" onclick="closeSidebar()">❌</div>
+
+  <a href="#" onclick="goHome(); closeSidebar();">🏠 ➜ Dashboard</a>
+  <a href="#" onclick="go(['Nursery']); closeSidebar();">🧒 ➜ Nursery</a>
+  <a href="#" onclick="go(['Primary']); closeSidebar();">📘 ➜ Primary</a>
+  <a href="#" onclick="go(['Secondary']); closeSidebar();">🎓 ➜ Secondary</a>
+  <a href="#" onclick="go(['Tertiary']); closeSidebar();">🏫 ➜ Tertiary</a>
+  <a href="#" onclick="loadAbout(); closeSidebar();">ℹ ➜ About Us</a>
+</div>
+
+<div class="container" id="content">
+
+  <h2>Main Dashboard</h2>
+
+  <div class="cards">
+    <div class="card" onclick="go(['Nursery'])">🧒 Nursery</div>
+    <div class="card" onclick="go(['Primary'])">📘 Primary</div>
+    <div class="card" onclick="go(['Secondary'])">🎓 Second Grade</div>
+    <div class="card" onclick="go(['Tertiary'])">🏫 Tertiary</div>
+    <div class="card" onclick="loadAbout()">ℹ About Us</div>
+  </div>
+
+</div>
 
 <script>
 let repo="hi5educentre256/hi5educentre256.github.io";
 let historyStack=[];
-let allFiles=[];
+let pdfList=[];
 
-async function fetchAllFiles(path=""){
-  let res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`);
-  let data = await res.json();
-  let files=[];
-
-  for(let item of data){
-    if(item.type=="file"){
-      files.push(item);
-    }
-    if(item.type=="dir"){
-      let sub = await fetchAllFiles(item.path);
-      files = files.concat(sub);
-    }
-  }
-  return files;
+function toggleSidebar(){
+  let sb=document.getElementById("sidebar");
+  sb.style.left = "0px";
 }
 
-fetchAllFiles().then(f=>allFiles=f);
-
-function searchFiles(q){
-  q = q.toLowerCase();
-
-  if(q.length < 2){
-    document.getElementById("searchResults").innerHTML = "";
-    return;
-  }
-
-  let filtered = allFiles.filter(f =>
-    f.name.toLowerCase().includes(q)
-  );
-
-  let html = `<h2>Search Results</h2>`;
-
-  if(filtered.length === 0){
-    html += "<p>No results found</p>";
-  }
-
-  filtered.forEach(f => {
-    if(f.name.endsWith(".pdf")){
-      html += `
-        <div class='item' onclick="window.open('${f.download_url}','_blank')">
-          📄 ${f.name}
-        </div>`;
-    } else {
-      html += `<div class='item'>📁 ${f.name}</div>`;
-    }
-  });
-
-  document.getElementById("searchResults").innerHTML = html;
+function closeSidebar(){
+  document.getElementById("sidebar").style.left = "-300px";
 }
 
-function toggleSidebar(){document.getElementById("sidebar").style.left="0px";}
-function closeSidebar(){document.getElementById("sidebar").style.left="-300px";}
-function goHome(){location.reload();}
+function goHome(){ location.reload(); }
 
 function go(pathArr){
   historyStack.push(document.getElementById("content").innerHTML);
   document.getElementById("content").innerHTML="Loading...";
 
-  let path=pathArr.join("/");
+  let path = pathArr.join("/");
 
   fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
   .then(r=>r.json())
   .then(data=>{
+
     let html="<button onclick='back()'>⬅ Back</button><h2>"+pathArr[pathArr.length-1]+"</h2>";
+    pdfList=[];
 
     data.forEach(item=>{
+
       if(item.name.endsWith(".pdf")){
-        html+=`<div class='item' onclick="window.open('${item.download_url}','_blank')">📄 ${item.name}</div>`;
+        pdfList.push(item.download_url);
+        html+=`<div class='item' onclick='openPdf(${pdfList.length-1})'>📄 ${item.name}</div>`;
       }else{
         html+=`<div class='item' onclick='go(["${path}","${item.name}"])'>📁 ${item.name}</div>`;
       }
+
     });
 
     document.getElementById("content").innerHTML=html;
@@ -249,16 +189,20 @@ function back(){
   }
 }
 
+function openPdf(i){
+  window.open(pdfList[i],"_blank");
+}
+
 function loadAbout(){
   document.getElementById("content").innerHTML=`
-  <button onclick="goHome()">⬅ Back</button>
   <div class='card'>
     <h2>About Us</h2>
     <p><b>Vision:</b> Quality digital learning for all learners</p>
     <p><b>Mission:</b> Provide accessible education materials</p>
     <p><b>Core Values:</b> Excellence, Integrity, Discipline</p>
-    <p><b>Founder:</b> Mr Isa Kiggundu</p>
   </div>`;
 }
-</script></body>
+</script>
+
+</body>
 </html>
