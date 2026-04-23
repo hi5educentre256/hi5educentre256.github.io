@@ -7,7 +7,7 @@
 
 <style>
 
-/* HEADER */
+/* ================= STEP 1: HEADER ================= */
 header{
   background: linear-gradient(135deg,#0d6efd,#198754);
   color:white;
@@ -28,7 +28,7 @@ header{
   cursor:pointer;
 }
 
-/* SIDEBAR */
+/* ================= STEP 2: SIDEBAR ================= */
 .sidebar{
   position:fixed;
   left:-300px;
@@ -63,7 +63,7 @@ header{
   cursor:pointer;
 }
 
-/* MAIN */
+/* ================= STEP 3: MAIN CONTENT ================= */
 .container{
   padding:15px;
 }
@@ -76,7 +76,6 @@ h1{
   -webkit-text-fill-color:transparent;
 }
 
-/* SEARCH */
 .search input{
   width:100%;
   padding:16px;
@@ -129,28 +128,75 @@ button{
   margin-bottom:10px;
 }
 
-/* ================= STEP 2: WHATSAPP CHAT STYLE ================= */
-.whatsapp{
+/* ================= CONTACT HIGHLIGHT ================= */
+.contact-phone{
+  background:#e8f5e9;
+  border-left:5px solid #25D366;
+  padding:14px;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+.contact-email{
+  background:#e3f2fd;
+  border-left:5px solid #0d6efd;
+  padding:14px;
+  border-radius:10px;
+  margin:10px 0;
+}
+
+/* ================= STEP 4: WHATSAPP LIVE CHAT ================= */
+.wa-float{
   position:fixed;
   bottom:20px;
   right:20px;
+  width:60px;
+  height:60px;
   background:#25D366;
-  width:62px;
-  height:62px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  cursor:pointer;
+  box-shadow:0 6px 14px rgba(0,0,0,0.3);
   z-index:9999;
-  text-decoration:none;
-  animation:pulse 1.5s infinite;
 }
 
-@keyframes pulse{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.1);}
-  100%{transform:scale(1);}
+.wa-box{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  width:260px;
+  background:white;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  display:none;
+  overflow:hidden;
+  z-index:10000;
+}
+
+.wa-header{
+  background:#25D366;
+  color:white;
+  padding:10px;
+  font-weight:bold;
+  display:flex;
+  justify-content:space-between;
+}
+
+.wa-body{
+  padding:12px;
+}
+
+.wa-body a{
+  display:block;
+  margin-top:10px;
+  background:#25D366;
+  color:white;
+  padding:10px;
+  text-align:center;
+  border-radius:8px;
+  text-decoration:none;
 }
 
 </style>
@@ -158,6 +204,7 @@ button{
 
 <body>
 
+<!-- HEADER -->
 <header>
 <span class="menu" onclick="toggle()">☰</span>
 Hi5 Education Centre
@@ -199,20 +246,17 @@ Hi5 Education Centre
 let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 
-/* MENU */
 function toggle(){
   let sb=document.getElementById("sidebar");
   sb.style.left = (sb.style.left==="0px") ? "-300px" : "0px";
 }
 
-/* NAV */
 function go(target){
 document.getElementById("sidebar").style.left = "-300px";
 if(target==="home") location.reload();
 else openFolder(target);
 }
 
-/* BACK */
 function back(){
 if(stack.length>0){
 document.getElementById("content").innerHTML = stack.pop();
@@ -221,7 +265,6 @@ document.getElementById("content").innerHTML = stack.pop();
 
 /* LEVEL 1 */
 function openFolder(folder){
-
 stack.push(document.getElementById("content").innerHTML);
 
 fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
@@ -237,12 +280,10 @@ html+=`<div class='item' onclick="openClass('${folder}/${f.name}')">📁 ${f.nam
 document.getElementById("content").innerHTML=html;
 
 });
-
 }
 
 /* LEVEL 2 */
 function openClass(path){
-
 stack.push(document.getElementById("content").innerHTML);
 
 fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
@@ -258,12 +299,10 @@ html+=`<div class='item' onclick="openMaterials('${path}/${f.name}')">📂 ${f.n
 document.getElementById("content").innerHTML=html;
 
 });
-
 }
 
 /* LEVEL 3 */
 function openMaterials(path){
-
 stack.push(document.getElementById("content").innerHTML);
 
 fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
@@ -281,6 +320,33 @@ html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">�
 document.getElementById("content").innerHTML=html;
 
 });
+}
+
+/* ABOUT */
+function about(){
+
+document.getElementById("sidebar").style.left = "-300px";
+
+stack.push(document.getElementById("content").innerHTML);
+
+document.getElementById("content").innerHTML=`
+<button onclick="back()">⬅ Back</button>
+
+<h2>About Hi5 Education Centre</h2>
+
+<div class="item"><b>Founder:</b> Isa Kiggundu</div>
+<div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
+
+<h2>Contact</h2>
+
+<div class="contact-phone">
+📞 <a href="tel:+256702234701">+256 702 234 701</a>
+</div>
+
+<div class="contact-email">
+📧 <a href="mailto:hi5educentre256@gmail.com">hi5educentre256@gmail.com</a>
+</div>
+`;
 
 }
 
@@ -309,43 +375,40 @@ document.getElementById("content").innerHTML=html;
 });
 }
 
-/* ABOUT */
-function about(){
-
-document.getElementById("sidebar").style.left = "-300px";
-
-stack.push(document.getElementById("content").innerHTML);
-
-document.getElementById("content").innerHTML=`
-<button onclick="back()">⬅ Back</button>
-
-<h2>About Hi5 Education Centre</h2>
-
-<div class="item"><b>Founder:</b> Isa Kiggundu</div>
-<div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
-
-<h2>Contact</h2>
-
-<div class="item">📞 +256702234701</div>
-<div class="item">📧 hi5educentre256@gmail.com</div>
-`;
-
-}
-
 </script>
 
-<!-- STEP 1: WHATSAPP CHAT LINK -->
-<a class="whatsapp"
-href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre%2C%20I%20need%20help"
-target="_blank">
-
-<!-- REAL ICON -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-width="30" height="30" fill="white">
+<!-- STEP 4: WHATSAPP LIVE CHAT -->
+<div class="wa-float" onclick="openWA()">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="white">
 <path d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
 </svg>
+</div>
 
-</a>
+<div id="waBox" class="wa-box">
+
+<div class="wa-header">
+💬 Support
+<span onclick="closeWA()" style="cursor:pointer;">✖</span>
+</div>
+
+<div class="wa-body">
+<p>Hello 👋 How can we help?</p>
+
+<a href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre"
+target="_blank">Start WhatsApp Chat</a>
+
+</div>
+
+</div>
+
+<script>
+function openWA(){
+document.getElementById("waBox").style.display="block";
+}
+function closeWA(){
+document.getElementById("waBox").style.display="none";
+}
+</script>
 
 </body>
 </html>
