@@ -59,6 +59,7 @@ header{
   color:white;
   text-decoration:none;
   border-bottom:1px solid rgba(255,255,255,0.1);
+  font-weight:600;
 }
 
 .sidebar a:hover{background:#333;}
@@ -81,13 +82,9 @@ header{
   font-weight:bold;
   cursor:pointer;
   box-shadow:0 3px 12px rgba(0,0,0,0.08);
-  transition:0.2s;
 }
 
-.card:hover{
-  transform:scale(1.03);
-  background:#eaf2ff;
-}
+.card:hover{transform:scale(1.03);}
 
 .item{
   background:#fff;
@@ -101,18 +98,13 @@ header{
 
 </style></head><body><header>
 Hi5 Education Centre
-<span class="menu" onclick="toggle()">☰</span>
+<span class="menu" onclick="toggleSidebar()">☰</span>
 </header><div class="banner">
   <h3>HI5 EDUCATION CENTRE</h3>
   <p>Learn Today, Lead Tomorrow</p>
 </div><div id="sidebar" class="sidebar">
-  <div class="close" onclick="toggle()">❌</div>
-  <a href="#" onclick="loadHome()">🏠 Dashboard</a>
-  <a href="#" onclick="go(['Nursery'])">🧒 Nursery</a>
-  <a href="#" onclick="go(['Primary'])">📘 Primary</a>
-  <a href="#" onclick="go(['Secondary'])">🎓 Second Grade</a>
-  <a href="#" onclick="go(['Tertiary'])">🏫 Tertiary</a>
-  <a href="#" onclick="loadAbout()">ℹ About Us</a>
+  <div class="close" onclick="closeSidebar()">❌</div><a href="#" onclick="goHome(); closeSidebar();">🏠 ➜ Dashboard</a> <a href="#" onclick="go(['Nursery']); closeSidebar();">🧒 ➜ Nursery</a> <a href="#" onclick="go(['Primary']); closeSidebar();">📘 ➜ Primary</a> <a href="#" onclick="go(['Secondary']); closeSidebar();">🎓 ➜ Secondary</a> <a href="#" onclick="go(['Tertiary']); closeSidebar();">🏫 ➜ Tertiary</a> <a href="#" onclick="loadAbout(); closeSidebar();">ℹ ➜ About Us</a>
+
 </div><div class="container" id="content">  <h2>Main Dashboard</h2>  <div class="cards">
     <div class="card" onclick="go(['Nursery'])">🧒 Nursery</div>
     <div class="card" onclick="go(['Primary'])">📘 Primary</div>
@@ -124,12 +116,16 @@ let repo="hi5educentre256/hi5educentre256.github.io";
 let historyStack=[];
 let pdfList=[];
 
-function toggle(){
+function toggleSidebar(){
   let sb=document.getElementById("sidebar");
-  sb.style.left = sb.style.left==="0px"?"-300px":"0px";
+  sb.style.left = "0px";
 }
 
-function loadHome(){ location.reload(); }
+function closeSidebar(){
+  document.getElementById("sidebar").style.left = "-300px";
+}
+
+function goHome(){ location.reload(); }
 
 function go(pathArr){
   historyStack.push(document.getElementById("content").innerHTML);
