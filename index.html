@@ -248,12 +248,20 @@ function toggle(){
   sb.style.left=sb.style.left==="0px"?"-300px":"0px";
 }
 
-function go(x){
-  toggle();
-  if(x==="home") location.reload();
-  else openFolder(x);
-}
 
+function go(x){
+  document.getElementById("sidebar").style.left = "-300px";
+
+  if(x === "home"){
+    location.reload();
+  }
+  else if(x === "About"){
+    about();
+  }
+  else{
+    openFolder(x);
+  }
+}
 function back(){
   if(stack.length){
     document.getElementById("content").innerHTML=stack.pop();
