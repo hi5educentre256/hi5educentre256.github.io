@@ -307,26 +307,31 @@ function openClass(path){
 
     let html = "<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
 
-    data.forEach(f=>{
+    data.forEach(f => {
 
-      if(f.type==="dir"){
-        let n=f.name.toLowerCase();
-        let icon="📁";
-
-        if(n.includes("lesson")) icon="📘 Lesson Notes";
-        else if(n.includes("scheme")) icon="🗂 Schemes of Work";
-        else if(n.includes("past")) icon="📄 Past Papers";
-        else if(n.includes("text")) icon="📚 Textbooks";
-
+      // SHOW FOLDERS
+      if(f.type === "dir"){
         html += `
-        <div class="item" onclick="openMaterialsByType('${path}/${f.name}')">
-          ${icon} ${f.name}
+        <div class="item" onclick="openClass('${path}/${f.name}')">
+          📁 ${f.name}
         </div>`;
       }
+
+      // SHOW PDF FILES AUTOMATICALLY
+      if(f.name && f.name.endsWith(".pdf")){
+        let url = f.download_url;
+
+        html += `
+        <div class="item">
+          📄 ${f.name}<br>
+          <button onclick="viewPDF('${url}')">👁 View</button>
+          <button onclick="downloadPDF('${url}')">⬇ Download</button>
+        </div>`;
+      }
+
     });
 
     html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
-
     document.getElementById("content").innerHTML = html;
   });
 }
@@ -367,21 +372,22 @@ function openMaterialsByType(path,type){
 
     let html = "<button onclick='back()'>⬅ Back</button><h2>Files</h2>";
 
-    data.forEach(f=>{
+    data.forEach(f => {
 
-      if(f.name.endsWith(".pdf")){
+      if(f.name && f.name.endsWith(".pdf")){
 
+        let url = f.download_url;
         let name = f.name.toLowerCase();
 
-        if(
-          (type==="lesson" && name.includes("lesson")) ||
-          (type==="scheme" && name.includes("scheme")) ||
-          (type==="past" && name.includes("past")) ||
-          (type==="text" && name.includes("text"))
-        ){
+        // OPTIONAL FILTER (still works, but not blocking files)
+        let show = true;
 
-          let url = f.download_url;
+        if(type === "lesson" && !name.includes("lesson")) show = false;
+        if(type === "scheme" && !name.includes("scheme")) show = false;
+        if(type === "past" && !name.includes("past")) show = false;
+        if(type === "text" && !name.includes("text")) show = false;
 
+        if(show){
           html += `
           <div class="item">
             📄 ${f.name}<br>
@@ -390,6 +396,12 @@ function openMaterialsByType(path,type){
           </div>`;
         }
       }
+    });
+
+    html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
+    document.getElementById("content").innerHTML = html;
+  });
+}
 
     }); // ✅ THIS WAS MISSING BEFORE
 
