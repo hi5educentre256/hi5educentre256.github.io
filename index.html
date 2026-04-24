@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Hi5 Education Centre</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f8fafc;
+}
 
 /* HEADER */
 header{
@@ -76,7 +78,6 @@ h1{
   -webkit-text-fill-color:transparent;
 }
 
-/* DASHBOARD DESCRIPTION */
 .desc{
   text-align:center;
   color:#555;
@@ -86,16 +87,21 @@ h1{
   line-height:1.5;
 }
 
-/* SEARCH */
 .search input{
   width:100%;
   padding:16px;
   font-size:16px;
   border-radius:12px;
   border:1px solid #ccc;
+  box-sizing:border-box;
 }
 
-/* CARDS */
+.cards{
+  display:grid;
+  gap:15px;
+  margin-top:20px;
+}
+
 .card{
   background: linear-gradient(135deg,#4cc9f0,#4361ee);
   color:white;
@@ -126,7 +132,6 @@ h1{
   transform:translateY(-6px) scale(1.03);
 }
 
-/* ITEMS */
 .item{
   background:#ffffff;
   margin:10px 0;
@@ -142,7 +147,6 @@ h1{
   background:#f0f7ff;
 }
 
-/* BUTTON */
 button{
   padding:8px 12px;
   border:none;
@@ -153,7 +157,6 @@ button{
   margin-bottom:10px;
 }
 
-/* CONTACT */
 .contact-phone{
   background:#e8f5e9;
   border-left:5px solid #25D366;
@@ -170,7 +173,21 @@ button{
   margin:10px 0;
 }
 
-/* WHATSAPP FLOAT */
+.loading{
+  text-align:center;
+  padding:30px;
+  font-size:18px;
+  font-weight:700;
+}
+
+.footer{
+  text-align:center;
+  padding:20px;
+  margin-top:30px;
+  font-size:14px;
+  color:#555;
+}
+
 .wa-float{
   position:fixed;
   bottom:20px;
@@ -187,7 +204,6 @@ button{
   z-index:9999;
 }
 
-/* CHAT BOX */
 .wa-box{
   position:fixed;
   bottom:90px;
@@ -224,216 +240,195 @@ button{
   border-radius:8px;
   text-decoration:none;
 }
-
-</style>
-</head>
-
-<body>
-
-<header>
+</style></head>
+<body><header>
 <span class="menu" onclick="toggle()">☰</span>
 Hi5 Education Centre
-</header>
-
-<!-- SIDEBAR -->
-<div id="sidebar" class="sidebar">
+</header><div id="sidebar" class="sidebar">
 <div class="close" onclick="toggle()">❌</div>
-
 <a href="#" onclick="go('home')">🏠 Dashboard ➜</a>
 <a href="#" onclick="go('Nursery')">📚 Nursery ➜</a>
 <a href="#" onclick="go('Primary')">📘 Primary ➜</a>
 <a href="#" onclick="go('Secondary')">📗 Secondary ➜</a>
 <a href="#" onclick="go('Tertiary')">🎓 Tertiary ➜</a>
 <a href="#" onclick="about()">ℹ About Us ➜</a>
-
-</div>
-
-<!-- MAIN -->
-<div class="container" id="content">
-
+</div><div class="container" id="content">
 <h1>Main Dashboard</h1>
-
-<!-- NEW DESCRIPTION -->
 <p class="desc">
-📚 Welcome to Hi5 Education Centre LMS — access lesson notes, schemes of work, past papers, and textbooks anytime, anywhere.  
-<br>
+📚 Welcome to Hi5 Education Centre LMS — access lesson notes, schemes of work, past papers, and textbooks anytime, anywhere.<br>
 🚀 Learn today, lead tomorrow.
-</p>
-
-<div class="search">
+</p><div class="search">
 <input type="text" placeholder="🔍 Search materials..." onkeyup="search(this.value)">
-</div>
-
-<div class="cards">
+</div><div class="cards">
 <div class="card" onclick="openFolder('Nursery')">📚 Nursery</div>
 <div class="card" onclick="openFolder('Primary')">📘 Primary</div>
 <div class="card" onclick="openFolder('Secondary')">📗 Secondary</div>
 <div class="card" onclick="openFolder('Tertiary')">🎓 Tertiary</div>
-</div>
-
-</div>
-
-<script>
-
-/* YOUR ORIGINAL LOGIC (UNCHANGED) */
+</div><div class="footer">
+© 2026 Hi5 Education Centre | All Rights Reserved
+</div></div><script>
 let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 
-function toggle(){
-  let sb=document.getElementById("sidebar");
-  sb.style.left = (sb.style.left==="0px") ? "-300px" : "0px";
+function showLoading(){
+  document.getElementById("content").innerHTML = "<div class='loading'>⏳ Loading materials...</div>";
 }
 
+function showError(){
+  document.getElementById("content").innerHTML = "<button onclick='back()'>⬅ Back</button><div class='loading'>⚠ Unable to load files. Please try again.</div>";
+}
+
+function toggle(){
+  let sb=document.getElementById("sidebar");
+  sb.style.left = (sb.style.left === "0px") ? "-300px" : "0px";
+}
+
+document.addEventListener("click", function(e){
+  let sb=document.getElementById("sidebar");
+  if(!sb.contains(e.target) && !e.target.classList.contains("menu")){
+    sb.style.left="-300px";
+  }
+});
+
 function go(target){
-document.getElementById("sidebar").style.left = "-300px";
-if(target==="home") location.reload();
-else openFolder(target);
+  document.getElementById("sidebar").style.left = "-300px";
+  if(target === "home") location.reload();
+  else openFolder(target);
 }
 
 function back(){
-if(stack.length>0){
-document.getElementById("content").innerHTML = stack.pop();
-}
+  if(stack.length > 0){
+    document.getElementById("content").innerHTML = stack.pop();
+  }
 }
 
 function openFolder(folder){
-stack.push(document.getElementById("content").innerHTML);
+  stack.push(document.getElementById("content").innerHTML);
+  showLoading();
 
-fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
-.then(r=>r.json())
-.then(data=>{
+  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
+  .then(r => r.json())
+  .then(data => {
+    if(!Array.isArray(data)) return showError();
 
-let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
+    let html = `<button onclick='back()'>⬅ Back</button><h2>${folder}</h2>`;
+    data.forEach(f => {
+      html += `<div class='item' onclick="${f.type==='dir' ? `openClass('${folder}/${f.name}')` : `window.open('${f.download_url}','_blank')`}">📁 ${f.name}</div>`;
+    });
 
-data.forEach(f=>{
-html+=`<div class='item' onclick="openClass('${folder}/${f.name}')">📁 ${f.name}</div>`;
-});
-
-document.getElementById("content").innerHTML=html;
-
-});
+    document.getElementById("content").innerHTML = html;
+  })
+  .catch(() => showError());
 }
 
 function openClass(path){
-stack.push(document.getElementById("content").innerHTML);
+  stack.push(document.getElementById("content").innerHTML);
+  showLoading();
 
-fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-.then(r=>r.json())
-.then(data=>{
+  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+  .then(r => r.json())
+  .then(data => {
+    if(!Array.isArray(data)) return showError();
 
-let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+    let html = `<button onclick='back()'>⬅ Back</button><h2>${path}</h2>`;
+    data.forEach(f => {
+      html += `<div class='item' onclick="${f.type==='dir' ? `openMaterials('${path}/${f.name}')` : `window.open('${f.download_url}','_blank')`}">📂 ${f.name}</div>`;
+    });
 
-data.forEach(f=>{
-html+=`<div class='item' onclick="openMaterials('${path}/${f.name}')">📂 ${f.name}</div>`;
-});
-
-document.getElementById("content").innerHTML=html;
-
-});
+    document.getElementById("content").innerHTML = html;
+  })
+  .catch(() => showError());
 }
 
 function openMaterials(path){
 stack.push(document.getElementById("content").innerHTML);
+showLoading();
 
 fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
 .then(r=>r.json())
 .then(data=>{
 
+if(!Array.isArray(data)) return showError();
+
 let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
 
 data.forEach(f=>{
-if(f.name.endsWith(".pdf")){
-html+=`<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+if(f.name.toLowerCase().endsWith(".pdf")){
+html+=`<div class='item'>
+📄 ${f.name}<br><br>
+<button onclick="window.open('${f.download_url}','_blank')">Preview PDF</button>
+<button onclick="window.open('${f.download_url}','_blank')">Download PDF</button>
+</div>`;
 }
 });
 
 document.getElementById("content").innerHTML=html;
 
-});
+})
+.catch(() => showError());
 }
 
 function about(){
+  document.getElementById("sidebar").style.left = "-300px";
+  stack.push(document.getElementById("content").innerHTML);
 
-document.getElementById("sidebar").style.left = "-300px";
+  document.getElementById("content").innerHTML = `
+  <button onclick="back()">⬅ Back</button>
+  <h2>About Hi5 Education Centre</h2>
+  <div class="item"><b>Founder:</b> Isa Kiggundu</div>
+  <div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
 
-stack.push(document.getElementById("content").innerHTML);
-
-document.getElementById("content").innerHTML=`
-<button onclick="back()">⬅ Back</button>
-
-<h2>About Hi5 Education Centre</h2>
-
-<div class="item"><b>Founder:</b> Isa Kiggundu</div>
-<div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
-
-<h2>Contact</h2>
-
-<div class="contact-phone">
-📞 <a href="tel:+256702234701">+256 702 234 701</a>
-</div>
-
-<div class="contact-email">
-📧 <a href="mailto:hi5educentre256@gmail.com">hi5educentre256@gmail.com</a>
-</div>
-`;
-
+  <h2>Contact</h2>
+  <div class="contact-phone">📞 <a href="tel:+256702234701">+256 702 234 701</a></div>
+  <div class="contact-email">📧 <a href="mailto:hi5educentre256@gmail.com">hi5educentre256@gmail.com</a></div>
+  `;
 }
 
 function search(q){
-if(q.length<2) return;
+  q = q.toLowerCase();
+  if(q.length < 2) return;
 
-fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
-.then(r=>r.json())
-.then(data=>{
+  showLoading();
 
-let html="<h2>Search Results</h2>";
-let found=false;
+  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
+  .then(r => r.json())
+  .then(data => {
+    let html = "<button onclick='location.reload()'>⬅ Back</button><h2>Search Results</h2>";
+    let found = false;
 
-data.tree.forEach(f=>{
-if(f.path.includes(q) && f.path.endsWith(".pdf")){
-found=true;
-html+=`<div class='item' onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">📄 ${f.path}</div>`;
+    data.tree.forEach(f => {
+      if(f.path.toLowerCase().includes(q) && f.path.toLowerCase().endsWith(".pdf")){
+        found = true;
+        html += `<div class='item'>📄 ${f.path}<br><br><button onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">Preview PDF</button><button onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">Download PDF</button></div>`;
+      }
+    });
+
+    if(!found) html += "<p>No results found</p>";
+
+    document.getElementById("content").innerHTML = html;
+  })
+  .catch(() => showError());
 }
-});
 
-if(!found) html+="<p>No results found</p>";
-
-document.getElementById("content").innerHTML=html;
-
-});
+function openWA(){
+  document.getElementById("waBox").style.display = "block";
 }
 
-</script>
-
-<!-- REAL WHATSAPP ICON -->
-<div class="wa-float" onclick="openWA()">
+function closeWA(){
+  document.getElementById("waBox").style.display = "none";
+}
+</script><div class="wa-float" onclick="openWA()">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="white">
 <path d="M16 .396C7.163.396.396 7.163.396 16c0 2.827.738 5.58 2.135 7.997L0 32l8.262-2.163A15.52 15.52 0 0 0 16 31.604C24.837 31.604 31.604 24.837 31.604 16 31.604 7.163 24.837.396 16 .396z"/>
 </svg>
-</div>
-
-<div id="waBox" class="wa-box">
-
+</div><div id="waBox" class="wa-box">
 <div class="wa-header">
 💬 Support
 <span onclick="closeWA()" style="cursor:pointer;">✖</span>
 </div>
-
 <div class="wa-body">
 <p>Hello 👋 How can we help?</p>
 <a href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre" target="_blank">Start Chat</a>
 </div>
-
-</div>
-
-<script>
-function openWA(){
-document.getElementById("waBox").style.display="block";
-}
-function closeWA(){
-document.getElementById("waBox").style.display="none";
-}
-</script>
-
-</body>
+</div></body>
 </html>
