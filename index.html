@@ -216,7 +216,7 @@ Hi5 Education Centre
 <a href="#" onclick="go('Primary')">📘 Primary</a>
 <a href="#" onclick="go('Secondary')">📗 Secondary</a>
 <a href="#" onclick="go('Tertiary')">🎓 Tertiary</a>
-<a href="#" onclick="go(" >ℹ About Us</a>
+<a <a href="#" onclick="openAbout()">ℹ About Us</a>
 </div>
 
 <div class="container" id="content">
@@ -258,6 +258,10 @@ function back(){
   if(stack.length){
     document.getElementById("content").innerHTML=stack.pop();
   }
+}
+  function openAbout(){
+  toggle(); // closes hamburger
+  about();  // opens About page
 }
 
 /* OPEN FOLDER */
