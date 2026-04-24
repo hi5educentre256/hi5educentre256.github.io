@@ -301,35 +301,35 @@ function openFolder(folder){
 function openClass(path){
   stack.push(document.getElementById("content").innerHTML);
 
-  document.getElementById("content").innerHTML = `
-  <button onclick="back()">⬅ Back</button>
+  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+  .then(r=>r.json())
+  .then(data=>{
 
-  <h2>${path}</h2>
+    let html = "<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
 
-  <div class="item" onclick="openMaterialsByType('${path}','lesson')">
-    📘 Lesson Notes
-  </div>
+    data.forEach(f=>{
 
-  <div class="item" onclick="openMaterialsByType('${path}','scheme')">
-    🗂 Schemes of Work
-  </div>
+      if(f.type==="dir"){
+        let n=f.name.toLowerCase();
+        let icon="📁";
 
-  <div class="item" onclick="openMaterialsByType('${path}','past')">
-    📄 Past Papers
-  </div>
+        if(n.includes("lesson")) icon="📘 Lesson Notes";
+        else if(n.includes("scheme")) icon="🗂 Schemes of Work";
+        else if(n.includes("past")) icon="📄 Past Papers";
+        else if(n.includes("text")) icon="📚 Textbooks";
 
-  <div class="item" onclick="openMaterialsByType('${path}','text')">
-    📚 Textbooks
-  </div>
+        html += `
+        <div class="item" onclick="openMaterialsByType('${path}/${f.name}')">
+          ${icon} ${f.name}
+        </div>`;
+      }
+    });
 
-  <div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>
-  `;
-}
+    html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
 
-    document.getElementById("content").innerHTML=html;
+    document.getElementById("content").innerHTML = html;
   });
 }
-
 /* PDF VIEW */
 function viewPDF(url){
   stack.push(document.getElementById("content").innerHTML);
