@@ -350,24 +350,25 @@ function openMaterials(path){
   .then(r=>r.json())
   .then(data=>{
 
-    let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+    let html = "<button onclick='back()'>⬅ Back</button><h2>Files</h2>";
 
     data.forEach(f=>{
       if(f.name.endsWith(".pdf")){
-        let url=f.download_url;
 
-        html+=`
+        let url = f.download_url;
+
+        html += `
         <div class="item">
-        📄 ${f.name}<br>
-        <button onclick="viewPDF('${url}')">👁 View PDF</button>
-        <button onclick="downloadPDF('${url}')">⬇ Download</button>
+          📄 ${f.name}<br>
+          <button onclick="viewPDF('${url}')">👁 View</button>
+          <button onclick="downloadPDF('${url}')">⬇ Download</button>
         </div>`;
       }
     });
 
-    html+=`<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
+    html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
 
-    document.getElementById("content").innerHTML=html;
+    document.getElementById("content").innerHTML = html;
   });
 }
 
