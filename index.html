@@ -85,16 +85,7 @@ h1{
   margin-bottom:15px;
 }
 
-/* SEARCH */
-.search input{
-  width:100%;
-  padding:16px;
-  font-size:16px;
-  border-radius:12px;
-  border:1px solid #ccc;
-}
-
-/* DASHBOARD CARDS (UNCHANGED SIZE + COLORS) */
+/* CARDS (UNCHANGED SIZE) */
 .cards{
   display:grid;
   gap:15px;
@@ -112,9 +103,9 @@ h1{
   cursor:pointer;
 }
 
-.card:nth-child(2){background: linear-gradient(135deg,#06d6a0,#1b9aaa);}
-.card:nth-child(3){background: linear-gradient(135deg,#ef476f,#ff5c8a);}
-.card:nth-child(4){background: linear-gradient(135deg,#ffd166,#ff9f1c); color:#000;}
+.card:nth-child(2){background:#06d6a0;}
+.card:nth-child(3){background:#ef476f;}
+.card:nth-child(4){background:#ffd166;color:#000;}
 
 /* ITEMS */
 .item{
@@ -125,7 +116,7 @@ h1{
   box-shadow:0 2px 10px rgba(0,0,0,0.06);
 }
 
-/* BUTTONS */
+/* BUTTON */
 button{
   padding:8px 12px;
   border:none;
@@ -142,7 +133,6 @@ button{
   border-left:5px solid #25D366;
   padding:14px;
   border-radius:10px;
-  margin:10px 0;
 }
 
 .contact-email{
@@ -150,7 +140,6 @@ button{
   border-left:5px solid #0d6efd;
   padding:14px;
   border-radius:10px;
-  margin:10px 0;
 }
 
 /* FOOTER */
@@ -236,12 +225,8 @@ Hi5 Education Centre
 <h1>Main Dashboard</h1>
 
 <p class="desc">
-📚 Welcome to Hi5 Education Centre LMS — Lesson Notes, Schemes of Work, Past Papers & Textbooks available anytime.
+📚 Welcome to Hi5 Education Centre LMS — Lesson Notes, Schemes of Work, Past Papers & Textbooks.
 </p>
-
-<div class="search">
-<input type="text" placeholder="Search..." onkeyup="search(this.value)">
-</div>
 
 <div class="cards">
 <div class="card" onclick="openFolder('Nursery')">📚 Nursery</div>
@@ -276,56 +261,21 @@ function back(){
   }
 }
 
-/* OPEN CLASS WITH CATEGORIES */
-function openClass(path){
+/* STEP 1 FIXED - OPEN FOLDER */
+function openFolder(folder){
   stack.push(document.getElementById("content").innerHTML);
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
   .then(r=>r.json())
   .then(data=>{
 
-    let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
 
     data.forEach(f=>{
       if(f.type==="dir"){
-
-        let icon="📁";
-        let n=f.name.toLowerCase();
-
-        if(n.includes("lesson")) icon="📘 Lesson Notes";
-        if(n.includes("scheme")) icon="🗂 Schemes of Work";
-        if(n.includes("past")) icon="📄 Past Papers";
-        if(n.includes("text")) icon="📚 Textbooks";
-
-        html+=`<div class="item" onclick="openMaterials('${path}/${f.name}')">${icon} ${f.name}</div>`;
-      }
-    });
-
-    html+=`<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
-
-    document.getElementById("content").innerHTML=html;
-  });
-}
-
-/* OPEN MATERIALS */
-function openMaterials(path){
-  stack.push(document.getElementById("content").innerHTML);
-
-  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-  .then(r=>r.json())
-  .then(data=>{
-
-    let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
-
-    data.forEach(f=>{
-      if(f.name.endsWith(".pdf")){
-        let url=f.download_url;
-
         html+=`
-        <div class="item">
-        📄 ${f.name}<br>
-        <button onclick="viewPDF('${url}')">👁 View PDF</button>
-        <button onclick="downloadPDF('${url}')">⬇ Download</button>
+        <div class="item" onclick="openClass('${folder}/${f.name}')">
+        📁 ${f.name}
         </div>`;
       }
     });
@@ -336,7 +286,41 @@ function openMaterials(path){
   });
 }
 
-/* VIEW PDF INSIDE WEBSITE */
+/* STEP 2 FIXED - CLASS STRUCTURE */
+function openClass(path){
+  stack.push(document.getElementById("content").innerHTML);
+
+  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
+  .then(r=>r.json())
+  .then(data=>{
+
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+
+    data.forEach(f=>{
+
+      if(f.type==="dir"){
+        let name=f.name.toLowerCase();
+        let icon="📁";
+
+        if(name.includes("lesson")) icon="📘 Lesson Notes";
+        else if(name.includes("scheme")) icon="🗂 Schemes of Work";
+        else if(name.includes("past")) icon="📄 Past Papers";
+        else if(name.includes("text")) icon="📚 Textbooks";
+
+        html+=`
+        <div class="item" onclick="openMaterials('${path}/${f.name}')">
+        ${icon} ${f.name}
+        </div>`;
+      }
+    });
+
+    html+=`<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
+
+    document.getElementById("content").innerHTML=html;
+  });
+}
+
+/* PDF VIEW */
 function viewPDF(url){
   stack.push(document.getElementById("content").innerHTML);
 
@@ -355,40 +339,23 @@ function downloadPDF(url){
   a.click();
 }
 
-/* ABOUT US */
-function about(){
+/* MATERIALS */
+function openMaterials(path){
   stack.push(document.getElementById("content").innerHTML);
 
-  document.getElementById("content").innerHTML=`
-  <button onclick="back()">⬅ Back</button>
-  <h2>About Hi5 Education Centre</h2>
-
-  <div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
-
-  <div class="contact-phone">📞 +256 702 234 701</div>
-  <div class="contact-email">📧 hi5educentre256@gmail.com</div>
-
-  <div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>
-  `;
-}
-
-/* SEARCH */
-function search(q){
-  if(q.length<2) return;
-
-  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
+  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
   .then(r=>r.json())
   .then(data=>{
 
-    let html="<button onclick='location.reload()'>⬅ Back</button><h2>Search Results</h2>";
+    let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
 
-    data.tree.forEach(f=>{
-      if(f.path.includes(q) && f.path.endsWith(".pdf")){
-        let url=`https://raw.githubusercontent.com/${repo}/main/${f.path}`;
+    data.forEach(f=>{
+      if(f.name.endsWith(".pdf")){
+        let url=f.download_url;
 
         html+=`
         <div class="item">
-        📄 ${f.path}<br>
+        📄 ${f.name}<br>
         <button onclick="viewPDF('${url}')">👁 View</button>
         <button onclick="downloadPDF('${url}')">⬇ Download</button>
         </div>`;
@@ -401,12 +368,19 @@ function search(q){
   });
 }
 
-/* WHATSAPP */
-function openWA(){
-  document.getElementById("waBox").style.display="block";
-}
-function closeWA(){
-  document.getElementById("waBox").style.display="none";
+/* ABOUT */
+function about(){
+  stack.push(document.getElementById("content").innerHTML);
+
+  document.getElementById("content").innerHTML=`
+  <button onclick="back()">⬅ Back</button>
+  <h2>About Us</h2>
+
+  <div class="contact-phone">📞 +256 702 234 701</div>
+  <div class="contact-email">📧 hi5educentre256@gmail.com</div>
+
+  <div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>
+  `;
 }
 
 </script>
@@ -424,6 +398,11 @@ WhatsApp
 <a href="https://wa.me/256702234701" target="_blank">Start Chat</a>
 </div>
 </div>
+
+<script>
+function openWA(){document.getElementById("waBox").style.display="block";}
+function closeWA(){document.getElementById("waBox").style.display="none";}
+</script>
 
 </body>
 </html>
