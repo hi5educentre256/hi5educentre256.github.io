@@ -313,10 +313,10 @@ function openClass(path){
         let n=f.name.toLowerCase();
         let icon="📁";
 
-        if(n.includes("lesson")) icon="📘 Lesson Notes";
-        else if(n.includes("scheme")) icon="🗂 Schemes of Work";
-        else if(n.includes("past")) icon="📄 Past Papers";
-        else if(n.includes("text")) icon="📚 Textbooks";
+        if(n.includes("lesson")) icon="📘";
+       else if(n.includes("scheme")) icon="🗂";
+       else if(n.includes("past")) icon="📄";
+       else if(n.includes("text")) icon="📚";
 
         html+=`
         <div class="item" onclick="openMaterials('${path}/${f.name}')">
