@@ -386,7 +386,6 @@ function about(){
 
 function search(q){
   q = q.toLowerCase();
-  q = q.toLowerCase();
   if(q.length < 2) return;
 
   showLoading();
@@ -398,13 +397,24 @@ function search(q){
     let found = false;
 
     data.tree.forEach(f => {
-      if(f.path.toLowerCase().includes(q.toLowerCase())){
+      let filePath = f.path.toLowerCase();
+
+      if(filePath.includes(q)){
         found = true;
-        if(f.path.toLowerCase().endsWith('.pdf')){
-        html += `<div class='item'>📄 ${f.path}<br><br><button onclick="window.open('https://docs.google.com/gview?embedded=1&url=${encodeURIComponent('https://raw.githubusercontent.com/${repo}/main/${f.path}')}', '_blank')">View PDF</button><button onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">Download PDF</button></div>`;
-      } else {
-        html += `<div class='item'>📁 ${f.path}</div>`;
-      }
+
+        if(f.type === "tree"){
+          html += `<div class='item' onclick="openFolder('${f.path.split('/')[0]}')">📁 ${f.path}</div>`;
+        }
+        else if(filePath.endsWith('.pdf')){
+          html += `<div class='item'>
+          📄 ${f.path}<br><br>
+          <button onclick="window.open('https://docs.google.com/gview?embedded=1&url=${encodeURIComponent('https://raw.githubusercontent.com/${repo}/main/${f.path}')}', '_blank')">View PDF</button>
+          <button onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">Download PDF</button>
+          </div>`;
+        }
+        else {
+          html += `<div class='item' onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">📄 ${f.path}</div>`;
+        }
       }
     });
 
@@ -415,7 +425,8 @@ function search(q){
   .catch(() => showError());
 }
 
-function openWA(){
+function openWA(){")}]}
+
   document.getElementById("waBox").style.display = "block";
 }
 
