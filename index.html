@@ -312,15 +312,19 @@ function openFolder(folder){
     if(!Array.isArray(data)) return showError();
 
     let html = `<button onclick='back()'>⬅ Back</button><h2>${folder}</h2>`;
+
     data.forEach(f => {
-      html += `<div class='item' onclick="${f.type==='dir' ? `openClass('${folder}/${f.name}')` : `window.open('${f.download_url}','_blank')`}">📁 ${f.name}</div>`;
+      if(f.type === 'dir'){
+        html += `<div class='item' onclick="openClass('${folder}/${f.name}')">📁 ${f.name}</div>`;
+      } else {
+        html += `<div class='item' onclick="openMaterials('${folder}/${f.name}')">📄 ${f.name}</div>`;
+      }
     });
 
     document.getElementById("content").innerHTML = html;
   })
   .catch(() => showError());
 }
-
 function openClass(path){
   stack.push(document.getElementById("content").innerHTML);
   showLoading();
@@ -331,15 +335,19 @@ function openClass(path){
     if(!Array.isArray(data)) return showError();
 
     let html = `<button onclick='back()'>⬅ Back</button><h2>${path}</h2>`;
+
     data.forEach(f => {
-      html += `<div class='item' onclick="${f.type==='dir' ? `openMaterials('${path}/${f.name}')` : `window.open('${f.download_url}','_blank')`}">📂 ${f.name}</div>`;
+      if(f.type === 'dir'){
+        html += `<div class='item' onclick="openMaterials('${path}/${f.name}')">📂 ${f.name}</div>`;
+      } else {
+        html += `<div class='item' onclick="window.open('${f.download_url}','_blank')">📄 ${f.name}</div>`;
+      }
     });
 
     document.getElementById("content").innerHTML = html;
   })
   .catch(() => showError());
 }
-
 function openMaterials(path){
 stack.push(document.getElementById("content").innerHTML);
 showLoading();
@@ -398,23 +406,21 @@ function search(q){
 
     data.tree.forEach(f => {
       let filePath = f.path.toLowerCase();
-      let fileName = f.path.split('/').pop().toLowerCase();
+      let name = f.path.split('/').pop();
 
-      if(filePath.includes(q) || fileName.includes(q)){
+      if(filePath.includes(q)){
         found = true;
 
         if(f.type === "tree"){
-          html += `<div class='item' onclick="openFolder('${f.path.split('/')[0]}')">📁 Folder: ${f.path}</div>`;
-        }
-        else if(filePath.endsWith('.pdf')){
+          html += `<div class='item' onclick="openFolder('${f.path}')">📁 ${f.path}</div>`;
+        } else if(filePath.endsWith('.pdf')){
           html += `<div class='item'>
-          📄 ${f.path}<br><br>
-          <button onclick="window.open('https://docs.google.com/gview?embedded=1&url=${encodeURIComponent('https://raw.githubusercontent.com/${repo}/main/${f.path}')}', '_blank')">View PDF</button>
-          <button onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">Download PDF</button>
+            📄 ${f.path}<br><br>
+            <button onclick="window.open('https://docs.google.com/gview?embedded=1&url=${encodeURIComponent('https://raw.githubusercontent.com/${repo}/main/${f.path}')}', '_blank')">View PDF</button>
+            <button onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">Download PDF</button>
           </div>`;
-        }
-        else {
-          html += `<div class='item' onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">📄 File: ${f.path}</div>`;
+        } else {
+          html += `<div class='item' onclick="window.open('https://raw.githubusercontent.com/${repo}/main/${f.path}','_blank')">📄 ${f.path}</div>`;
         }
       }
     });
@@ -425,7 +431,6 @@ function search(q){
   })
   .catch(() => showError());
 }
-
 function openWA(){")}]}
 
   document.getElementById("waBox").style.display = "block";
