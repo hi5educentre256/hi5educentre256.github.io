@@ -12,7 +12,6 @@ body{
   background:#f8fafc;
 }
 
-/* HEADER */
 header{
   background: linear-gradient(135deg,#0d6efd,#198754);
   color:white;
@@ -85,7 +84,7 @@ h1{
   margin-bottom:15px;
 }
 
-/* CARDS (UNCHANGED SIZE) */
+/* CARDS */
 .cards{
   display:grid;
   gap:15px;
@@ -225,7 +224,7 @@ Hi5 Education Centre
 <h1>Main Dashboard</h1>
 
 <p class="desc">
-📚 Welcome to Hi5 Education Centre LMS — Lesson Notes, Schemes of Work, Past Papers & Textbooks.
+📚 Welcome to Hi5 Education Centre LMS — Learn Today, Lead Tomorrow.
 </p>
 
 <div class="cards">
@@ -261,7 +260,7 @@ function back(){
   }
 }
 
-/* STEP 1 FIXED - OPEN FOLDER */
+/* OPEN FOLDER */
 function openFolder(folder){
   stack.push(document.getElementById("content").innerHTML);
 
@@ -286,7 +285,7 @@ function openFolder(folder){
   });
 }
 
-/* STEP 2 FIXED - CLASS STRUCTURE */
+/* CLASS VIEW */
 function openClass(path){
   stack.push(document.getElementById("content").innerHTML);
 
@@ -299,13 +298,13 @@ function openClass(path){
     data.forEach(f=>{
 
       if(f.type==="dir"){
-        let name=f.name.toLowerCase();
+        let n=f.name.toLowerCase();
         let icon="📁";
 
-        if(name.includes("lesson")) icon="📘 Lesson Notes";
-        else if(name.includes("scheme")) icon="🗂 Schemes of Work";
-        else if(name.includes("past")) icon="📄 Past Papers";
-        else if(name.includes("text")) icon="📚 Textbooks";
+        if(n.includes("lesson")) icon="📘 Lesson Notes";
+        else if(n.includes("scheme")) icon="🗂 Schemes of Work";
+        else if(n.includes("past")) icon="📄 Past Papers";
+        else if(n.includes("text")) icon="📚 Textbooks";
 
         html+=`
         <div class="item" onclick="openMaterials('${path}/${f.name}')">
@@ -356,7 +355,7 @@ function openMaterials(path){
         html+=`
         <div class="item">
         📄 ${f.name}<br>
-        <button onclick="viewPDF('${url}')">👁 View</button>
+        <button onclick="viewPDF('${url}')">👁 View PDF</button>
         <button onclick="downloadPDF('${url}')">⬇ Download</button>
         </div>`;
       }
@@ -368,13 +367,18 @@ function openMaterials(path){
   });
 }
 
-/* ABOUT */
+/* ABOUT FIXED */
 function about(){
   stack.push(document.getElementById("content").innerHTML);
 
   document.getElementById("content").innerHTML=`
   <button onclick="back()">⬅ Back</button>
+
   <h2>About Us</h2>
+
+  <div class="item"><b>Motto:</b> Learn Today, Lead Tomorrow</div>
+  <div class="item"><b>Founder:</b> Hi5 Education Centre Team</div>
+  <div class="item"><b>Address:</b> Uganda</div>
 
   <div class="contact-phone">📞 +256 702 234 701</div>
   <div class="contact-email">📧 hi5educentre256@gmail.com</div>
