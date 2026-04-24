@@ -301,31 +301,30 @@ function openFolder(folder){
 function openClass(path){
   stack.push(document.getElementById("content").innerHTML);
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-  .then(r=>r.json())
-  .then(data=>{
+  document.getElementById("content").innerHTML = `
+  <button onclick="back()">⬅ Back</button>
 
-    let html="<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
+  <h2>${path}</h2>
 
-    data.forEach(f=>{
+  <div class="item" onclick="openMaterialsByType('${path}','lesson')">
+    📘 Lesson Notes
+  </div>
 
-      if(f.type==="dir"){
-        let n=f.name.toLowerCase();
-        let icon="📁";
+  <div class="item" onclick="openMaterialsByType('${path}','scheme')">
+    🗂 Schemes of Work
+  </div>
 
-        if(n.includes("lesson")) icon="📘";
-       else if(n.includes("scheme")) icon="🗂";
-       else if(n.includes("past")) icon="📄";
-       else if(n.includes("text")) icon="📚";
+  <div class="item" onclick="openMaterialsByType('${path}','past')">
+    📄 Past Papers
+  </div>
 
-        html+=`
-        <div class="item" onclick="openMaterials('${path}/${f.name}')">
-        ${icon} ${f.name}
-        </div>`;
-      }
-    });
+  <div class="item" onclick="openMaterialsByType('${path}','text')">
+    📚 Textbooks
+  </div>
 
-    html+=`<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
+  <div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>
+  `;
+}
 
     document.getElementById("content").innerHTML=html;
   });
@@ -358,7 +357,8 @@ function downloadPDF(url){
 }
 
 /* MATERIALS */
-function openMaterials(path){
+function openMaterialsByType(path,type){
+
   stack.push(document.getElementById("content").innerHTML);
 
   fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
@@ -368,16 +368,27 @@ function openMaterials(path){
     let html = "<button onclick='back()'>⬅ Back</button><h2>Files</h2>";
 
     data.forEach(f=>{
+
       if(f.name.endsWith(".pdf")){
 
-        let url = f.download_url;
+        let name = f.name.toLowerCase();
 
-        html += `
-        <div class="item">
-          📄 ${f.name}<br>
-          <button onclick="viewPDF('${url}')">👁 View</button>
-          <button onclick="downloadPDF('${url}')">⬇ Download</button>
-        </div>`;
+        if(
+          (type==="lesson" && name.includes("lesson")) ||
+          (type==="scheme" && name.includes("scheme")) ||
+          (type==="past" && name.includes("past")) ||
+          (type==="text" && name.includes("text"))
+        ){
+
+          let url = f.download_url;
+
+          html += `
+          <div class="item">
+            📄 ${f.name}<br>
+            <button onclick="viewPDF('${url}')">👁 View</button>
+            <button onclick="downloadPDF('${url}')">⬇ Download</button>
+          </div>`;
+        }
       }
     });
 
