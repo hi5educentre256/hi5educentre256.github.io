@@ -326,10 +326,19 @@ function openClass(path){
 /* PDF VIEW */
 function viewPDF(url){
   stack.push(document.getElementById("content").innerHTML);
+function viewPDF(url){
+  stack.push(document.getElementById("content").innerHTML);
 
-  document.getElementById("content").innerHTML=`
+  document.getElementById("content").innerHTML = `
   <button onclick="back()">⬅ Back</button>
-  <iframe src="${url}" style="width:100%;height:85vh;border:none;"></iframe>
+
+  <div style="height:85vh;">
+    <iframe 
+      src="https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(url)}"
+      style="width:100%;height:100%;border:none;">
+    </iframe>
+  </div>
+
   <div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>
   `;
 }
