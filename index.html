@@ -358,6 +358,7 @@ function downloadPDF(url){
 
 /* MATERIALS */
 function openMaterialsByType(path,type){
+function openMaterialsByType(path,type){
 
   stack.push(document.getElementById("content").innerHTML);
 
@@ -389,7 +390,9 @@ function openMaterialsByType(path,type){
             <button onclick="downloadPDF('${url}')">⬇ Download</button>
           </div>`;
         }
-    });
+      }
+
+    }); // ✅ THIS WAS MISSING BEFORE
 
     html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
 
