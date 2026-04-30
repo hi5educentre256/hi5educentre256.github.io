@@ -156,20 +156,35 @@ button{
   position:fixed;
   bottom:20px;
   right:20px;
-  width:60px;
-  height:60px;
   background:#25D366;
-  border-radius:50%;
+  color:white;
+  padding:10px 14px;
+  border-radius:50px;
   display:flex;
   align-items:center;
-  justify-content:center;
+  gap:8px;
   cursor:pointer;
   z-index:9999;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  animation: bounce 2s infinite;
+}
+
+.wa-float img{
+  width:22px;
+}
+
+.wa-float span{
+  font-weight:600;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
 }
 
 .wa-box{
   position:fixed;
-  bottom:90px;
+  bottom:80px;
   right:20px;
   width:260px;
   background:white;
@@ -182,12 +197,16 @@ button{
 .wa-header{
   background:#25D366;
   color:white;
-  padding:10px;
+  padding:12px;
+  font-weight:600;
   display:flex;
   justify-content:space-between;
 }
 
-.wa-body{padding:12px;}
+.wa-body{
+  padding:12px;
+  font-size:14px;
+}
 
 .wa-body a{
   display:block;
@@ -466,18 +485,22 @@ function searchAll(query){
 
 </script>
 
-<!-- WHATSAPP -->
-<div class="wa-float" onclick="openWA()">💬</div>
+<!-- WHATSAPP BUTTON -->
+<div class="wa-float" onclick="openWA()">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="28">
+  <span>Chat</span>
+</div>
 
 <div id="waBox" class="wa-box">
-<div class="wa-header">
-WhatsApp
-<span onclick="closeWA()">✖</span>
-</div>
+  <div class="wa-header">
+    WhatsApp Support
+    <span onclick="closeWA()">✖</span>
+  </div>
 
-<div class="wa-body">
-<a href="https://wa.me/256702234701" target="_blank">Start Chat</a>
-</div>
+  <div class="wa-body">
+    <p>Hi 👋<br>Need help? Chat with us now.</p>
+    <a href="https://wa.me/256702234701" target="_blank">Start Chat</a>
+  </div>
 </div>
 
 <script>
