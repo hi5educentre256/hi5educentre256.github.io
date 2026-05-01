@@ -395,6 +395,14 @@ function downloadPDF(url){
   a.target="_blank";
   a.click();
 }
+  function requestTextbook(file){
+  let msg = "Hello, I want to buy this textbook: " + file +
+  ". I will pay 10,000 UGX via Airtel Money (0702234701).";
+
+  let url = "https://wa.me/256702234701?text=" + encodeURIComponent(msg);
+
+  window.open(url, "_blank");
+}
 
 /* MATERIALS */
 function openMaterialsByType(path,type){
