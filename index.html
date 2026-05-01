@@ -338,15 +338,31 @@ function openClass(path){
 
       // SHOW PDF FILES AUTOMATICALLY
       if(f.name && f.name.endsWith(".pdf")){
-        let url = f.download_url;
 
-        html += `
-        <div class="item">
-          📄 ${f.name}<br>
-          <button onclick="viewPDF('${url}')">👁 View</button>
-          <button onclick="downloadPDF('${url}')">⬇ Download</button>
-        </div>`;
-      }
+  let url = f.download_url;
+  let name = f.name.toLowerCase();
+
+  // detect textbook
+  let isTextbook = name.includes("textbook") || name.includes("book");
+
+  html += `
+  <div class="item">
+    📄 ${f.name}<br>
+    <button onclick="viewPDF('${url}')">👁 View</button>
+  `;
+
+  if(isTextbook){
+    html += `
+      <button onclick="requestTextbook('${f.name}')">🔒 Download (UGX 10,000)</button>
+    `;
+  } else {
+    html += `
+      <button onclick="downloadPDF('${url}')">⬇ Download</button>
+    `;
+  }
+
+  html += `</div>`;
+}
 
     });
 
