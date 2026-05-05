@@ -35,24 +35,29 @@ header{
 /* SIDEBAR */
 .sidebar{
   position:fixed;
-  left:-300px;
+  left:-260px;
   top:0;
-  width:300px;
+  width:240px;
   height:100%;
   background:#0f172a;
   color:white;
   transition:0.35s;
   padding-top:70px;
   z-index:2000;
+  overflow-y:auto;
 }
 
 .sidebar a{
   display:block;
-  padding:16px;
-  font-size:18px;
+  padding:14px 16px;
+  font-size:16px;
   color:white;
   text-decoration:none;
   border-bottom:1px solid #1f2937;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .sidebar a:hover{background:#1f2937;}
@@ -226,7 +231,9 @@ button{
 <span class="menu" onclick="toggle()">☰</span>
 
 <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+  <a href="images/logo.png" download="Hi5-Logo.png">
   <img src="images/logo.png" alt="Hi5 Logo" style="height:40px;">
+</a>
   <span>Hi5 Education Centre</span>
 </div>
 
@@ -237,7 +244,10 @@ button{
 <div class="close" onclick="toggle()">✖</div>
 
 <div style="text-align:center;margin-bottom:20px;">
-  <img src="images/logo.png" alt="Hi5 Logo" style="width:100px;border-radius:12px;">
+<a href="images/logo.png" download="Hi5-Logo.png">
+  <img src="images/logo.png" alt="Hi5 Logo"
+  style="width:80px;border-radius:12px;">
+</a>
 </div>
 <a href="#" onclick="go('home')">🏠 Dashboard ➜</a>
 <a href="#" onclick="go('Nursery')">📚 Nursery ➜</a>
