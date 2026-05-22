@@ -356,7 +356,7 @@ Access notes, textbooks, schemes, exams and more.
 </p>
 
 <div class="hero-buttons">
-<button onclick="openFolder('Primary')">📘 Start Learning</button>
+<button onclick="goDashboard()">📘 Start Learning</button>
 
 <button onclick="window.open('https://wa.me/256702234701')">
 💬 WhatsApp Us
@@ -366,7 +366,7 @@ Access notes, textbooks, schemes, exams and more.
 </div>
 </section>
 <input type="text" placeholder="🔍 Search materials..." onkeyup="searchAll(this.value)" style="width:100%;padding:14px;margin-top:10px;border-radius:10px;border:1px solid #ccc;">
-<div class="cards">
+<div class="cards" id="dashboard">
 <div class="card" onclick="openFolder('Nursery')">📚 Nursery</div>
 <div class="card" onclick="openFolder('Primary')">📘 Primary</div>
 <div class="card" onclick="openFolder('Secondary')">📗 Secondary</div>
@@ -386,7 +386,11 @@ function toggle(){
   let sb=document.getElementById("sidebar");
   sb.style.left=sb.style.left==="0px"?"-300px":"0px";
 }
-
+function goDashboard(){
+  document.getElementById("dashboard").scrollIntoView({
+    behavior: "smooth"
+  });
+}
 
 function go(x){
   document.getElementById("sidebar").style.left = "-300px";
