@@ -97,14 +97,25 @@ h1{
 }
 
 .card{
-  background: linear-gradient(135deg,#4cc9f0,#4361ee);
-  color:white;
-  padding:32px;
-  border-radius:20px;
-  text-align:center;
-  font-weight:800;
-  font-size:18px;
+  background:white;
+  color:#111;
+  padding:25px;
+  border-radius:18px;
+  text-align:left;
+  font-weight:600;
+  font-size:16px;
   cursor:pointer;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+  transition:0.3s;
+
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 25px rgba(0,0,0,0.15);
 }
 
 .card:nth-child(2){background:#06d6a0;}
@@ -367,10 +378,36 @@ Access notes, textbooks, schemes, exams and more.
 </section>
 <input type="text" placeholder="🔍 Search materials..." onkeyup="searchAll(this.value)" style="width:100%;padding:14px;margin-top:10px;border-radius:10px;border:1px solid #ccc;">
 <div class="cards" id="dashboard">
-<div class="card" onclick="openFolder('Nursery')">📚 Nursery</div>
-<div class="card" onclick="openFolder('Primary')">📘 Primary</div>
-<div class="card" onclick="openFolder('Secondary')">📗 Secondary</div>
-<div class="card" onclick="openFolder('Tertiary')">🎓 Tertiary</div>
+<div class="card" onclick="openFolder('Nursery')">
+  <div style="font-size:28px;">📚</div>
+  <div>
+    <div>Nursery</div>
+    <small>Baby, Middle & Top class</small>
+  </div>
+</div>
+
+<div class="card" onclick="openFolder('Primary')">
+  <div style="font-size:28px;">📘</div>
+  <div>
+    <div>Primary</div>
+    <small>P1 – P7 notes & exams</small>
+  </div>
+</div>
+
+<div class="card" onclick="openFolder('Secondary')">
+  <div style="font-size:28px;">📗</div>
+  <div>
+    <div>Secondary</div>
+    <small>S1 – S6 materials</small>
+  </div>
+</div>
+
+<div class="card" onclick="openFolder('Tertiary')">
+  <div style="font-size:28px;">🎓</div>
+  <div>
+    <div>Tertiary</div>
+    <small>University resources</small>
+  </div>
 </div>
 
 <div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>
