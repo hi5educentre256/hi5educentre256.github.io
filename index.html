@@ -530,17 +530,34 @@ function openClass(path){
       // SHOW PDF FILES AUTOMATICALLY
       if(f.name && f.name.endsWith(".pdf")){
 
-  let url = f.download_url;
-  let name = f.name.toLowerCase();
+let url = f.download_url;
+let name = f.name.toLowerCase();
 
-  // detect textbook
-  let isTextbook = name.includes("textbook") || name.includes("book");
+// 1. detection variables
+let isTextbook = name.includes("textbook") || name.includes("book");
+let isScheme = name.includes("scheme");
+let isLesson = name.includes("lesson");
+let isExam = name.includes("exam") || name.includes("past");
 
-  html += `
-  <div class="item">
-    📄 ${f.name}<br>
+// 2. badge AFTER detections
+let badge = "";
+
+if(isTextbook) badge = "📘 Textbook";
+else if(isScheme) badge = "📊 Scheme of Work";
+else if(isLesson) badge = "📝 Lesson Notes";
+else if(isExam) badge = "📄 Past Papers";
+else badge = "📁 Material";
+
+html += `
+<div class="item file-card">
+  <div style="font-weight:600;font-size:15px;">📄 ${f.name}</div>
+  <div style="font-size:12px;color:#666;margin-top:4px;">
+    PDF Resource
+  </div>
+
+  <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
     <button onclick="viewPDF('${url}')">👁 View</button>
-  `;
+`;
 
   if(isTextbook){
     html += `
@@ -622,12 +639,19 @@ function openMaterialsByType(path,type){
         if(type === "text" && !name.includes("text")) show = false;
 
         if(show){
-          html += `
-          <div class="item">
-            📄 ${f.name}<br>
-            <button onclick="viewPDF('${url}')">👁 View</button>
-            <button onclick="downloadPDF('${url}')">⬇ Download</button>
-          </div>`;
+html += `
+<div class="item">
+  <div style="font-weight:600;">📄 ${f.name}</div>
+
+  <div style="margin-top:5px;font-size:12px;">
+    <span style="background:#eef;padding:4px 8px;border-radius:8px;">
+      ${badge}
+    </span>
+  </div>
+
+  <div style="margin-top:10px;">
+    <button onclick="viewPDF('${url}')">👁 View</button>
+`;
         }
       }
     });
