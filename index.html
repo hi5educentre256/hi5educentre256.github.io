@@ -750,7 +750,13 @@ searchTimeout = setTimeout(() => {
   
   query = query.toLowerCase();
 
-  if(query.length < 2) return;
+if(query.length < 2){
+  document.getElementById("content").innerHTML = `
+  <div class="item">
+    🔍 Type at least 2 letters to search materials
+  </div>`;
+  return;
+}
 
   document.getElementById("content").innerHTML =
     "<div class='item'>🔍 Searching...</div>";
