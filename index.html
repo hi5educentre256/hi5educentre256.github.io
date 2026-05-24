@@ -94,8 +94,9 @@ h1{
 /* CARDS */
 .cards{
   display:grid;
-  gap:15px;
-  margin-top:20px;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:18px;
+  margin-top:25px;
 }
 
 .card{
@@ -392,7 +393,12 @@ Access notes, textbooks, schemes, exams and more.
 
 </div>
 </section>
-<input type="text" placeholder="🔍 Search materials..." onkeyup="searchAll(this.value)" style="width:100%;padding:14px;margin-top:10px;border-radius:10px;border:1px solid #ccc;">
+<input type="text" placeholder="🔍 Search materials..." on keyup="searchAll(this.value)" style="width:100%;padding:14px;margin-top:10px;border-radius:10px;border:1px solid #ccc;">
+  
+<h2 style="margin-top:25px;font-size:20px;">
+Choose Your Level
+</h2>
+  
 <div class="cards" id="dashboard">
 
 <div class="card nursery" onclick="openFolder('Nursery')">
