@@ -767,7 +767,7 @@ searchTimeout = setTimeout(() => {
       let path = (f.path || "").toLowerCase();
 
       // 🔥 FIX: remove strict PDF filter
-      if(path.includes(query)){
+      if(path.includes(query) && path.endsWith(".pdf")){
 
         found = true;
 
