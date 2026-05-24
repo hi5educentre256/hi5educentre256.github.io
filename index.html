@@ -109,7 +109,7 @@ h1{
   font-size:16px;
   cursor:pointer;
   box-shadow:0 5px 15px rgba(0,0,0,0.08);
-  transition:0.3s;
+  transition:all 0.35s ease;
 
   display:flex;
   align-items:center;
@@ -135,8 +135,12 @@ h1{
 }
   
 .card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 25px rgba(0,0,0,0.15);
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 15px 30px rgba(0,0,0,0.18);
+}
+  .card:hover div:first-child{
+  transform:scale(1.2);
+  transition:0.3s;
 }
 
 /* ITEMS */
