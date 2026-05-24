@@ -674,21 +674,43 @@ function openMaterialsByType(path,type){
         if(type === "past" && !name.includes("past")) show = false;
         if(type === "text" && !name.includes("text")) show = false;
 
-        if(show){
-html += `
-<div class="item">
-  <div style="font-weight:600;">📄 ${f.name}</div>
+if(show){
 
-  <div style="margin-top:5px;font-size:12px;">
-<span class="badge ${badgeClass}">
-  ${badge}
-</span>
+  let isTextbook = name.includes("book") || name.includes("textbook");
+  let isScheme = name.includes("scheme") || name.includes("work");
+  let isLesson = name.includes("lesson") || name.includes("notes");
+  let isExam = name.includes("exam") || name.includes("test") || name.includes("past") || name.includes("paper");
+
+  let badge = "";
+
+  if(isTextbook) badge = "📘 Textbook";
+  else if(isScheme) badge = "📊 Scheme of Work";
+  else if(isLesson) badge = "📝 Lesson Notes";
+  else if(isExam) badge = "📄 Past Papers";
+
+  let badgeClass = "";
+
+  if(isTextbook) badgeClass = "textbook";
+  else if(isScheme) badgeClass = "scheme";
+  else if(isLesson) badgeClass = "lesson";
+  else if(isExam) badgeClass = "exam";
+
+  html += `
+  <div class="item">
+    <div style="font-weight:600;">📄 ${f.name}</div>
+
+    <div style="margin-top:5px;font-size:12px;">
+      <span class="badge ${badgeClass}">
+        ${badge}
+      </span>
+    </div>
+
+    <div style="margin-top:10px;">
+      <button onclick="viewPDF('${url}')">👁 View</button>
+    </div>
   </div>
-
-  <div style="margin-top:10px;">
-    <button onclick="viewPDF('${url}')">👁 View</button>
-`;
-        }
+  `;
+}
         }
     });
 
