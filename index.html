@@ -483,7 +483,8 @@ Choose Your Level
 
 let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
-
+let searchTimeout;
+  
 function toggle(){
   let sb=document.getElementById("sidebar");
   sb.style.left=sb.style.left==="0px"?"-300px":"0px";
@@ -744,7 +745,9 @@ function about(){
 
 /* GLOBAL SEARCH */
 function searchAll(query){
-
+clearTimeout(searchTimeout);
+searchTimeout = setTimeout(() => {
+  
   query = query.toLowerCase();
 
   if(query.length < 2) return;
@@ -786,7 +789,9 @@ function searchAll(query){
     html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
 
     document.getElementById("content").innerHTML = html;
-  });
+});
+
+}, 500);
 }
 
 </script>
