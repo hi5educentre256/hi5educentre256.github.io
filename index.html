@@ -779,12 +779,43 @@ if(query.length < 2){
 
         let url = `https://raw.githubusercontent.com/${repo}/main/${f.path}`;
 
-        html += `
-        <div class="item">
-          📄 ${f.path}<br>
-          <button onclick="viewPDF('${url}')">👁 View</button>
-          <button onclick="downloadPDF('${url}')">⬇ Download</button>
-        </div>`;
+let name = path.toLowerCase();
+
+let badge = "📁 Material";
+let badgeClass = "";
+
+if(name.includes("textbook") || name.includes("book")){
+  badge = "📘 Textbook";
+  badgeClass = "textbook";
+}
+else if(name.includes("scheme")){
+  badge = "📊 Scheme of Work";
+  badgeClass = "scheme";
+}
+else if(name.includes("lesson") || name.includes("notes")){
+  badge = "📝 Lesson Notes";
+  badgeClass = "lesson";
+}
+else if(name.includes("exam") || name.includes("past")){
+  badge = "📄 Past Papers";
+  badgeClass = "exam";
+}
+
+html += `
+<div class="item">
+  <div style="font-weight:600;">📄 ${f.path}</div>
+
+  <div style="margin-top:5px;font-size:12px;">
+    <span class="badge ${badgeClass}">
+      ${badge}
+    </span>
+  </div>
+
+  <div style="margin-top:10px;">
+    <button onclick="viewPDF('${url}')">👁 View</button>
+    <button onclick="downloadPDF('${url}')">⬇ Download</button>
+  </div>
+</div>`;
       }
     });
 
