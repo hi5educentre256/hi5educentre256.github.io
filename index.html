@@ -151,7 +151,43 @@ h1{
   border-radius:12px;
   box-shadow:0 2px 10px rgba(0,0,0,0.06);
 }
+  
+.badge{
+  display:inline-block;
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+}
 
+/* Textbook */
+.textbook{
+  background:#fff3cd;
+  color:#7a5a00;
+  border:1px solid #ffd966;
+}
+
+/* Scheme of Work */
+.scheme{
+  background:#dbeafe;
+  color:#1e3a8a;
+  border:1px solid #93c5fd;
+}
+
+/* Lesson Notes */
+.lesson{
+  background:#dcfce7;
+  color:#166534;
+  border:1px solid #86efac;
+}
+
+/* Past Papers */
+.exam{
+  background:#fee2e2;
+  color:#991b1b;
+  border:1px solid #fca5a5;
+}
+  
 /* BUTTON */
 button{
   padding:8px 12px;
@@ -644,9 +680,9 @@ html += `
   <div style="font-weight:600;">📄 ${f.name}</div>
 
   <div style="margin-top:5px;font-size:12px;">
-    <span style="background:#eef;padding:4px 8px;border-radius:8px;">
-      ${badge}
-    </span>
+<span class="badge ${badgeClass}">
+  ${badge}
+</span>
   </div>
 
   <div style="margin-top:10px;">
