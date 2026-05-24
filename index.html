@@ -744,11 +744,13 @@ function about(){
 
 /* GLOBAL SEARCH */
 function searchAll(query){
+
   query = query.toLowerCase();
 
   if(query.length < 2) return;
 
-  document.getElementById("content").innerHTML = "<div class='item'>🔍 Searching...</div>";
+  document.getElementById("content").innerHTML =
+    "<div class='item'>🔍 Searching...</div>";
 
   fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
   .then(r => r.json())
@@ -759,7 +761,10 @@ function searchAll(query){
 
     data.tree.forEach(f => {
 
-      if(f.path.toLowerCase().includes(query) && f.path.toLowerCase().endsWith(".pdf")){
+      let path = (f.path || "").toLowerCase();
+
+      // 🔥 FIX: remove strict PDF filter
+      if(path.includes(query)){
 
         found = true;
 
@@ -772,6 +777,17 @@ function searchAll(query){
           <button onclick="downloadPDF('${url}')">⬇ Download</button>
         </div>`;
       }
+    });
+
+    if(!found){
+      html += "<div class='item'>No results found</div>";
+    }
+
+    html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
+
+    document.getElementById("content").innerHTML = html;
+  });
+}
     });
 
     if(!found){
