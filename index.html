@@ -25,7 +25,61 @@ header{
   top:0;
   z-index:1000;
 }
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 18px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background: linear-gradient(135deg,#0d6efd,#198754);
+  color:white;
+}
 
+/* Menu stays left */
+.menu{
+  position:absolute;
+  left:15px;
+  top:16px;
+  font-size:30px;
+  cursor:pointer;
+}
+
+/* Brand section */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  padding:6px 12px;
+  border-radius:12px;
+  transition:0.3s;
+}
+
+.brand:hover{
+  background:rgba(255,255,255,0.15);
+  transform:scale(1.02);
+}
+
+.brand img{
+  height:42px;
+  width:42px;
+  border-radius:10px;
+  object-fit:cover;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+.brand-text .title{
+  font-weight:800;
+  font-size:18px;
+}
+
+.brand-text .subtitle{
+  font-size:12px;
+  opacity:0.85;
+}
+  
 .menu{
   position:absolute;
   left:15px;
@@ -390,15 +444,17 @@ button{
 </head>
 
 <body>
-<header>
-<span class="menu" onclick="toggle()">☰</span>
+<header class="topbar">
 
-<div style="display:flex;align-items:center;justify-content:center;gap:10px;">
-  <a href="images/logo.png" download="Hi5-Logo.png">
-  <img src="images/logo.png" alt="Hi5 Logo" style="height:40px;">
-</a>
-  <span>Hi5 Education Centre</span>
-</div>
+  <span class="menu" onclick="toggle()">☰</span>
+
+  <div class="brand" onclick="goDashboard()">
+    <img src="images/logo.png" alt="Hi5 Logo">
+    <div class="brand-text">
+      <div class="title">Hi5 Education Centre</div>
+      <div class="subtitle">Learn Today, Lead Tomorrow</div>
+    </div>
+  </div>
 
 </header>
 
