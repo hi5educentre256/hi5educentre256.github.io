@@ -1,99 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
+  <!-- HOME -->
   <url>
     <loc>https://hi5educentre256.github.io/</loc>
   </url>
 
-  <!-- Main sections -->
+  <!-- MAIN LEVELS -->
   <url>
     <loc>https://hi5educentre256.github.io/Nursery/</loc>
   </url>
-
   <url>
     <loc>https://hi5educentre256.github.io/Primary/</loc>
   </url>
-
   <url>
     <loc>https://hi5educentre256.github.io/Secondary/</loc>
   </url>
-
   <url>
     <loc>https://hi5educentre256.github.io/Tertiary/</loc>
   </url>
 
-  <!-- NEW SEO PAGE -->
+  <!-- NURSERY LEVELS -->
+  <url>
+    <loc>https://hi5educentre256.github.io/Nursery/Baby/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Nursery/Middle/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Nursery/Top/</loc>
+  </url>
+
+  <!-- PRIMARY CLASSES -->
+  <url>
+    <loc>https://hi5educentre256.github.io/Primary/P1/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Primary/P2/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Primary/P3/</loc>
+  </url>
   <url>
     <loc>https://hi5educentre256.github.io/Primary/P4/</loc>
   </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Primary/P5/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Primary/P6/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Primary/P7/</loc>
+  </url>
+
+  <!-- SECONDARY CLASSES -->
+  <url>
+    <loc>https://hi5educentre256.github.io/Secondary/S1/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Secondary/S2/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Secondary/S3/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Secondary/S4/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Secondary/S5/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Secondary/S6/</loc>
+  </url>
+
+  <!-- TERTIARY LEVELS -->
+  <url>
+    <loc>https://hi5educentre256.github.io/Tertiary/Certificate/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Tertiary/Diploma/</loc>
+  </url>
+  <url>
+    <loc>https://hi5educentre256.github.io/Tertiary/Degree/</loc>
+  </url>
 
 </urlset>
-<url>
-  <loc>https://hi5educentre256.github.io/Primary/P1/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Primary/P2/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Primary/P3/</loc>
-</url>
-<url>
-  <loc>https://hi5educentre256.github.io/Primary/P5/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Primary/P6/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Primary/P7/</loc>
-</url>
-<url>
-  <loc>https://hi5educentre256.github.io/Secondary/S1/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Secondary/S2/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Secondary/S3/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Secondary/S4/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Secondary/S5/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Secondary/S6/</loc>
-</url>
-<url>
-  <loc>https://hi5educentre256.github.io/Tertiary/Diploma/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Tertiary/Degree/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Tertiary/Certificate/</loc>
-</url>
-<!-- NURSERY -->
-<url>
-  <loc>https://hi5educentre256.github.io/Nursery/Baby/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Nursery/Middle/</loc>
-</url>
-
-<url>
-  <loc>https://hi5educentre256.github.io/Nursery/Top/</loc>
-</url>
