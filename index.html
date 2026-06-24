@@ -617,7 +617,10 @@ function openFolder(folder){
 
     data.forEach(f=>{
 if(f.type==="dir"){
+data.forEach(f=>{
+  if(f.type==="dir"){
 
+    let label = f.name;
 let name = f.name.toLowerCase().replace(/\s/g, "");
 
 let icon = "📁";
