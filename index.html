@@ -628,13 +628,13 @@ else if (name.includes("middle")) icon = "🌈";
 else if (name.includes("top")) icon = "🎨";
 
 // Primary
-else if (name.match(/p1|primary1|class1/)) icon = "1️⃣";
-else if (name.match(/p2|primary2|class2/)) icon = "2️⃣";
-else if (name.match(/p3|primary3|class3/)) icon = "3️⃣";
-else if (name.match(/p4|primary4|class4/)) icon = "4️⃣";
-else if (name.match(/p5|primary5|class5/)) icon = "5️⃣";
-else if (name.match(/p6|primary6|class6/)) icon = "6️⃣";
-else if (name.match(/p7|primary7|class7/)) icon = "7️⃣";
+if (name.includes("p1") || name.includes("primary1") || name.includes("class1")) icon = "📘 P1";
+else if (name.includes("p2") || name.includes("primary2") || name.includes("class2")) icon = "📘 P2";
+else if (name.includes("p3") || name.includes("primary3") || name.includes("class3")) icon = "📘 P3";
+else if (name.includes("p4") || name.includes("primary4") || name.includes("class4")) icon = "📘 P4";
+else if (name.includes("p5") || name.includes("primary5") || name.includes("class5")) icon = "📘 P5";
+else if (name.includes("p6") || name.includes("primary6") || name.includes("class6")) icon = "📘 P6";
+else if (name.includes("p7") || name.includes("primary7") || name.includes("class7")) icon = "📘 P7";
 
 // Secondary
 else if (name.includes("s1")) icon = "🧪";
