@@ -592,7 +592,7 @@ function go(x){
     about();
   }
   else{
-    openFolder(x);
+    openFolder(x.toLowerCase());
   }
 }
 function back(){
@@ -620,30 +620,34 @@ if(f.type==="dir"){
 
 let name = f.name.toLowerCase().replace(/\s/g, "");
 
-let icon = "📚";
+let icon = "📁";
 
+// Nursery
 if (name.includes("baby")) icon = "🧸";
 else if (name.includes("middle")) icon = "🌈";
 else if (name.includes("top")) icon = "🎨";
 
-else if (n.match(/p1|primary1|class1/)) icon = "📗";
-else if (n.match(/p2|primary2|class2/)) icon = "📘";
-else if (n.match(/p3|primary3|class3/)) icon = "📙";
-else if (n.match(/p4|primary4|class4/)) icon = "📕";
-else if (n.match(/p5|primary5|class5/)) icon = "📓";
-else if (n.match(/p6|primary6|class6/)) icon = "📒";
-else if (n.match(/p7|primary7|class7/)) icon = "📚";
-// Secondary
-else if (n.includes("s1")) icon = "🧪";
-else if (n.includes("s2")) icon = "📐";
-else if (n.includes("s3")) icon = "🧬";
-else if (n.includes("s4")) icon = "📖";
-else if (n.includes("s5")) icon = "🎓";
-else if (n.includes("s6")) icon = "🏆";
+// Primary
+else if (name.match(/p1|primary1|class1/)) icon = "1️⃣";
+else if (name.match(/p2|primary2|class2/)) icon = "2️⃣";
+else if (name.match(/p3|primary3|class3/)) icon = "3️⃣";
+else if (name.match(/p4|primary4|class4/)) icon = "4️⃣";
+else if (name.match(/p5|primary5|class5/)) icon = "5️⃣";
+else if (name.match(/p6|primary6|class6/)) icon = "6️⃣";
+else if (name.match(/p7|primary7|class7/)) icon = "7️⃣";
 
-else if(n.includes("certificate")) icon = "📜";
-else if(n.includes("diploma")) icon = "🥇";
-else if(n.includes("degree")) icon = "🎓";
+// Secondary
+else if (name.includes("s1")) icon = "🧪";
+else if (name.includes("s2")) icon = "📐";
+else if (name.includes("s3")) icon = "🧬";
+else if (name.includes("s4")) icon = "📖";
+else if (name.includes("s5")) icon = "🎓";
+else if (name.includes("s6")) icon = "🏆";
+
+// Tertiary group (clean version)
+if (name.includes("certificate")) icon = "📜";
+else if (name.includes("diploma")) icon = "🥇";
+else if (name.includes("degree")) icon = "🎓";
 
 html += `
 <div class="item folder-card" onclick="openClass('${folder}/${f.name}')">
