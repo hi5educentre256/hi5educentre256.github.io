@@ -592,7 +592,7 @@ function go(x){
     about();
   }
   else{
-    openFolder(x.toLowerCase());
+    openFolder(x);
   }
 }
 function back(){
@@ -617,8 +617,6 @@ function openFolder(folder){
 
     data.forEach(f=>{
 if(f.type==="dir"){
-data.forEach(f=>{
-  if(f.type==="dir"){
 
     let label = f.name;
 let name = f.name.toLowerCase().replace(/\s/g, "");
