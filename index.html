@@ -645,6 +645,11 @@ function openFolder(folder){
         else if (name.includes("s5")) icon = "🎓 S5";
         else if (name.includes("s6")) icon = "🏆 S6";
 
+        // TERTIARY
+else if (name.includes("diploma")) icon = "📜 Diploma";
+else if (name.includes("certificate")) icon = "🎓 Certificate";
+else if (name.includes("degree")) icon = "🏅 Degree";
+        
         html += `
         <div class="item folder-card" onclick="openClass('${folder}/${f.name}')">
 
