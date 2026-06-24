@@ -618,29 +618,31 @@ function openFolder(folder){
     data.forEach(f=>{
 if(f.type==="dir"){
 
+let raw = f.name.toLowerCase();
+let n = raw.replace(/\s/g, "");
 let icon = "📚";
 
-let n = f.name.toLowerCase();
+// Nursery
+if (n.includes("baby")) icon = "🧸";
+else if (n.includes("middle")) icon = "🌈";
+else if (n.includes("top")) icon = "🎨";
 
-if(n.includes("baby")) icon = "🧸";
-else if(n.includes("middle")) icon = "🌈";
-else if(n.includes("top")) icon = "🎨";
+// Primary P1–P7 (FIXED PROPERLY)
+else if (n.includes("p1") || n.includes("primary1") || n.includes("class1")) icon = "1️⃣";
+else if (n.includes("p2") || n.includes("primary2") || n.includes("class2")) icon = "2️⃣";
+else if (n.includes("p3") || n.includes("primary3") || n.includes("class3")) icon = "3️⃣";
+else if (n.includes("p4") || n.includes("primary4") || n.includes("class4")) icon = "4️⃣";
+else if (n.includes("p5") || n.includes("primary5") || n.includes("class5")) icon = "5️⃣";
+else if (n.includes("p6") || n.includes("primary6") || n.includes("class6")) icon = "6️⃣";
+else if (n.includes("p7") || n.includes("primary7") || n.includes("class7")) icon = "7️⃣";
 
-let n = f.name.toLowerCase().replace(/\s/g, "");
-
-if(n.includes("p1") || n.includes("primary1") || n.includes("class1")) icon = "1️⃣";
-else if(n.includes("p2") || n.includes("primary2") || n.includes("class2")) icon = "2️⃣";
-else if(n.includes("p3") || n.includes("primary3") || n.includes("class3")) icon = "3️⃣";
-else if(n.includes("p4") || n.includes("primary4") || n.includes("class4")) icon = "4️⃣";
-else if(n.includes("p5") || n.includes("primary5") || n.includes("class5")) icon = "5️⃣";
-else if(n.includes("p6") || n.includes("primary6") || n.includes("class6")) icon = "6️⃣";
-else if(n.includes("p7") || n.includes("primary7") || n.includes("class7")) icon = "7️⃣";
-else if(n.includes("s1")) icon = "🧪";
-else if(n.includes("s2")) icon = "📐";
-else if(n.includes("s3")) icon = "🧬";
-else if(n.includes("s4")) icon = "📖";
-else if(n.includes("s5")) icon = "🎓";
-else if(n.includes("s6")) icon = "🏆";
+// Secondary
+else if (n.includes("s1")) icon = "🧪";
+else if (n.includes("s2")) icon = "📐";
+else if (n.includes("s3")) icon = "🧬";
+else if (n.includes("s4")) icon = "📖";
+else if (n.includes("s5")) icon = "🎓";
+else if (n.includes("s6")) icon = "🏆";
 
 else if(n.includes("certificate")) icon = "📜";
 else if(n.includes("diploma")) icon = "🥇";
