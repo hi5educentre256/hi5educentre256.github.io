@@ -527,7 +527,42 @@ Choose Your Level
 </h2>
   
 <div class="cards" id="dashboard">
-<!-- ✔ COUNTERS SECTION -->
+
+  <section class="cards" style="margin-top:20px;">
+<div class="card nursery" onclick="openFolder('Nursery')">
+  <div style="font-size:28px;">📚</div>
+  <div>
+    <div>Nursery</div>
+    <small>Baby • Middle • Top</small>
+  </div>
+</div>
+
+<div class="card primary" onclick="openFolder('Primary')">
+  <div style="font-size:28px;">📘</div>
+  <div>
+    <div>Primary</div>
+    <small>P1 – P7</small>
+  </div>
+</div>
+
+<div class="card secondary" onclick="openFolder('Secondary')">
+  <div style="font-size:28px;">📗</div>
+  <div>
+    <div>Secondary</div>
+    <small>S1 – S6</small>
+  </div>
+</div>
+
+<div class="card tertiary" onclick="openFolder('Tertiary')">
+  <div style="font-size:28px;">🎓</div>
+  <div>
+    <div>Tertiary</div>
+    <small>University Level</small>
+  </div>
+</div>
+
+</div>
+  <!-- ✔ COUNTERS SECTION -->
 <section class="cards counters">
 
   <div class="card primary">
@@ -572,42 +607,6 @@ Choose Your Level
   </div>
 
 </section>
-
-  <section class="cards" style="margin-top:20px;">
-<div class="card nursery" onclick="openFolder('Nursery')">
-  <div style="font-size:28px;">📚</div>
-  <div>
-    <div>Nursery</div>
-    <small>Baby • Middle • Top</small>
-  </div>
-</div>
-
-<div class="card primary" onclick="openFolder('Primary')">
-  <div style="font-size:28px;">📘</div>
-  <div>
-    <div>Primary</div>
-    <small>P1 – P7</small>
-  </div>
-</div>
-
-<div class="card secondary" onclick="openFolder('Secondary')">
-  <div style="font-size:28px;">📗</div>
-  <div>
-    <div>Secondary</div>
-    <small>S1 – S6</small>
-  </div>
-</div>
-
-<div class="card tertiary" onclick="openFolder('Tertiary')">
-  <div style="font-size:28px;">🎓</div>
-  <div>
-    <div>Tertiary</div>
-    <small>University Level</small>
-  </div>
-</div>
-
-</div>
-  
 <div class="footer">
 © 2026 Hi5 Education Centre | All Rights Reserved
 </div>
@@ -1076,7 +1075,9 @@ html += `
     document.getElementById("schemes").innerText = schemes;
   });
 }
-  
+  window.onload = function(){
+  loadStats();
+};
 </script>
 
 <!-- WHATSAPP BUTTON -->
