@@ -520,8 +520,12 @@ Download textbooks, lesson notes, schemes of work, and past papers — all in on
 </div>
 </section>
 
-<input type="text" placeholder="🔍 Search materials..." onkeyup="searchAll(this.value)" style="width:100%;padding:14px;margin-top:10px;border-radius:10px;border:1px solid #ccc;">
-  
+<input
+type="text"
+id="searchBox"
+placeholder="🔍 Search P4 Math, Schemes, Past Papers..."
+onkeyup="searchAll(this.value)"
+style="width:100%;padding:14px;border-radius:10px;border:1px solid #ccc;">  
 <h2 style="margin-top:25px;font-size:20px;">
 Choose Your Level
 </h2>
@@ -565,7 +569,7 @@ Choose Your Level
   <!-- ✔ COUNTERS SECTION -->
 <section class="cards counters">
 
-  <div class="card primary">
+<div class="card primary" onclick="searchAll('')">
     <div style="font-size:30px;">📚</div>
     <div>
       <div>Total Resources</div>
@@ -573,7 +577,7 @@ Choose Your Level
     </div>
   </div>
 
-  <div class="card nursery">
+<div class="card nursery" onclick="searchAll('book')">
     <div style="font-size:30px;">📘</div>
     <div>
       <div>Textbooks</div>
@@ -581,7 +585,7 @@ Choose Your Level
     </div>
   </div>
 
-  <div class="card secondary">
+<div class="card secondary" onclick="searchAll('lesson')">
     <div style="font-size:30px;">📝</div>
     <div>
       <div>Lesson Notes</div>
@@ -589,7 +593,7 @@ Choose Your Level
     </div>
   </div>
 
-  <div class="card tertiary">
+<div class="card tertiary" onclick="searchAll('past')">
     <div style="font-size:30px;">📄</div>
     <div>
       <div>Past Papers</div>
@@ -598,7 +602,7 @@ Choose Your Level
   </div>
 
   <!-- ✔ NEW: SCHEMES -->
-  <div class="card tertiary">
+<div class="card tertiary" onclick="searchAll('scheme')">
     <div style="font-size:30px;">📊</div>
     <div>
       <div>Schemes of Work</div>
@@ -957,11 +961,7 @@ searchTimeout = setTimeout(() => {
   
   query = query.toLowerCase();
 
-if(query.length < 2){
-  document.getElementById("content").innerHTML = `
-  <div class="item">
-    🔍 Type at least 2 letters to search materials
-  </div>`;
+if(query.length < 1){
   return;
 }
 
@@ -980,7 +980,10 @@ if(query.length < 2){
       let path = (f.path || "").toLowerCase();
 
       // 🔥 FIX: remove strict PDF filter
-      if(path.includes(query) && path.endsWith(".pdf")){
+      if(
+  (query === "" || path.includes(query))
+  && path.endsWith(".pdf")
+){
 
         found = true;
 
