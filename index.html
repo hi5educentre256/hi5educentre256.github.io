@@ -520,7 +520,15 @@ Download textbooks, lesson notes, schemes of work, and past papers — all in on
 </div>
 </section>
 
-  <div class="card primary">
+<input type="text" placeholder="🔍 Search materials..." onkeyup="searchAll(this.value)" style="width:100%;padding:14px;margin-top:10px;border-radius:10px;border:1px solid #ccc;">
+  
+<h2 style="margin-top:25px;font-size:20px;">
+Choose Your Level
+</h2>
+  
+<div class="cards" id="dashboard">
+</section>
+    <div class="card primary">
     <div style="font-size:30px;">📚</div>
     <div>
       <div>Total Resources</div>
@@ -552,14 +560,6 @@ Download textbooks, lesson notes, schemes of work, and past papers — all in on
     </div>
   </div>
 
-</section>
-<input type="text" placeholder="🔍 Search materials..." onkeyup="searchAll(this.value)" style="width:100%;padding:14px;margin-top:10px;border-radius:10px;border:1px solid #ccc;">
-  
-<h2 style="margin-top:25px;font-size:20px;">
-Choose Your Level
-</h2>
-  
-<div class="cards" id="dashboard">
   <section class="cards" style="margin-top:20px;">
 <div class="card nursery" onclick="openFolder('Nursery')">
   <div style="font-size:28px;">📚</div>
@@ -1025,7 +1025,6 @@ html += `
 
 }, 500);
 }
-  
   function loadStats(){
   fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
   .then(r => r.json())
@@ -1035,6 +1034,7 @@ html += `
     let textbooks = 0;
     let lessons = 0;
     let papers = 0;
+    let schemes = 0;   // ✔ ADDED SCHEMES
 
     data.tree.forEach(f => {
       if(f.path && f.path.endsWith(".pdf")){
@@ -1042,20 +1042,27 @@ html += `
 
         let name = f.path.toLowerCase();
 
-        if(name.includes("book")) textbooks++;
+        // ✔ SCHEME FIRST (as you requested)
+        if(name.includes("scheme")) schemes++;
+
+        if(name.includes("book") || name.includes("textbook")) textbooks++;
+
         if(name.includes("lesson") || name.includes("notes")) lessons++;
+
         if(name.includes("past") || name.includes("exam") || name.includes("paper")) papers++;
       }
     });
 
+    // OUTPUT TO HTML
     document.getElementById("totalFiles").innerText = total;
     document.getElementById("textbooks").innerText = textbooks;
     document.getElementById("lessons").innerText = lessons;
     document.getElementById("papers").innerText = papers;
+
+    // ✔ NEW SCHEME COUNTER
+    document.getElementById("schemes").innerText = schemes;
   });
 }
-
-loadStats();
   
 </script>
 
