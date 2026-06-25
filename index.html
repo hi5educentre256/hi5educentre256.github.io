@@ -595,7 +595,37 @@ Choose Your Level
 </div>
 
 </div>
+function loadStats(){
+  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
+  .then(r => r.json())
+  .then(data => {
 
+    let total = 0;
+    let textbooks = 0;
+    let lessons = 0;
+    let papers = 0;
+
+    data.tree.forEach(f => {
+      if(f.path && f.path.endsWith(".pdf")){
+        total++;
+
+        let name = f.path.toLowerCase();
+
+        if(name.includes("book")) textbooks++;
+        if(name.includes("lesson") || name.includes("notes")) lessons++;
+        if(name.includes("past") || name.includes("exam") || name.includes("paper")) papers++;
+      }
+    });
+
+    document.getElementById("totalFiles").innerText = total;
+    document.getElementById("textbooks").innerText = textbooks;
+    document.getElementById("lessons").innerText = lessons;
+    document.getElementById("papers").innerText = papers;
+  });
+}
+
+loadStats();
+  
 <div class="footer">
 © 2026 Hi5 Education Centre | All Rights Reserved
 </div>
@@ -1026,36 +1056,7 @@ html += `
 
 }, 500);
 }
-function loadStats(){
-  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
-  .then(r => r.json())
-  .then(data => {
 
-    let total = 0;
-    let textbooks = 0;
-    let lessons = 0;
-    let papers = 0;
-
-    data.tree.forEach(f => {
-      if(f.path && f.path.endsWith(".pdf")){
-        total++;
-
-        let name = f.path.toLowerCase();
-
-        if(name.includes("book")) textbooks++;
-        if(name.includes("lesson") || name.includes("notes")) lessons++;
-        if(name.includes("past") || name.includes("exam") || name.includes("paper")) papers++;
-      }
-    });
-
-    document.getElementById("totalFiles").innerText = total;
-    document.getElementById("textbooks").innerText = textbooks;
-    document.getElementById("lessons").innerText = lessons;
-    document.getElementById("papers").innerText = papers;
-  });
-}
-
-loadStats();
 </script>
 
 <!-- WHATSAPP BUTTON -->
