@@ -595,8 +595,6 @@ Choose Your Level
 </div>
 
 </div>
-function loadStats(){
-
   
 <div class="footer">
 © 2026 Hi5 Education Centre | All Rights Reserved
@@ -1028,6 +1026,8 @@ html += `
 
 }, 500);
 }
+  
+  function loadStats(){
   fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
   .then(r => r.json())
   .then(data => {
