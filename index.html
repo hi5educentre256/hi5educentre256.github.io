@@ -915,15 +915,36 @@ else if(isExam){
 html += `
 <div class="item file-card">
 
-<div style="font-weight:600;">📄 ${filename}</div>
+  <div style="font-weight:600;">📄 ${filename}</div>
 
-<div style="margin-top:5px;">
-<span class="badge ${badgeClass}">
-${badge}
-</span>
+  <div style="margin-top:5px;">
+    <span class="badge ${badgeClass}">
+      ${badge}
+    </span>
+  </div>
+
+  <div style="font-size:12px;color:#666;margin-top:4px;">
+    PDF Resource
+  </div>
+
+  <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+
+    <!-- VIEW (tracked) -->
+    <button onclick="viewPDF('${url}', '${filename}')">
+      👁 View
+    </button>
+
+    <!-- DOWNLOAD / PAYMENT LOGIC (tracked) -->
+    ${
+      isTextbook
+        ? `<button onclick="requestTextbook('${filename}')">🔒 Buy (UGX 10,000)</button>`
+        : `<button onclick="downloadPDF('${url}', '${filename}')">⬇ Download</button>`
+    }
+
+  </div>
+
 </div>
-
-<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+`;
 ${getFileActions(filename,url)}
 </div>
 
