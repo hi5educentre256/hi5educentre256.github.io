@@ -1097,24 +1097,6 @@ function searchSuggestions(query){
   });
 }
 
-    // ✅ OUTPUT (FIXED LOGIC DISPLAY)
-
-    document.getElementById("totalFiles").innerText = total;
-
-    document.getElementById("textbooks").innerText =
-      textbooks + " (Paid 🔒)";
-
-    document.getElementById("lessons").innerText =
-      lessons + " (Free)";
-
-    document.getElementById("papers").innerText =
-      papers + " (Free)";
-
-    document.getElementById("schemes").innerText =
-      schemes + " (Free)";
-  });
-}
-
 function loadFileIndex(){
   fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
   .then(r => r.json())
