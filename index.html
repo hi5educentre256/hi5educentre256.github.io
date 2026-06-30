@@ -620,7 +620,27 @@ Choose Your Level
 let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 let searchTimeout;
-  
+function getFileActions(name, url){
+  let lower = name.toLowerCase();
+
+  let isTextbook = lower.includes("textbook") || lower.includes("book");
+
+  let html = `<button onclick="viewPDF('${url}')">👁 View</button>`;
+
+  if(isTextbook){
+    html += `
+      <button onclick="requestTextbook('${name}')">
+        🔒 Download (UGX 10,000)
+      </button>
+    `;
+  } else {
+    html += `
+      <button onclick="downloadPDF('${url}')">⬇ Download</button>
+    `;
+  }
+
+  return html;
+}
 function toggle(){
   let sb=document.getElementById("sidebar");
   sb.style.left=sb.style.left==="0px"?"-300px":"0px";
@@ -804,7 +824,9 @@ html += `
 </div>
 
   <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
-    <button onclick="viewPDF('${url}')">👁 View</button>
+    <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+  ${getFileActions(f.name, url)}
+</div>
 `;
 
   if(isTextbook){
@@ -1022,9 +1044,8 @@ html += `
   </div>
 
   <div style="margin-top:10px;">
-    <button onclick="viewPDF('${url}')">👁 View</button>
-    <button onclick="downloadPDF('${url}')">⬇ Download</button>
-  </div>
+  ${getFileActions(f.path, url)}
+</div>
 </div>`;
       }
     });
