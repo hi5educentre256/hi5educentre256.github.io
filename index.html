@@ -1003,6 +1003,7 @@ function about(){
 
 /* GLOBAL SEARCH */
 function searchSuggestions(query){
+function searchSuggestions(query){
   query = query.toLowerCase();
   let box = document.getElementById("suggestList");
 
@@ -1012,8 +1013,7 @@ function searchSuggestions(query){
   }
 
   let results = fileIndex.filter(f =>
-    f.name.toLowerCase().includes(query) ||
-    f.path.toLowerCase().includes(query)
+    f.name.toLowerCase().includes(query)
   ).slice(0, 8);
 
   if(results.length === 0){
@@ -1023,7 +1023,7 @@ function searchSuggestions(query){
   }
 
   box.innerHTML = results.map(f => `
-    <div onclick="openFile('${f.url}')" style="
+    <div onclick="openFile('${f.url}', '${f.name}')" style="
       padding:10px;
       cursor:pointer;
       border-bottom:1px solid #eee;
