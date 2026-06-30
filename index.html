@@ -869,6 +869,45 @@ html += `
     document.getElementById("content").innerHTML = html;
   });
 }
+function openFiltered(keyword){
+  stack.push(document.getElementById("content").innerHTML);
+
+  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
+  .then(r => r.json())
+  .then(data => {
+
+    let html = "<button onclick='back()'>⬅ Back</button><h2>Results</h2>";
+
+    let found = false;
+
+    data.tree.forEach(f => {
+      if(f.path && f.path.endsWith(".pdf")){
+
+        let name = f.path.toLowerCase();
+
+        if(name.includes(keyword.toLowerCase())){
+
+          found = true;
+          let url = `https://raw.githubusercontent.com/${repo}/main/${f.path}`;
+
+          html += `
+            <div class="item">
+              <div>📄 ${f.path.split("/").pop()}</div>
+              <button onclick="viewPDF('${url}')">👁 View</button>
+              <button onclick="downloadPDF('${url}')">⬇ Download</button>
+            </div>
+          `;
+        }
+      }
+    });
+
+    if(!found){
+      html += "<div class='item'>No results found</div>";
+    }
+
+    document.getElementById("content").innerHTML = html;
+  });
+}
 /* PDF VIEW */
 function viewPDF(url){
   stack.push(document.getElementById("content").innerHTML);
@@ -1003,7 +1042,6 @@ function about(){
 
 /* GLOBAL SEARCH */
 function searchSuggestions(query){
-function searchSuggestions(query){
   query = query.toLowerCase();
   let box = document.getElementById("suggestList");
 
@@ -1119,6 +1157,10 @@ document.addEventListener("click", function(e){
     document.getElementById("suggestList").style.display = "none";
   }
 });
+  function searchAll(query){
+  document.getElementById("searchBox").value = query;
+  openFiltered(query);
+}
 </script>
 
 </body>
