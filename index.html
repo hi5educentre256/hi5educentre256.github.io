@@ -1125,6 +1125,11 @@ html += `
 <script>
 function openWA(){document.getElementById("waBox").style.display="block";}
 function closeWA(){document.getElementById("waBox").style.display="none";}
+document.addEventListener("click", function(e){
+  if(!e.target.closest("#searchBox") && !e.target.closest("#suggestList")){
+    document.getElementById("suggestList").style.display = "none";
+  }
+});
 </script>
 
 </body>
