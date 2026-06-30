@@ -520,15 +520,19 @@ Download textbooks, lesson notes, schemes of work, and past papers — all in on
 </div>
 </section>
 
-<input
-type="text"
-id="searchBox"
-placeholder="🔍 Search P4 Math, Schemes, Past Papers..."
-onkeyup="searchAll(this.value)"
-style="width:100%;padding:14px;border-radius:10px;border:1px solid #ccc;">
-  <div id="suggestBox" style="position:relative;">
+<div id="suggestBox" style="position:relative;width:100%;">
+
+  <input
+    type="text"
+    id="searchBox"
+    placeholder="🔍 Search P4 Math, Schemes, Past Papers..."
+    onkeyup="searchAll(this.value)"
+    style="width:100%;padding:14px;border-radius:10px;border:1px solid #ccc;box-sizing:border-box;">
+
   <div id="suggestList" style="
     position:absolute;
+    top:100%;
+    left:0;
     width:100%;
     background:white;
     border:1px solid #ccc;
@@ -537,7 +541,9 @@ style="width:100%;padding:14px;border-radius:10px;border:1px solid #ccc;">
     overflow-y:auto;
     display:none;
     z-index:9999;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
   "></div>
+
 </div>
 <h2 style="margin-top:25px;font-size:20px;">
 Choose Your Level
