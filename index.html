@@ -1065,6 +1065,21 @@ function searchAll(query){
     document.getElementById("schemes").innerText = schemes;
   });
 }
+function loadFileIndex(){
+  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
+  .then(r => r.json())
+  .then(data => {
+
+    fileIndex = data.tree
+      .filter(f => f.path && f.path.endsWith(".pdf"))
+      .map(f => ({
+        name: f.path.split("/").pop(),
+        path: f.path,
+        url: `https://raw.githubusercontent.com/${repo}/main/${f.path}`
+      }));
+
+  });
+}
   window.onload = function(){
   loadStats();
   loadFileIndex();
