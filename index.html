@@ -866,6 +866,10 @@ function viewPDF(url){
   `;
 }
 
+function openFile(url){
+  document.getElementById("suggestList").style.display = "none";
+  viewPDF(url);
+}
 /* DOWNLOAD */
 function downloadPDF(url){
   let a=document.createElement("a");
