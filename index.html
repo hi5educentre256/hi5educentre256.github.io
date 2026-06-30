@@ -969,10 +969,14 @@ function openFile(url){
   viewPDF(url);
 }
 /* DOWNLOAD */
-function downloadPDF(url){
-  let a=document.createElement("a");
-  a.href=url;
-  a.target="_blank";
+function downloadPDF(url, name = "unknown"){
+  gtag('event', 'download_pdf', {
+    file_name: name
+  });
+
+  let a = document.createElement("a");
+  a.href = url;
+  a.target = "_blank";
   a.click();
 }
   function requestTextbook(file){
