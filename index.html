@@ -941,7 +941,13 @@ ${getFileActions(filename,url)}
   });
 }
 /* PDF VIEW */
-function viewPDF(url){
+function viewPDF(url, name = "unknown"){
+  
+  // ✅ TRACK VIEW IN GOOGLE ANALYTICS
+  gtag('event', 'view_pdf', {
+    file_name: name
+  });
+
   stack.push(document.getElementById("content").innerHTML);
 
   document.getElementById("content").innerHTML = `
