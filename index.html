@@ -1074,27 +1074,28 @@ function searchSuggestions(query){
 
         let name = f.path.toLowerCase();
 
-        // 🔒 PAID (STRICT)
-        if(name.includes("textbook") || name.includes("book/paid")){
+        if(name.includes("textbook") || name.includes("book")){
           textbooks++;
         }
-
-        // 📝 LESSON NOTES (FREE)
         else if(name.includes("lesson") || name.includes("notes")){
           lessons++;
         }
-
-        // 📄 PAST PAPERS (FREE)
         else if(name.includes("past") || name.includes("exam") || name.includes("paper")){
           papers++;
         }
-
-        // 📊 SCHEMES (FREE)
         else if(name.includes("scheme")){
           schemes++;
         }
       }
     });
+
+    document.getElementById("totalFiles").innerText = total;
+    document.getElementById("textbooks").innerText = textbooks + " (Paid 🔒)";
+    document.getElementById("lessons").innerText = lessons + " (Free)";
+    document.getElementById("papers").innerText = papers + " (Free)";
+    document.getElementById("schemes").innerText = schemes + " (Free)";
+  });
+}
 
     // ✅ OUTPUT (FIXED LOGIC DISPLAY)
 
@@ -1114,17 +1115,6 @@ function searchSuggestions(query){
   });
 }
 
-    // OUTPUT TO HTML
-    document.getElementById("totalFiles").innerText = total;
-document.getElementById("textbooks").innerText = textbooks + " (Paid)";
-document.getElementById("lessons").innerText = lessons + " (Free)";
-document.getElementById("papers").innerText = papers + " (Free)";
-document.getElementById("schemes").innerText = schemes + " (Free)";
-
-    // ✔ NEW SCHEME COUNTER
-    document.getElementById("schemes").innerText = schemes;
-  });
-}
 function loadFileIndex(){
   fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
   .then(r => r.json())
