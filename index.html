@@ -850,16 +850,6 @@ html += `
 </div>
 `;
 
-  if(isTextbook){
-    html += `
-      <button onclick="requestTextbook('${f.name}')">🔒 Download (UGX 10,000)</button>
-    `;
-  } else {
-    html += `
-      <button onclick="downloadPDF('${url}')">⬇ Download</button>
-    `;
-  }
-
   html += `</div>`;
 }
 
