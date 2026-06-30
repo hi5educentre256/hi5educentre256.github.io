@@ -656,12 +656,12 @@ function getFileActions(name, url){
 
   let isTextbook = lower.includes("textbook") || lower.includes("book");
 
-  let html = `<button onclick="viewPDF('${url}')">👁 View</button>`;
+  let html = `<button onclick="viewPDF('${url}', '${name}')">👁 View</button>`;
 
   if(isTextbook){
     html += `<button onclick="requestTextbook('${name}')">🔒 Download (UGX 10,000)</button>`;
   } else {
-    html += `<button onclick="downloadPDF('${url}')">⬇ Download</button>`;
+    html += `<button onclick="downloadPDF('${url}', '${name}')">⬇ Download</button>`;
   }
 
   return html;
