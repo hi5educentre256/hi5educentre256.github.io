@@ -641,6 +641,7 @@ let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 let searchTimeout;
 let fileIndex = [];
+
 function getFileActions(name, url){
   let lower = name.toLowerCase();
 
@@ -649,15 +650,9 @@ function getFileActions(name, url){
   let html = `<button onclick="viewPDF('${url}')">👁 View</button>`;
 
   if(isTextbook){
-    html += `
-      <button onclick="requestTextbook('${name}')">
-        🔒 Download (UGX 10,000)
-      </button>
-    `;
+    html += `<button onclick="requestTextbook('${name}')">🔒 Download (UGX 10,000)</button>`;
   } else {
-    html += `
-      <button onclick="downloadPDF('${url}')">⬇ Download</button>
-    `;
+    html += `<button onclick="downloadPDF('${url}')">⬇ Download</button>`;
   }
 
   return html;
