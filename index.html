@@ -874,13 +874,52 @@ function openFiltered(keyword){
           found = true;
           let url = `https://raw.githubusercontent.com/${repo}/main/${f.path}`;
 
-          html += `
-            <div class="item">
-              <div>📄 ${f.path.split("/").pop()}</div>
-              <button onclick="viewPDF('${url}')">👁 View</button>
-              <button onclick="downloadPDF('${url}')">⬇ Download</button>
-            </div>
-          `;
+let filename = f.path.split("/").pop();
+
+let lower = filename.toLowerCase();
+
+let isTextbook = lower.includes("textbook") || lower.includes("book");
+let isScheme = lower.includes("scheme");
+let isLesson = lower.includes("lesson") || lower.includes("notes");
+let isExam = lower.includes("past") || lower.includes("exam") || lower.includes("paper");
+
+let badge = "📁 Material";
+let badgeClass = "";
+
+if(isTextbook){
+    badge = "📘 Textbook";
+    badgeClass = "textbook";
+}
+else if(isScheme){
+    badge = "📊 Scheme of Work";
+    badgeClass = "scheme";
+}
+else if(isLesson){
+    badge = "📝 Lesson Notes";
+    badgeClass = "lesson";
+}
+else if(isExam){
+    badge = "📄 Past Papers";
+    badgeClass = "exam";
+}
+
+html += `
+<div class="item file-card">
+
+<div style="font-weight:600;">📄 ${filename}</div>
+
+<div style="margin-top:5px;">
+<span class="badge ${badgeClass}">
+${badge}
+</span>
+</div>
+
+<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+${getFileActions(filename,url)}
+</div>
+
+</div>
+`;
         }
       }
     });
