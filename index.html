@@ -982,88 +982,36 @@ function about(){
 
 /* GLOBAL SEARCH */
 function searchAll(query){
-clearTimeout(searchTimeout);
-searchTimeout = setTimeout(() => {
-  
   query = query.toLowerCase();
+  let box = document.getElementById("suggestList");
 
-if(query.length < 1){
-  return;
-}
+  if(query.length < 1){
+    box.style.display = "none";
+    return;
+  }
 
-  document.getElementById("content").innerHTML =
-    "<div class='item'>🔍 Searching...</div>";
+  let results = fileIndex.filter(f =>
+    f.name.toLowerCase().includes(query) ||
+    f.path.toLowerCase().includes(query)
+  ).slice(0, 8);
 
-  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
-  .then(r => r.json())
-  .then(data => {
+  if(results.length === 0){
+    box.innerHTML = "<div class='item'>No results</div>";
+    box.style.display = "block";
+    return;
+  }
 
-    let html = "<button onclick='location.reload()'>⬅ Back</button><h2>Search Results</h2>";
-    let found = false;
+  box.innerHTML = results.map(f => `
+    <div onclick="openFile('${f.url}')" style="
+      padding:10px;
+      cursor:pointer;
+      border-bottom:1px solid #eee;
+    ">
+      📄 ${f.name}
+    </div>
+  `).join("");
 
-    data.tree.forEach(f => {
-
-      let path = (f.path || "").toLowerCase();
-
-      // 🔥 FIX: remove strict PDF filter
-      if(
-  (query === "" || path.includes(query))
-  && path.endsWith(".pdf")
-){
-
-        found = true;
-
-        let url = `https://raw.githubusercontent.com/${repo}/main/${f.path}`;
-
-let name = path.toLowerCase();
-
-let badge = "📁 Material";
-let badgeClass = "";
-
-if(name.includes("textbook") || name.includes("book")){
-  badge = "📘 Textbook";
-  badgeClass = "textbook";
-}
-else if(name.includes("scheme")){
-  badge = "📊 Scheme of Work";
-  badgeClass = "scheme";
-}
-else if(name.includes("lesson") || name.includes("notes")){
-  badge = "📝 Lesson Notes";
-  badgeClass = "lesson";
-}
-else if(name.includes("exam") || name.includes("past")){
-  badge = "📄 Past Papers";
-  badgeClass = "exam";
-}
-
-html += `
-<div class="item">
-  <div style="font-weight:600;">📄 ${f.path}</div>
-
-  <div style="margin-top:5px;font-size:12px;">
-    <span class="badge ${badgeClass}">
-      ${badge}
-    </span>
-  </div>
-
-  <div style="margin-top:10px;">
-  ${getFileActions(f.path, url)}
-</div>
-</div>`;
-      }
-    });
-
-    if(!found){
-      html += "<div class='item'>No results found</div>";
-    }
-
-    html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
-
-    document.getElementById("content").innerHTML = html;
-});
-
-}, 500);
+  box.style.display = "block";
 }
   function loadStats(){
   fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
