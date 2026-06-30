@@ -1068,28 +1068,40 @@ function searchSuggestions(query){
     let papers = 0;
     let schemes = 0;   // ✔ ADDED SCHEMES
 
-    data.tree.forEach(f => {
-      if(f.path && f.path.endsWith(".pdf")){
-        total++;
+data.tree.forEach(f => {
+  if(f.path && f.path.endsWith(".pdf")){
+    total++;
 
-        let name = f.path.toLowerCase();
+    let name = f.path.toLowerCase();
 
-        // ✔ SCHEME FIRST (as you requested)
-        if(name.includes("scheme")) schemes++;
+    // 📘 PAID FILES (TEXTBOOKS)
+    if(name.includes("book") || name.includes("textbook")){
+      textbooks++;
+    }
 
-        if(name.includes("book") || name.includes("textbook")) textbooks++;
+    // 📝 LESSON NOTES (FREE)
+    else if(name.includes("lesson") || name.includes("notes")){
+      lessons++;
+    }
 
-        if(name.includes("lesson") || name.includes("notes")) lessons++;
+    // 📄 PAST PAPERS (FREE)
+    else if(name.includes("past") || name.includes("exam") || name.includes("paper")){
+      papers++;
+    }
 
-        if(name.includes("past") || name.includes("exam") || name.includes("paper")) papers++;
-      }
-    });
+    // 📊 SCHEMES (FREE)
+    else if(name.includes("scheme")){
+      schemes++;
+    }
+  }
+});
 
     // OUTPUT TO HTML
     document.getElementById("totalFiles").innerText = total;
-    document.getElementById("textbooks").innerText = textbooks;
-    document.getElementById("lessons").innerText = lessons;
-    document.getElementById("papers").innerText = papers;
+document.getElementById("textbooks").innerText = textbooks + " (Paid)";
+document.getElementById("lessons").innerText = lessons + " (Free)";
+document.getElementById("papers").innerText = papers + " (Free)";
+document.getElementById("schemes").innerText = schemes + " (Free)";
 
     // ✔ NEW SCHEME COUNTER
     document.getElementById("schemes").innerText = schemes;
