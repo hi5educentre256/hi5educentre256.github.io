@@ -807,7 +807,7 @@ let url = f.download_url;
 let name = f.name.toLowerCase();
 
 // 1. detection variables
-let isTextbook = name.includes("textbook") || name.includes("book");
+let isTextbook = name.includes("textbook");
 let isScheme = name.includes("scheme");
 let isLesson = name.includes("lesson");
 let isExam = name.includes("exam") || name.includes("past");
@@ -1058,6 +1058,7 @@ function searchSuggestions(query){
   box.style.display = "block";
 }
   function loadStats(){
+  function loadStats(){
   fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
   .then(r => r.json())
   .then(data => {
@@ -1066,35 +1067,53 @@ function searchSuggestions(query){
     let textbooks = 0;
     let lessons = 0;
     let papers = 0;
-    let schemes = 0;   // ✔ ADDED SCHEMES
+    let schemes = 0;
 
-data.tree.forEach(f => {
-  if(f.path && f.path.endsWith(".pdf")){
-    total++;
+    data.tree.forEach(f => {
+      if(f.path && f.path.endsWith(".pdf")){
+        total++;
 
-    let name = f.path.toLowerCase();
+        let name = f.path.toLowerCase();
 
-    // 📘 PAID FILES (TEXTBOOKS)
-    if(name.includes("book") || name.includes("textbook")){
-      textbooks++;
-    }
+        // 🔒 PAID (STRICT)
+        if(name.includes("textbook") || name.includes("book/paid")){
+          textbooks++;
+        }
 
-    // 📝 LESSON NOTES (FREE)
-    else if(name.includes("lesson") || name.includes("notes")){
-      lessons++;
-    }
+        // 📝 LESSON NOTES (FREE)
+        else if(name.includes("lesson") || name.includes("notes")){
+          lessons++;
+        }
 
-    // 📄 PAST PAPERS (FREE)
-    else if(name.includes("past") || name.includes("exam") || name.includes("paper")){
-      papers++;
-    }
+        // 📄 PAST PAPERS (FREE)
+        else if(name.includes("past") || name.includes("exam") || name.includes("paper")){
+          papers++;
+        }
 
-    // 📊 SCHEMES (FREE)
-    else if(name.includes("scheme")){
-      schemes++;
-    }
-  }
-});
+        // 📊 SCHEMES (FREE)
+        else if(name.includes("scheme")){
+          schemes++;
+        }
+      }
+    });
+
+    // ✅ OUTPUT (FIXED LOGIC DISPLAY)
+
+    document.getElementById("totalFiles").innerText = total;
+
+    document.getElementById("textbooks").innerText =
+      textbooks + " (Paid 🔒)";
+
+    document.getElementById("lessons").innerText =
+      lessons + " (Free)";
+
+    document.getElementById("papers").innerText =
+      papers + " (Free)";
+
+    document.getElementById("schemes").innerText =
+      schemes + " (Free)";
+  });
+}
 
     // OUTPUT TO HTML
     document.getElementById("totalFiles").innerText = total;
