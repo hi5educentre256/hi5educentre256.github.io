@@ -522,12 +522,13 @@ Download textbooks, lesson notes, schemes of work, and past papers — all in on
 
 <div id="suggestBox" style="position:relative;width:100%;">
 
-  <input
-    type="text"
-    id="searchBox"
-    placeholder="🔍 Search P4 Math, Schemes, Past Papers..."
-    onkeyup="searchAll(this.value)"
-    style="width:100%;padding:14px;border-radius:10px;border:1px solid #ccc;box-sizing:border-box;">
+<input
+  type="text"
+  id="searchBox"
+  placeholder="🔍 Search P4 Math, Schemes, Past Papers..."
+  onkeyup="searchSuggestions(this.value)"
+  onkeydown="if(event.key==='Enter') searchAll(this.value)"
+  style="width:100%;padding:14px;border-radius:10px;border:1px solid #ccc;box-sizing:border-box;">
 
   <div id="suggestList" style="
     position:absolute;
