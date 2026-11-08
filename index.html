@@ -771,6 +771,13 @@ else if (name.includes("degree")) icon = "🏅";
 
 /* CLASS VIEW */
 function openClass(path){
+  // Open dedicated SEO-friendly subject/resource pages as full website pages.
+  // Their own index.html files contain the branded page design.
+  if(path === "Primary/P1/Mathematics" || path === "Primary/P1/Textbooks"){
+    window.location.href = "/" + path + "/";
+    return;
+  }
+
   stack.push(document.getElementById("content").innerHTML);
 
   fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
