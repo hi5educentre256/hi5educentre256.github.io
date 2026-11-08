@@ -773,7 +773,20 @@ else if (name.includes("degree")) icon = "🏅";
 function openClass(path){
   // Open dedicated SEO-friendly subject/resource pages as full website pages.
   // Their own index.html files contain the branded page design.
-  if(path === "Primary/P1" || path === "Primary/P1/Mathematics" || path === "Primary/P1/Textbooks"){
+  if([
+    "Primary/P1",
+    "Primary/P1/Mathematics",
+    "Primary/P1/Textbooks",
+    "Primary/P1/English",
+    "Primary/P1/Literacy",
+    "Primary/P1/Reading",
+    "Primary/P1/Luganda",
+    "Primary/P1/Science",
+    "Primary/P1/SST",
+    "Primary/P1/Religious-Education",
+    "Primary/P1/Runyankole-Rukiga",
+    "Primary/P1/Computer-Studies"
+  ].includes(path)){
     window.location.href = "/" + path + "/";
     return;
   }
