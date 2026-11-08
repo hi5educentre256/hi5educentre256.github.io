@@ -1364,6 +1364,12 @@ function loadFileIndex(){
   window.onload = function(){
   loadStats();
   loadFileIndex();
+
+  // Return directly to the Primary folder when arriving from a Primary breadcrumb.
+  const pageParams = new URLSearchParams(window.location.search);
+  if(pageParams.get("folder") === "Primary"){
+    openFolder("Primary");
+  }
 };
 </script>
 
