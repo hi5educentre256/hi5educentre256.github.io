@@ -586,7 +586,7 @@ Choose Your Level
   </div>
 </div>
 
-<div class="card tertiary" onclick="openFolder('Tertiary')">
+<div class="card tertiary" onclick="window.location.href='/Tertiary/'">
   <div style="font-size:28px;">🎓</div>
   <div>
     <div>Tertiary</div>
@@ -685,6 +685,9 @@ function go(x){
   }
   else if(x === "About"){
     about();
+  }
+  else if(x === "Tertiary"){
+    window.location.href = "/Tertiary/";
   }
   else{
     openFolder(x);
