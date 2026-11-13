@@ -7,16 +7,20 @@
     <lastmod>2026-09-14</lastmod>
   </url>
 
-  <!-- NURSERY CLASS PAGES -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Nursery/Baby/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Nursery/Middle/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Nursery/Top/</loc>
-  </url>
+  <!-- NURSERY CLASS AND RESOURCE PAGES -->
+  <url><loc>https://hi5educentre256.github.io/Nursery/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Lesson-Notes/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Schemes-of-Work/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Lesson-Notes/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Schemes-of-Work/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Past-Papers/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Lesson-Notes/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Schemes-of-Work/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Past-Papers/</loc><lastmod>2026-11-13</lastmod></url>
 
   <!-- PRIMARY CLASS PAGES -->
   <url>
