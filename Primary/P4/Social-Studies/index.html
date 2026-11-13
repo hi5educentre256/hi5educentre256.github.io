@@ -27,4 +27,72 @@ h1{font-size:clamp(25px,5vw,34px);font-weight:800;line-height:1.25;margin:0 0 9p
 <section><h2 class="section-heading">Past Papers and Assessments</h2><p class="section-note">Practice papers and assessments for Primary Four Social Studies.</p><div class="resource-grid"><article class="resource-card"><div class="resource-info"><span class="file-icon">📄</span><div><div class="resource-name">P.4 SST EOT T-III-1.pdf</div><div class="resource-meta"><span class="badge exam">Assessment Paper</span></div></div></div><div class="actions"><a class="action view" href="../Past%20Papers/P.4%20SST%20EOT%20T-III-1.pdf" target="_blank" rel="noopener">👁 View PDF</a><a class="action download" href="../Past%20Papers/P.4%20SST%20EOT%20T-III-1.pdf" download>⬇ Download PDF</a></div></article></div></section><p class="section-note" style="margin-top:24px">Looking for another P4 resource? Browse the complete Primary Four collection.</p><a class="back-link" href="../">← Back to Primary Four (P4)</a></main>
 <footer class="footer">© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer><a class="wa-float" href="https://wa.me/256702234701" target="_blank" rel="noopener">WhatsApp Hi5</a>
 <script>function trackResource(action,fileName){if(typeof gtag==='function')gtag('event',action+'_pdf',{event_category:"P4 Social Studies",event_label:fileName});}</script>
+
+<script>
+(function(){
+  const repo='hi5educentre256/hi5educentre256.github.io';
+  const subjectPattern=/(\bsst\b|social[\s_-]*studies)/i;
+  const categories=[
+    {folder:'Lesson Notes',heading:'Lesson Notes',badge:'Lesson Notes',kind:'notes'},
+    {folder:'Schemes of Work',heading:'Schemes of Work',badge:'Scheme of Work',kind:'scheme'},
+    {folder:'Past Papers',heading:'Past Papers and Assessments',badge:'Assessment Paper',kind:'exam'}
+  ];
+  function make(tag,cls,text){
+    const el=document.createElement(tag);
+    if(cls)el.className=cls;
+    if(text!==undefined)el.textContent=text;
+    return el;
+  }
+  function makeCard(file,category){
+    const card=make('article','resource-card');
+    const info=make('div','resource-info');
+    info.appendChild(make('span','file-icon','📄'));
+    const details=make('div','');
+    details.appendChild(make('div','resource-name',file.name));
+    const meta=make('div','resource-meta');
+    const badgeClass=category.kind==='scheme'?'scheme':category.kind==='exam'?'exam':'';
+    meta.appendChild(make('span','badge '+badgeClass,category.badge));
+    details.appendChild(meta);
+    info.appendChild(details);
+    card.appendChild(info);
+    const actions=make('div','actions');
+    const view=make('a','action view','👁 View PDF');
+    view.href=file.download_url;view.target='_blank';view.rel='noopener';
+    actions.appendChild(view);
+    const download=make('a','action download','⬇ Download PDF');
+    download.href=file.download_url;download.setAttribute('download',file.name);download.rel='noopener';
+    actions.appendChild(download);
+    card.appendChild(actions);
+    return card;
+  }
+  async function loadCategory(category){
+    const path='Primary/P4/'+category.folder;
+    const encoded=path.split('/').map(encodeURIComponent).join('/');
+    const response=await fetch('https://api.github.com/repos/'+repo+'/contents/'+encoded,{headers:{'Accept':'application/vnd.github+json'}});
+    if(!response.ok)throw new Error('GitHub returned '+response.status+' for '+category.folder);
+    const files=await response.json();
+    return Array.isArray(files)?files.filter(file=>file.type==='file'&&file.name.toLowerCase().endsWith('.pdf')&&file.download_url&&subjectPattern.test(file.name)).sort((a,b)=>a.name.localeCompare(b.name)):[];
+  }
+  Promise.all(categories.map(async category=>({category,files:await loadCategory(category)})))
+    .then(results=>{
+      results.forEach(({category,files})=>{
+        if(!files.length)return;
+        const section=Array.from(document.querySelectorAll('main.container > section')).find(item=>{
+          const heading=item.querySelector('h2');
+          return heading&&heading.textContent.trim()===category.heading;
+        });
+        if(!section)return;
+        const grid=section.querySelector('.resource-grid');
+        if(!grid)return;
+        const existingNames=new Set(Array.from(grid.querySelectorAll('.resource-name')).map(node=>node.textContent.trim().toLowerCase()));
+        files.forEach(file=>{
+          if(existingNames.has(file.name.trim().toLowerCase()))return;
+          grid.appendChild(makeCard(file,category));
+          existingNames.add(file.name.trim().toLowerCase());
+        });
+      });
+    })
+    .catch(error=>console.error('Hi5 P4 Social Studies automatic resource listing:',error));
+})();
+</script>
 </body></html>
