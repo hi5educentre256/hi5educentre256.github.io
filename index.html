@@ -773,6 +773,8 @@ else if (name.includes("degree")) icon = "🏅";
 function openClass(path){
   // Open dedicated SEO-friendly subject/resource pages as full website pages.
   // Their own index.html files contain the branded page design.
+  const nurseryAliases = {"Nursery/Baby Class":"Nursery/Baby-Class","Nursery/Middle Class":"Nursery/Middle-Class","Nursery/Top Class":"Nursery/Top-Class"};
+  if (nurseryAliases[path]) { window.location.href = "/" + nurseryAliases[path] + "/"; return; }
   if([
     "Primary/P1",
     "Primary/P1/Mathematics",
@@ -826,7 +828,20 @@ function openClass(path){
     "Primary/P7/Social-Studies",
     "Primary/P7/Science",
     "Primary/P7/English",
-    "Primary/P7/All-P7-Textbooks"
+    "Primary/P7/All-P7-Textbooks",
+    "Nursery",
+    "Nursery/Baby-Class",
+    "Nursery/Baby-Class/Lesson-Notes",
+    "Nursery/Baby-Class/Schemes-of-Work",
+    "Nursery/Baby-Class/Past-Papers",
+    "Nursery/Middle-Class",
+    "Nursery/Middle-Class/Lesson-Notes",
+    "Nursery/Middle-Class/Schemes-of-Work",
+    "Nursery/Middle-Class/Past-Papers",
+    "Nursery/Top-Class",
+    "Nursery/Top-Class/Lesson-Notes",
+    "Nursery/Top-Class/Schemes-of-Work",
+    "Nursery/Top-Class/Past-Papers",
   ].includes(path)){
     window.location.href = "/" + path + "/";
     return;
