@@ -54,7 +54,7 @@
   const grid=document.querySelector('main.container .resource-grid');
   if(!grid)return;
   try{
-   const response=await fetch('https://api.github.com/repos/hi5educentre256/hi5educentre256.github.io/contents/Primary/P4/Textbooks',{headers:{'Accept':'application/vnd.github+json'}});
+   const response=await fetch('https://api.github.com/repos/hi5educentre256/hi5educentre256.github.io/contents/Primary/P4/All-P4-Textbooks',{headers:{'Accept':'application/vnd.github+json'}});
    if(!response.ok)throw new Error('GitHub returned '+response.status);
    const files=await response.json();
    const existing=new Set(Array.from(grid.querySelectorAll('.resource-name')).map(node=>node.textContent.trim().toLowerCase()));
