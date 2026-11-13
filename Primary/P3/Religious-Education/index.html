@@ -27,4 +27,40 @@ h1{font-size:clamp(25px,5vw,34px);font-weight:800;line-height:1.25;margin:0 0 9p
 <section><h2 class="section-heading">Past Papers and Assessments</h2><p class="section-note">Practice papers and assessments for Primary Three Religious Education.</p><div class="resource-grid"><article class="resource-card"><div class="resource-info"><span class="file-icon">📄</span><div><div class="resource-name">P.3 R.E EOT T-III-2.pdf</div><div class="resource-meta"><span class="badge exam">Assessment Paper</span></div></div></div><div class="actions"><a class="action view" href="../Past%20Papers/P.3%20R.E%20EOT%20T-III-2.pdf" target="_blank" rel="noopener">👁 View PDF</a><a class="action download" href="../Past%20Papers/P.3%20R.E%20EOT%20T-III-2.pdf" download>⬇ Download PDF</a></div></article><article class="resource-card"><div class="resource-info"><span class="file-icon">📄</span><div><div class="resource-name">P.3 R.E MID III.pdf</div><div class="resource-meta"><span class="badge exam">Assessment Paper</span></div></div></div><div class="actions"><a class="action view" href="../Past%20Papers/P.3%20R.E%20MID%20III.pdf" target="_blank" rel="noopener">👁 View PDF</a><a class="action download" href="../Past%20Papers/P.3%20R.E%20MID%20III.pdf" download>⬇ Download PDF</a></div></article><article class="resource-card"><div class="resource-info"><span class="file-icon">📄</span><div><div class="resource-name">P.3 RE.pdf</div><div class="resource-meta"><span class="badge exam">Assessment Paper</span></div></div></div><div class="actions"><a class="action view" href="../Past%20Papers/P.3%20RE.pdf" target="_blank" rel="noopener">👁 View PDF</a><a class="action download" href="../Past%20Papers/P.3%20RE.pdf" download>⬇ Download PDF</a></div></article><article class="resource-card"><div class="resource-info"><span class="file-icon">📄</span><div><div class="resource-name">P_3_R_E_BEGINNING_OF_TERM_I_2026.pdf</div><div class="resource-meta"><span class="badge exam">Assessment Paper</span></div></div></div><div class="actions"><a class="action view" href="../Past%20Papers/P_3_R_E_BEGINNING_OF_TERM_I_2026.pdf" target="_blank" rel="noopener">👁 View PDF</a><a class="action download" href="../Past%20Papers/P_3_R_E_BEGINNING_OF_TERM_I_2026.pdf" download>⬇ Download PDF</a></div></article><article class="resource-card"><div class="resource-info"><span class="file-icon">📄</span><div><div class="resource-name">The Sipro RE P.3 End of term Two 2023.pdf</div><div class="resource-meta"><span class="badge exam">Assessment Paper</span></div></div></div><div class="actions"><a class="action view" href="../Past%20Papers/The%20Sipro%20RE%20P.3%20End%20of%20term%20Two%202023.pdf" target="_blank" rel="noopener">👁 View PDF</a><a class="action download" href="../Past%20Papers/The%20Sipro%20RE%20P.3%20End%20of%20term%20Two%202023.pdf" download>⬇ Download PDF</a></div></article><article class="resource-card"><div class="resource-info"><span class="file-icon">📄</span><div><div class="resource-name">P.3  RE  MID TERM 1 2026.pdf</div><div class="resource-meta"><span class="badge exam">Assessment Paper</span></div></div></div><div class="actions"><a class="action view" href="../Past%20Papers/P.3%20%20RE%20%20MID%20TERM%201%202026.pdf" target="_blank" rel="noopener">👁 View PDF</a><a class="action download" href="../Past%20Papers/P.3%20%20RE%20%20MID%20TERM%201%202026.pdf" download>⬇ Download PDF</a></div></article></div></section><p class="section-note" style="margin-top:24px">Looking for another P3 resource? Browse the complete Primary Three collection.</p><a class="back-link" href="../">← Back to Primary Three (P3)</a></main>
 <footer class="footer">© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer><a class="wa-float" href="https://wa.me/256702234701" target="_blank" rel="noopener">WhatsApp Hi5</a>
 <script>function trackResource(action,fileName){if(typeof gtag==='function')gtag('event',action+'_pdf',{event_category:"P3 Religious Education",event_label:fileName});}</script>
+<script>
+/* Hi5 P3 Religious-Education automatic resource listing */
+(function(){
+ const repo='hi5educentre256/hi5educentre256.github.io';
+ const categories=[
+  {folder:'Lesson Notes',heading:'Lesson Notes',badge:'Lesson Notes',kind:'notes'},
+  {folder:'Schemes of Work',heading:'Schemes of Work',badge:'Scheme of Work',kind:'scheme'},
+  {folder:'Past Papers',heading:'Past Papers and Assessments',badge:'Assessment Paper',kind:'exam'}
+ ];
+ function make(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;}
+ function getGrid(category){
+  const section=Array.from(document.querySelectorAll('main.container > section')).find(item=>{const h=item.querySelector('h2');return h&&h.textContent.trim()===category.heading;});
+  if(!section)return null;let grid=section.querySelector('.resource-grid');if(!grid){grid=make('div','resource-grid');section.appendChild(grid);}return grid;
+ }
+ function makeCard(file,category){
+  const card=make('article','resource-card'),info=make('div','resource-info');info.appendChild(make('span','file-icon','📄'));
+  const details=make('div','');details.appendChild(make('div','resource-name',file.name));
+  const meta=make('div','resource-meta'),badgeClass=category.kind==='scheme'?'scheme':category.kind==='exam'?'exam':'';
+  meta.appendChild(make('span','badge '+badgeClass,category.badge));details.appendChild(meta);info.appendChild(details);card.appendChild(info);
+  const actions=make('div','actions'),view=make('a','action view','👁 View PDF');view.href=file.download_url;view.target='_blank';view.rel='noopener';actions.appendChild(view);
+  const download=make('a','action download','⬇ Download PDF');download.href=file.download_url;download.setAttribute('download',file.name);download.rel='noopener';actions.appendChild(download);card.appendChild(actions);return card;
+ }
+ async function load(category){
+  const path='Primary/P3/Religious-Education/'+category.folder;
+  const response=await fetch('https://api.github.com/repos/'+repo+'/contents/'+path.split('/').map(encodeURIComponent).join('/'),{headers:{'Accept':'application/vnd.github+json'}});
+  if(!response.ok)throw new Error('GitHub returned '+response.status+' for '+path);
+  const files=await response.json();return Array.isArray(files)?files.filter(file=>file.type==='file'&&file.name.toLowerCase().endsWith('.pdf')&&file.download_url).sort((a,b)=>a.name.localeCompare(b.name)):[];
+ }
+ Promise.all(categories.map(async category=>({category,files:await load(category)}))).then(items=>items.forEach(({category,files})=>{
+  if(!files.length)return;const grid=getGrid(category);if(!grid)return;
+  grid.querySelectorAll(':scope > .section-note').forEach(note=>note.remove());
+  const existing=new Set(Array.from(grid.querySelectorAll('.resource-name')).map(n=>n.textContent.trim().toLowerCase()));
+  files.forEach(file=>{const key=file.name.trim().toLowerCase();if(existing.has(key))return;grid.appendChild(makeCard(file,category));existing.add(key);});
+ })).catch(error=>console.error('Hi5 P3 Religious-Education automatic resource listing:',error));
+})();
+</script>
 </body></html>
