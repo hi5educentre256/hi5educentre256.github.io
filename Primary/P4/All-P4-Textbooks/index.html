@@ -70,7 +70,7 @@
      const badge=document.createElement('span');badge.className='badge';badge.textContent='P4 Textbook';meta.appendChild(badge);details.appendChild(meta);
      info.appendChild(details);card.appendChild(info);
      const actions=document.createElement('div');actions.className='actions';
-     const view=document.createElement('button');view.className='action view';view.type='button';view.dataset.pdf='../Textbooks/'+encodeURIComponent(file.name).replace(/%2F/g,'/');view.textContent='👁 View Pages';actions.appendChild(view);
+     const view=document.createElement('button');view.className='action view';view.type='button';view.dataset.pdf='../All-P4-Textbooks/'+encodeURIComponent(file.name).replace(/%2F/g,'/');view.textContent='👁 View Pages';actions.appendChild(view);
      const order=document.createElement('a');order.className='action buy';order.href='https://wa.me/256702234701?text='+encodeURIComponent('Hello Hi5 Education Centre, I would like to order this Primary Four textbook: '+file.name+'. Price: UGX 10,000.');order.target='_blank';order.rel='noopener';order.textContent='🔒 Order Textbook – UGX 10,000';actions.appendChild(order);
      card.appendChild(actions);grid.appendChild(card);existing.add(file.name.trim().toLowerCase());
     });
