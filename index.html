@@ -715,9 +715,9 @@ function openFolder(folder){
 
         // Keep Nursery class names listed only once.
         // The original folders hold the PDFs; their clicks open the SEO-friendly class pages.
-        if (folder === "Nursery" && ["Baby-Class", "Middle-Class", "Top-Class"].includes(f.name)) return;
+        if (folder === "Nursery" && ["Middle-Class", "Top-Class"].includes(f.name)) return;
 
-        let label = f.name;
+        let label = f.name.replace(/-/g, " ");
         let name = f.name.toLowerCase().replace(/\s/g, "");
 
         let icon = "📁";
