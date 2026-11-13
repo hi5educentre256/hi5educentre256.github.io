@@ -66,7 +66,7 @@ h1{font-size:clamp(25px,5vw,34px);font-weight:800;line-height:1.25;margin:0 0 9p
     return card;
   }
   async function loadCategory(category){
-    const path='Primary/P4/'+category.folder;
+    const path='Primary/P4/Social-Studies/'+category.folder;
     const encoded=path.split('/').map(encodeURIComponent).join('/');
     const response=await fetch('https://api.github.com/repos/'+repo+'/contents/'+encoded,{headers:{'Accept':'application/vnd.github+json'}});
     if(!response.ok)throw new Error('GitHub returned '+response.status+' for '+category.folder);
