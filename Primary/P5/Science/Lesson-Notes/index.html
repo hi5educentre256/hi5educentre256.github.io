@@ -1,41 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>P5 Lesson Notes | Hi5 Education Centre</title>
-  <meta name="description" content="Access Primary Five (P5) lesson notes and learning materials from Hi5 Education Centre Uganda.">
-  <meta name="robots" content="index, follow">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="https://hi5educentre256.github.io/Primary/P5/Science/Lesson-Notes/">
-  <link rel="icon" href="/images/logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primary Five Science Lesson Notes | Hi5 Education Centre</title>
+<meta name="description" content="Browse Primary Five Science lesson notes and learning materials at Hi5 Education Centre Uganda. View and download available PDF resources.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://hi5educentre256.github.io/Primary/P5/Science/Lesson-Notes/">
+<link rel="icon" href="/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f8fafc;color:#172033;font-family:Poppins,Arial,sans-serif}
+header{background:linear-gradient(135deg,#0d6efd,#198754);color:#fff;text-align:center;padding:20px 14px;box-shadow:0 3px 12px #0002}
+.brand{display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none;text-align:left}.brand img{width:46px;height:46px;border-radius:10px;object-fit:cover}.brand strong{font-size:18px}.brand small{display:block;font-size:12px;opacity:.9}
+main{width:min(950px,94%);margin:22px auto 35px}.crumbs{font-size:13px;color:#64748b;margin:0 0 17px}.crumbs a{color:#0d6efd;text-decoration:none;font-weight:600}
+.intro,.resource{background:#fff;border-radius:15px;box-shadow:0 4px 14px #0000000d}.intro{padding:22px;border-left:5px solid #0d6efd}h1{margin:0 0 8px;font-size:clamp(23px,5vw,32px);line-height:1.3;color:#0d6efd}.intro p{margin:0;color:#566174;font-size:14px;line-height:1.7}
+h2{font-size:20px;margin:25px 0 12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:13px}
+.resource{padding:16px;border-left:5px solid #0d6efd;display:flex;flex-direction:column;gap:12px;min-width:0}.filename{font-size:14px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}.tag{font-size:11px;color:#166534;background:#dcfce7;border:1px solid #86efac;padding:4px 9px;border-radius:20px;display:inline-block;margin-top:6px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}.actions a{padding:9px 12px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600}.view{background:#0d6efd;color:white}.download{background:#e8f5e9;color:#166534;border:1px solid #bbebc2}
+.back{display:inline-block;margin-top:22px;padding:10px 14px;background:#eaf2ff;border-radius:9px;color:#0759bd;text-decoration:none;font-size:13px;font-weight:600}
+footer{text-align:center;border-top:1px solid #e5e7eb;padding:20px 12px;color:#64748b;font-size:13px}
+@media(max-width:520px){header{padding:14px 8px}.brand img{width:40px;height:40px}.brand strong{font-size:16px}.intro{padding:17px}.resource{padding:14px}}
+</style>
 </head>
-
 <body>
-
-  <h1>Primary Five (P5) Lesson Notes</h1>
-
-  <p>
-    Access Primary Five lesson notes and curriculum-based learning materials
-    from Hi5 Education Centre Uganda.
-  </p>
-
-  <h2>P5 Lesson Notes</h2>
-
-  <ul>
-    <li>
-      <a href="%20P.5%20PARAMOUNT%20SCI%20T1-T3%20-1.pdf">
-        P.5 Paramount Science T1-T3
-      </a>
-    </li>
-
-    <li>
-      <a href="P.5%20SCIENCE%20LESSON%20NOTES%20TERM%20II.pdf">
-        P.5 Science Lesson Notes Term II
-      </a>
-    </li>
-  </ul>
-
-  <p>Hi5 Education Centre | Learn Today, Lead Tomorrow</p>
-
+<header><a class="brand" href="/"><img src="/images/logo.png" alt="Hi5 Education Centre logo"><span><strong>Hi5 Education Centre</strong><small>Learn Today, Lead Tomorrow</small></span></a></header>
+<main>
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/?folder=Primary">Primary</a> › <a href="../../">Primary Five (P5)</a> › <a href="../">Science</a> › Lesson Notes</nav>
+<section class="intro"><h1>Primary Five (P5) Science Lesson Notes</h1><p>Browse the available Science lesson notes and learning materials for Primary Five. Select View PDF to read a resource or Download PDF to save it.</p></section>
+<h2>Available Lesson Notes</h2>
+<div class="grid" id="resources" aria-live="polite"><p>Loading available lesson notes…</p></div>
+<a class="back" href="../">← Back to Primary Five Science</a>
+</main>
+<footer>© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer>
+<script>
+(async function(){
+ const grid=document.getElementById('resources');
+ try{
+  const url='https://api.github.com/repos/hi5educentre256/hi5educentre256.github.io/contents/Primary/P5/Science/Lesson-Notes';
+  const response=await fetch(url,{headers:{Accept:'application/vnd.github+json'}});
+  if(!response.ok)throw new Error('Unable to load resources ('+response.status+').');
+  const files=await response.json();
+  const pdfs=Array.isArray(files)?files.filter(f=>f.type==='file'&&f.name.toLowerCase().endsWith('.pdf')&&f.download_url).sort((a,b)=>a.name.localeCompare(b.name)):[];
+  grid.replaceChildren();
+  if(!pdfs.length){grid.innerHTML='<p>No lesson notes are available at the moment. Please check again later.</p>';return;}
+  pdfs.forEach(file=>{
+   const card=document.createElement('article');card.className='resource';
+   const name=document.createElement('div');name.className='filename';name.textContent=file.name;
+   const tag=document.createElement('span');tag.className='tag';tag.textContent='Science Lesson Notes';name.appendChild(document.createElement('br'));name.appendChild(tag);card.appendChild(name);
+   const actions=document.createElement('div');actions.className='actions';
+   const view=document.createElement('a');view.className='view';view.href=file.download_url;view.target='_blank';view.rel='noopener';view.textContent='View PDF';
+   const download=document.createElement('a');download.className='download';download.href=file.download_url;download.download=file.name;download.rel='noopener';download.textContent='Download PDF';
+   actions.append(view,download);card.appendChild(actions);grid.appendChild(card);
+  });
+ }catch(error){grid.replaceChildren();const msg=document.createElement('p');msg.textContent='The lesson notes could not be loaded right now. Please refresh the page later.';grid.appendChild(msg);console.error(error);}
+})();
+</script>
 </body>
 </html>
