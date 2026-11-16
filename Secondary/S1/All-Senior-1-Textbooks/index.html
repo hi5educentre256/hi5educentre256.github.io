@@ -14,7 +14,7 @@
 <body><main class="wrap">
 <div class="crumb"><a href="/">Home</a> › <a href="/Secondary/S1/">Senior One</a> › All Senior One Textbooks</div>
 <header><h1>All Senior One Textbooks</h1><p>Textbooks, schemes of work, syllabi and other study resources collected in one place.</p></header>
-<div class="toolbar"><div class="count" id="count">Detecting available resources…</div><input class="search" id="search" type="search" placeholder="Search resources…" aria-label="Search resources"></div>
+<div class="toolbar"><div class="count" id="count">Detecting available resources…</div></div>
 <div id="resources" class="grid"><div class="status">Loading resources from the Senior One collection…</div></div>
 <a class="back" href="../">← Back to Senior One</a>
 <footer>© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer>
@@ -22,17 +22,10 @@
 <script>
 const owner='hi5educentre256',repo='hi5educentre256.github.io',branch='main';
 const folder='Secondary/S1/All-Senior-1-Textbooks';
-const container=document.getElementById('resources'),count=document.getElementById('count'),search=document.getElementById('search');
+const container=document.getElementById('resources'),count=document.getElementById('count');
 let items=[];
-function render(){
- const term=search.value.trim().toLowerCase();
- const shown=items.filter(x=>x.name.toLowerCase().includes(term));
- count.textContent=shown.length+' resource'+(shown.length===1?'':'s')+' available';
- if(!shown.length){container.innerHTML='<div class="status">No matching resources were found.</div>';return}
- container.innerHTML=shown.map(x=>{const url=x.download_url;return '<article class="item"><div class="name">'+escapeHtml(x.name)+'</div><div class="actions"><a class="view" href="'+url+'" target="_blank" rel="noopener">View PDF</a><a class="download" href="'+url+'" download>Download PDF</a></div></article>'}).join('');
-}
+function render(){count.textContent=items.length+' resource'+(items.length===1?'':'s')+' available';if(!items.length){container.innerHTML='<div class="status">No PDF resources are currently available.</div>';return;}container.innerHTML=items.map(x=>{const url=x.download_url;return '<article class="item"><div class="name">'+escapeHtml(x.name)+'</div><div class="actions"><a class="view" href="'+url+'" target="_blank" rel="noopener">View PDF</a><a class="download" href="'+url+'" download>Download PDF</a></div></article>';}).join('');}
 function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-search.addEventListener('input',render);
 fetch('https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+folder+'?ref='+branch)
 .then(r=>{if(!r.ok)throw new Error('The resource list could not be loaded. Please refresh later.');return r.json()})
 .then(data=>{items=data.filter(x=>x.type==='file'&&x.name.toLowerCase().endsWith('.pdf')).sort((a,b)=>a.name.localeCompare(b.name));render();})
