@@ -705,6 +705,11 @@ function back(){
 
 /* OPEN FOLDER */
 function openFolder(folder){
+  // Always use the dedicated branded Secondary landing page.
+  if(folder === "Secondary"){
+    window.location.href = "/Secondary/";
+    return;
+  }
   stack.push(document.getElementById("content").innerHTML);
 
   fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
@@ -774,6 +779,11 @@ else if (name.includes("degree")) icon = "🏅";
 
 /* CLASS VIEW */
 function openClass(path){
+  // Route all Secondary classes to their dedicated branded pages.
+  if(/^Secondary\\/S[1-6]$/.test(path)){
+    window.location.href = "/" + path + "/";
+    return;
+  }
   // Open dedicated SEO-friendly subject/resource pages as full website pages.
   // Their own index.html files contain the branded page design.
   const nurseryAliases = {"Nursery/Baby Class":"Nursery/Baby-Class","Nursery/Middle Class":"Nursery/Middle-Class","Nursery/Top Class":"Nursery/Top-Class"};
