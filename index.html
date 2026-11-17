@@ -780,7 +780,8 @@ else if (name.includes("degree")) icon = "🏅";
 /* CLASS VIEW */
 function openClass(path){
   // Route all Secondary classes to their dedicated branded pages.
-  if(/^Secondary\\/S[1-6]$/.test(path)){
+  const secondaryParts = path.split("/");
+  if(secondaryParts.length === 2 && secondaryParts[0] === "Secondary" && ["S1","S2","S3","S4","S5","S6"].includes(secondaryParts[1])){
     window.location.href = "/" + path + "/";
     return;
   }
