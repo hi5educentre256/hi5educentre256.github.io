@@ -254,6 +254,26 @@
     <loc>https://hi5educentre256.github.io/Secondary/S6/</loc>
   </url>
 
+  <!-- SECONDARY RESOURCE PAGES -->
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/All-Senior-1-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/All-Senior-2-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/All-Senior-3-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/All-Senior-4-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/All-Senior-5-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/All-Senior-6-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
+
   <!-- TERTIARY -->
   <url>
     <loc>https://hi5educentre256.github.io/Tertiary/Certificate/</loc>
