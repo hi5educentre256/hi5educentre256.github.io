@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All Certificate Resources | Hi5 Education Centre</title>
-<meta name="description" content="Browse all certificate learning resources at Hi5 Education Centre. Resources are listed automatically from the Certificate collection.">
+<meta name="description" content="Browse all certificate learning resources at Hi5 Education Centre. Browse four PDF learning resources in the Hi5 Certificate collection.">
 <meta name="robots" content="index, follow"><link rel="canonical" href="https://hi5educentre256.github.io/Tertiary/Certificate/">
 <link rel="icon" href="/images/logo.png"><meta name="theme-color" content="#0d6efd">
 <meta property="og:title" content="All Certificate Resources | Hi5 Education Centre"><meta property="og:description" content="Browse all certificate learning resources at Hi5 Education Centre."><meta property="og:image" content="https://hi5educentre256.github.io/images/logo.png">
@@ -19,15 +19,26 @@
 @media(max-width:520px){.topbar{padding:11px 8px}.brand img{height:40px;width:40px}.brand-title{font-size:16px}.intro{padding:18px}}
 </style></head><body><header class="topbar"><a class="brand" href="/" aria-label="Hi5 Education Centre home"><img src="/images/logo.png" alt="Hi5 Education Centre logo"><span><span class="brand-title">Hi5 Education Centre</span><br><span class="brand-subtitle">Learn Today, Lead Tomorrow</span></span></a></header><main class="container">
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/Tertiary/">Tertiary</a><span>›</span><span>Certificate</span></nav>
-<section class="intro"><h1>📜 All Certificate Resources</h1><p>All certificate resources are kept together in this collection, regardless of subject or field. New PDF files added to this folder are detected automatically.</p></section>
+<section class="intro"><h1>📜 All Certificate Resources</h1><p>All certificate resources are kept together in this collection, regardless of subject or field. Browse the available PDF resources below. The collection can be updated as new materials are added.</p></section>
 <h2 class="section-heading">📚 Available Learning Materials</h2><div class="toolbar"><div class="count" id="count">Detecting resources…</div><input class="search" id="search" type="search" placeholder="Search Certificate resources…" aria-label="Search resources"></div>
-<div id="resources" class="cards"><div class="status">Loading resources…</div></div>
+<div id="resources" class="cards">
+<a class="card resource-card" href="https://github.com/hi5educentre256/hi5educentre256.github.io/blob/main/Tertiary/Certificate/Best%20200%20Report%20Comments.pdf" target="_blank" rel="noopener" data-name="best 200 report comments.pdf"><span class="card-icon">📄</span><span><span class="card-title">Best 200 Report Comments.pdf</span><br><span class="card-desc">Open PDF resource</span></span></a>
+<a class="card resource-card" href="https://github.com/hi5educentre256/hi5educentre256.github.io/blob/main/Tertiary/Certificate/Complete_English_Grammar_Rules%20textbook%20.pdf" target="_blank" rel="noopener" data-name="complete_english_grammar_rules textbook .pdf"><span class="card-icon">📄</span><span><span class="card-title">Complete_English_Grammar_Rules textbook .pdf</span><br><span class="card-desc">Open PDF resource</span></span></a>
+<a class="card resource-card" href="https://github.com/hi5educentre256/hi5educentre256.github.io/blob/main/Tertiary/Certificate/Overcoming%20the%20Enemy%20Live%20in%20Victory%20Over%20Trials%20and%20Temptations%20(Charles%20F.%20Stanley)%20(Z-Library).pdf" target="_blank" rel="noopener" data-name="overcoming the enemy live in victory over trials and temptations (charles f. stanley) (z-library).pdf"><span class="card-icon">📄</span><span><span class="card-title">Overcoming the Enemy Live in Victory Over Trials and Temptations (Charles F. Stanley) (Z-Library).pdf</span><br><span class="card-desc">Open PDF resource</span></span></a>
+<a class="card resource-card" href="https://github.com/hi5educentre256/hi5educentre256.github.io/blob/main/Tertiary/Certificate/Respectable%20Sins%20Confronting%20the%20Sins%20We%20Tolerate%20(Jerry%20Bridges)%20(z-lib.org).pdf" target="_blank" rel="noopener" data-name="respectable sins confronting the sins we tolerate (jerry bridges) (z-lib.org).pdf"><span class="card-icon">📄</span><span><span class="card-title">Respectable Sins Confronting the Sins We Tolerate (Jerry Bridges) (z-lib.org).pdf</span><br><span class="card-desc">Open PDF resource</span></span></a>
+<div class="status" id="empty" hidden>No matching PDF resources found.</div>
+</div>
 <a class="back" href="../">← Back to Tertiary</a></main><footer class="footer">© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer>
 <script>
-const owner='hi5educentre256',repo='hi5educentre256.github.io',branch='main',folder='Tertiary/Certificate';
-const list=document.getElementById('resources'),count=document.getElementById('count'),search=document.getElementById('search');let files=[];
-function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function render(){const q=search.value.trim().toLowerCase(),shown=files.filter(f=>f.name.toLowerCase().includes(q));count.textContent=shown.length+' PDF resource'+(shown.length===1?'':'s');list.innerHTML=shown.length?shown.map(f=>'<a class="card" href="'+f.html_url+'" target="_blank" rel="noopener"><span class="card-icon">📄</span><span><span class="card-title">'+esc(f.name)+'</span><br><span class="card-desc">Open PDF resource</span></span></a>').join(''):'<div class="status">No matching PDF resources found.</div>';}
-search.addEventListener('input',render);
-fetch('https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+folder+'?ref='+branch).then(r=>{if(!r.ok)throw new Error('Resources could not be loaded. Please try again later.');return r.json();}).then(data=>{files=data.filter(f=>f.type==='file'&&f.name.toLowerCase().endsWith('.pdf')).sort((a,b)=>a.name.localeCompare(b.name));render();}).catch(e=>{count.textContent='Resource list unavailable';list.innerHTML='<div class="status">'+esc(e.message)+'</div>';});
+const cards=[...document.querySelectorAll('.resource-card')];
+const count=document.getElementById('count');
+const search=document.getElementById('search');
+const empty=document.getElementById('empty');
+count.textContent=cards.length+' PDF resources';
+search.addEventListener('input',()=>{
+ const q=search.value.trim().toLowerCase();let shown=0;
+ cards.forEach(card=>{const match=card.dataset.name.includes(q);card.hidden=!match;if(match)shown++;});
+ empty.hidden=shown!==0;
+ count.textContent=shown+' PDF resource'+(shown===1?'':'s');
+});
 </script></body></html>
