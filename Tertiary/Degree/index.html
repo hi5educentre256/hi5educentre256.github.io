@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All Degree Resources | Hi5 Education Centre</title>
-<meta name="description" content="Browse all degree learning resources at Hi5 Education Centre. Resources are listed automatically from the Degree collection.">
+<meta name="description" content="Browse all degree learning resources at Hi5 Education Centre. Browse five degree PDF learning resources at Hi5 Education Centre.">
 <meta name="robots" content="index, follow"><link rel="canonical" href="https://hi5educentre256.github.io/Tertiary/Degree/">
 <link rel="icon" href="/images/logo.png"><meta name="theme-color" content="#0d6efd">
 <meta property="og:title" content="All Degree Resources | Hi5 Education Centre"><meta property="og:description" content="Browse all degree learning resources at Hi5 Education Centre."><meta property="og:image" content="https://hi5educentre256.github.io/images/logo.png">
@@ -19,15 +19,20 @@
 @media(max-width:520px){.topbar{padding:11px 8px}.brand img{height:40px;width:40px}.brand-title{font-size:16px}.intro{padding:18px}}
 </style></head><body><header class="topbar"><a class="brand" href="/" aria-label="Hi5 Education Centre home"><img src="/images/logo.png" alt="Hi5 Education Centre logo"><span><span class="brand-title">Hi5 Education Centre</span><br><span class="brand-subtitle">Learn Today, Lead Tomorrow</span></span></a></header><main class="container">
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/Tertiary/">Tertiary</a><span>›</span><span>Degree</span></nav>
-<section class="intro"><h1>🏅 All Degree Resources</h1><p>All degree resources are kept together in this collection, regardless of subject or field. New PDF files added to this folder are detected automatically.</p></section>
-<h2 class="section-heading">📚 Available Learning Materials</h2><div class="toolbar"><div class="count" id="count">Detecting resources…</div><input class="search" id="search" type="search" placeholder="Search Degree resources…" aria-label="Search resources"></div>
-<div id="resources" class="cards"><div class="status">Loading resources…</div></div>
+<section class="intro"><h1>🏅 All Degree Resources</h1><p>Explore the available degree learning resources in this collection. Resources are organised together regardless of subject or field.</p></section>
+<h2 class="section-heading">📚 Available Learning Materials</h2><div class="toolbar"><div class="count" id="count">5 PDF resources</div><input class="search" id="search" type="search" placeholder="Search Degree resources…" aria-label="Search resources"></div>
+<div id="resources" class="cards">
+<a class="card" href="https://github.com/hi5educentre256/hi5educentre256.github.io/blob/main/Tertiary/Degree/A%20Dictionary%20of%20Science%2C%20Sixth%20Edition%20(Oxford%20Paperback%20Reference)%20textbook%20.pdf" target="_blank" rel="noopener"><span class="card-icon">📄</span><span><span class="card-title">A Dictionary of Science, Sixth Edition (Oxford Paperback Reference) textbook .pdf</span><br><span class="card-desc">Open PDF resource</span></span></a>
+<a class="card" href="https://github.com/hi5educentre256/hi5educentre256.github.io/blob/main/Tertiary/Degree/BACHELOR%20OF%20LAWS%20PRE-ENTRY%20EXAMINATION.pdf" target="_blank" rel="noopener"><span class="card-icon">📄</span><span><span class="card-title">BACHELOR OF LAWS PRE-ENTRY EXAMINATION.pdf</span><br><span class="card-desc">Open PDF resource</span></span></a>
+<a class="card" href="https://github.com/hi5educentre256/hi5educentre256.github.io/blob/main/Tertiary/Degree/bem_manual.pdf" target="_blank" rel="noopener"><span class="card-icon">📄</span><span><span class="card-title">bem_manual.pdf</span><br><span class="card-desc">Open PDF resource</span></span></a>
+<a class="card" href="https://github.com/hi5educentre256/hi5educentre256.github.io/blob/main/Tertiary/Degree/Kyambogo-University-2025-2026%20direct%20entry%20scheme.pdf" target="_blank" rel="noopener"><span class="card-icon">📄</span><span><span class="card-title">Kyambogo-University-2025-2026 direct entry scheme.pdf</span><br><span class="card-desc">Open PDF resource</span></span></a>
+<a class="card" href="https://github.com/hi5educentre256/hi5educentre256.github.io/blob/main/Tertiary/Degree/The%20New%20Rules%20for%20Love%2C%20Sex%2C%20and%20Dating%20-%20Andy%20Stanley%20textbook%20.pdf" target="_blank" rel="noopener"><span class="card-icon">📄</span><span><span class="card-title">The New Rules for Love, Sex, and Dating - Andy Stanley textbook .pdf</span><br><span class="card-desc">Open PDF resource</span></span></a>
+</div>
 <a class="back" href="../">← Back to Tertiary</a></main><footer class="footer">© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer>
 <script>
-const owner='hi5educentre256',repo='hi5educentre256.github.io',branch='main',folder='Tertiary/Degree';
-const list=document.getElementById('resources'),count=document.getElementById('count'),search=document.getElementById('search');let files=[];
-function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function render(){const q=search.value.trim().toLowerCase(),shown=files.filter(f=>f.name.toLowerCase().includes(q));count.textContent=shown.length+' PDF resource'+(shown.length===1?'':'s');list.innerHTML=shown.length?shown.map(f=>'<a class="card" href="'+f.html_url+'" target="_blank" rel="noopener"><span class="card-icon">📄</span><span><span class="card-title">'+esc(f.name)+'</span><br><span class="card-desc">Open PDF resource</span></span></a>').join(''):'<div class="status">No matching PDF resources found.</div>';}
-search.addEventListener('input',render);
-fetch('https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+folder+'?ref='+branch).then(r=>{if(!r.ok)throw new Error('Resources could not be loaded. Please try again later.');return r.json();}).then(data=>{files=data.filter(f=>f.type==='file'&&f.name.toLowerCase().endsWith('.pdf')).sort((a,b)=>a.name.localeCompare(b.name));render();}).catch(e=>{count.textContent='Resource list unavailable';list.innerHTML='<div class="status">'+esc(e.message)+'</div>';});
+const search=document.getElementById('search'),list=document.getElementById('resources'),count=document.getElementById('count');
+const cards=Array.from(list.querySelectorAll('.card'));
+function filterResources(){const q=search.value.trim().toLowerCase();let shown=0;cards.forEach(card=>{const match=card.textContent.toLowerCase().includes(q);card.style.display=match?'':'none';if(match)shown++;});count.textContent=shown+' PDF resource'+(shown===1?'':'s');}
+search.addEventListener('input',filterResources);
+filterResources();
 </script></body></html>
