@@ -1,294 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- HOME -->
-  <url>
-    <loc>https://hi5educentre256.github.io/</loc>
-    <lastmod>2026-09-14</lastmod>
-  </url>
-
-  <!-- NURSERY CLASS AND RESOURCE PAGES -->
-  <url><loc>https://hi5educentre256.github.io/Nursery/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Lesson-Notes/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Schemes-of-Work/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Textbooks/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Lesson-Notes/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Schemes-of-Work/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Past-Papers/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Lesson-Notes/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Schemes-of-Work/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Past-Papers/</loc><lastmod>2026-11-13</lastmod></url>
-
-  <!-- PRIMARY CLASS PAGES -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P1/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P1/Mathematics/</loc>
-    <lastmod>2026-11-09</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P1/All-P1-Textbooks/</loc>
-    <lastmod>2026-11-09</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P1/English/</loc>
-    <lastmod>2026-11-09</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P1/Literacy/</loc>
-    <lastmod>2026-11-09</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P1/Reading/</loc>
-    <lastmod>2026-11-09</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P1/Luganda/</loc>
-    <lastmod>2026-11-09</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P1/Religious-Education/</loc>
-    <lastmod>2026-11-09</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P1/Computer-Studies/</loc>
-    <lastmod>2026-11-09</lastmod>
-  </url>
-  <!-- PRIMARY TWO SUBJECT PAGES -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P2/</loc>
-    <lastmod>2026-11-12</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P2/Computer-Studies/</loc>
-    <lastmod>2026-11-12</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P2/Mathematics/</loc>
-    <lastmod>2026-11-12</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P2/English/</loc>
-    <lastmod>2026-11-12</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P2/Literacy/</loc>
-    <lastmod>2026-11-12</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P2/Reading/</loc>
-    <lastmod>2026-11-12</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P2/Luganda/</loc>
-    <lastmod>2026-11-12</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P2/Religious-Education/</loc>
-    <lastmod>2026-11-12</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P2/All-P2-Textbooks/</loc>
-    <lastmod>2026-11-12</lastmod>
-  </url>
-  <!-- PRIMARY THREE CLASS AND SUBJECT PAGES -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P3/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P3/Mathematics/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P3/English/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P3/Literacy/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P3/Reading/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P3/Luganda/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P3/Religious-Education/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P3/Computer-Studies/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P3/All-P3-Textbooks/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <!-- PRIMARY FOUR CLASS AND SUBJECT PAGES -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P4/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P4/Mathematics/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P4/Science/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P4/English/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P4/All-P4-Textbooks/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-<!-- PRIMARY FIVE CLASS AND SUBJECT PAGES -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P5/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P5/Mathematics/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P5/Social-Studies/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P5/Science/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P5/English/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P5/All-P5-Textbooks/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <!-- PRIMARY SIX CLASS AND SUBJECT PAGES -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P6/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P6/Mathematics/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P6/Social-Studies/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P6/Science/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P6/English/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P6/All-P6-Textbooks/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <!-- PRIMARY SEVEN CLASS AND SUBJECT PAGES -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P7/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P7/Mathematics/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P7/Social-Studies/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P7/Science/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P7/English/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Primary/P7/All-P7-Textbooks/</loc>
-    <lastmod>2026-11-13</lastmod>
-  </url>
-
-  <!-- SECONDARY CLASS PAGES -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Secondary/S1/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Secondary/S2/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Secondary/S3/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Secondary/S4/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Secondary/S5/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Secondary/S6/</loc>
-  </url>
-
-  <!-- SECONDARY RESOURCE PAGES -->
-  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S1/All-Senior-1-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S2/All-Senior-2-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S3/All-Senior-3-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S4/All-Senior-4-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S5/All-Senior-5-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/</loc><lastmod>2026-11-20</lastmod></url>
-  <url><loc>https://hi5educentre256.github.io/Secondary/S6/All-Senior-6-Textbooks/</loc><lastmod>2026-11-20</lastmod></url>
-
-  <!-- TERTIARY -->
-  <url>
-    <loc>https://hi5educentre256.github.io/Tertiary/Certificate/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Tertiary/Diploma/</loc>
-  </url>
-  <url>
-    <loc>https://hi5educentre256.github.io/Tertiary/Degree/</loc>
-  </url>
-
-  <url><loc>https://hi5educentre256.github.io/Tertiary/</loc><lastmod>2026-11-14</lastmod></url>
-
-
-  <!-- INDIVIDUAL PUBLIC LESSON NOTES, SCHEMES OF WORK AND PAST PAPERS -->
+  <url><loc>https://hi5educentre256.github.io/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Lesson-Notes/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Schemes-of-Work/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Lesson-Notes/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Schemes-of-Work/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Past-Papers/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Lesson-Notes/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Schemes-of-Work/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Past-Papers/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/Mathematics/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/All-P1-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/English/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/Literacy/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/Reading/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/Luganda/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/Religious-Education/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/Computer-Studies/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/Computer-Studies/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/Mathematics/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/English/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/Literacy/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/Reading/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/Luganda/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/Religious-Education/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/All-P2-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/Mathematics/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/English/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/Literacy/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/Reading/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/Luganda/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/Religious-Education/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/Computer-Studies/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/All-P3-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/Mathematics/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/English/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/All-P4-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P5/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P5/Mathematics/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P5/Social-Studies/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P5/Science/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P5/English/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P5/All-P5-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P6/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P6/Mathematics/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P6/Social-Studies/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P6/Science/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P6/English/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P6/All-P6-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P7/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P7/Mathematics/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P7/Social-Studies/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P7/Science/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P7/English/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P7/All-P7-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Lesson%20Notes/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/All-Senior-1-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Lesson%20Notes/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/All-Senior-2-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Lesson%20Notes/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/All-Senior-3-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Lesson%20Notes/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/All-Senior-4-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/All-Senior-5-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/All-Senior-6-Textbooks/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Certificate/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Diploma/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Degree/</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Lesson-Notes/Hi5%20READING%20BABY%20NOTES%20%20TERM%201%202026.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Lesson-Notes/baby%20English%20notes%20I-III.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/BABY%20%20%20SOCIALL%20DEVELOPMENT..pdf</loc></url>
@@ -299,9 +104,11 @@
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/BABY%20CLASS-READING%20(2).pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/BABY%20CLASS-WRITING.%20(3)%20MS.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/BABY%20LA-3%20MID%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/Baby%20activity%20textbook%20reading%20%202025.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/READ%20%20AND%20%20WRITE%20%20BABY.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/SET%202%20BABY%20LA-1%20EOT%20TERM%201.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Past-Papers/SET%202%20BABY%20LA-3%20EOT%20TERM%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Schemes-of-Work/BABY%20SCHEMES%20all%20terms%20all%20areas%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Baby-Class/Schemes-of-Work/SOCIAL%20DEVELOPMENT%20BABY%20(1).pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Lesson-Notes/LESSON-NOTES-FOR-NUMBERS-FOR-MIDDLE-CLASS-TERM-III.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Middle-Class/Lesson-Notes/LESSON-NOTES-FOR-READING-FOR-MIDDLE-CLASS-TERM-III.pdf</loc></url>
@@ -356,6 +163,7 @@
   <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Schemes-of-Work/nursery%20%20SCHEME%20OF%20WORK%20LANGUAGE.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Nursery/Top-Class/Schemes-of-Work/reading%20top%20class%20term%20ii%20scheme%20of%20work.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P1/Computer-Studies/Schemes-of-Work/Term%203%20computer%20scheme%20of%20work%20HEC.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/English/Lesson-Notes/P.1%20ENG%20LESSON%20NOTES%20TERM%201%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P1/English/Lesson-Notes/P.1%20Eng%20notes%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P1/English/Lesson-Notes/P.1%20TERM%201%20ENGLISH%20COMPOSITION%20%26%20COMPREHENSION%20LESSON%20NOTES.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P1/English/Past-Papers/ENG%20P.1%20BOT%20II.pdf</loc></url>
@@ -372,6 +180,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P1/Literacy/Past-Papers/P.1%202025%20SCI%20PROMOTIONAL.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P1/Literacy/Past-Papers/P.1%20Broad%20EOT%202025.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P1/Literacy/Past-Papers/P.1%20HOME%20WORK%20TERM%20II.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P1/Literacy/Past-Papers/P.1%20HOME%20WORK%20textbook%20TERM%20II.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P1/Literacy/Past-Papers/P.1%20LIT%201%20SCIENCE%20EOT%201%202026.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P1/Literacy/Past-Papers/P.1%20LIT%20I%20B%20QUALITY%20CHECK%20SET%20ONE%202026.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P1/Literacy/Past-Papers/P.1%20LIT%20II%20QUALITY%20CHECK%20SET%20ONE%202026.pdf</loc></url>
@@ -439,6 +248,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P2/Luganda/Past-Papers/P_2%20LUGANDA%20END%20OF%20TERM%20I%20EXAMINATIONS-2018.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P2/Luganda/Schemes-of-Work/LUGANDA%20SCHEME%20P.2%20%20TERM%20II.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P2/Mathematics/Lesson-Notes/P.%202%20%20MATHEMATICS%20LESSON%20NOTES%20TERM%20III.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P2/Mathematics/Lesson-Notes/P.2%20MATHEMATICS%20NOTES%20TERM%203%20textbook.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P2/Mathematics/Lesson-Notes/P2%20MATHS-ALL-TERMS.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P2/Mathematics/Lesson-Notes/PRIMARY%20TWO%20MATHS.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P2/Mathematics/Past-Papers/EOT%20III%20P.2%20MTC-1.pdf</loc></url>
@@ -496,6 +306,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P3/Literacy/Schemes-of-Work/P.3%20LIT%20II%20SCHEME%20TERM%203%20(1).pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P3/Literacy/Schemes-of-Work/P.3%20SCHEME%20OF%20LITERACY%20I%20(1).pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P3/Literacy/Schemes-of-Work/P.3%20SCI%20SCHEME%20T1-T3%202023.pd-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P3/Literacy/Schemes-of-Work/P.3%20THEMATIC%20SCHEME%20TERM%20I-III%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P3/Literacy/Schemes-of-Work/P.3%20THEMATIC%20SCHEME%20TERM%20I-III.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P3/Literacy/Schemes-of-Work/P.3-PRIMARY-THREE-THEMATIC-SCHEME-OF-WORK_TEACHER.AC_.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P3/Literacy/Schemes-of-Work/P3%20LITERACY%201%20SCHEME%20TERM%201.pdf</loc></url>
@@ -536,6 +347,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P4/English/Past-Papers/P.4%20ENGLISH%20PRIME%20END%20OF%20TERM%20ONE%202025.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/English/Past-Papers/P4%202025%20ENG%20PROMOTIONAL.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/English/Past-Papers/P4%20PROMOTION%20EXAM-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/English/Schemes-of-Work/ENGLISH%20SCHEME%20OF%20WORK%20ALL%20TERMS%20ALL%20CLASSES%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/English/Schemes-of-Work/P.4%20COMPOSITION%20AND%20COMPREHENSION%20SCHEME%20TERM%20III.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/English/Schemes-of-Work/P.4%20GRAMMAR%20SCHEME%20TERM%20III.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/English/Schemes-of-Work/P.4-COMPOSITION-SCHEME.pdf</loc></url>
@@ -558,6 +370,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Mathematics/Schemes-of-Work/P.4%20TERM%20I%2C%20II%2C%20III%20MATH%20SCHEME%20(1).pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Mathematics/Schemes-of-Work/P.4%20TERM%20I%2C%20II%2C%20III%20MATH%20SCHEME-1.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Mathematics/Schemes-of-Work/P4_MATHEMATICS_SYLLABUS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Lesson-Notes/P.4%20SCIENCE%20LESSON%20NOTES%20FOR%20ALL%20TERMS%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Lesson-Notes/P.4-SCIENCE.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Lesson-Notes/p.4%20science%20notes%20term%20iii.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Past-Papers/INTEGRATED%20SCIENCE%20PRIMARY%20FOUR%20MID-TERM%20III%202025.pdf</loc></url>
@@ -566,6 +379,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Past-Papers/STANDARD%20KOLFRAM%20P4%20SCIENCE%20END%20OF%20TERM%20ONE%20EXAMINATION%202026.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Past-Papers/h%20P.4%20SCI.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Schemes-of-Work/P.4%20%20science%20%20SCHEME%202026_.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Schemes-of-Work/P.4%20SCI%20SCHEME%201-3%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Schemes-of-Work/P.4%20SCI%20SCHEME%20term%20i-iii%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Schemes-of-Work/P.4%20SCI%20SCHEME%20term%20i-iii%202024.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Schemes-of-Work/P.4%20SCIENCE%20SCHEME%20OF%20WORK%20-%20TERM%20iii.pdf</loc></url>
@@ -573,6 +387,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Schemes-of-Work/P4%20Integrated%20Science%20Syllabus.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Science/Schemes-of-Work/P4_SCIENCE_SYLLABUS.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Lesson-Notes/BRIDGE%20CURRICULUM%20notes%20for%20p4%20sst%20%202022.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Lesson-Notes/P.4%20R.E%20TERM%20I%20Notes%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Lesson-Notes/P.4%20R.E%20notes%20tem%20iii.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Lesson-Notes/P.4%20RE%20LESSON%20NOTES%20TERM%20II.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Lesson-Notes/P.4%20SST%20NOTES%20TERM%201%2C.pdf</loc></url>
@@ -580,6 +395,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Lesson-Notes/P.4%20SST%20notes%20term%202%202022.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Lesson-Notes/p4-ire-notes.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Lesson-Notes/p4-re-notes-term-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Lesson-Notes/%F0%9F%8C%8FP.%204%20IRE%20NOTES_%20textbook%20hi5.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Past-Papers/P.4%20SST%20EOT%20T-III-1.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Schemes-of-Work/P.4%20IRE%20SCHEME%20TERM%201%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P4/Social-Studies/Schemes-of-Work/P.4%20S.ST%20SCHEME%20OF%20WORK%20TERM%202%20sst%20term%202.pdf</loc></url>
@@ -620,6 +436,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P5/Mathematics/Past-Papers/math%20p.5%20end%20of%20year%20(1).pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P5/Mathematics/Past-Papers/mtc%20p5%20sipro%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P5/Mathematics/Schemes-of-Work/P.5%20MATHS%20SCHEME%20OF%20WORK%20TERM%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P5/Mathematics/Schemes-of-Work/P.5%20TERM%20I%2C%20II%2C%20III%20MATH%20SCHEME%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P5/Mathematics/Schemes-of-Work/P5%20SOW%20math%20term%201_.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P5/Mathematics/Schemes-of-Work/P5%20TERM%20I%2C%20II%2C%20III%20MATH%20SCHEME_hi5.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P5/Mathematics/Schemes-of-Work/p5%20mathematics%20scheme%20of%20work%20term%202%20-%20exoticnotes.com.pdf</loc></url>
@@ -726,6 +543,7 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P7/English/Lesson-Notes/FINAL%20ABBREVIATIONS%20EDITED.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/English/Past-Papers/2026%20English%20ple.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/English/Past-Papers/BOBI%20WINE%20ENG.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P7/English/Past-Papers/E~LEARN%20GUIDES%20SPECIAL%20MOCK%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/English/Past-Papers/FINAL%20MOCK_093034.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/English/Past-Papers/K%20ENGLISH%20PRE%20NATIONAL%20MOCK%20SET%20I%202026.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/English/Past-Papers/P.7%20ENGLISH%20PRE-%20REGISTRATION%20SET%203%20%202026.pdf</loc></url>
@@ -826,7 +644,9 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Science/Past-Papers/p7%20SCI%202024.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Science/Past-Papers/s%20SCIE%20SPECIAL%20SET.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Science/Past-Papers/u%20SCIE%20UPEC%20PRE%20MOCK%20SET%202026-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P7/Science/Schemes-of-Work/P.%207%2CSCHEME%20SCI.FULL%20YEAR%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Science/Schemes-of-Work/P.7%20SCI%20SCHEME%20T1%2C%20T%202%20%26%20T3%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Primary/P7/Science/Schemes-of-Work/P.7%20SCI%20SCHEME%20T1%2C%20T%202%20%26%20T3%20textbook%20.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Science/Schemes-of-Work/P7%20SCIENCE%20SCHEME%20hi5.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Social-Studies/Lesson-Notes/ALL%20SST%20NOTES%20P.4%20TO%20P.7%20ALL%20TERMS%20EXCEL.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Social-Studies/Lesson-Notes/All%20P.4%20to%20P.7%20Religious%20Education%20notes%20all%20terms.pdf</loc></url>
@@ -869,5 +689,530 @@
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Social-Studies/Schemes-of-Work/P.7%20SST%20SCHEME%20TERM%201-%203.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Social-Studies/Schemes-of-Work/P7-CRE-scheme.pdf</loc></url>
   <url><loc>https://hi5educentre256.github.io/Primary/P7/Social-Studies/Schemes-of-Work/SST%20SCHEMES%20P7%20ALL%20TERMS(2).pdf</loc></url>
-
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Lesson%20Notes/AGRIC%20NOTES%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Lesson%20Notes/AGRICULTURE%20NOTES%20FORM%201-4%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Lesson%20Notes/HISTORY%20NOTES%20new%20curriculum%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Lesson%20Notes/O%20LEVEL%20BIOLOGY%20NOTES.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Lesson%20Notes/O-Level-Chemistry-Notes.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/ART%20EOY%20S.1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/ATESO%20S.1%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/BIOLOGY%20S.1%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/CHEM%20S.1%20EOT%202026%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/CRE%20S.1%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/END%20OF%20TERM%201%20CHEMISTRY%20S.1-1%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/ENT%20S.1%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/EOT%20II%20S.1%20ENG%20112.1%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/English%20S.1%20exams.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/HISTORY%20S.1%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/IPS%20F%20ART%20S.1%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/IRE%20S.1%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/MOT%202%20KHS%20S.1%20ENT.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20BIOLOGY%20E.O.T%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20ENT%20EOY.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20EOT%20HISTORY%20AND%20POLITICAL%20EDUCATION%202026%20WITH%20MR.%20AKUGIZIBWE%20MATHIUS.(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20EOT%20P2%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20GEOG.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20MATHS%2C%20END%20OF%20TERM%20ONE%2C2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20PHY.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20PHYSICS%20TERM%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20PHYSICS.%20EOT3.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S.1%20chem-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S1%20%20CHEMISTRY%20PRACTICAL.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S1%20CHEM%20EO1%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S1%20PHYSICS%20EOT%201%202026WAIRAKA%20MODERN%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/S1_ENT_EOT_1_2024.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/SENIOR%20ONE%20CRE%20ASSESSMENT%202025.(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S1/Past%20Papers/SENIOR%20ONE%20HISTORY%20AND%20POL-%20EDUCATION%20E.O.T%20III%20ASSESSMENT%202025.(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Lesson%20Notes/ART%20DEPARTMENT%20NOTES%20STUDIO%20TECHNOLOGY.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Lesson%20Notes/NEW%20STUDIO%20NOTES%20%20FOR%20FORM%203%2C4%2C5%2C6_103314.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Lesson%20Notes/O'LEVEL%20ENT%201_074334.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Lesson%20Notes/S.2%20Biology%20%20LESSON%20NOTES.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/AGRIC%20S.2%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/ATESO%20S.2%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/CHEM%20S.2%20END%20OF%20TERM%201%202026%20%40CHEMSAMZ.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/CRE%20S.2%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/English%20S.2%20exams.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/MHS%20MOT%20II%20S.2%20LIT%20208.1%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20BIOLOGY%20EOT1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20CHEM%20EOT%201.%20%40jjchris.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20ENT%20-Pp1%20EOC.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20EOT%20HISTORY%20AND%20POLITICAL%20EDUCATION%202026%20WITH%20MR.%20AKUGIZIBWE%20MATHIUS.(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20HISTORY%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20ICT%2CEND%20OF%20TERM%20ONE%2C2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20MATHS%2C%20END%20OF%20TERM%20ONE%2C2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20Maths%20EoY%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20PHYSICS%20END%20OF%20YR.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S.2%20PHYSICS.%20SHSK.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S2%20ENT%20EOY%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S2%20Entrepreneurship%20EOT1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S2%20MATHS%20EOT%201%202026%20ST%20JAMES%20KITAGOBWA%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/S2%20MATHS%20EOT1%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/SENIOR%20TWO%20CRE%20PAPER%202025%202(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S2/Past%20Papers/TERM%201%202026%20S2%20MTC.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Lesson%20Notes/ncdc%20learners%20text%20book%20cattle%20production%20-%20exoticnotes.com.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/AGRIC%20S.3%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/BIOLOGY%20S.3%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/CHEMISTRY%20TEST%20S.3%202026%20TERM%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/CRE%20S.3%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/E.O.T%201%20ENTREPRENEURSHIP%20S3.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/END%20OF%20TERM%201%20CHEMISTRY%20S.3.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/ENT%20S.3%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/English%20S.3%20exams.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/KHS%20S.3%20ENT.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/KHS%20S.3%20HISTORY%20EOY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/Lug.%20emboozi%20NOTES%20Pp1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/PHYSICS%20S.3%20EOY%20%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S%203%20SCHEME%20CHEM%202026%20Tm%201BVSS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S.3%20BIOLOGY%20E.O.T%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S.3%20BOT%201%202026%20MATHEMATICS%20FINAL.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S.3%20EOT%20HISTORY%20AND%20POLITICAL%20EDUCATION%202026%20WITH%20MR.%20AKUGIZIBWE%20MATHIUS.(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S.3%20EOT%20I%20CHEMISTRY%202026%20P1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S.3%20Holiday%20Package%202025%20chemistry%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S.3%20MTC%20EOC.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S.3%20Term%201%20Geography.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S3%20ICT%201%20EOY.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S3%20MATHS%20EOT%201%2C2026%20WAIRAKA%20MODERN%20SS%2CJINJA.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/S3_AOI.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/SENIOR%20THREE%20CRE%20END%20OF%20THE%20YEAR%20ASSESSMENT%202025%202.(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/SENIOR%20THREE%20STANDARD%20PROMOTIONAL%20HISTORY%20AND%20POL-EDUCATION%20ASSESSMENT%202025..pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/WAIRAKA%20MODERN%20SS%2C%20S3%20EOT%201%20PHYSICS%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S3/Past%20Papers/s.3%20bio%20E.O.T%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Lesson%20Notes/APARTHEID%20POLICY%20IN%20SOUTH%20AFRICA%20S4%20NOTES%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Lesson%20Notes/LUGANDA%20NOTES%20Hi5.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Lesson%20Notes/OKUFUNZA%2C%20OKUKYUSA%20N'OKUWANDIIKA%20EMBOOZI%20Hi5.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Lesson%20Notes/S4%20ENT%20NOTES%202025_074417.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/AGR%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/AITEL%20S.4%20PRE%20MOCK%201%20AGRICULTURE%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/AITEL%20S.4%20PRE%20MOCK%201%20PHY%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/AITEL%20UCE%20CHEMISTRY%201%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/AITEL%20UCE%20PRE%20MOCK%20SET%201%202026%20CHEMISTRY.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/AITEL%20UCE%20PRE%20MOCK%20SET%201%202026%20MATHEMATICS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/Agric%201%20UCE%20KAMTEC%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/Agric%202025%20UCE.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/BIOLOGY%202%20%20S4%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/BIOLOGY%20P.2.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/CBC%20BIO%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/CHEMISTRY%20PAPER%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/COUHEIA%20MOCK%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/CRE%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/END%20OF%20MAY%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/ENT%20%20PAPER%201%20O%20LEVEL.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/ENT%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/ENT.%20s4-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/ENTREPRENEURSHIP%20o-level%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/GRANT%20K%20EXAMS%20S.4%20MTC%201%20PRE%20REG%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/HISTORY%206%20PRE-UNEB.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/Hist%20S.4%20exams.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/ICT%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/ICT%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/IRE%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/IRE%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA%20UCE%20MTC%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_BIO_1_MOCK_EXAM%20%26%20GUIDE_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_ENG_1_MOCK_EXAM%20%26%20GUIDE_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_GEO_1_MOCK_EXAM%20%26%20GUIDE_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_LEB%20ACOLI_1_MOCK_EXAM_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_LEBLANGO_1_MOCK_EXAM_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_LUMASAABA_1_MOCK_EXAM_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_LUSOGA_1_MOCK_EXAM%20%26%20GUIDE_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_MATH_1_MOCK_EXAM%20%26%20GUIDE_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_RUNYANKOLE_RUKIGA_1_MOCK_EXAM%20%26%20GUIDE_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KAMSSA_UCE_RUNYORO_RUTORO_1_MOCK_EXAM%20%26%20GUIDE_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KISWAHILI%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/KISWAHILI%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/LEB%20LANGO%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/LUGANDA%202%20S.4.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/LUGANDA%202-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/LUSOGA%20%20PAPER%201%20O%20LEVEL.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/LUSOGA%20%20PAPER%202%20O%20LEVEL_.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/LUSOGA%20PAPER%20TWO%20MOCK_122555.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/Luganda%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/MATIGO%20MOCKS%20UCE%20CHEM%20PP1%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/NAMIREMBE%20DIOCESE%20UCE%20MOCK%20Maths%20Paper%201%2C%202024.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/OXFORD%20S4%20EOT%20ONE%202026%20(2%20files%20merged).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/PHY%20PP1%20S.4%20(2).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/PHYSICAL%20EDUCATION%20MOCK%20S4.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/PHYSICS%20-S4.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/PHYSICS%20PAPER%202%20O%20LEVEL.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S%203%20chem%20%40Hi5.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20BIOLOGY%20E.O.T%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20CHEMISTRY%20SEMINAR%20QUESTIONS%202024%20%20TO%20BE%20HELD%20ON%20%2013TH%20JULY%202024-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20EOT%20ENT%20EXAMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20EOT1%20ENT%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20ICT%20Paper%201%2CEND%20OF%20TERM%20ONE%2C2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20ICT%20Paper%202%2CEND%20OF%20TERM%20ONE%2C2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20MATH%20EOT%201%20%2C2026%20ST%20JAMES%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20MATHS%20EOT%201%202026%2C%20WAIRAKA%20MODERN%20SS%20JINJA.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20MTC%20PAPER%20SET%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20biology%20exams%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%20%40Hi5%20Set%2010.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%20%40Hi5-Mock%20Set%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%20%40Hi5-Set%203.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%20%40Hi5.Set%205.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%20%40Hi5.Set%206.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%20%40Hi5.Set%207.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%20%40Hi5.Set%208.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%20%40Hi5.Set%209.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%20%40Hi5.set%204.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S.4%20chem%40Hi5-Mock.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S4%20CHEM%20%20NPS%20practical.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S4%20HIST%20PRE%20REGISTRATION.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S4%20chem%201%20term%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S4%20physics%20(2).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S4_ENG_1_EOT_1_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/S4_PHY_1_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/SENIOR%20FOUR%20EOT%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/ST%20JAMES%20S4%20PHYSICS%20EOT%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Agriculture%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Art%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Art%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Biology.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Biology2.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20CRE.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Chemistry%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Chemistry%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20DIOCESAN%20MOCK%20CHEM%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20ENG%20UNEB%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Entrepreneurship%20paper%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Entrepreneurship.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Geography.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20ICT.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20IRE.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Kiswahili.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Leb%20Lango1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Leb%20Lango2.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Literature.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Luganda%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20Mathematics.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20performing%20arts.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20physics2.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE%20physicsS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UCE-ENG-2024-S4-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/UNEB%20sample%20Physics%20paper%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/WAIRAKA%20MODERN%20S4%20PHYSICS%20EOT%201%20%2C2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/WAKATA%20UCE%20MTC%202%2023%20NO.14.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/WAKISHA%20MATH%20UCE%2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/WAKISSHA%20PHY%20MOCK%20MG.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/WAKISSHA%20UCE%20PHY%20P1%20(2)(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/Wakisha%20Joint%20Mock%20Math%201%202023.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/Wakissha%20UCE%20ICT%202%2C%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/art%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/art%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/biology%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/biology%202%20s4%20mock%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/biology%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/chem%20uce%202024%20paper%203.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/chemistry%20S4%20term%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/geography-2.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/lango%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/maths1-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/phy%203%20asshu.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/physics%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/physics%202%2C%20confidential.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/s.4%20chem1%20exam%202026%20(2).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/s.4_chem_paper%201_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/s5%20mathematics%20end%20of%20term%20one%20item%20wairaka%20modern%20ss%20-%20exoticnotes.com.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/uneb%202022%20uce%20physics%20two.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/wakata%20uce%20practical%202023.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/wakisha%20mock%20maths%202%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S4/Past%20Papers/wakissha%20uce%20physics%202%202023.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/12th_BIOLOGY_PRACTICAL_2025_26.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/A%20LEVEL%20DIVINITY%203%20NOTES%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/A%20LEVEL%20FULL%20MAGNETISM%20-%20Physics%20-%20LubwamaD.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/A%20LEVEL%20NOTES%20PHY%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/A%20LEVEL%20PHYSICS%20ONE%20NOTES%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/A%20level%20mathematics%20notes%20%20math%20-%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/A_%20LEVEL%20PHYSICS%202%20notes%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/CBC%20S.5%20CELL%20BIOLOGY%20NOTES.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/DIVINITY%20PAPER%202%20NOTES%20A%20LEVEL.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/ENT%20PAPER%20TWO%20NOTES%20FOR%20A%20LEVEL-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/ENT%20paper%202%20Notes%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/Entreprenuership%20Notes%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/GEOGRAPHY%20OF%20UGANDA-A%20LEVEL.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/General%20paper%20communication%20notes.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/ORGANIC%20CHEMISTRY%20NOTES_083235.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/S5%20ECONOMICS%20NOTES%20MerryLand-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/S5%20PHYSICS%20NOTES%20TERM%20ONE.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/S5-CBC-Moles-and-Equations-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/SUB-MATHS%20NOTES.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/TRANS%20SAHARAN%20TRADE-S5.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Lesson%20Notes/a%20level%20physics%20current%20electricity%20uganda%20martyrs%20namugongo%20-%20exoticnotes.com.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/10_CBC_Scenario_Items_Hydrocarbons_S5-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/717d2fab819c4643b408e47fa1c3b9e7.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/A'LEVEL%20NEW%20CURRICULUM%2C%20ART%26%20Design%20S.%205%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/A'LEVEL%20NEW%20CURRICULUM%2C%20General%20Paper%20S.%205%202025-1-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/AGRIC%20A'LEVEL%20ITEMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/AITEL%20S.5%20EOT%201%20HISTORY%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/ART1%20MEPUSA%20MOCK%202024.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/Abdominal%20Blood%20Vessels%20pdf-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/BIO%201%20S%2C5-1%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/DIVINITY%20S5%20EOT.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/END%20OF%20TERM%202%20PHYSICS%20P5101.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/ENT%20CBC%20TRIAL%20QUESTION.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/ENT%20S5%20END%20TERM%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/ENT%20S5%20EOT%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/ENTREPRENEURSHIP%20EDUCATION%20SEMINARS%20QNS-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/ENTREPRENEURSHIP%20EOT%20s5%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/EOT12026S5CHEM1%20(2).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/Ent%201%20%26%202%20practice%20items.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/General%20paper%20term%203%20S5.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/Geography%20EOT%203%20S.%205.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/HISTORY%20OF%20WORLD%20AFFAIRS%20a%20level%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/HISTORY%20UNIT%202%20EOT2%20s5.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/KISWAHILI%20S.5%20P2%20EOT3%202025%20SMACON%202%20F.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/MHS%20EOT%20I%20S.5%20LIT%20P310.1%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/MHS%20MOT%20II%20S.5%20GP%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.%205%20Physics%20new%20curriculum%20items%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20AGRIC%20EOT1%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20BIO%20E.O.T%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20BIOLOGY%20HOLIDAY%20WORK.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20BIOLOGY%20P.1%20BOT%20TERM%20III%202025%20SET%20II%20GUIDE.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20BIOLOGY%20P.1%20EOC%20TERM%20III%202025%20BIOCLASS%20UG.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20BIOLOGY%20P.1%20TERM%20III%202025%20BIOCLASS%20UG.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20BIOLOGY%20TEST%20ITEMS%20BIOCLASS%20HUB.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20CHEM%201%20EOT%20I%20'26.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20CHEM%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20CHEM%202%20EOT%203%202024-LAP.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20CHEM%20EOY%202025%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20CHEM%20PAPER%20ONE%20SENK.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20CHEMISTRY%20MID%20TERM%20III%20SAMPLE%20PAPER%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20CHM%201%20TERM%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20ECONOMICS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20ENT2%20END%20hi5.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20ENT_Paper.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20EOY%20SET%201%20CHEMISTRY%20TERM%20III%20SAMPLE%20PAPER%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20GP%20EOT2.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20Luganda%20puloozi%20Mr%20Mukiibi.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20MATH%20ITEMS%20KR%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20MID%20TERM%203%20BIO%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20MTC%20EOC%20III%202025%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20Physical%20Geography%20Items.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20PhysicsAssessments%20(3).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20TERM%201%202025%20SUBMATH%20EXAM%20final.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5%20applied%20maths%20mengo%20ss.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5-%20BIOLOGY%20SET%204.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5_Applied_Math%5B1%5D-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S.5_BIOLOGY_P.1_MED-TERM_I_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S475_1%20SUBSIDIARY%20MATHEMATICS_UACE%20SamplePaper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20APPLIED%20MATHEMATICS%20TEST%20TERM%202%20(2).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20APPLIED%20MATHEMATICS%20TEST%20TERM%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20BIO%20EOT2%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20Bio%20EOT%20II%202025%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20CHEM%20(The%20chemistry%20of%20group%20VII%20elements)-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20CHEM%20EOT1%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20CHEM%20EOY%202025%20Paper%201_NI.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20CHEM%20TEST%20ORGANIC_250722_215844-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20CHEMISTRY%20PAPAR%201%20EOT%202%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20CHEMISTRY%20PRACTICAL%20EOT%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20ECONOMICS%20EXAM%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20END%20OF%20YEAR%20CHEM%203%202025%20SMUTES.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20ENT%20EOY%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20EOT%202%20MTC%20PP1%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20EOT1%20BIOLOGY%20THEORY%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20MATH%20HOLIDAY%20ITEMS%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20MTC%20PAPER%202%20BOT%20TERM%202%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20PAPER%202025%20TERM%201%20BIOLOGY%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20chem%20paper-1%20EOT.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20chemistry%20paper%20one-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20eot%201%20chem%202025-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5%20history%20holiday%20package%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5-BIOLOGY-PAPER-1-TEST-2-2025%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5-Chemistry-Theory-paper-1-Mid-Term-3-Exam.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5.%20ART1%20%20BOMBO%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5.%20ART1%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5MT2CHEM12025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5_Literature_CBC_Exam.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/S5_MOT3_PHY2_2025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/SENIOR%20FIVE%20PHYSICS%20PAPER%201%20TEST.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/SENK%20S5%20CHEM%20ONE%20EOT%20III.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/SESEMAT%20-%20JINJA%20REGION%20%20CHEMISTRY%20PAPER1%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/St%20Peter's%20High%20School%20Hoima%20CBC%20Chemistry%20by%20T.J.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/UACE%20History%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/WAIRAKA%20MODERN%20S.5%20MATH.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/chemistry%20Paper%202%20%20S.%205%20mocks%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/chemistry%20senior%20five.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/ent%20s.5.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/phy%201%20s5%20set%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/s.5%20END%20OF%20TERM%203_091304.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/s.5%20physics%202%20set%201%20term%203%20by%20tr%20paul.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/s5%20chemistry%20scenario%20items%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/s5%20ict%20paper%202%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/s5%20mathematics%20paper%201%20p4251%20compentence%20based%20assessment%20new%20a%20level%20curriculum%20-%20exoticnotes.com.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/s5%20physics%20end%20of%20term%20one%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/s5%20physics%20paper%20one-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/taxation%20items.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S5/Past%20Papers/the%20senior%20five%20math1%20kinaawa.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/A%20_Level_ICT_NOTES%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/GP%20S.6%20E%20E%20SAMPLE%20RESEARCTOPICS%20PROBLEMS..pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/ORGANIC%20CHEMISTRY%20NOTES_083235.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/S.6-APPLIED-MATHEMATICS-NOTES-GHS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/SUB%20ICT-%20NOTES%20FOR%20S6.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/general-paper-essay-examples-notes.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Lesson%20Notes/physical%20chemistry%20notes%20a%20level%20-%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/2025%20UACE%20UMTA%20PHYSICS%20PAPER%201%2C2%20AND%203_hi5.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/6%20CHEM.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/A%20level%20GP%20extended%20essay%20guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/ACEITECA%20UACE%20BIO%201%20PROPOSED%20GUIDE%202026%20(2).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/APPLIED%20MATHS%20ITEM%20BANK%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/A_level_mathematics_260518_225027.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Agric%20paper%202%20Alevel_052739.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/CBC%20S6%20CHEM%20ITEMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/CONFIDENTIAL%20SET_1%20TO%204_S.6_CHEM_PRACTICAL%20EDUCATORS%20FORUM%20yr%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/CRE%20PAPER%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/CRE%20PAPER%20ONE.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/ECONOMICS%20PAPER%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/ECONOMICS%20PAPER%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/ECONOMICS%20REVISION%20ITEMS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/EF_SET_8_S.6_CHEM_PRACT%20yr%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/ENT1%20SET2%20APRIL%20S6.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/ENTREPRENEURSHIP%20p1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/EOT12026%20S6CHEM1%20(2).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Econ%20Items%20s6.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Geography%20UACE%20sample%20paper.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/HISTORY%20PAPER%20ONE.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/HISTORY%20of%20Afric%20SINCE%201800.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/History%20paper%202.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/INVESTIGATIVE%20BIOLOGY%20PRE-UNEB%20SET%203%20WITH%20A%20GUIDE%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/IRE%20paper%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/JJEB%20A%20LEVEL%20P2%202022.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/KAMSSA%20MOCKS%20MATHS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/KAMSSA%20UCE%20MTC%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/KAMTEC%20UACE%20CHEM%202%20CONFIDENTIAL%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/KAMTEC%20UACE%20CHEM%20PAPER%202%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/KAMTEC%20UACE%20CHEM%20PP1%20%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/KWGSA%20UACE%20ENT2%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Kabale%20mocks%20phy.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/MACADITA%20UACE%20CHEM%20P1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/MATH%20Pure%202025%20mock%20Compilation.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/New-curriculum-A-level-submath-topic-1-Matrices.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/New-curriculum-A-level-submath-topic-10-Trigonometry.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/New-curriculum-A-level-submath-topic-8-Scatter-Diagrams-and-Correlations.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/New-curriculum-A-level-submath-topic-9-Vectors.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P230_1_ENTREPRENEURSHIP_UACE_SamplePaper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P369_1_RUNYORO-RUTOORO_UACE_Sample%20Paper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P369_1_RUNYORO-RUTOORO_UACE_Sample%20Paper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P369_2_RUNYORO-RUTOORO_UACE_Sample%20Paper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P369_2_RUNYORO-RUTOORO_UACE_Sample%20Paper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P371_1_LUMASAABA_UACE_Sample%20Paper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P371_1_LUMASAABA_UACE_Sample%20Paper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P425_1%20PRINCIPAL%20MATHEMATICS_UACE%20SamplePaper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P425_1%20PRINCIPAL%20MATHEMATICS_UACE%20SamplePaper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P425_2%20PRINCIPAL%20MATHEMATICS_UACE%20SamplePaper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P510_1%20PHYSICS_UACE%20SamplePaper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P510_2%20PHYSICS_UACE%20SamplePaper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P510_2%20PHYSICS_UACE%20SamplePaper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P510_2%20PHYSICS_UACE%20SamplePaper_2026_Inst_to_Sch.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P525%201%20CHEMISTRY%20UACE%20%202026_020408.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P525_1%20CHEMISTRY_UACE%20SamplePaper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P525_1%20CHEMISTRY_UACE%20SamplePaper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P525_2%20CHEMISTRY_UACE%20SamplePaper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P525_2%20CHEMISTRY_UACE%20SamplePaper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P525_2%20CHEMISTRY_UACE%20SamplePaper_2026_Inst_to_Sch.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P530_1%20BIOLOGY_UACE%20SamplePaper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P530_1%20BIOLOGY_UACE%20SamplePaper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P530_2%20BIOLOGY_UACE%20SamplePaper_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P530_2%20BIOLOGY_UACE%20SamplePaper_2026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P530_2%20BIOLOGY_UACE%20SamplePaper_2026_Inst_to_Sch.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P615_1_ART%20AND%20DESIGN_UACE_SamplePaper_%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P615_1_ART%20AND%20DESIGN_UACE_SamplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P615_2_ART%20AND%20DESIGN_UACE_SamplePaper_%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P615_2_ART%20AND%20DESIGN_UACE_SamplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P620%20_1_MUSIC_%20UACE_samplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P620_2_MUSIC_%20UACE_samplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P630_1_CLOTHING%20AND%20TEXTILES_UACE_SamplePaper_%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P630_1_CLOTHING%20AND%20TEXTILES_UACE_SamplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P630_2_CLOTHING%20AND%20TEXTILES_UACE_SamplePaper_%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P630_2_CLOTHING%20AND%20TEXTILES_UACE_SamplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P640_1_FOOD%20AND%20NUTRITION_SamplePaper_%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P640_1_FOOD%20AND%20NUTRITION_SamplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P640_2_FOOD%20AND%20NUTRITION_SamplePaper_%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P640_2_FOOD%20AND%20NUTRITION_SamplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P720_1%20Technical%20Drawing_%20UACE_samplePaper_%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P720_1%20Technical%20Drawing_%20UACE_samplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P720_2%20Technical%20Drawing_%20UACE_samplePaper_%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/P720_2%20Technical%20Drawing_%20UACE_samplePaper_%202026_Guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/PHYSICS%201(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/PRE-UNEB%20PHY%20UACE%202026%20AAAA.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/PRE-UNEB%20UACE%20BIO2%20SET%201%202026%20INVESTIGATIVE%20BIOLOGY.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/PURE%20MATHEMATICS%20SET%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/PURE%20MATHEMATICS%20SET%203.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/PURE%20MTC%20END%202_Phoenix(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Pure%20Mathematics%20Items%20Set%202-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Revision%20Items%20for%20S6%20CHEM.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S%206%20E.O.T%201%20PHYSICS%20PAPER%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20B.O.T%20%201%202026%20final%20(2).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20B.O.T%20%201%202026%20final.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20BIO%201%20B.O.T%201%202026_125247.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20BIO1%20E.OT%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20BIOLOGY%20OT%201%20%202026%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20CHEM%20B.O.T%201%20PROPOSED%20GUIDE%202026%20EDITED.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20CHEM%20PAPER%201%20EOT%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20CHEMESTRY%20PAPER%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20CHEMISTRY%20TERM%20I%20PRE-REGISTRATION%20ASSESSMENT%202026%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20CHEMISTRY%20TERM%20I%20PRE-REGISTRATION%20ASSESSMENT%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20Chemistry%20paper%202%20guide.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20ECONOMICS%20ASSESSMENT%20ON%20NATIONAL%20INCOME%20%20%20-2.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20ECONOMICS%20ASSESSMENT%20ON%20NATIONAL%20INCOME%20%20%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20ENT%20PAPER%20WITH%20MARKING%20GUIDE.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20P2%20PRE-MOCK%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20P2%20PRE-MOCK%20CHEMISTRY%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20PHYSICS.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20PRE-MOCK.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20WAKISSHA%20BIO%203.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20bio%20End%20of%20term%201%20%20(1).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S.6%20chemistry.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S6%20BIOLOGY%20PAPER%204.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S6%20CHEM%20REVISION%20ITEMS%203%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S6%20EOT%20BIO%20PAPER%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S6%20KHS%20EOT%201%20CHEM%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S6%20MATH%20%20PAPER%202%20EOT%201%202026%20ST%20JAMES.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/S6_LUG_1_EOT_1_EXAM_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/SET_10_S.6_CHEM_PRACTICAL%20EDUCATORS%20FORUM%20yr%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/SET_11_S.6_CHEM_PRACTICAL%20EDUCATORS%20FORUM%20yr%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/SET_12_S.6_CHEM_PRACTICAL%20EDUCATORS%20FORUM%20yr%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/SGBOT1S6CHEM12026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/SSEB%20S.6%20PHYSICS%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/SUB%20MTC%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Scoring%20guide%20EOT12026%20S6CHEM1%20(3).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Sub-math-Differentiation-A-level.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Sub-math-Inequalities.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/Sub-math-Sequence-and-series.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20ACEITEKA%20CHEM%201%202026-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20BIO%20PRAC%20FACILI2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20BIOLOGY%20P2%20PRE-UNEB%20GUIDE%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20BOLOGY%20PAPER%201.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20CBC%20BIOLOGY%20STANDARD%20ITEM%20SERIES.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20CHEM%20P2%20MACADITA%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20COUHEA%20CHEM%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20JJEB%20CHEM%202026%200751341896.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20MTC%20set%204%20Tr%20Joel%20S6.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE%20UMTA%20CHEM%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE_Entrepreneurship_Sample_Papers-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UACE_P425_1_Set2_2026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UCE%20WAKISHA%20BIO%202%202025.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UaCE%20Luganda%201%20pre%20mock-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/UaCE%20Luganda%202%20pre%20mock.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/WAKATA%20UACE%20CHEM%201%202026.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/WAKISHA%20PHYSICS%20UACE26.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/ent%20p2.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/history%20paper%206_053508.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/litrature%20in%20English%20PAPER%20ONE.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/physics%201-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/physics%20s.6.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Secondary/S6/Past%20Papers/submaths.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Certificate/Best%20200%20Report%20Comments.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Certificate/Complete_English_Grammar_Rules%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Certificate/Overcoming%20the%20Enemy%20Live%20in%20Victory%20Over%20Trials%20and%20Temptations%20(Charles%20F.%20Stanley)%20(Z-Library).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Certificate/Respectable%20Sins%20Confronting%20the%20Sins%20We%20Tolerate%20(Jerry%20Bridges)%20(z-lib.org).pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Degree/A%20Dictionary%20of%20Science%2C%20Sixth%20Edition%20(Oxford%20Paperback%20Reference)%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Degree/BACHELOR%20OF%20LAWS%20PRE-ENTRY%20EXAMINATION.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Degree/Kyambogo-University-2025-2026%20direct%20entry%20scheme.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Degree/The%20New%20Rules%20for%20Love%2C%20Sex%2C%20and%20Dating%20-%20Andy%20Stanley%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Degree/bem_manual.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Diploma/Ebitontome%20lug.%20notisi-1.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Diploma/History%2Bof%2BBusoga_%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Diploma/LUGANDA%20ggulaama%20notes.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Diploma/THE%20MOON%20AND%20THE%20STARS%20-%20season%202%20textbook%20PDF.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Diploma/_OceanofPDF.com_10000_hours_with_a_rich_menace_-_Jaquel_j%20textbook%20.pdf</loc></url>
+  <url><loc>https://hi5educentre256.github.io/Tertiary/Diploma/human_rights_and_law_printable.pdf</loc></url>
 </urlset>
