@@ -469,64 +469,108 @@ button{
 }
 
 }
+
+/* HI5 SIGNATURE ENTRANCE + HOMEPAGE REFRESH */
+:root{--hi5-navy:#071b36;--hi5-blue:#1265c7;--hi5-green:#15966a;--hi5-gold:#e6bd72;--hi5-ink:#10233d}
+html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.menu-open{overflow:hidden}
+.door-intro{position:fixed;inset:0;z-index:30000;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:28px 18px 58px;background:radial-gradient(ellipse at 50% 40%,#173f66 0%,#0b2342 44%,#06152b 100%);color:#fff;transition:opacity .75s ease,visibility .75s ease}
+.door-intro.is-opening{pointer-events:none}.door-intro.is-hidden{opacity:0;visibility:hidden}.intro-glow{position:absolute;width:min(88vw,850px);height:min(88vw,850px);border-radius:50%;background:radial-gradient(circle,rgba(48,139,174,.23),rgba(8,34,63,0) 68%);pointer-events:none}
+.intro-content{position:relative;z-index:2;width:min(100%,650px);text-align:center}.intro-brand{display:flex;justify-content:center;align-items:center;gap:13px;margin:0 auto 20px;text-align:left}
+.intro-brand img{width:58px;height:58px;object-fit:cover;border:2px solid rgba(230,189,114,.8);border-radius:16px;box-shadow:0 8px 24px #020b18}.intro-kicker{font-size:10px;letter-spacing:3px;color:#d8bd8c;font-weight:700}
+.intro-name{font-size:clamp(19px,4vw,26px);font-weight:800}.intro-motto{font-size:12px;color:#b8c9dc;letter-spacing:1.3px;margin-top:2px}
+.door-stage{position:relative;width:min(78vw,430px);height:min(78vw,440px);min-height:300px;margin:0 auto 12px;perspective:1500px;filter:drop-shadow(0 22px 30px rgba(0,0,0,.38))}
+.door-light{position:absolute;inset:12% 10% 4%;border-radius:48% 48% 8px 8px;background:radial-gradient(ellipse at center,#fff4cf 0%,#e8c98a 24%,#5c9c9d 54%,#0a2746 80%);box-shadow:0 0 70px rgba(243,203,125,.28)}
+.door-frame{position:absolute;inset:0 5% 0;border:9px solid #8b653a;border-bottom-width:13px;border-radius:190px 190px 8px 8px;background:linear-gradient(90deg,#3b281c,#b18a54 10%,#563b26 18%,#2c1e17 50%,#b18a54 90%,#392719);box-shadow:inset 0 0 0 3px #e4c48c,0 0 0 2px rgba(255,231,183,.25);display:flex;overflow:visible}
+.door-leaf{position:relative;width:50%;height:100%;background:linear-gradient(90deg,#281b15 0%,#70472b 12%,#9b6940 48%,#56351f 100%);border:3px solid #d0a66b;box-shadow:inset 0 0 0 5px rgba(35,20,12,.65),inset 0 0 22px rgba(0,0,0,.55);transform-style:preserve-3d;transition:transform 1.55s cubic-bezier(.72,0,.2,1);backface-visibility:hidden}
+.door-left{transform-origin:left center;border-radius:175px 0 0 0}.door-right{transform-origin:right center;border-radius:0 175px 0 0;background:linear-gradient(270deg,#281b15 0%,#70472b 12%,#9b6940 48%,#56351f 100%)}
+.door-inset{position:absolute;inset:13% 11% 8%;border:2px solid rgba(226,190,130,.7);border-radius:125px 125px 5px 5px;box-shadow:inset 0 0 0 4px rgba(35,20,12,.45);display:flex;align-items:center;justify-content:flex-start;flex-direction:column;padding-top:22%}
+.door-emblem{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #e8c88d;color:#f7e4b8;font-size:22px;font-weight:900;letter-spacing:-2px;box-shadow:0 0 18px rgba(230,189,114,.2)}.door-emblem span{color:#fff}
+.door-panel-detail{width:65%;height:36%;margin-top:17%;border:2px solid rgba(226,190,130,.48);border-radius:5px;box-shadow:inset 0 0 0 4px rgba(30,18,12,.25)}
+.door-handle{position:absolute;top:55%;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff2c7,#b9853e 65%,#54371c);box-shadow:0 0 0 3px rgba(39,23,13,.55),0 2px 8px #170f09}
+.door-left .door-handle{right:-5px}.door-right .door-handle{left:-5px}.door-intro.is-opening .door-left{transform:rotateY(-112deg)}.door-intro.is-opening .door-right{transform:rotateY(112deg)}
+.intro-welcome{margin:5px 0 17px;color:#dce8f4;font-size:15px;letter-spacing:.35px}.enter-button{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-width:210px;padding:15px 23px;border:1px solid #f0d39b;border-radius:999px;background:linear-gradient(135deg,#f3d69d,#c99b56);color:#152c46;font-weight:900;letter-spacing:1.8px;box-shadow:0 9px 26px rgba(0,0,0,.25);transition:transform .25s,box-shadow .25s}
+.enter-button:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(0,0,0,.32)}.enter-arrow{font-size:21px;line-height:1}.skip-intro{display:block;margin:11px auto 0;background:transparent;color:#c4d3e3;border:0;text-decoration:underline;text-underline-offset:4px;font-size:12px}
+.intro-sound-note{margin:8px 0 0;color:#8fa9c2;font-size:10px;letter-spacing:1.2px;text-transform:uppercase}.intro-footer{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#92a9c0;font-size:10px;letter-spacing:2.5px}.intro-footer i{color:#e2bd7b;font-style:normal;margin:0 7px}
+.topbar{min-height:78px;box-sizing:border-box;padding:10px clamp(14px,3vw,36px);justify-content:center;box-shadow:0 5px 24px rgba(7,27,54,.16);background:linear-gradient(110deg,#0b4c9c 0%,#1169b9 48%,#11835f 100%);border-bottom:1px solid rgba(255,255,255,.18)}
+.menu-toggle{position:absolute;left:clamp(14px,3vw,36px);top:50%;transform:translateY(-50%);width:46px;height:44px;margin:0;padding:11px;border:1px solid rgba(255,255,255,.35);border-radius:13px;background:rgba(255,255,255,.13);display:flex;flex-direction:column;justify-content:center;gap:5px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.menu-toggle span{display:block;width:21px;height:2px;border-radius:3px;background:#fff}.brand{gap:13px;padding:3px 12px}.brand img{width:49px;height:49px;border:2px solid rgba(255,255,255,.7);border-radius:14px}
+.brand-text .title{font-size:clamp(16px,2.5vw,20px);letter-spacing:.15px}.brand-text .subtitle{font-size:11px;letter-spacing:.7px}
+.topbar-contact{position:absolute;right:clamp(14px,3vw,36px);top:50%;transform:translateY(-50%);padding:10px 15px;border:1px solid rgba(255,255,255,.45);border-radius:999px;color:#fff;text-decoration:none;font-size:12px;font-weight:700;background:rgba(255,255,255,.12)}.topbar-contact span{margin-left:6px}
+.menu-backdrop{position:fixed;inset:0;z-index:1998;background:rgba(4,16,32,.58);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.menu-backdrop.is-visible{opacity:1;visibility:visible}
+.sidebar{left:0;top:0;width:min(310px,86vw);height:100dvh;box-sizing:border-box;padding:28px 18px 22px;background:linear-gradient(165deg,#0b2444,#07172d 72%);box-shadow:18px 0 45px rgba(0,0,0,.28);transform:translateX(-110%);transition:transform .36s cubic-bezier(.2,.8,.2,1);z-index:2000;border-right:1px solid rgba(255,255,255,.12)}
+.sidebar.is-open{transform:translateX(0)}.close-menu{position:absolute;right:16px;top:15px;width:36px;height:36px;margin:0;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:25px;line-height:1;border:1px solid rgba(255,255,255,.16)}
+.sidebar-brand{text-align:center;padding:24px 8px 25px;border-bottom:1px solid rgba(255,255,255,.12)}.sidebar-brand img{width:72px;height:72px;object-fit:cover;border-radius:20px;border:2px solid rgba(230,189,114,.8);box-shadow:0 8px 20px rgba(0,0,0,.24)}
+.sidebar-brand-name{margin-top:12px;font-weight:800;font-size:16px;color:#fff}.sidebar-brand-motto{margin-top:3px;color:#a9c2dc;font-size:11px;letter-spacing:.8px}
+.sidebar-label{margin:23px 10px 9px;color:#8fa9c2;font-size:10px;font-weight:800;letter-spacing:2px}.sidebar a{display:flex;align-items:center;gap:13px;padding:13px 12px;margin:4px 0;border:0;border-radius:12px;color:#eaf2fb;font-size:14px;font-weight:600;white-space:normal;transition:background .2s,transform .2s}
+.sidebar a:hover{background:rgba(255,255,255,.1);transform:translateX(3px)}.nav-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:rgba(255,255,255,.1);color:#f0d39b;font-size:17px}.nav-arrow{margin-left:auto;color:#91aac3;font-size:23px}
+.sidebar-divider{height:1px;margin:14px 8px;background:rgba(255,255,255,.12)}.sidebar-bottom{position:absolute;bottom:22px;left:27px;right:27px;color:#8fa9c2;font-size:11px;text-align:center;letter-spacing:.3px}
+.hero{height:clamp(390px,48vw,510px);margin:18px 0 26px;border-radius:26px;background:linear-gradient(90deg,rgba(5,22,44,.88),rgba(5,22,44,.54) 55%,rgba(5,22,44,.22)),url('https://images.pexels.com/photos/8617743/pexels-photo-8617743.jpeg');background-size:cover;background-position:center;box-shadow:0 18px 42px rgba(12,36,66,.2);justify-content:flex-start;text-align:left}
+.hero-overlay{width:min(760px,100%);padding:clamp(24px,6vw,62px);text-align:left;box-sizing:border-box}.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border:1px solid rgba(255,255,255,.27);border-radius:999px;background:rgba(255,255,255,.1);font-size:10px;font-weight:800;letter-spacing:1.8px;color:#f0d39b}
+.hero-eyebrow-dot{width:7px;height:7px;border-radius:50%;background:#7fe0b1;box-shadow:0 0 0 4px rgba(127,224,177,.15)}.hero h1{max-width:670px;margin:22px 0 14px;font-size:clamp(36px,6vw,64px);line-height:1.08;letter-spacing:-1.6px;font-weight:800}
+.hero h1 em{font-style:normal;color:#f1cf91;-webkit-text-fill-color:#f1cf91}.hero p{max-width:580px;margin:0 0 25px;color:#e2ebf5;font-size:clamp(14px,1.7vw,17px);line-height:1.8}
+.hero-buttons{justify-content:flex-start;align-items:center;gap:12px}.hero-buttons .hero-primary{padding:14px 21px;border-radius:12px;background:linear-gradient(135deg,#f1d39a,#d6ad6e);color:#122b47;font-size:14px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.hero-primary span{font-size:19px;margin-left:12px}.hero-secondary{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border:1px solid rgba(255,255,255,.45);border-radius:12px;color:#fff;text-decoration:none;font-weight:700;font-size:13px;background:rgba(255,255,255,.1)}
+.hero-footnote{margin-top:25px;color:#c7d6e6;font-size:11px;letter-spacing:.2px}.hero-footnote span{color:#9de3b8;font-weight:900;margin-right:5px}.hero-footnote b{margin:0 7px;color:#f1cf91}
+.hero-corner-mark{position:absolute;right:24px;bottom:22px;color:rgba(255,255,255,.85);font-size:15px;font-weight:900;letter-spacing:3px;text-align:right}.hero-corner-mark span{display:block;font-size:8px;letter-spacing:2px;font-weight:500;margin-top:3px}
+#suggestBox{margin:0 auto 18px!important;max-width:920px}#searchBox{padding:17px 19px!important;border:1px solid #dce5ef!important;border-radius:15px!important;background:#fff!important;box-shadow:0 8px 22px rgba(15,39,68,.06);font:500 14px 'Poppins',sans-serif}
+#searchBox::placeholder{color:#8796a8}#content>h2{font-size:22px!important;font-weight:800;color:#142d4b;margin:28px 0 4px!important}.cards{gap:16px;margin-top:18px}.card{border:1px solid rgba(255,255,255,.55);box-shadow:0 8px 22px rgba(15,39,68,.09);border-radius:18px}.card:hover{box-shadow:0 16px 30px rgba(15,39,68,.15)}.footer{color:#738196}
+@media(max-width:640px){.topbar{min-height:72px;padding:8px 58px}.menu-toggle{left:12px;width:42px;height:42px}.brand{gap:8px;padding:2px}.brand img{width:42px;height:42px;border-radius:12px}.brand-text .title{font-size:14px;white-space:nowrap}.brand-text .subtitle{font-size:9px;letter-spacing:.35px}.topbar-contact{right:10px;padding:8px 10px;font-size:0;border-radius:12px}.topbar-contact span{font-size:16px;margin:0}.hero{height:410px;margin:12px 0 20px;border-radius:19px;background-position:58% center}.hero-overlay{padding:25px 21px}.hero h1{font-size:37px;letter-spacing:-1px}.hero p{font-size:14px;line-height:1.65}.hero-buttons{gap:9px}.hero-buttons .hero-primary,.hero-secondary{font-size:12px;padding:12px 13px}.hero-footnote{font-size:10px;line-height:1.6}.hero-corner-mark{right:15px;bottom:13px;font-size:12px}.intro-brand img{width:48px;height:48px}.intro-motto{font-size:10px}.door-stage{width:min(86vw,380px);height:min(86vw,390px);min-height:290px}.intro-welcome{font-size:13px}.enter-button{min-width:190px;padding:14px 20px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
 </style>
 </head>
 
 <body>
+<div class="door-intro" id="doorIntro" role="dialog" aria-modal="true" aria-label="Welcome to Hi5 Education Centre">
+  <div class="intro-glow"></div><div class="intro-content">
+    <div class="intro-brand"><img src="images/logo.png" alt="Hi5 Education Centre logo"><div><span class="intro-kicker">WELCOME TO</span><div class="intro-name">Hi5 Education Centre</div><div class="intro-motto">Learn Today, Lead Tomorrow</div></div></div>
+    <div class="door-stage" aria-hidden="true"><div class="door-light"></div><div class="door-frame">
+      <div class="door-leaf door-left"><div class="door-inset"><div class="door-emblem">H<span>5</span></div><div class="door-panel-detail"></div><div class="door-handle"></div></div></div>
+      <div class="door-leaf door-right"><div class="door-inset"><div class="door-emblem">H<span>5</span></div><div class="door-panel-detail"></div><div class="door-handle"></div></div></div>
+    </div></div>
+    <p class="intro-welcome">A world of learning is waiting for you.</p>
+    <button class="enter-button" type="button" onclick="enterHi5()"><span>ENTER HI5</span><span class="enter-arrow">→</span></button>
+    <button class="skip-intro" type="button" onclick="skipHi5Intro()">Continue without animation</button>
+    <p class="intro-sound-note">Tap to open the doors · Sound on</p>
+  </div><div class="intro-footer">NURSERY <i>•</i> PRIMARY <i>•</i> SECONDARY <i>•</i> TERTIARY</div>
+</div>
+
 <header class="topbar">
-
-  <span class="menu" onclick="toggle()">☰</span>
-
-  <div class="brand" onclick="goDashboard()">
-    <img src="images/logo.png" alt="Hi5 Logo">
-    <div class="brand-text">
-      <div class="title">Hi5 Education Centre</div>
-      <div class="subtitle">Learn Today, Lead Tomorrow</div>
-    </div>
+  <button class="menu-toggle" type="button" onclick="toggle()" aria-label="Open navigation menu" aria-controls="sidebar"><span></span><span></span><span></span></button>
+  <div class="brand" onclick="goDashboard()" role="button" tabindex="0" aria-label="Hi5 Education Centre home">
+    <img src="images/logo.png" alt="Hi5 Logo"><div class="brand-text"><div class="title">Hi5 Education Centre</div><div class="subtitle">Learn Today, Lead Tomorrow</div></div>
   </div>
-
+  <a class="topbar-contact" href="https://wa.me/256702234701" target="_blank" rel="noopener">Contact Us <span>↗</span></a>
 </header>
-
-<div id="sidebar" class="sidebar">
-
-<div class="close" onclick="toggle()">✖</div>
-
-<div style="text-align:center;margin-bottom:20px;">
-<a href="images/logo.png" download="Hi5-Logo.png">
-  <img src="images/logo.png" alt="Hi5 Logo"
-  style="width:80px;border-radius:12px;">
-</a>
-</div>
-<a href="#" onclick="go('home')">🏠 Dashboard ➜</a>
-<a href="#" onclick="go('Nursery')">📚 Nursery ➜</a>
-<a href="#" onclick="go('Primary')">📘 Primary ➜</a>
-<a href="#" onclick="go('Secondary')">📗 Secondary ➜</a>
-<a href="#" onclick="go('Tertiary')">🎓 Tertiary ➜</a>
-<a href="#" onclick="openAbout()">ℹ About Us ➜</a>
-</div>
-
+<div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+<nav id="sidebar" class="sidebar" aria-label="Main navigation">
+  <button class="close-menu" type="button" onclick="closeMenu()" aria-label="Close navigation menu">×</button>
+  <div class="sidebar-brand"><img src="images/logo.png" alt="Hi5 Education Centre"><div class="sidebar-brand-name">Hi5 Education Centre</div><div class="sidebar-brand-motto">Learn Today, Lead Tomorrow</div></div>
+  <div class="sidebar-label">EXPLORE HI5</div>
+  <a href="#" onclick="go('home');return false;"><span class="nav-icon">⌂</span><span>Home</span><span class="nav-arrow">›</span></a>
+  <a href="#" onclick="go('Nursery');return false;"><span class="nav-icon">✿</span><span>Nursery</span><span class="nav-arrow">›</span></a>
+  <a href="#" onclick="go('Primary');return false;"><span class="nav-icon">▣</span><span>Primary</span><span class="nav-arrow">›</span></a>
+  <a href="#" onclick="go('Secondary');return false;"><span class="nav-icon">▤</span><span>Secondary</span><span class="nav-arrow">›</span></a>
+  <a href="#" onclick="go('Tertiary');return false;"><span class="nav-icon">⌑</span><span>Tertiary</span><span class="nav-arrow">›</span></a>
+  <div class="sidebar-divider"></div>
+  <a href="#" onclick="openAbout();return false;"><span class="nav-icon">ⓘ</span><span>About Hi5</span><span class="nav-arrow">›</span></a>
+  <a href="https://wa.me/256702234701" target="_blank" rel="noopener"><span class="nav-icon">☏</span><span>Contact Us</span><span class="nav-arrow">↗</span></a>
+  <div class="sidebar-bottom">A brighter learning journey starts here.</div>
+</nav>
 <div class="container" id="content">
 
 <section class="hero">
-
-<div class="hero-overlay">
-
-<h1>📚 Quality Education Resources for All Levels</h1>
-
-<p>
-Access structured, curriculum-based learning materials for Nursery, Primary, Secondary, and Tertiary levels.
-Download textbooks, lesson notes, schemes of work, and past papers — all in one place.
-</p>
-
-<div class="hero-buttons">
-<button onclick="goDashboard()">🚀 Start Learning</button>
-
-<button onclick="window.open('https://wa.me/256702234701')">
-💬 Talk to Us
-</button>
-</div>
-
-</div>
+  <div class="hero-overlay">
+    <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> YOUR LEARNING JOURNEY STARTS HERE</div>
+    <h1>Unlock the joy of <em>learning.</em></h1>
+    <p>Discover organised educational resources for every stage — from Nursery and Primary to Secondary and Tertiary.</p>
+    <div class="hero-buttons">
+      <button class="hero-primary" onclick="goDashboard()">Explore Learning <span>→</span></button>
+      <a class="hero-secondary" href="https://wa.me/256702234701" target="_blank" rel="noopener">Talk to Hi5 <span>↗</span></a>
+    </div>
+    <div class="hero-footnote"><span>✓</span> Learning resources in one place <b>•</b> Made for learners and educators</div>
+  </div>
+  <div class="hero-corner-mark">HI5 <span>EDUCATION CENTRE</span></div>
 </section>
 
 <div id="suggestBox" style="position:relative;width:100%;">
@@ -667,8 +711,14 @@ function getFileActions(name, url){
   return html;
 }
 function toggle(){
-  let sb=document.getElementById("sidebar");
-  sb.style.left=sb.style.left==="0px"?"-300px":"0px";
+  const sb=document.getElementById("sidebar");
+  if(sb.classList.contains("is-open")) closeMenu();
+  else{sb.classList.add("is-open");document.getElementById("menuBackdrop").classList.add("is-visible");document.body.classList.add("menu-open");}
+}
+function closeMenu(){
+  const sb=document.getElementById("sidebar");if(sb) sb.classList.remove("is-open");
+  const backdrop=document.getElementById("menuBackdrop");if(backdrop) backdrop.classList.remove("is-visible");
+  document.body.classList.remove("menu-open");
 }
 function goDashboard(){
   document.getElementById("dashboard").scrollIntoView({
@@ -678,7 +728,7 @@ function goDashboard(){
 }
 
 function go(x){
-  document.getElementById("sidebar").style.left = "-300px";
+  closeMenu();
 
   if(x === "home"){
     location.reload();
@@ -699,8 +749,8 @@ function back(){
   }
 }
   function openAbout(){
-  toggle(); // closes hamburger
-  about();  // opens About page
+  closeMenu();
+  about();
 }
 
 /* OPEN FOLDER */
@@ -1486,6 +1536,25 @@ document.addEventListener("click", function(e){
   document.getElementById("searchBox").value = query;
   openFiltered(query);
 }
+</script>
+
+<script>
+(function(){try{if(sessionStorage.getItem("hi5IntroSeen")==="yes"){const intro=document.getElementById("doorIntro");if(intro)intro.classList.add("is-hidden");}}catch(e){}})();
+function playHi5DoorSound(){
+ try{
+  const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;
+  const ctx=new AudioCtx(),now=ctx.currentTime,osc=ctx.createOscillator(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();
+  osc.type="sawtooth";osc.frequency.setValueAtTime(145,now);osc.frequency.exponentialRampToValueAtTime(58,now+.78);
+  filter.type="lowpass";filter.frequency.setValueAtTime(520,now);filter.frequency.exponentialRampToValueAtTime(170,now+.9);
+  gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.11,now+.08);gain.gain.exponentialRampToValueAtTime(.0001,now+1.05);
+  osc.connect(filter);filter.connect(gain);gain.connect(ctx.destination);osc.start(now);osc.stop(now+1.08);
+  const thud=ctx.createOscillator(),thudGain=ctx.createGain();thud.type="sine";thud.frequency.setValueAtTime(92,now+.76);thud.frequency.exponentialRampToValueAtTime(42,now+1.05);
+  thudGain.gain.setValueAtTime(.0001,now+.76);thudGain.gain.exponentialRampToValueAtTime(.16,now+.8);thudGain.gain.exponentialRampToValueAtTime(.0001,now+1.16);
+  thud.connect(thudGain);thudGain.connect(ctx.destination);thud.start(now+.76);thud.stop(now+1.18);setTimeout(()=>ctx.close(),1500);
+ }catch(e){}
+}
+function enterHi5(){const intro=document.getElementById("doorIntro");if(!intro)return;playHi5DoorSound();intro.classList.add("is-opening");try{sessionStorage.setItem("hi5IntroSeen","yes");}catch(e){}setTimeout(()=>intro.classList.add("is-hidden"),1250);}
+function skipHi5Intro(){const intro=document.getElementById("doorIntro");if(!intro)return;try{sessionStorage.setItem("hi5IntroSeen","yes");}catch(e){}intro.classList.add("is-hidden");}
 </script>
 
 </body>
