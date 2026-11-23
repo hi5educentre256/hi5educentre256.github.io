@@ -497,13 +497,13 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 .brand-text .title{font-size:clamp(16px,2.5vw,20px);letter-spacing:.15px}.brand-text .subtitle{font-size:11px;letter-spacing:.7px}
 .topbar-contact{position:absolute;right:clamp(14px,3vw,36px);top:50%;transform:translateY(-50%);padding:10px 15px;border:1px solid rgba(255,255,255,.45);border-radius:999px;color:#fff;text-decoration:none;font-size:12px;font-weight:700;background:rgba(255,255,255,.12)}.topbar-contact span{margin-left:6px}
 .menu-backdrop{position:fixed;inset:0;z-index:1998;background:rgba(4,16,32,.58);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}.menu-backdrop.is-visible{opacity:1;visibility:visible}
-.sidebar{left:0;top:0;width:min(310px,86vw);height:100dvh;box-sizing:border-box;padding:28px 18px 22px;background:linear-gradient(165deg,#0b2444,#07172d 72%);box-shadow:18px 0 45px rgba(0,0,0,.28);transform:translateX(-110%);transition:transform .36s cubic-bezier(.2,.8,.2,1);z-index:2000;border-right:1px solid rgba(255,255,255,.12)}
+.sidebar{left:0;top:0;width:min(310px,86vw);height:100dvh;box-sizing:border-box;padding:28px 18px 22px;overflow-y:auto;background:linear-gradient(165deg,#0b2444,#07172d 72%);box-shadow:18px 0 45px rgba(0,0,0,.28);transform:translateX(-110%);transition:transform .36s cubic-bezier(.2,.8,.2,1);z-index:2000;border-right:1px solid rgba(255,255,255,.12)}
 .sidebar.is-open{transform:translateX(0)}.close-menu{position:absolute;right:16px;top:15px;width:36px;height:36px;margin:0;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font-size:25px;line-height:1;border:1px solid rgba(255,255,255,.16)}
 .sidebar-brand{text-align:center;padding:24px 8px 25px;border-bottom:1px solid rgba(255,255,255,.12)}.sidebar-brand img{width:72px;height:72px;object-fit:cover;border-radius:20px;border:2px solid rgba(230,189,114,.8);box-shadow:0 8px 20px rgba(0,0,0,.24)}
 .sidebar-brand-name{margin-top:12px;font-weight:800;font-size:16px;color:#fff}.sidebar-brand-motto{margin-top:3px;color:#a9c2dc;font-size:11px;letter-spacing:.8px}
 .sidebar-label{margin:23px 10px 9px;color:#8fa9c2;font-size:10px;font-weight:800;letter-spacing:2px}.sidebar a{display:flex;align-items:center;gap:13px;padding:13px 12px;margin:4px 0;border:0;border-radius:12px;color:#eaf2fb;font-size:14px;font-weight:600;white-space:normal;transition:background .2s,transform .2s}
 .sidebar a:hover{background:rgba(255,255,255,.1);transform:translateX(3px)}.nav-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:rgba(255,255,255,.1);color:#f0d39b;font-size:17px}.nav-arrow{margin-left:auto;color:#91aac3;font-size:23px}
-.sidebar-divider{height:1px;margin:14px 8px;background:rgba(255,255,255,.12)}.sidebar-bottom{position:absolute;bottom:22px;left:27px;right:27px;color:#8fa9c2;font-size:11px;text-align:center;letter-spacing:.3px}
+.sidebar-divider{height:1px;margin:14px 8px;background:rgba(255,255,255,.12)}.sidebar-bottom{position:static;margin:24px 8px 4px;padding:16px 8px 0;border-top:1px solid rgba(255,255,255,.12);color:#8fa9c2;font-size:11px;text-align:center;line-height:1.6;letter-spacing:.3px}
 .hero{height:clamp(390px,48vw,510px);margin:18px 0 26px;border-radius:26px;background:linear-gradient(90deg,rgba(5,22,44,.88),rgba(5,22,44,.54) 55%,rgba(5,22,44,.22)),url('https://images.pexels.com/photos/8617743/pexels-photo-8617743.jpeg');background-size:cover;background-position:center;box-shadow:0 18px 42px rgba(12,36,66,.2);justify-content:flex-start;text-align:left}
 .hero-overlay{width:min(760px,100%);padding:clamp(24px,6vw,62px);text-align:left;box-sizing:border-box}.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border:1px solid rgba(255,255,255,.27);border-radius:999px;background:rgba(255,255,255,.1);font-size:10px;font-weight:800;letter-spacing:1.8px;color:#f0d39b}
 .hero-eyebrow-dot{width:7px;height:7px;border-radius:50%;background:#7fe0b1;box-shadow:0 0 0 4px rgba(127,224,177,.15)}.hero h1{max-width:670px;margin:22px 0 14px;font-size:clamp(36px,6vw,64px);line-height:1.08;letter-spacing:-1.6px;font-weight:800}
@@ -1342,7 +1342,7 @@ function about(){
     <section class="about-section">
       <h2 class="about-section-heading">Meet the Founder</h2>
       <div class="about-founder">
-        <div class="about-founder-photo" aria-label="Founder photo placeholder"><b>IK</b><span>FOUNDER · HI5</span></div>
+        <div class="about-founder-photo"><img src="/images/isa-kiggundu-founder.jpg" alt="Mr Isa Kiggundu, Founder of Hi5 Education Centre"></div>
         <div class="about-founder-copy">
           <h3>Mr Isa Kiggundu</h3>
           <p class="about-founder-role">Founder, Hi5 Education Centre</p>
