@@ -1542,15 +1542,10 @@ document.addEventListener("click", function(e){
 (function(){try{if(sessionStorage.getItem("hi5IntroSeen")==="yes"){const intro=document.getElementById("doorIntro");if(intro)intro.classList.add("is-hidden");}}catch(e){}})();
 function playHi5DoorSound(){
  try{
-  const AudioCtx=window.AudioContext||window.webkitAudioContext;if(!AudioCtx)return;
-  const ctx=new AudioCtx(),now=ctx.currentTime,osc=ctx.createOscillator(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();
-  osc.type="sawtooth";osc.frequency.setValueAtTime(145,now);osc.frequency.exponentialRampToValueAtTime(58,now+.78);
-  filter.type="lowpass";filter.frequency.setValueAtTime(520,now);filter.frequency.exponentialRampToValueAtTime(170,now+.9);
-  gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.11,now+.08);gain.gain.exponentialRampToValueAtTime(.0001,now+1.05);
-  osc.connect(filter);filter.connect(gain);gain.connect(ctx.destination);osc.start(now);osc.stop(now+1.08);
-  const thud=ctx.createOscillator(),thudGain=ctx.createGain();thud.type="sine";thud.frequency.setValueAtTime(92,now+.76);thud.frequency.exponentialRampToValueAtTime(42,now+1.05);
-  thudGain.gain.setValueAtTime(.0001,now+.76);thudGain.gain.exponentialRampToValueAtTime(.16,now+.8);thudGain.gain.exponentialRampToValueAtTime(.0001,now+1.16);
-  thud.connect(thudGain);thudGain.connect(ctx.destination);thud.start(now+.76);thud.stop(now+1.18);setTimeout(()=>ctx.close(),1500);
+  const audio = new Audio("assets/audio/dragon-studio-open-door-stock-sfx-454246.mp3");
+  audio.preload = "auto";
+  audio.volume = 1;
+  audio.play().catch(()=>{});
  }catch(e){}
 }
 function enterHi5(){const intro=document.getElementById("doorIntro");if(!intro)return;playHi5DoorSound();intro.classList.add("is-opening");try{sessionStorage.setItem("hi5IntroSeen","yes");}catch(e){}setTimeout(()=>intro.classList.add("is-hidden"),1250);}
