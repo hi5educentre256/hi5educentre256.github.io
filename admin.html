@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Hi5 Admin | Education Centre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b2444;--blue:#1265c7;--green:#15966a;--gold:#e6bd72;--ink:#172b43;--muted:#68788b;--line:#e2e9f1;--bg:#f3f6fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Poppins,Arial,sans-serif}
+button,input,textarea{font:inherit}button{cursor:pointer}
+.top{background:linear-gradient(110deg,#0b4c9c,#1169b9 50%,#11835f);color:#fff;padding:17px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 5px 20px #0b244426}
+.brand{display:flex;align-items:center;gap:12px}.mark{width:43px;height:43px;border:2px solid #f0d39b;border-radius:12px;display:grid;place-items:center;font-weight:800;color:#f0d39b}.brand strong{display:block;font-size:17px}.brand small{display:block;color:#d8e8f4;font-size:11px}
+.top-actions{display:flex;align-items:center;gap:10px}.top-actions a{color:#fff;text-decoration:none;font-size:12px}.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:700}.btn-primary{background:var(--blue);color:#fff}.btn-gold{background:#f0d39b;color:#172b43}.btn-quiet{background:#eaf0f6;color:#25435f}.btn-danger{background:#fff0f0;color:#a52c37}
+main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}.eyebrow{color:var(--green);font-size:10px;font-weight:800;letter-spacing:2px}.intro h1{margin:5px 0;font-size:clamp(25px,4vw,34px);color:var(--navy)}.intro p{margin:0;color:var(--muted);font-size:13px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 24px #132d4809}
+.login-wrap{max-width:440px;margin:55px auto}.login-wrap h2{margin:0 0 6px;color:var(--navy)}.login-wrap p{margin:0 0 20px;color:var(--muted);font-size:13px}
+.field{display:grid;gap:7px;margin:14px 0}.field label{font-size:12px;font-weight:700;color:#314b66}.field input,.field textarea{width:100%;padding:12px 13px;border:1px solid #d8e1eb;border-radius:10px;background:#fff;color:var(--ink);outline:none}.field input:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1265c71c}.field textarea{min-height:125px;resize:vertical}
+.notice{display:none;margin:12px 0;padding:11px 13px;border-radius:10px;font-size:12px}.notice.show{display:block}.notice.error{background:#fff0f0;color:#9b2832}.notice.success{background:#eaf8f0;color:#176443}
+.hidden{display:none!important}.dashboard-grid{display:grid;grid-template-columns:230px minmax(0,1fr);gap:18px}.side{align-self:start;background:var(--navy);color:#fff;border-radius:17px;padding:13px}.side-label{padding:9px 10px;color:#a9bfd5;font-size:10px;font-weight:800;letter-spacing:1.7px}.nav-btn{width:100%;display:flex;align-items:center;gap:10px;text-align:left;border:0;border-radius:10px;background:transparent;color:#e7f0f8;padding:12px 11px;font-size:13px;font-weight:600}.nav-btn.active,.nav-btn:hover{background:#ffffff1b;color:#fff}.nav-btn .ico{width:24px;text-align:center;color:var(--gold)}.side-note{border-top:1px solid #ffffff20;margin:13px 8px 3px;padding:13px 3px 2px;color:#a9bfd5;font-size:10px;line-height:1.7}
+.content-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:17px}.content-head h2{margin:0;color:var(--navy);font-size:21px}.content-head p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:17px}.stat{padding:15px;border:1px solid var(--line);border-radius:13px;background:#fbfdff}.stat span{display:block;color:var(--muted);font-size:11px}.stat strong{display:block;margin-top:4px;color:var(--navy);font-size:23px}
+.editor{display:grid;grid-template-columns:1fr 1fr;gap:18px}.editor h3{margin:0 0 8px;font-size:15px;color:var(--navy)}.editor .field:first-of-type{margin-top:12px}
+.checkline{display:flex;align-items:center;gap:9px;font-size:12px;color:#40566d;margin:12px 0}.checkline input{width:17px;height:17px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.list{display:grid;gap:10px}.announcement{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}.announcement-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.announcement h4{margin:0 0 5px;color:var(--navy);font-size:14px}.announcement p{margin:0;color:#5c6e82;font-size:12px;line-height:1.6;white-space:pre-wrap}.pill{display:inline-block;padding:4px 8px;border-radius:20px;font-size:10px;font-weight:700;white-space:nowrap}.pill.live{background:#e8f7ef;color:#14744e}.pill.draft{background:#fff4df;color:#8b5b12}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #cbd6e2;border-radius:12px;font-size:12px}
+.module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.module{border:1px solid var(--line);border-radius:13px;padding:17px;background:#fbfdff}.module strong{display:block;color:var(--navy);font-size:14px}.module p{margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.6}.module .soon{margin-top:12px;color:#8b5b12;font-size:10px;font-weight:700}
+.footer{text-align:center;color:#8492a2;font-size:10px;padding:25px}
+@media(max-width:760px){.dashboard-grid{grid-template-columns:1fr}.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.side-label,.side-note{grid-column:1/-1}.editor{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:19px}.content-head{align-items:flex-start;flex-direction:column}.top{padding:13px 15px}.brand strong{font-size:14px}.top-actions a{display:none}}
+@media(max-width:420px){main{padding:0 12px}.panel{padding:15px}.side{grid-template-columns:1fr 1fr}.module-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><div class="mark">HI5</div><div><strong>Hi5 Education Centre</strong><small>Administrator dashboard</small></div></div>
+  <div class="top-actions"><a href="/" target="_blank" rel="noopener">View public website ↗</a><button id="logoutBtn" class="btn btn-gold hidden" type="button">Sign out</button></div>
+</header>
+<main>
+  <section id="loginView" class="panel login-wrap">
+    <div class="eyebrow">SECURE ADMINISTRATION</div>
+    <h2>Administrator sign in</h2>
+    <p>Sign in with the administrator account registered for Hi5 Education Centre.</p>
+    <form id="loginForm">
+      <div class="field"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" required></div>
+      <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+      <button class="btn btn-primary" style="width:100%" type="submit">Sign in securely</button>
+    </form>
+    <div id="loginNotice" class="notice" role="status"></div>
+  </section>
+
+  <section id="dashboardView" class="hidden">
+    <div class="intro"><div class="eyebrow">HI5 MANAGEMENT</div><h1>Welcome to your dashboard</h1><p>Manage website updates and learning services from one place.</p></div>
+    <div class="dashboard-grid">
+      <aside class="side">
+        <div class="side-label">ADMIN MENU</div>
+        <button class="nav-btn active" data-page="announcements"><span class="ico">▣</span>Announcements</button>
+        <button class="nav-btn" data-page="materials"><span class="ico">▤</span>Learning materials</button>
+        <button class="nav-btn" data-page="tv"><span class="ico">▷</span>Hi5 TV</button>
+        <button class="nav-btn" data-page="radio"><span class="ico">♫</span>Hi5 Radio</button>
+        <button class="nav-btn" data-page="calendar"><span class="ico">▦</span>Academic calendar</button>
+        <button class="nav-btn" data-page="settings"><span class="ico">⚙</span>Website settings</button>
+        <div class="side-note">Learn Today, Lead Tomorrow.<br>Administrator access only.</div>
+      </aside>
+      <section class="panel">
+        <div id="announcementsPage">
+          <div class="content-head"><div><h2>Announcements</h2><p>Create updates for visitors to the Hi5 website.</p></div><button id="newAnnouncementBtn" class="btn btn-primary" type="button">+ New announcement</button></div>
+          <div class="stats">
+            <div class="stat"><span>All announcements</span><strong id="totalCount">0</strong></div>
+            <div class="stat"><span>Published</span><strong id="publishedCount">0</strong></div>
+            <div class="stat"><span>Drafts</span><strong id="draftCount">0</strong></div>
+          </div>
+          <div class="editor">
+            <form id="announcementForm">
+              <h3 id="formHeading">Create announcement</h3>
+              <input id="announcementId" type="hidden">
+              <div class="field"><label for="announcementTitle">Title</label><input id="announcementTitle" maxlength="180" required placeholder="Announcement title"></div>
+              <div class="field"><label for="announcementMessage">Message</label><textarea id="announcementMessage" required placeholder="Write the announcement for visitors..."></textarea></div>
+              <label class="checkline"><input id="announcementPublished" type="checkbox"> Publish this announcement</label>
+              <div class="actions"><button class="btn btn-primary" type="submit">Save announcement</button><button id="cancelEditBtn" class="btn btn-quiet" type="button">Clear</button></div>
+              <div id="announcementNotice" class="notice" role="status"></div>
+            </form>
+            <div><h3>Existing announcements</h3><div id="announcementList" class="list"><div class="empty">Loading announcements…</div></div></div>
+          </div>
+        </div>
+        <div id="placeholderPage" class="hidden">
+          <div class="content-head"><div><h2 id="placeholderTitle">Management</h2><p id="placeholderDescription">This section will be configured next.</p></div></div>
+          <div id="moduleCards" class="module-grid"></div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+<div class="footer">© 2026 Hi5 Education Centre · Private administration area</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+  const SUPABASE_URL = "https://xybmowujsqqewkkmtrjr.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e";
+  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+  const $ = id => document.getElementById(id);
+  let announcements = [];
+
+  function showNotice(id, message, type) {
+    const el = $(id);
+    el.textContent = message;
+    el.className = "notice show " + type;
+  }
+  function clearNotice(id) {
+    const el = $(id);
+    el.textContent = "";
+    el.className = "notice";
+  }
+  function setLoggedIn(isLoggedIn) {
+    $("loginView").classList.toggle("hidden", isLoggedIn);
+    $("dashboardView").classList.toggle("hidden", !isLoggedIn);
+    $("logoutBtn").classList.toggle("hidden", !isLoggedIn);
+  }
+  async function verifyAdmin() {
+    const { data: { session } } = await client.auth.getSession();
+    if (!session) { setLoggedIn(false); return false; }
+    const { data, error } = await client.rpc("is_admin");
+    if (error || data !== true) {
+      await client.auth.signOut();
+      setLoggedIn(false);
+      showNotice("loginNotice", "This account is not authorised to use the Hi5 administrator dashboard.", "error");
+      return false;
+    }
+    setLoggedIn(true);
+    await loadAnnouncements();
+    return true;
+  }
+  $("loginForm").addEventListener("submit", async event => {
+    event.preventDefault();
+    clearNotice("loginNotice");
+    const button = $("loginForm").querySelector("button[type=submit]");
+    button.disabled = true; button.textContent = "Signing in…";
+    const { error } = await client.auth.signInWithPassword({
+      email: $("email").value.trim(),
+      password: $("password").value
+    });
+    button.disabled = false; button.textContent = "Sign in securely";
+    if (error) {
+      showNotice("loginNotice", error.message, "error");
+      return;
+    }
+    await verifyAdmin();
+  });
+  $("logoutBtn").addEventListener("click", async () => {
+    await client.auth.signOut();
+    setLoggedIn(false);
+    $("password").value = "";
+    showNotice("loginNotice", "You have signed out.", "success");
+  });
+  async function loadAnnouncements() {
+    $("announcementList").innerHTML = '<div class="empty">Loading announcements…</div>';
+    const { data, error } = await client.from("announcements")
+      .select("id,title,message,is_published,created_at,updated_at")
+      .order("created_at", { ascending: false });
+    if (error) {
+      $("announcementList").textContent = "";
+      $("announcementList").innerHTML = '<div class="empty">Could not load announcements: ' + escapeHtml(error.message) + '</div>';
+      return;
+    }
+    announcements = data || [];
+    $("totalCount").textContent = announcements.length;
+    $("publishedCount").textContent = announcements.filter(item => item.is_published).length;
+    $("draftCount").textContent = announcements.filter(item => !item.is_published).length;
+    renderAnnouncements();
+  }
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    })[char]);
+  }
+  function renderAnnouncements() {
+    const list = $("announcementList");
+    if (!announcements.length) {
+      list.innerHTML = '<div class="empty">No announcements yet. Create your first update.</div>';
+      return;
+    }
+    list.innerHTML = announcements.map(item => `
+      <article class="announcement">
+        <div class="announcement-top">
+          <div><h4>${escapeHtml(item.title)}</h4><p>${escapeHtml(item.message)}</p></div>
+          <span class="pill ${item.is_published ? "live" : "draft"}">${item.is_published ? "Published" : "Draft"}</span>
+        </div>
+        <div class="actions">
+          <button class="btn btn-quiet" type="button" data-edit="${escapeHtml(item.id)}">Edit</button>
+          <button class="btn btn-danger" type="button" data-delete="${escapeHtml(item.id)}">Delete</button>
+        </div>
+      </article>`).join("");
+    list.querySelectorAll("[data-edit]").forEach(button => button.addEventListener("click", () => editAnnouncement(button.dataset.edit)));
+    list.querySelectorAll("[data-delete]").forEach(button => button.addEventListener("click", () => deleteAnnouncement(button.dataset.delete)));
+  }
+  function resetForm() {
+    $("announcementForm").reset();
+    $("announcementId").value = "";
+    $("formHeading").textContent = "Create announcement";
+    clearNotice("announcementNotice");
+  }
+  function editAnnouncement(id) {
+    const item = announcements.find(entry => entry.id === id);
+    if (!item) return;
+    $("announcementId").value = item.id;
+    $("announcementTitle").value = item.title || "";
+    $("announcementMessage").value = item.message || "";
+    $("announcementPublished").checked = !!item.is_published;
+    $("formHeading").textContent = "Edit announcement";
+    clearNotice("announcementNotice");
+    $("announcementTitle").focus();
+  }
+  $("announcementForm").addEventListener("submit", async event => {
+    event.preventDefault();
+    clearNotice("announcementNotice");
+    const id = $("announcementId").value;
+    const payload = {
+      title: $("announcementTitle").value.trim(),
+      message: $("announcementMessage").value.trim(),
+      is_published: $("announcementPublished").checked,
+      updated_at: new Date().toISOString()
+    };
+    if (!payload.title || !payload.message) {
+      showNotice("announcementNotice", "Please enter both a title and a message.", "error");
+      return;
+    }
+    const button = $("announcementForm").querySelector('button[type="submit"]');
+    button.disabled = true; button.textContent = "Saving…";
+    const result = id
+      ? await client.from("announcements").update(payload).eq("id", id)
+      : await client.from("announcements").insert(payload);
+    button.disabled = false; button.textContent = "Save announcement";
+    if (result.error) {
+      showNotice("announcementNotice", result.error.message, "error");
+      return;
+    }
+    resetForm();
+    showNotice("announcementNotice", "Announcement saved successfully.", "success");
+    await loadAnnouncements();
+  });
+  async function deleteAnnouncement(id) {
+    const item = announcements.find(entry => entry.id === id);
+    if (!item || !confirm('Delete the announcement "' + item.title + '"? This cannot be undone.')) return;
+    const { error } = await client.from("announcements").delete().eq("id", id);
+    if (error) {
+      showNotice("announcementNotice", error.message, "error");
+      return;
+    }
+    await loadAnnouncements();
+    showNotice("announcementNotice", "Announcement deleted.", "success");
+  }
+  $("newAnnouncementBtn").addEventListener("click", resetForm);
+  $("cancelEditBtn").addEventListener("click", resetForm);
+
+  const moduleInfo = {
+    materials: { title:"Learning materials", description:"Upload and organise resources for Nursery, Primary, Secondary and Tertiary learners.", cards:[
+      ["Learning resources","Manage lesson notes, textbooks, schemes and past papers."],
+      ["File storage","Securely upload and organise PDF and other learning files."]
+    ]},
+    tv: { title:"Hi5 TV", description:"Manage the videos and programmes displayed on the public website.", cards:[
+      ["Video library","Add, update and organise Hi5 learning videos."],
+      ["Categories","Organise programmes by Nursery, Primary, Secondary and Tertiary."]
+    ]},
+    radio: { title:"Hi5 Radio", description:"Manage radio programme details and audio links.", cards:[
+      ["Radio programmes","Add programme titles, descriptions and streaming links."],
+      ["Broadcast details","Manage the station information shown to visitors."]
+    ]},
+    calendar: { title:"Academic calendar", description:"Publish important school dates, terms, events and activities.", cards:[
+      ["School events","Add dates, event details and publication status."],
+      ["Term dates","Keep term opening, closing and holiday dates organised."]
+    ]},
+    settings: { title:"Website settings", description:"Manage selected public website information from the administrator area.", cards:[
+      ["Website information","Review key Hi5 contact and public information."],
+      ["Display settings","Manage approved announcements and website notices."]
+    ]}
+  };
+  function openPage(page) {
+    document.querySelectorAll(".nav-btn").forEach(button => button.classList.toggle("active", button.dataset.page === page));
+    const isAnnouncements = page === "announcements";
+    $("announcementsPage").classList.toggle("hidden", !isAnnouncements);
+    $("placeholderPage").classList.toggle("hidden", isAnnouncements);
+    if (!isAnnouncements) {
+      const info = moduleInfo[page];
+      $("placeholderTitle").textContent = info.title;
+      $("placeholderDescription").textContent = info.description;
+      $("moduleCards").innerHTML = info.cards.map(card => `
+        <div class="module"><strong>${escapeHtml(card[0])}</strong><p>${escapeHtml(card[1])}</p><div class="soon">NEXT DEVELOPMENT PHASE</div></div>
+      `).join("");
+    }
+  }
+  document.querySelectorAll(".nav-btn").forEach(button => button.addEventListener("click", () => openPage(button.dataset.page)));
+  client.auth.onAuthStateChange((_event, session) => {
+    if (!session) setLoggedIn(false);
+  });
+  verifyAdmin();
+})();
+</script>
+</body>
+</html>
