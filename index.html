@@ -1039,7 +1039,7 @@ Choose Your Level
       </div>
     </details>
   </div>
-  <p class="hi5-tv-note">Select a programme from Nursery, Primary, Secondary or Tertiary. Use the Next and Previous buttons to move through videos in the same section. Videos are streamed from their original source and are not stored on Hi5 servers.</p>
+  <p class="hi5-tv-note">Choose a section to browse its videos. New videos published from the admin dashboard are added to the section you selected.</p>
   <div style="margin-top:24px;padding-top:18px;border-top:1px solid #426078">
     <h3 style="color:#f2d39b;margin:0 0 12px">More from Hi5 TV</h3>
     <div id="hi5-tv-published" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px"><p style="color:#dce9f2">Loading published programmes…</p></div>
@@ -1969,11 +1969,36 @@ window.addEventListener("message",function(event){
   list.innerHTML=news.map(n=>'<article style="padding:12px 14px;background:#f5f8fb;border-radius:11px"><strong style="display:block;color:#102b45;font-size:14px">'+esc(n.title)+'</strong><p style="margin:5px 0 0;color:#526477;font-size:13px;line-height:1.65;white-space:pre-wrap">'+esc(n.message)+'</p></article>').join("");
   box.style.display="block";
  }
- const {data:videos,error}=await client.from("hi5_tv").select("title,description,video_url,category,thumbnail_url").eq("is_published",true).order("created_at",{ascending:false}).limit(24);
+ const {data:videos,error}=await client.from("hi5_tv").select("id,title,description,video_url,category,thumbnail_url").eq("is_published",true).order("created_at",{ascending:true}).limit(100);
  const videoBox=document.getElementById("hi5-tv-published");
- if(error){videoBox.innerHTML='<p style="color:#dce9f2">Published programmes will appear here.</p>';return;}
- if(!videos||!videos.length){videoBox.innerHTML='<p style="color:#dce9f2">New Hi5 TV programmes will appear here when published.</p>';return;}
- videoBox.innerHTML=videos.map(v=>'<article style="background:#0b263b;border:1px solid #426078;border-radius:13px;overflow:hidden">'+(v.thumbnail_url?'<img src="'+esc(v.thumbnail_url)+'" alt="" loading="lazy" style="width:100%;height:130px;object-fit:cover">':'')+'<div style="padding:13px"><small style="color:#f2d39b;font-weight:700">'+esc(v.category||"Hi5 TV")+'</small><strong style="display:block;color:white;margin:5px 0;font-size:14px">'+esc(v.title)+'</strong><p style="color:#dce9f2;font-size:12px;line-height:1.5;margin:0 0 10px">'+esc(v.description||"Watch this Hi5 TV programme.")+'</p><a href="'+esc(v.video_url)+'" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#f1d39a;color:#102b45;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;font-size:12px">Watch video ↗</a></div></article>').join("");
+ if(error){videoBox.innerHTML='<p style="color:#dce9f2">Published programmes will appear in their selected Hi5 TV section.</p>';return;}
+ const regions=["Nursery","Primary","Secondary","Tertiary"];
+ const folders=Array.from(document.querySelectorAll(".hi5-tv-folder"));
+ if(!videos||!videos.length){videoBox.innerHTML='<p style="color:#dce9f2">No additional programmes have been published yet.</p>';return;}
+ videoBox.style.display="none";
+ videos.forEach(v=>{
+  const region=regions.includes(v.category)?v.category:"Nursery";
+  const folder=folders.find(f=>f.querySelector(".hi5-tv-library-title h3")?.textContent.trim()===region);
+  if(!folder)return;
+  let grid=folder.querySelector(".hi5-tv-video-grid");
+  if(!grid){grid=document.createElement("div");grid.className="hi5-tv-video-grid";folder.appendChild(grid);}
+  const url=String(v.video_url||"");
+  const tikTok=url.match(/tiktok\.com\/(?:@[^/]+\/video\/|player\/v1\/)(\d+)/i);
+  const button=document.createElement("button");
+  button.type="button";button.className="hi5-tv-thumb";
+  button.innerHTML='<span class="hi5-tv-thumb-art">'+(v.thumbnail_url?'<img src="'+esc(v.thumbnail_url)+'" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px">':'')+'<span class="hi5-tv-play">▶</span><span class="hi5-tv-thumb-tag">'+esc(region.toUpperCase())+'</span></span><span class="hi5-tv-thumb-caption"><strong></strong><small>Tap to play above</small></span>';
+  button.querySelector("strong").textContent=v.title||"Hi5 TV video";
+  if(tikTok){
+   button.addEventListener("click",()=>selectHi5TVVideo(tikTok[1],button,region));
+  }else{
+   button.querySelector("small").textContent="Open video link";
+   button.addEventListener("click",()=>window.open(url,"_blank","noopener,noreferrer"));
+  }
+  grid.appendChild(button);
+  const countLabel=folder.querySelector(".hi5-tv-library-title>span");
+  if(countLabel){const n=grid.querySelectorAll(".hi5-tv-thumb").length;countLabel.textContent=n+" videos available";}
+ });
+ videoBox.innerHTML="";
 }
 )().catch(e=>console.error("Hi5 public updates:",e));
 </script>
