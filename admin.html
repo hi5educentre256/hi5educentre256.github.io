@@ -131,6 +131,25 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
             <div><h3>Hi5 TV library</h3><div id="tvList" class="list"><div class="empty">Loading videos…</div></div></div>
           </div>
         </div>
+        <div id="radioPage" class="hidden">
+          <div class="content-head"><div><h2>Hi5 Radio</h2><p>Upload educational audio programmes or add a direct audio stream link. Published programmes appear on the public website.</p></div></div>
+          <div class="editor">
+            <form id="radioForm">
+              <h3 id="radioFormHeading">Add a radio programme</h3>
+              <input id="radioId" type="hidden">
+              <div class="field"><label for="radioTitle">Programme title</label><input id="radioTitle" maxlength="180" required placeholder="e.g. English Learning Hour"></div>
+              <div class="field"><label for="radioDescription">Description</label><textarea id="radioDescription" placeholder="Briefly describe this audio programme"></textarea></div>
+              <div class="field"><label for="radioCategory">Programme category</label><select id="radioCategory" required><option>Educational Programme</option><option>Story Time</option><option>School Announcements</option><option>Interviews</option><option>Qur'an and Faith</option><option>Other</option></select></div>
+              <div class="field"><label for="radioAudioFile">Upload audio file (MP3, M4A, WAV or OGG)</label><input id="radioAudioFile" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg"></div>
+              <div class="field"><label for="radioAudioUrl">Or paste a direct audio / stream URL</label><input id="radioAudioUrl" type="url" placeholder="https://..."></div>
+              <p class="upload-help">Maximum upload size: 50 MB. Choose an audio file or provide a direct audio link. When editing, leave both empty to keep the existing audio.</p>
+              <label class="checkline"><input id="radioPublished" type="checkbox"> Publish this programme</label>
+              <div class="actions"><button class="btn btn-primary" type="submit">Save programme</button><button id="radioClearBtn" class="btn btn-quiet" type="button">Clear</button></div>
+              <div id="radioNotice" class="notice" role="status"></div>
+            </form>
+            <div><h3>Hi5 Radio library</h3><div id="radioList" class="list"><div class="empty">Loading radio programmes…</div></div></div>
+          </div>
+        </div>
         <div id="calendarPage" class="hidden">
           <div class="content-head"><div><h2>Academic calendar</h2><p>Add term dates, examinations, holidays and school activities. Published entries appear on the public Hi5 website.</p></div></div>
           <div class="editor">
@@ -169,6 +188,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   let announcements = [];
   let tvItems = [];
   let calendarItems = [];
+  let radioItems = [];
 
   function showNotice(id, message, type) {
     const el = $(id);
@@ -575,6 +595,121 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   });
   $("calendarClearBtn").addEventListener("click",resetCalendarForm);
 
+  function radioAudioSource(item) {
+    return item.audio_url || (item.audio_path ? client.storage.from("hi5-radio").getPublicUrl(item.audio_path).data.publicUrl : "");
+  }
+  async function loadRadio() {
+    $("radioList").innerHTML = '<div class="empty">Loading radio programmes…</div>';
+    const {data,error} = await client.from("hi5_radio").select("*").order("created_at",{ascending:false});
+    if(error) {
+      $("radioList").innerHTML = '<div class="empty">Could not load radio programmes: ' + escapeHtml(error.message) + '</div>';
+      return;
+    }
+    radioItems = data || [];
+    renderRadio();
+  }
+  function renderRadio() {
+    const list = $("radioList");
+    if(!radioItems.length) {
+      list.innerHTML = '<div class="empty">No radio programmes yet. Add the first audio programme.</div>';
+      return;
+    }
+    list.innerHTML = radioItems.map(item => `
+      <article class="announcement">
+        <div class="announcement-top">
+          <div><h4>${escapeHtml(item.title)}</h4><p>${escapeHtml(item.category || "Educational Programme")}${item.description ? " · " + escapeHtml(item.description) : ""}</p></div>
+          <span class="pill ${item.is_published ? "live" : "draft"}">${item.is_published ? "Published" : "Draft"}</span>
+        </div>
+        <div class="actions"><button class="btn btn-quiet" type="button" data-radio-edit="${escapeHtml(item.id)}">Edit</button><button class="btn btn-danger" type="button" data-radio-delete="${escapeHtml(item.id)}">Delete</button></div>
+      </article>`).join("");
+    list.querySelectorAll("[data-radio-edit]").forEach(button => button.addEventListener("click", () => editRadio(button.dataset.radioEdit)));
+    list.querySelectorAll("[data-radio-delete]").forEach(button => button.addEventListener("click", () => deleteRadio(button.dataset.radioDelete)));
+  }
+  function resetRadioForm() {
+    $("radioForm").reset();
+    $("radioId").value = "";
+    $("radioFormHeading").textContent = "Add a radio programme";
+    clearNotice("radioNotice");
+  }
+  function editRadio(id) {
+    const item = radioItems.find(entry => entry.id === id);
+    if(!item) return;
+    $("radioId").value = item.id;
+    $("radioTitle").value = item.title || "";
+    $("radioDescription").value = item.description || "";
+    $("radioCategory").value = item.category || "Educational Programme";
+    $("radioAudioUrl").value = item.audio_url || "";
+    $("radioAudioFile").value = "";
+    $("radioPublished").checked = !!item.is_published;
+    $("radioFormHeading").textContent = "Edit radio programme";
+    clearNotice("radioNotice");
+    $("radioTitle").focus();
+  }
+  async function deleteRadio(id) {
+    const item = radioItems.find(entry => entry.id === id);
+    if(!item || !confirm('Delete "' + item.title + '" from Hi5 Radio?')) return;
+    if(item.audio_path) {
+      const {error:storageError} = await client.storage.from("hi5-radio").remove([item.audio_path]);
+      if(storageError) { showNotice("radioNotice",storageError.message,"error"); return; }
+    }
+    const {error} = await client.from("hi5_radio").delete().eq("id",id);
+    if(error) { showNotice("radioNotice",error.message,"error"); return; }
+    showNotice("radioNotice","Radio programme deleted.","success");
+    await loadRadio();
+  }
+  $("radioForm").addEventListener("submit",async event => {
+    event.preventDefault();
+    clearNotice("radioNotice");
+    const id = $("radioId").value;
+    const existing = radioItems.find(entry => entry.id === id);
+    const file = $("radioAudioFile").files[0];
+    const audioUrl = $("radioAudioUrl").value.trim();
+    const title = $("radioTitle").value.trim();
+    if(!title) { showNotice("radioNotice","Please enter a programme title.","error"); return; }
+    if(audioUrl) {
+      try { const parsed = new URL(audioUrl); if(!["http:","https:"].includes(parsed.protocol)) throw new Error("Use a valid http or https audio URL."); }
+      catch(e) { showNotice("radioNotice",e.message || "Enter a valid audio URL.","error"); return; }
+    }
+    if(!file && !audioUrl && !existing?.audio_path && !existing?.audio_url) {
+      showNotice("radioNotice","Upload an audio file or paste a direct audio / stream URL.","error"); return;
+    }
+    if(file && file.size > 50 * 1024 * 1024) {
+      showNotice("radioNotice","This audio file is larger than 50 MB. Please choose a smaller file.","error"); return;
+    }
+    let uploadedPath = null;
+    if(file) {
+      const extension = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "mp3";
+      const path = Date.now() + "-" + (safeFolderPart(title) || "radio-programme") + "." + extension;
+      const {error:uploadError} = await client.storage.from("hi5-radio").upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type || "audio/mpeg"});
+      if(uploadError) { showNotice("radioNotice",uploadError.message,"error"); return; }
+      uploadedPath = path;
+    }
+    const payload = {
+      title,
+      description:$("radioDescription").value.trim(),
+      category:$("radioCategory").value,
+      audio_url:file ? null : (audioUrl || existing?.audio_url || null),
+      audio_path:file ? uploadedPath : (audioUrl ? null : (existing?.audio_path || null)),
+      is_published:$("radioPublished").checked,
+      updated_at:new Date().toISOString()
+    };
+    const button = $("radioForm").querySelector('button[type="submit"]');
+    button.disabled = true; button.textContent = "Saving…";
+    const result = id
+      ? await client.from("hi5_radio").update(payload).eq("id",id)
+      : await client.from("hi5_radio").insert(payload);
+    button.disabled = false; button.textContent = "Save programme";
+    if(result.error) {
+      if(uploadedPath) await client.storage.from("hi5-radio").remove([uploadedPath]);
+      showNotice("radioNotice",result.error.message,"error"); return;
+    }
+    if(existing?.audio_path && (uploadedPath || audioUrl)) await client.storage.from("hi5-radio").remove([existing.audio_path]);
+    resetRadioForm();
+    showNotice("radioNotice","Radio programme saved successfully.","success");
+    await loadRadio();
+  });
+  $("radioClearBtn").addEventListener("click",resetRadioForm);
+
   const moduleInfo = {
     materials: { title:"Learning materials", description:"Upload and organise resources for Nursery, Primary, Secondary and Tertiary learners.", cards:[
       ["Learning resources","Manage lesson notes, textbooks, schemes and past papers."],
@@ -602,16 +737,19 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     const isAnnouncements = page === "announcements";
     const isMaterials = page === "materials";
     const isTV = page === "tv";
+    const isRadio = page === "radio";
     const isCalendar = page === "calendar";
     $("announcementsPage").classList.toggle("hidden", !isAnnouncements);
     $("materialsPage").classList.toggle("hidden", !isMaterials);
     $("tvPage").classList.toggle("hidden", !isTV);
+    $("radioPage").classList.toggle("hidden", !isRadio);
     $("calendarPage").classList.toggle("hidden", !isCalendar);
-    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV || isCalendar);
+    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV || isRadio || isCalendar);
     if (isMaterials) refreshMaterials();
     if (isTV) loadTV();
+    if (isRadio) loadRadio();
     if (isCalendar) loadCalendar();
-    if (!isAnnouncements && !isMaterials && !isTV && !isCalendar) {
+    if (!isAnnouncements && !isMaterials && !isTV && !isRadio && !isCalendar) {
       const info = moduleInfo[page];
       $("placeholderTitle").textContent = info.title;
       $("placeholderDescription").textContent = info.description;
