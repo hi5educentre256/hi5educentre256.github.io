@@ -725,6 +725,22 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 .hi5-tv-screen:fullscreen .hi5-tv-side-mask,.hi5-tv-screen:fullscreen .hi5-tv-screen-ticker,.hi5-tv-screen:fullscreen .hi5-tv-live-badge{display:none!important}
 .hi5-tv-fullscreen-control{background:#dce9f2!important;color:#102b45!important}
 @media(max-width:600px){.hi5-tv-controls .hi5-tv-fullscreen-control{flex:1}}
+/* Hi5 Academic Calendar */
+.hi5-calendar-section{margin:30px auto 34px;padding:clamp(18px,3vw,28px);max-width:1100px;border:1px solid #d8e3ec;border-radius:20px;background:linear-gradient(145deg,#f8fbfd,#eef4f8);box-shadow:0 8px 24px rgba(16,43,69,.07);color:#102b45}
+.hi5-calendar-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}
+.hi5-calendar-kicker{font-size:11px;font-weight:900;letter-spacing:1.8px;color:#13805f}
+.hi5-calendar-heading h2{margin:5px 0 7px;font-size:clamp(23px,4vw,30px);color:#102b45}
+.hi5-calendar-heading p{margin:0;max-width:650px;color:#526477;font-size:13px;line-height:1.7}
+.hi5-calendar-icon{display:grid;place-items:center;width:54px;height:54px;flex:0 0 54px;border-radius:15px;background:#102b45;color:#f2d39b;font-size:28px}
+.hi5-calendar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:12px}
+.hi5-calendar-card{display:flex;gap:13px;align-items:flex-start;padding:15px;border:1px solid #dce5ed;border-radius:14px;background:#fff;box-shadow:0 3px 10px rgba(16,43,69,.04)}
+.hi5-calendar-date{min-width:62px;padding:9px 7px;border-radius:10px;background:#e9f4ef;color:#116b50;text-align:center;font-size:11px;font-weight:900;line-height:1.4}
+.hi5-calendar-date strong{display:block;font-size:19px;line-height:1.2}
+.hi5-calendar-card h3{margin:0 0 5px;color:#102b45;font-size:14px;line-height:1.4}
+.hi5-calendar-type{display:inline-block;margin-bottom:5px;color:#13805f;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.6px}
+.hi5-calendar-card p{margin:0;color:#5a6877;font-size:12px;line-height:1.6;white-space:pre-line}
+.hi5-calendar-empty{grid-column:1/-1;margin:0;padding:18px;border:1px dashed #cbd8e3;border-radius:12px;color:#64748b;font-size:13px;text-align:center}
+@media(max-width:600px){.hi5-calendar-heading{align-items:flex-start}.hi5-calendar-icon{width:44px;height:44px;flex-basis:44px;font-size:23px}.hi5-calendar-card{padding:12px}}
 </style>
 </head>
 
@@ -763,6 +779,7 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
   <div class="sidebar-divider"></div>
   <a href="#" onclick="openAbout();return false;"><span class="nav-icon">ⓘ</span><span>About Hi5</span><span class="nav-arrow">›</span></a>
   <a href="#" onclick="goHi5TV();return false;"><span class="nav-icon">▶</span><span>Hi5 TV</span><span class="nav-arrow">›</span></a>
+  <a href="#" onclick="goAcademicCalendar();return false;"><span class="nav-icon">▦</span><span>Academic Calendar</span><span class="nav-arrow">›</span></a>
   <a href="https://wa.me/256702234701" target="_blank" rel="noopener"><span class="nav-icon">☏</span><span>Contact Us</span><span class="nav-arrow">↗</span></a>
   <div class="sidebar-bottom">A brighter learning journey starts here.</div>
 </nav>
@@ -1052,6 +1069,13 @@ Choose Your Level
     <div id="hi5-tv-published" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px"><p style="color:#dce9f2">Loading published programmes…</p></div>
   </div>
 </section>
+<section id="hi5-academic-calendar" class="hi5-calendar-section" aria-labelledby="hi5-calendar-heading">
+  <div class="hi5-calendar-heading">
+    <div><span class="hi5-calendar-kicker">IMPORTANT DATES</span><h2 id="hi5-calendar-heading">Academic Calendar</h2><p>Keep track of term dates, examinations, holidays and important Hi5 school activities.</p></div>
+    <span class="hi5-calendar-icon" aria-hidden="true">▦</span>
+  </div>
+  <div id="hi5-calendar-events" class="hi5-calendar-grid" aria-live="polite"><p class="hi5-calendar-empty">Loading academic calendar…</p></div>
+</section>
 <div class="footer">
 © 2026 Hi5 Education Centre | All Rights Reserved
 </div>
@@ -1098,6 +1122,12 @@ function goDashboard(){
 function goHi5TV(){
   closeMenu();
   const section=document.getElementById("hi5-tv");
+  if(section) section.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function goAcademicCalendar(){
+  closeMenu();
+  const section=document.getElementById("hi5-academic-calendar");
   if(section) section.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
@@ -2041,5 +2071,33 @@ window.addEventListener("message",function(event){
 }
 )().catch(e=>console.error("Hi5 public updates:",e));
 </script>
-</body>
+<script>
+(async()=>{
+ const box=document.getElementById("hi5-calendar-events");
+ if(!box||!window.supabase)return;
+ try{
+  const db=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
+  const {data,error}=await db.from("academic_calendar").select("title,description,start_date,end_date,event_type").eq("is_published",true).order("start_date",{ascending:true}).limit(60);
+  if(error)throw error;
+  const now=new Date(),today=[now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-");
+  const upcoming=(data||[]).filter(item=>(item.end_date||item.start_date)>=today).slice(0,8);
+  if(!upcoming.length){box.innerHTML='<p class="hi5-calendar-empty">No upcoming dates have been published yet. Please check again for calendar updates.</p>';return;}
+  const datePart=value=>{const d=new Date(value+"T00:00:00");return {day:new Intl.DateTimeFormat("en",{day:"2-digit"}).format(d),month:new Intl.DateTimeFormat("en",{month:"short"}).format(d).toUpperCase()};};
+  upcoming.forEach(item=>{
+   const start=datePart(item.start_date),card=document.createElement("article");card.className="hi5-calendar-card";
+   const date=document.createElement("div");date.className="hi5-calendar-date";const day=document.createElement("strong");day.textContent=start.day;date.append(day,document.createTextNode(start.month));
+   const content=document.createElement("div"),type=document.createElement("span"),title=document.createElement("h3"),desc=document.createElement("p");
+   type.className="hi5-calendar-type";type.textContent=item.event_type||"School Event";
+   title.textContent=item.title||"School event";
+   let range=new Intl.DateTimeFormat("en-UG",{day:"numeric",month:"short",year:"numeric"}).format(new Date(item.start_date+"T00:00:00"));
+   if(item.end_date&&item.end_date!==item.start_date)range+=" – "+new Intl.DateTimeFormat("en-UG",{day:"numeric",month:"short",year:"numeric"}).format(new Date(item.end_date+"T00:00:00"));
+   desc.textContent=range+(item.description?"\n"+item.description:"");
+   content.append(type,title,desc);card.append(date,content);box.append(card);
+  });
+ }catch(error){
+  box.innerHTML='<p class="hi5-calendar-empty">The academic calendar will be available soon.</p>';
+  console.error("Hi5 academic calendar:",error);
+ }
+})();
+</script></body>
 </html>
