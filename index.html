@@ -741,6 +741,21 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 .hi5-calendar-card p{margin:0;color:#5a6877;font-size:12px;line-height:1.6;white-space:pre-line}
 .hi5-calendar-empty{grid-column:1/-1;margin:0;padding:18px;border:1px dashed #cbd8e3;border-radius:12px;color:#64748b;font-size:13px;text-align:center}
 @media(max-width:600px){.hi5-calendar-heading{align-items:flex-start}.hi5-calendar-icon{width:44px;height:44px;flex-basis:44px;font-size:23px}.hi5-calendar-card{padding:12px}}
+/* Hi5 Radio */
+.hi5-radio-section{margin:30px auto 34px;padding:clamp(18px,3vw,28px);max-width:1100px;border:1px solid #294b63;border-radius:20px;background:linear-gradient(135deg,#071d30,#123b4b);box-shadow:0 10px 28px rgba(5,22,36,.16);color:#fff}
+.hi5-radio-heading{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}
+.hi5-radio-kicker{font-size:11px;font-weight:900;letter-spacing:1.8px;color:#f2d39b}
+.hi5-radio-heading h2{margin:5px 0 7px;font-size:clamp(23px,4vw,30px);color:#fff}
+.hi5-radio-heading p{margin:0;max-width:650px;color:#d5e1e9;font-size:13px;line-height:1.7}
+.hi5-radio-icon{display:grid;place-items:center;width:54px;height:54px;flex:0 0 54px;border-radius:15px;background:#f2d39b;color:#102b45;font-size:30px}
+.hi5-radio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:13px}
+.hi5-radio-card{padding:16px;border:1px solid #d8e3ec;border-radius:14px;background:#fff;color:#102b45}
+.hi5-radio-card h3{margin:4px 0 6px;font-size:15px;line-height:1.4}
+.hi5-radio-category{color:#13805f;font-size:10px;font-weight:900;letter-spacing:.7px;text-transform:uppercase}
+.hi5-radio-card p{margin:0 0 12px;color:#5a6877;font-size:12px;line-height:1.6}
+.hi5-radio-card audio{display:block;width:100%;height:42px}
+.hi5-radio-empty{grid-column:1/-1;margin:0;padding:18px;border:1px dashed #6a8294;border-radius:12px;color:#d5e1e9;font-size:13px;text-align:center}
+@media(max-width:600px){.hi5-radio-heading{align-items:flex-start}.hi5-radio-icon{width:44px;height:44px;flex-basis:44px;font-size:25px}.hi5-radio-card{padding:13px}}
 </style>
 </head>
 
@@ -779,6 +794,7 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
   <div class="sidebar-divider"></div>
   <a href="#" onclick="openAbout();return false;"><span class="nav-icon">ⓘ</span><span>About Hi5</span><span class="nav-arrow">›</span></a>
   <a href="#" onclick="goHi5TV();return false;"><span class="nav-icon">▶</span><span>Hi5 TV</span><span class="nav-arrow">›</span></a>
+  <a href="#" onclick="goHi5Radio();return false;"><span class="nav-icon">♫</span><span>Hi5 Radio</span><span class="nav-arrow">›</span></a>
   <a href="#" onclick="goAcademicCalendar();return false;"><span class="nav-icon">▦</span><span>Academic Calendar</span><span class="nav-arrow">›</span></a>
   <a href="https://wa.me/256702234701" target="_blank" rel="noopener"><span class="nav-icon">☏</span><span>Contact Us</span><span class="nav-arrow">↗</span></a>
   <div class="sidebar-bottom">A brighter learning journey starts here.</div>
@@ -1069,6 +1085,13 @@ Choose Your Level
     <div id="hi5-tv-published" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px"><p style="color:#dce9f2">Loading published programmes…</p></div>
   </div>
 </section>
+<section id="hi5-radio" class="hi5-radio-section" aria-labelledby="hi5-radio-heading">
+  <div class="hi5-radio-heading">
+    <div><span class="hi5-radio-kicker">LISTEN • LEARN • GROW</span><h2 id="hi5-radio-heading">Hi5 Radio</h2><p>Listen to educational programmes, stories and important school updates from Hi5 Education Centre.</p></div>
+    <span class="hi5-radio-icon" aria-hidden="true">♫</span>
+  </div>
+  <div id="hi5-radio-programmes" class="hi5-radio-grid" aria-live="polite"><p class="hi5-radio-empty">Loading radio programmes…</p></div>
+</section>
 <section id="hi5-academic-calendar" class="hi5-calendar-section" aria-labelledby="hi5-calendar-heading">
   <div class="hi5-calendar-heading">
     <div><span class="hi5-calendar-kicker">IMPORTANT DATES</span><h2 id="hi5-calendar-heading">Academic Calendar</h2><p>Keep track of term dates, examinations, holidays and important Hi5 school activities.</p></div>
@@ -1122,6 +1145,12 @@ function goDashboard(){
 function goHi5TV(){
   closeMenu();
   const section=document.getElementById("hi5-tv");
+  if(section) section.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function goHi5Radio(){
+  closeMenu();
+  const section=document.getElementById("hi5-radio");
   if(section) section.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
@@ -2097,6 +2126,31 @@ window.addEventListener("message",function(event){
  }catch(error){
   box.innerHTML='<p class="hi5-calendar-empty">The academic calendar will be available soon.</p>';
   console.error("Hi5 academic calendar:",error);
+ }
+})();
+</script><script>
+(async()=>{
+ const box=document.getElementById("hi5-radio-programmes");
+ if(!box||!window.supabase)return;
+ try{
+  const db=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
+  const {data,error}=await db.from("hi5_radio").select("title,description,category,audio_url,audio_path").eq("is_published",true).order("created_at",{ascending:false}).limit(12);
+  if(error)throw error;
+  if(!data||!data.length){box.innerHTML='<p class="hi5-radio-empty">No radio programmes have been published yet. Please check again soon.</p>';return;}
+  data.forEach(item=>{
+   const source=item.audio_url||(item.audio_path?db.storage.from("hi5-radio").getPublicUrl(item.audio_path).data.publicUrl:"");
+   if(!source)return;
+   const card=document.createElement("article");card.className="hi5-radio-card";
+   const category=document.createElement("span");category.className="hi5-radio-category";category.textContent=item.category||"Educational Programme";
+   const title=document.createElement("h3");title.textContent=item.title||"Hi5 Radio programme";
+   const description=document.createElement("p");description.textContent=item.description||"Listen to this Hi5 Radio programme.";
+   const audio=document.createElement("audio");audio.controls=true;audio.preload="none";audio.src=source;audio.setAttribute("aria-label","Listen to "+(item.title||"Hi5 Radio programme"));
+   card.append(category,title,description,audio);box.append(card);
+  });
+  if(!box.children.length)box.innerHTML='<p class="hi5-radio-empty">No playable radio programmes are available yet.</p>';
+ }catch(error){
+  box.innerHTML='<p class="hi5-radio-empty">Hi5 Radio will be available soon.</p>';
+  console.error("Hi5 Radio:",error);
  }
 })();
 </script></body>
