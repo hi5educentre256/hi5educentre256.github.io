@@ -649,6 +649,12 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 @media(prefers-reduced-motion:reduce){.hi5-tv-screen-ticker span{animation:none;padding-left:0;white-space:normal;text-align:center}.hi5-tv-live-badge span{animation:none}}
 @media(max-width:600px){.hi5-tv-frame{padding:5px}.hi5-tv-screen{border-width:2px}.hi5-tv-side-mask{width:46px;font-size:9px}.hi5-tv-screen-ticker{font-size:10px;padding:9px 0}}
 
+
+/* Hi5 TV final player control and safe overlay refinements */
+.hi5-tv-side-mask{right:0;top:15%;bottom:17%;width:58px;border-radius:0 9px 9px 0;background:linear-gradient(90deg,rgba(8,27,42,.96),#071521);box-shadow:-4px 0 12px rgba(0,0,0,.2)}
+.hi5-tv-screen-ticker{bottom:0;left:0;right:0;z-index:8}
+.hi5-tv-live-badge{z-index:9}
+
 </style>
 </head>
 
@@ -1766,29 +1772,26 @@ let hi5TVIsPlaying = false;
 let hi5TVPlayerReady = false;
 function hi5TVSend(command){
   const player=document.getElementById("hi5-tv-player");
-  if(!player || !player.contentWindow)return false;
+  if(!player || !player.contentWindow || !hi5TVPlayerReady)return false;
   player.contentWindow.postMessage({type:command,value:null,"x-tiktok-player":true},"*");
   return true;
 }
 function hi5TVOnFrameLoad(){
-  hi5TVPlayerReady=true;
-  if(hi5TVWantsPlay){
-    window.setTimeout(function(){hi5TVSend("play");},350);
-  }
+  // The iframe load event is not the same as TikTok's player-ready event.
+  // Wait for TikTok's onPlayerReady message before sending commands.
 }
 function hi5TVSetPlayLabel(){
   const control=document.getElementById("hi5-tv-play-toggle");
   if(control){control.textContent=hi5TVIsPlaying?"Ⅱ Pause":"▶ Play";control.setAttribute("aria-label",hi5TVIsPlaying?"Pause video":"Play video");}
 }
 function hi5TVTogglePlayback(){
-  if(hi5TVIsPlaying){
+  if(hi5TVIsPlaying || hi5TVWantsPlay){
     hi5TVWantsPlay=false;
     hi5TVSend("pause");
     hi5TVIsPlaying=false;
   }else{
     hi5TVWantsPlay=true;
-    hi5TVSend("play");
-    hi5TVIsPlaying=true;
+    if(hi5TVPlayerReady)hi5TVSend("play");
   }
   hi5TVSetPlayLabel();
 }
@@ -1802,7 +1805,11 @@ function selectHi5TVVideo(videoId, button, category){
   hi5TVPlayerReady=false;
   player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=1&loop=1&autoplay=0&rel=0&music_info=0&description=0&native_context_menu=0";
   document.querySelectorAll(".hi5-tv-thumb").forEach(item=>item.classList.remove("is-active"));
-  if(button)button.classList.add("is-active");
+  if(button){
+    button.classList.add("is-active");
+    const activeFolder=button.closest(".hi5-tv-folder");
+    if(activeFolder){hi5TVCloseOtherFolders(activeFolder);activeFolder.open=true;}
+  }
   const label=document.getElementById("hi5-tv-now-playing");
   if(label)label.textContent="Selected · "+hi5TVCurrentCategory+" — loading video";
   hi5TVSetPlayLabel();
@@ -1813,6 +1820,7 @@ function hi5TVMove(step){
     return heading && heading.textContent.trim()===hi5TVCurrentCategory;
   });
   if(!section)return;
+  hi5TVCloseOtherFolders(section);
   section.open=true;
   const items=Array.from(section.querySelectorAll(".hi5-tv-thumb"));
   if(!items.length)return;
@@ -1840,14 +1848,18 @@ window.addEventListener("message",function(event){
     const label=document.getElementById("hi5-tv-now-playing");
     if(label)label.textContent="Ready to watch · "+hi5TVCurrentCategory;
     if(hi5TVWantsPlay)hi5TVSend("play");
+    hi5TVSetPlayLabel();
   }else if(event.data.type==="onStateChange"){
     hi5TVIsPlaying=event.data.value===1;
     if(event.data.value===0 && hi5TVWantsPlay)hi5TVSend("play");
+    if(event.data.value===2)hi5TVWantsPlay=false;
     hi5TVSetPlayLabel();
   }else if(event.data.type==="onPlayerError"){
     const label=document.getElementById("hi5-tv-now-playing");
     if(label)label.textContent="This video could not be loaded. Please choose another.";
     hi5TVWantsPlay=false;
+    hi5TVIsPlaying=false;
+    hi5TVSetPlayLabel();
   }
 });
 
