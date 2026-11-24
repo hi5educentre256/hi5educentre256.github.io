@@ -105,7 +105,9 @@ h1{font-size:clamp(25px,5vw,34px);font-weight:800;line-height:1.25;margin:0 0 9p
  function titleOf(card){return card.querySelector(".resource-name")?.textContent.trim()||card.querySelector("strong")?.textContent.trim()||"";}
  function sortGrid(grid){
   if(!grid)return;
-  Array.from(grid.querySelectorAll(":scope > .resource-card")).sort((a,b)=>titleOf(a).localeCompare(titleOf(b),undefined,{sensitivity:"base",numeric:true})).forEach(card=>grid.appendChild(card));
+  const cards=Array.from(grid.querySelectorAll(":scope > .resource-card"));
+  const sorted=cards.slice().sort((a,b)=>titleOf(a).localeCompare(titleOf(b),undefined,{sensitivity:"base",numeric:true}));
+  if(cards.some((card,index)=>card!==sorted[index]))sorted.forEach(card=>grid.appendChild(card));
  }
  function findGrid(category){
   if(CATEGORY){
