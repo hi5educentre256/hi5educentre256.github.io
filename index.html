@@ -634,6 +634,21 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 .hi5-tv-folder-summary>span:last-child{white-space:nowrap}
 @media(max-width:600px){.hi5-tv-folder{padding:0 11px}.hi5-tv-folder-summary{padding:14px 0}.hi5-tv-folder-summary>span:last-child{font-size:11px}}
 
+
+/* Hi5 TV on-screen channel graphics and interaction protection */
+.hi5-tv-frame{padding:10px}
+.hi5-tv-screen{position:relative;width:100%;max-width:390px;margin:0 auto;aspect-ratio:9/16;overflow:hidden;border:3px solid #d8bd80;border-radius:15px;background:#061521;box-shadow:0 0 0 4px #122f45,0 12px 30px rgba(0,0,0,.35)}
+.hi5-tv-screen iframe{display:block;width:100%;height:100%;min-height:0;max-width:none;aspect-ratio:auto;border:0;border-radius:10px;background:#061521}
+.hi5-tv-live-badge{position:absolute;z-index:5;top:12px;left:12px;display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:6px;background:#b91c32;color:#fff;font-size:11px;font-weight:900;letter-spacing:1px;box-shadow:0 2px 9px #0008;pointer-events:none}
+.hi5-tv-live-badge span{width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px #ffffff35;animation:hi5LivePulse 1.4s infinite}
+@keyframes hi5LivePulse{50%{opacity:.45}}
+.hi5-tv-side-mask{position:absolute;z-index:6;right:0;top:13%;bottom:15%;width:54px;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform:none;border-left:1px solid #e1c78c;background:linear-gradient(90deg,#102b40f2,#071521 88%);color:#f4d99f;font-size:10px;font-weight:900;letter-spacing:2px;pointer-events:auto;user-select:none}
+.hi5-tv-screen-ticker{position:absolute;z-index:7;left:0;right:0;bottom:0;overflow:hidden;border-top:2px solid #d8bd80;background:rgba(4,20,33,.96);padding:10px 0;color:#ffe1a6;font-size:11px;font-weight:800;white-space:nowrap;pointer-events:none}
+.hi5-tv-screen-ticker span{display:inline-block;padding-left:100%;animation:hi5TVScreenTicker 18s linear infinite}
+@keyframes hi5TVScreenTicker{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@media(prefers-reduced-motion:reduce){.hi5-tv-screen-ticker span{animation:none;padding-left:0;white-space:normal;text-align:center}.hi5-tv-live-badge span{animation:none}}
+@media(max-width:600px){.hi5-tv-frame{padding:5px}.hi5-tv-screen{border-width:2px}.hi5-tv-side-mask{width:46px;font-size:9px}.hi5-tv-screen-ticker{font-size:10px;padding:9px 0}}
+
 </style>
 </head>
 
@@ -819,7 +834,12 @@ Choose Your Level
       <button type="button" onclick="hi5TVNext()" aria-label="Next video">Next ⏭</button>
     </div>
     <div class="hi5-tv-frame">
-      <iframe id="hi5-tv-player" src="https://www.tiktok.com/player/v1/7700794305111395604?controls=1&loop=1&rel=0&music_info=0&description=0&native_context_menu=0" title="Hi5 Education Centre Nursery video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" tabindex="-1"></iframe>
+      <div class="hi5-tv-screen">
+        <iframe id="hi5-tv-player" src="https://www.tiktok.com/player/v1/7700794305111395604?controls=1&loop=1&rel=0&music_info=0&description=0&native_context_menu=0" title="Hi5 Education Centre video player" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen onload="hi5TVOnFrameLoad()"></iframe>
+        <div class="hi5-tv-live-badge"><span></span> LIVE</div>
+        <div class="hi5-tv-side-mask" aria-hidden="true">HI5 TV</div>
+        <div class="hi5-tv-screen-ticker" aria-label="Hi5 TV message"><span>Thank you for watching Hi5 TV • Learn Today, Lead Tomorrow • Enjoy learning with Hi5 •</span></div>
+      </div>
     </div>
   </div>
   <div class="hi5-tv-categories">
@@ -944,7 +964,6 @@ Choose Your Level
       </div>
     </details>
   </div>
-  <div class="hi5-tv-ticker" aria-label="Hi5 TV message"><span>Thank you for watching Hi5 TV • Learn Today, Lead Tomorrow • Choose your level and enjoy learning • Thank you for watching Hi5 TV •</span></div>
   <p class="hi5-tv-note">Select a programme from Nursery, Primary, Secondary or Tertiary. Use the Next and Previous buttons to move through videos in the same section. Videos are streamed from their original source and are not stored on Hi5 servers.</p>
 </section>
 <div class="footer">
@@ -1747,17 +1766,30 @@ let hi5TVIsPlaying = false;
 let hi5TVPlayerReady = false;
 function hi5TVSend(command){
   const player=document.getElementById("hi5-tv-player");
-  if(!player || !player.contentWindow || !hi5TVPlayerReady)return false;
-  player.contentWindow.postMessage({type:command,value:undefined,"x-tiktok-player":true},"*");
+  if(!player || !player.contentWindow)return false;
+  player.contentWindow.postMessage({type:command,value:null,"x-tiktok-player":true},"*");
   return true;
+}
+function hi5TVOnFrameLoad(){
+  hi5TVPlayerReady=true;
+  if(hi5TVWantsPlay){
+    window.setTimeout(function(){hi5TVSend("play");},350);
+  }
 }
 function hi5TVSetPlayLabel(){
   const control=document.getElementById("hi5-tv-play-toggle");
   if(control){control.textContent=hi5TVIsPlaying?"Ⅱ Pause":"▶ Play";control.setAttribute("aria-label",hi5TVIsPlaying?"Pause video":"Play video");}
 }
 function hi5TVTogglePlayback(){
-  if(hi5TVIsPlaying){hi5TVWantsPlay=false;hi5TVSend("pause");hi5TVIsPlaying=false;}
-  else{hi5TVWantsPlay=true;if(hi5TVPlayerReady)hi5TVSend("play");}
+  if(hi5TVIsPlaying){
+    hi5TVWantsPlay=false;
+    hi5TVSend("pause");
+    hi5TVIsPlaying=false;
+  }else{
+    hi5TVWantsPlay=true;
+    hi5TVSend("play");
+    hi5TVIsPlaying=true;
+  }
   hi5TVSetPlayLabel();
 }
 function selectHi5TVVideo(videoId, button, category){
@@ -1768,7 +1800,7 @@ function selectHi5TVVideo(videoId, button, category){
   hi5TVWantsPlay=true;
   hi5TVIsPlaying=false;
   hi5TVPlayerReady=false;
-  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=1&loop=1&rel=0&music_info=0&description=0&native_context_menu=0";
+  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=1&loop=1&autoplay=0&rel=0&music_info=0&description=0&native_context_menu=0";
   document.querySelectorAll(".hi5-tv-thumb").forEach(item=>item.classList.remove("is-active"));
   if(button)button.classList.add("is-active");
   const label=document.getElementById("hi5-tv-now-playing");
@@ -1791,8 +1823,18 @@ function hi5TVMove(step){
 }
 function hi5TVNext(){hi5TVMove(1);}
 function hi5TVPrevious(){hi5TVMove(-1);}
+function hi5TVCloseOtherFolders(activeFolder){
+  document.querySelectorAll(".hi5-tv-folder").forEach(folder=>{
+    if(folder!==activeFolder)folder.open=false;
+  });
+}
+document.querySelectorAll(".hi5-tv-folder").forEach(folder=>{
+  const summary=folder.querySelector("summary");
+  if(summary)summary.addEventListener("click",function(){hi5TVCloseOtherFolders(folder);});
+});
 window.addEventListener("message",function(event){
-  if(event.origin!=="https://www.tiktok.com" || !event.data || event.data["x-tiktok-player"]!==true)return;
+  const activePlayer=document.getElementById("hi5-tv-player");
+  if(!activePlayer || event.source!==activePlayer.contentWindow || event.origin!=="https://www.tiktok.com" || !event.data || event.data["x-tiktok-player"]!==true)return;
   if(event.data.type==="onPlayerReady"){
     hi5TVPlayerReady=true;
     const label=document.getElementById("hi5-tv-now-playing");
