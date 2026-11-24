@@ -115,14 +115,14 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
           </div>
         </div>
         <div id="tvPage" class="hidden">
-          <div class="content-head"><div><h2>Hi5 TV</h2><p>Add and publish video lessons and programmes on the public website.</p></div></div>
+          <div class="content-head"><div><h2>Hi5 TV</h2><p>Add a video and choose its section. It will appear inside that same Hi5 TV section alongside the existing videos.</p></div></div>
           <div class="editor">
             <form id="tvForm">
               <h3 id="tvFormHeading">Add a Hi5 TV video</h3><input id="tvId" type="hidden">
               <div class="field"><label for="tvTitle">Video title</label><input id="tvTitle" maxlength="180" required placeholder="Video title"></div>
               <div class="field"><label for="tvDescription">Description</label><textarea id="tvDescription" placeholder="Brief description"></textarea></div>
-              <div class="field"><label for="tvUrl">Video URL</label><input id="tvUrl" type="url" required placeholder="YouTube or video link"></div>
-              <div class="field"><label for="tvCategory">Category</label><select id="tvCategory"><option>General</option><option>Nursery</option><option>Primary</option><option>Secondary</option><option>Tertiary</option><option>Islamic Education</option></select></div>
+              <div class="field"><label for="tvUrl">Video URL</label><input id="tvUrl" type="url" required placeholder="Paste the video link (TikTok links play in Hi5 TV)"></div>
+              <div class="field"><label for="tvCategory">Category</label><select id="tvCategory" required><option value="Nursery">Nursery</option><option value="Primary">Primary</option><option value="Secondary">Secondary</option><option value="Tertiary">Tertiary</option></select></div>
               <div class="field"><label for="tvThumbnail">Thumbnail URL (optional)</label><input id="tvThumbnail" type="url" placeholder="https://..."></div>
               <label class="checkline"><input id="tvPublished" type="checkbox"> Publish this video</label>
               <div class="actions"><button class="btn btn-primary" type="submit">Save video</button><button id="tvClearBtn" class="btn btn-quiet" type="button">Clear</button></div>
@@ -430,7 +430,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     $("tvList").querySelectorAll("[data-tv-edit]").forEach(b => b.addEventListener("click", () => {
       const v = tvItems.find(x => x.id === b.dataset.tvEdit); if (!v) return;
       $("tvId").value=v.id; $("tvTitle").value=v.title||""; $("tvDescription").value=v.description||"";
-      $("tvUrl").value=v.video_url||""; $("tvCategory").value=v.category||"General";
+      $("tvUrl").value=v.video_url||""; $("tvCategory").value=["Nursery","Primary","Secondary","Tertiary"].includes(v.category)?v.category:"Nursery";
       $("tvThumbnail").value=v.thumbnail_url||""; $("tvPublished").checked=!!v.is_published;
       $("tvFormHeading").textContent="Edit Hi5 TV video"; $("tvTitle").focus();
     }));
