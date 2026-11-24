@@ -1995,7 +1995,7 @@ window.addEventListener("message",function(event){
    button.addEventListener("click",()=>window.open(url,"_blank","noopener,noreferrer"));
   }
   grid.appendChild(button);
-  const countLabel=folder.querySelector(".hi5-tv-library-title>span");
+  const countLabel=folder.querySelector(".hi5-tv-folder-summary > span:last-child");
   if(countLabel){const n=grid.querySelectorAll(".hi5-tv-thumb").length;countLabel.textContent=n+" videos available";}
  });
  videoBox.innerHTML="";
