@@ -100,6 +100,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
               <p class="upload-help">Files are stored in your Hi5 learning-materials bucket. Published files can be accessed by visitors.</p>
               <div class="field"><label for="materialLevel">Education level</label><select id="materialLevel" required><option value="Nursery">Nursery</option><option value="Primary" selected>Primary</option><option value="Secondary">Secondary</option><option value="Tertiary">Tertiary</option></select></div>
               <div class="field"><label for="materialClass">Class / section</label><input id="materialClass" required placeholder="e.g. P1, Baby, S1 or Degree"></div>
+              <div class="field"><label for="materialCategory">Resource category</label><select id="materialCategory" required><option>Lesson Notes</option><option>Past Papers</option><option>Textbooks</option><option>Schemes of Work</option><option>Other Resources</option></select></div>
               <div class="field"><label for="materialSubject">Subject</label><input id="materialSubject" required placeholder="e.g. Mathematics"></div>
               <div class="field"><label for="materialTitle">Material title</label><input id="materialTitle" required maxlength="120" placeholder="e.g. P1 Mathematics Book 1"></div>
               <div class="field"><label for="materialFile">Choose file</label><input id="materialFile" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp" required></div>
@@ -111,6 +112,23 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
               <div class="content-head"><div><h3 style="margin:0;color:var(--navy);font-size:15px">Files in this section</h3><p id="materialFolderLabel">Choose a class and subject to view its files.</p></div><button id="refreshMaterialsBtn" class="btn btn-quiet" type="button">Refresh</button></div>
               <div id="materialList" class="list"><div class="empty">Enter a class and subject, then tap Refresh.</div></div>
             </div>
+          </div>
+        </div>
+        <div id="tvPage" class="hidden">
+          <div class="content-head"><div><h2>Hi5 TV</h2><p>Add and publish video lessons and programmes on the public website.</p></div></div>
+          <div class="editor">
+            <form id="tvForm">
+              <h3 id="tvFormHeading">Add a Hi5 TV video</h3><input id="tvId" type="hidden">
+              <div class="field"><label for="tvTitle">Video title</label><input id="tvTitle" maxlength="180" required placeholder="Video title"></div>
+              <div class="field"><label for="tvDescription">Description</label><textarea id="tvDescription" placeholder="Brief description"></textarea></div>
+              <div class="field"><label for="tvUrl">Video URL</label><input id="tvUrl" type="url" required placeholder="YouTube or video link"></div>
+              <div class="field"><label for="tvCategory">Category</label><select id="tvCategory"><option>General</option><option>Nursery</option><option>Primary</option><option>Secondary</option><option>Tertiary</option><option>Islamic Education</option></select></div>
+              <div class="field"><label for="tvThumbnail">Thumbnail URL (optional)</label><input id="tvThumbnail" type="url" placeholder="https://..."></div>
+              <label class="checkline"><input id="tvPublished" type="checkbox"> Publish this video</label>
+              <div class="actions"><button class="btn btn-primary" type="submit">Save video</button><button id="tvClearBtn" class="btn btn-quiet" type="button">Clear</button></div>
+              <div id="tvNotice" class="notice" role="status"></div>
+            </form>
+            <div><h3>Hi5 TV library</h3><div id="tvList" class="list"><div class="empty">Loading videos…</div></div></div>
           </div>
         </div>
         <div id="placeholderPage" class="hidden">
@@ -131,6 +149,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
   const $ = id => document.getElementById(id);
   let announcements = [];
+  let tvItems = [];
 
   function showNotice(id, message, type) {
     const el = $(id);
@@ -159,6 +178,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     }
     setLoggedIn(true);
     await loadAnnouncements();
+    await loadTV();
     return true;
   }
   $("loginForm").addEventListener("submit", async event => {
@@ -290,9 +310,10 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   function materialFolder() {
     const level = safeFolderPart($("materialLevel").value);
     const className = safeFolderPart($("materialClass").value);
+    const category = safeFolderPart($("materialCategory").value);
     const subject = safeFolderPart($("materialSubject").value);
-    if (!level || !className || !subject) return "";
-    return level + "/" + className + "/" + subject;
+    if (!level || !className || !category || !subject) return "";
+    return level + "/" + className + "/" + category + "/" + subject;
   }
   async function refreshMaterials() {
     const folder = materialFolder();
@@ -303,31 +324,36 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     }
     $("materialFolderLabel").textContent = folder.replaceAll("/", " / ");
     $("materialList").innerHTML = '<div class="empty">Loading files…</div>';
-    const { data, error } = await client.storage.from("learning-materials").list(folder, {
-      limit: 100,
-      sortBy: { column: "created_at", order: "desc" }
-    });
+    const { data, error } = await client.from("learning_materials").select("*")
+      .eq("level", $("materialLevel").value).eq("class_name", $("materialClass").value.trim())
+      .eq("category", $("materialCategory").value).eq("subject", $("materialSubject").value.trim())
+      .order("created_at", { ascending: false });
     if (error) {
       $("materialList").innerHTML = '<div class="empty">Could not load files: ' + escapeHtml(error.message) + '</div>';
       return;
     }
-    const files = (data || []).filter(item => item.id);
+    const files = data || [];
     if (!files.length) {
       $("materialList").innerHTML = '<div class="empty">No files in this section yet.</div>';
       return;
     }
     $("materialList").innerHTML = files.map(item => {
-      const fullPath = folder + "/" + item.name;
+      const fullPath = item.file_path;
       const publicUrl = client.storage.from("learning-materials").getPublicUrl(fullPath).data.publicUrl;
-      const size = item.metadata && item.metadata.size ? (item.metadata.size / 1024 / 1024).toFixed(2) + " MB" : "File";
-      return '<div class="file-row"><div><strong>' + escapeHtml(item.name) + '</strong><small>' + escapeHtml(size) + '</small><a href="' + escapeHtml(publicUrl) + '" target="_blank" rel="noopener">Open / download</a></div><button class="btn btn-danger" type="button" data-material-delete="' + escapeHtml(fullPath) + '">Delete</button></div>';
+      return '<div class="file-row"><div><strong>' + escapeHtml(item.title) + '</strong><small>' + escapeHtml(item.category + " · " + item.subject + " · " + (item.is_published ? "Published" : "Draft")) + '</small><a href="' + escapeHtml(publicUrl) + '" target="_blank" rel="noopener">Open / download</a></div><button class="btn btn-danger" type="button" data-material-delete="' + escapeHtml(item.id) + '">Delete</button></div>';
     }).join("");
     $("materialList").querySelectorAll("[data-material-delete]").forEach(button => {
       button.addEventListener("click", async () => {
         const path = button.dataset.materialDelete;
         if (!confirm("Delete this learning material? This cannot be undone.")) return;
         button.disabled = true;
-        const { error: deleteError } = await client.storage.from("learning-materials").remove([path]);
+        const item = files.find(entry => entry.id === path);
+        if (!item) return;
+        const { error: deleteError } = await client.storage.from("learning-materials").remove([item.file_path]);
+        if (!deleteError) {
+          const { error: rowError } = await client.from("learning_materials").delete().eq("id", item.id);
+          if (rowError) { showNotice("materialNotice", rowError.message, "error"); button.disabled = false; return; }
+        }
         if (deleteError) {
           showNotice("materialNotice", deleteError.message, "error");
           button.disabled = false;
@@ -345,6 +371,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     const selectedLevel = $("materialLevel").value;
     const selectedClass = $("materialClass").value;
     const selectedSubject = $("materialSubject").value;
+    const selectedCategory = $("materialCategory").value;
     const file = $("materialFile").files[0];
     const title = $("materialTitle").value.trim();
     if (!folder || !title || !file) {
@@ -377,12 +404,54 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     $("materialLevel").value = selectedLevel;
     $("materialClass").value = selectedClass;
     $("materialSubject").value = selectedSubject;
-    showNotice("materialNotice", "Material uploaded successfully.", "success");
+    const { error: metadataError } = await client.from("learning_materials").insert({
+      title, level: selectedLevel, class_name: selectedClass.trim(), category: selectedCategory,
+      subject: selectedSubject.trim(), file_path: path, is_published: true
+    });
+    if (metadataError) {
+      await client.storage.from("learning-materials").remove([path]);
+      showNotice("materialNotice", "The file upload could not be registered: " + metadataError.message, "error");
+      return;
+    }
+    showNotice("materialNotice", "Material uploaded and published successfully.", "success");
     await refreshMaterials();
   });
   $("refreshMaterialsBtn").addEventListener("click", refreshMaterials);
-  ["materialLevel", "materialClass", "materialSubject"].forEach(id => {
+  ["materialLevel", "materialClass", "materialCategory", "materialSubject"].forEach(id => {
     $(id).addEventListener("change", refreshMaterials);
+  });
+
+  async function loadTV() {
+    const { data, error } = await client.from("hi5_tv").select("*").order("created_at", { ascending: false });
+    if (error) { $("tvList").innerHTML = '<div class="empty">Could not load videos: ' + escapeHtml(error.message) + '</div>'; return; }
+    tvItems = data || [];
+    $("tvList").innerHTML = tvItems.length ? tvItems.map(item => '<article class="announcement"><div class="announcement-top"><div><h4>' + escapeHtml(item.title) + '</h4><p>' + escapeHtml(item.description || item.video_url) + '</p></div><span class="pill ' + (item.is_published ? 'live' : 'draft') + '">' + (item.is_published ? 'Published' : 'Draft') + '</span></div><div class="actions"><button class="btn btn-quiet" type="button" data-tv-edit="' + escapeHtml(item.id) + '">Edit</button><button class="btn btn-danger" type="button" data-tv-delete="' + escapeHtml(item.id) + '">Delete</button></div></article>').join("") : '<div class="empty">No Hi5 TV videos yet. Add your first video.</div>';
+    $("tvList").querySelectorAll("[data-tv-edit]").forEach(b => b.addEventListener("click", () => {
+      const v = tvItems.find(x => x.id === b.dataset.tvEdit); if (!v) return;
+      $("tvId").value=v.id; $("tvTitle").value=v.title||""; $("tvDescription").value=v.description||"";
+      $("tvUrl").value=v.video_url||""; $("tvCategory").value=v.category||"General";
+      $("tvThumbnail").value=v.thumbnail_url||""; $("tvPublished").checked=!!v.is_published;
+      $("tvFormHeading").textContent="Edit Hi5 TV video"; $("tvTitle").focus();
+    }));
+    $("tvList").querySelectorAll("[data-tv-delete]").forEach(b => b.addEventListener("click", async () => {
+      const v=tvItems.find(x=>x.id===b.dataset.tvDelete); if(!v||!confirm('Delete "'+v.title+'"?')) return;
+      const {error}=await client.from("hi5_tv").delete().eq("id",v.id);
+      if(error) showNotice("tvNotice",error.message,"error"); else {showNotice("tvNotice","Video deleted.","success"); await loadTV();}
+    }));
+  }
+  function clearTVForm(){ $("tvForm").reset(); $("tvId").value=""; $("tvFormHeading").textContent="Add a Hi5 TV video"; clearNotice("tvNotice"); }
+  $("tvClearBtn").addEventListener("click",clearTVForm);
+  $("tvForm").addEventListener("submit",async event=>{
+    event.preventDefault(); clearNotice("tvNotice");
+    const id=$("tvId").value;
+    const payload={title:$("tvTitle").value.trim(),description:$("tvDescription").value.trim(),
+      video_url:$("tvUrl").value.trim(),category:$("tvCategory").value,
+      thumbnail_url:$("tvThumbnail").value.trim()||null,is_published:$("tvPublished").checked,updated_at:new Date().toISOString()};
+    try { const u=new URL(payload.video_url); if(!["http:","https:"].includes(u.protocol)) throw new Error("Use a valid http or https video link."); }
+    catch(e){showNotice("tvNotice",e.message||"Enter a valid video URL.","error");return;}
+    const result=id?await client.from("hi5_tv").update(payload).eq("id",id):await client.from("hi5_tv").insert(payload);
+    if(result.error){showNotice("tvNotice",result.error.message,"error");return;}
+    clearTVForm(); showNotice("tvNotice","Hi5 TV video saved successfully.","success"); await loadTV();
   });
 
   const moduleInfo = {
@@ -411,11 +480,14 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     document.querySelectorAll(".nav-btn").forEach(button => button.classList.toggle("active", button.dataset.page === page));
     const isAnnouncements = page === "announcements";
     const isMaterials = page === "materials";
+    const isTV = page === "tv";
     $("announcementsPage").classList.toggle("hidden", !isAnnouncements);
     $("materialsPage").classList.toggle("hidden", !isMaterials);
-    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials);
+    $("tvPage").classList.toggle("hidden", !isTV);
+    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV);
     if (isMaterials) refreshMaterials();
-    if (!isAnnouncements && !isMaterials) {
+    if (isTV) loadTV();
+    if (!isAnnouncements && !isMaterials && !isTV) {
       const info = moduleInfo[page];
       $("placeholderTitle").textContent = info.title;
       $("placeholderDescription").textContent = info.description;
