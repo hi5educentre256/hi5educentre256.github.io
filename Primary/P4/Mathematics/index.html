@@ -96,7 +96,7 @@ h1{font-size:clamp(25px,5vw,34px);font-weight:800;line-height:1.25;margin:0 0 9p
     .catch(error=>console.error('Hi5 P4 Mathematics automatic resource listing:',error));
 })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"><\/script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (async function(){
  const LEVEL="Primary", CLASS_NAME="P4", CATEGORY=null, SUBJECT="Mathematics";
@@ -149,4 +149,4 @@ h1{font-size:clamp(25px,5vw,34px);font-weight:800;line-height:1.25;margin:0 0 9p
   document.querySelectorAll(".resource-grid").forEach(grid=>new MutationObserver(()=>sortGrid(grid)).observe(grid,{childList:true}));
  }catch(error){console.error("Hi5 live materials:",error);}
 })();
-<\/script></body></html>
+</script></body></html>
