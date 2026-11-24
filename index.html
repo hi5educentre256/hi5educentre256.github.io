@@ -1748,7 +1748,7 @@ let hi5TVPlayerReady = false;
 function hi5TVSend(command){
   const player=document.getElementById("hi5-tv-player");
   if(!player || !player.contentWindow || !hi5TVPlayerReady)return false;
-  player.contentWindow.postMessage({type:command,"x-tiktok-player":true},"*");
+  player.contentWindow.postMessage({type:command,value:undefined,"x-tiktok-player":true},"*");
   return true;
 }
 function hi5TVSetPlayLabel(){
