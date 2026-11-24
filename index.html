@@ -900,7 +900,7 @@ Choose Your Level
     </div>
     <div class="hi5-tv-frame">
       <div class="hi5-tv-screen">
-        <iframe id="hi5-tv-player" src="https://www.tiktok.com/player/v1/7700794305111395604?controls=1&loop=1&rel=0&music_info=0&description=0&native_context_menu=0" title="Hi5 Education Centre video player" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen onload="hi5TVOnFrameLoad()"></iframe>
+        <iframe id="hi5-tv-player" src="https://www.tiktok.com/player/v1/7700794305111395604?controls=1&loop=1&autoplay=0&force_muted=0&rel=0&music_info=0&description=0&native_context_menu=0" title="Hi5 Education Centre video player" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen onload="hi5TVOnFrameLoad()"></iframe>
         <div class="hi5-tv-live-badge"><span></span><strong>LIVE</strong></div>
         <div class="hi5-tv-side-mask" aria-hidden="true"></div>
         <div class="hi5-tv-screen-ticker" aria-label="Hi5 TV message"><span>Thank you for watching Hi5 TV • Learn Today, Lead Tomorrow • Enjoy learning with Hi5 •</span></div>
@@ -1831,10 +1831,10 @@ let hi5TVCurrentButton = null;
 let hi5TVWantsPlay = false;
 let hi5TVIsPlaying = false;
 let hi5TVPlayerReady = false;
+let hi5TVSoundEnabled = true;
 function hi5TVSend(command){
   const player=document.getElementById("hi5-tv-player");
   if(!player || !player.contentWindow)return false;
-  // TikTok documents play/pause as void-valued host messages.
   player.contentWindow.postMessage({type:command,value:undefined,"x-tiktok-player":true},"*");
   return true;
 }
@@ -1844,20 +1844,28 @@ function hi5TVOnFrameLoad(){
 }
 function hi5TVSetPlayLabel(){
   const control=document.getElementById("hi5-tv-play-toggle");
-  const playing=hi5TVPlayerReady?hi5TVIsPlaying:hi5TVWantsPlay;
+  const playing=hi5TVIsPlaying || hi5TVWantsPlay;
   if(control){
-    control.disabled=false;
-    control.removeAttribute("aria-disabled");
-    control.textContent=playing?"Ⅱ Pause":"▶ Play";
-    control.setAttribute("aria-label",playing?"Pause video":"Play video");
+    control.disabled=!hi5TVPlayerReady;
+    control.setAttribute("aria-disabled",String(!hi5TVPlayerReady));
+    control.textContent=!hi5TVPlayerReady?"Loading…":(playing?"Ⅱ Pause":"▶ Play");
+    control.setAttribute("aria-label",!hi5TVPlayerReady?"Video is loading":(playing?"Pause video":"Play video with sound"));
   }
 }
 function hi5TVTogglePlayback(){
-  // Send the command immediately; do not block the button on a delayed ready event.
+  if(!hi5TVPlayerReady)return;
   const shouldPause=hi5TVIsPlaying || hi5TVWantsPlay;
-  hi5TVWantsPlay=!shouldPause;
-  hi5TVSend(shouldPause?"pause":"play");
-  if(shouldPause)hi5TVIsPlaying=false;
+  if(shouldPause){
+    hi5TVWantsPlay=false;
+    hi5TVSend("pause");
+    hi5TVIsPlaying=false;
+  }else{
+    // A real tap on this button gives the browser the best opportunity to allow sound.
+    hi5TVSoundEnabled=true;
+    hi5TVSend("unMute");
+    hi5TVWantsPlay=true;
+    hi5TVSend("play");
+  }
   hi5TVSetPlayLabel();
 }
 function selectHi5TVVideo(videoId, button, category){
@@ -1865,11 +1873,11 @@ function selectHi5TVVideo(videoId, button, category){
   if(!player)return;
   hi5TVCurrentCategory=category||"Nursery";
   hi5TVCurrentButton=button||null;
-  hi5TVWantsPlay=true;
+  hi5TVWantsPlay=false;
   hi5TVIsPlaying=false;
   hi5TVPlayerReady=false;
-  // Start the embed on selection to initialise TikTok's lazy player, then expose our own controls.
-  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=1&loop=1&autoplay=1&rel=0&music_info=0&description=0&native_context_menu=0";
+  // Load the next post without silent autoplay. The viewer starts it with the sound-enabled Play tap.
+  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=1&loop=1&autoplay=0&force_muted=0&rel=0&music_info=0&description=0&native_context_menu=0";
   document.querySelectorAll(".hi5-tv-thumb").forEach(item=>item.classList.remove("is-active"));
   if(button){
     button.classList.add("is-active");
@@ -1877,7 +1885,7 @@ function selectHi5TVVideo(videoId, button, category){
     if(activeFolder){hi5TVCloseOtherFolders(activeFolder);activeFolder.open=true;}
   }
   const label=document.getElementById("hi5-tv-now-playing");
-  if(label)label.textContent="Selected · "+hi5TVCurrentCategory+" — loading video";
+  if(label)label.textContent="Loading video · tap Play for sound when ready";
   hi5TVSetPlayLabel();
 }
 function hi5TVMove(step){
@@ -1912,15 +1920,17 @@ window.addEventListener("message",function(event){
   if(event.data.type==="onPlayerReady"){
     hi5TVPlayerReady=true;
     const label=document.getElementById("hi5-tv-now-playing");
-    if(label)label.textContent="Ready to watch · "+hi5TVCurrentCategory;
-    if(hi5TVWantsPlay)hi5TVSend("play");
+    if(label)label.textContent="Ready · tap Play to start with sound";
     hi5TVSetPlayLabel();
   }else if(event.data.type==="onStateChange"){
     hi5TVIsPlaying=event.data.value===1;
     if(event.data.value===1)hi5TVWantsPlay=true;
-    if(event.data.value===0 && hi5TVWantsPlay)hi5TVSend("play");
-    if(event.data.value===2)hi5TVWantsPlay=false;
+    if(event.data.value===2 || event.data.value===0)hi5TVWantsPlay=false;
     hi5TVSetPlayLabel();
+  }else if(event.data.type==="onMute"){
+    if(event.data.value===true && hi5TVSoundEnabled && hi5TVWantsPlay){
+      hi5TVSend("unMute");
+    }
   }else if(event.data.type==="onPlayerError"){
     const label=document.getElementById("hi5-tv-now-playing");
     if(label)label.textContent="This video could not be loaded. Please choose another.";
