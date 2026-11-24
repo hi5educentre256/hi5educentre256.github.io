@@ -706,6 +706,14 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 #content .about-page .about-back{border-radius:999px!important;padding:10px 17px!important}
 @media(max-width:700px){#content .about-page{padding:12px 10px 25px!important;border-radius:16px!important}#content .about-page .about-hero{min-height:0;padding:28px 22px!important}#content .about-page .about-card{padding:19px!important}}
 
+
+/* Hi5 headquarters identity */
+#content .about-page .about-headquarters-hero{display:inline-flex;align-items:center;gap:11px;margin-top:15px;padding:11px 15px;border:1px solid rgba(240,211,155,.48);border-radius:13px;background:rgba(255,255,255,.09);color:#fff;font-size:12px;line-height:1.55}
+#content .about-page .about-headquarters-hero>span:first-child{display:grid;place-items:center;width:32px;height:32px;flex:0 0 32px;border-radius:10px;background:rgba(240,211,155,.18);color:#f4d49a;font-size:23px}
+#content .about-page .about-headquarters-hero strong{color:#f4d49a;font-size:11px;letter-spacing:.6px;text-transform:uppercase}
+#content .about-page .about-headquarters-card{background:linear-gradient(135deg,#eaf2f8,#fff)!important;border-color:#c9d9e7!important}
+#content .about-page .about-headquarters-card span{display:block;color:#1265c7;font-size:14px;font-weight:700}
+
 </style>
 </head>
 
@@ -1574,6 +1582,7 @@ function about(){
         <h1>Opening doors to a brighter future through learning.</h1>
         <p>Hi5 Education Centre is a digital education platform providing organised, curriculum-based learning resources for learners, teachers, parents and educational institutions in Uganda and beyond.</p>
         <div class="about-motto">✦ Learn Today, Lead Tomorrow</div>
+        <div class="about-headquarters-hero"><span aria-hidden="true">⌖</span><span><strong>Main Headquarters</strong><br>Wakiso District, Uganda</span></div>
       </div>
       <div class="about-hero-mark" aria-label="Hi5"><span>Hi5</span></div>
     </section>
@@ -1650,6 +1659,7 @@ function about(){
     <section class="about-section">
       <h2 class="about-section-heading">Get in touch</h2>
       <div class="about-contact">
+        <div class="about-contact-item about-headquarters-card"><strong>Main Headquarters</strong><span>Wakiso District, Uganda</span></div>
         <div class="about-contact-item"><strong>Phone / WhatsApp</strong><a href="tel:+256702234701">+256 702 234 701</a></div>
         <div class="about-contact-item"><strong>Email</strong><a href="mailto:hi5educentre256@gmail.com">hi5educentre256@gmail.com</a></div>
         <div class="about-contact-item"><strong>Founder email</strong><a href="mailto:isakofug@gmail.com">isakofug@gmail.com</a></div>
