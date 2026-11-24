@@ -13,12 +13,6 @@
 .resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}.resource-card{display:flex;flex-direction:column;justify-content:space-between;gap:12px;background:#fff;padding:17px;border-radius:15px;box-shadow:0 3px 12px rgba(0,0,0,.06);border-left:5px solid #0d6efd;min-width:0}.resource-info{display:flex;gap:12px;align-items:flex-start;min-width:0}.file-icon{font-size:27px;line-height:1.3}.resource-name{font-size:14px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}.resource-meta{font-size:11px;color:#64748b;margin-top:4px}.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;background:#dcfce7;color:#166534;border:1px solid #86efac}.badge.scheme{background:#dbeafe;color:#1e3a8a;border-color:#93c5fd}.badge.exam{background:#fee2e2;color:#991b1b;border-color:#fca5a5}.actions{display:flex;gap:9px;flex-wrap:wrap}.action{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 13px;border-radius:9px;text-decoration:none;font-size:12px;font-weight:600}.view{background:#0d6efd;color:#fff}.download{background:#e8f5e9;color:#166534;border:1px solid #bbebc2}.back-link{display:inline-flex;align-items:center;gap:7px;margin:18px 0 0;padding:10px 14px;background:#eaf2ff;color:#0759bd;border-radius:10px;text-decoration:none;font-size:13px;font-weight:600}.footer{text-align:center;padding:20px 12px;margin-top:25px;font-size:13px;color:#64748b;border-top:1px solid #e5e7eb}@media(max-width:520px){.topbar{padding:11px 8px}.brand img{height:40px;width:40px}.brand-title{font-size:16px}.brand-subtitle{font-size:11px}.intro{padding:18px}.resource-card{padding:14px}}
 </style></head><body><header class="topbar"><a class="brand" href="/" aria-label="Hi5 Education Centre home"><img src="/images/logo.png" alt="Hi5 Education Centre logo"><span><span class="brand-title">Hi5 Education Centre</span><br><span class="brand-subtitle">Learn Today, Lead Tomorrow</span></span></a></header>
 <main class="container"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/Nursery/">Nursery</a><span>›</span><a href="/Nursery/Baby-Class/">Baby Class</a><span>›</span><span>Past Papers</span></nav><section class="intro"><h1>Baby Class Past Papers</h1><p>Browse the available past papers for Nursery Baby Class. All listed PDF resources can be viewed and downloaded.</p></section>
-<section id="hi5-category-live-resources" style="margin:24px 0;padding:20px;background:#fff;border:1px solid #e4eaf1;border-radius:16px;box-shadow:0 5px 18px rgba(20,40,70,.05)">
- <p style="margin:0 0 5px;color:#16834b;font-size:11px;font-weight:800;letter-spacing:1.2px">LIVE HI5 RESOURCES</p>
- <h2 style="margin:0 0 8px;color:#142b43;font-size:clamp(19px,3vw,24px)">New Past Papers from Hi5 Admin</h2>
- <p id="hi5-category-live-status" style="margin:0 0 13px;color:#64748b;font-size:13px">Loading resources uploaded through the Hi5 admin dashboard…</p>
- <div id="hi5-category-live-resources" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px"></div>
- </section>
 <section><h2 class="section-heading">Past Papers</h2><p class="section-note">Assessment papers and practice exercises for Baby Class learners.</p><div class="resource-grid"><p class="section-note">Loading available PDF resources…</p></div></section><a class="back-link" href="/Nursery/Baby-Class/">← Back to Baby Class</a></main><footer class="footer">© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer><script>
 (async function(){
  const grid=document.querySelector('.resource-grid'),note=document.querySelector('.section-note');if(!grid)return;
@@ -41,33 +35,61 @@
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"><\/script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (async function(){
- const box=document.getElementById("hi5-category-live-resources"),status=document.getElementById("hi5-category-live-status");
- if(!box||!status)return;
- const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
- try{
-  const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
-  let query=client.from("learning_materials").select("id,title,level,class_name,category,subject,file_path,created_at").eq("is_published",true).eq("level","Nursery").ilike("class_name","Baby Class");
-  query=query.ilike("category","Past Papers");
-  
-  const {data,error}=await query.order("created_at",{ascending:false}).limit(100);
-  if(error)throw error;
-  if(!data||!data.length){status.textContent="No new resources have been published in this section yet.";return;}
-  status.textContent=data.length+" published resource"+(data.length===1?"":"s")+" in this section";
-  data.forEach(item=>{
-   const url=client.storage.from("learning-materials").getPublicUrl(item.file_path).data.publicUrl;
-   const card=document.createElement("article");
-   card.style.cssText="padding:14px;border:1px solid #e5ebf2;border-radius:12px;background:#f8fafc;display:flex;flex-direction:column;gap:7px";
-   const tag=document.createElement("span");tag.textContent=item.category||"Learning Material";tag.style.cssText="font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:800;color:#16834b";
-   const title=document.createElement("strong");title.textContent=item.title;title.style.cssText="color:#142b43;font-size:14px;line-height:1.45";
-   const meta=document.createElement("span");meta.textContent=[item.subject,item.class_name].filter(Boolean).join(" · ");meta.style.cssText="font-size:12px;color:#64748b";
-   const actions=document.createElement("div");actions.style.cssText="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px";
-   const view=document.createElement("a");view.href=url;view.target="_blank";view.rel="noopener noreferrer";view.textContent="View resource";view.style.cssText="padding:8px 11px;background:#145c9e;color:#fff;text-decoration:none;border-radius:8px;font-size:12px;font-weight:700";
-   const download=document.createElement("a");download.href=url;download.download="";download.textContent="Download";download.style.cssText="padding:8px 11px;background:#eaf1f8;color:#145c9e;text-decoration:none;border-radius:8px;font-size:12px;font-weight:700";
-   actions.append(view,download);card.append(tag,title,meta,actions);box.appendChild(card);
+ const cfg={"level":"Nursery","cls":"Baby Class","subject":null,"category":"Past Papers","mode":"resource"};
+ const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
+ const clean=s=>String(s||"").replace(/^\s*📄\s*/,"").trim();
+ const aliases={"Lesson Notes":["lesson notes"],"Schemes of Work":["scheme"],"Past Papers":["past papers","assessment"],"Textbooks":["textbook"]};
+ function getGrid(item){
+  if(cfg.mode==="tertiary")return document.querySelector("#resources")||document.querySelector(".cards");
+  if(cfg.category){
+   const direct=document.querySelector("#resources");if(direct)return direct;
+   const sections=Array.from(document.querySelectorAll("main section,main > section"));
+   const sec=sections.find(el=>aliases[cfg.category]?.some(a=>(el.querySelector("h2")?.textContent||"").toLowerCase().includes(a)));
+   return sec?.querySelector(".resource-grid")||document.querySelector(".resource-grid");
+  }
+  const sections=Array.from(document.querySelectorAll("main section"));
+  const sec=sections.find(el=>{
+   const h=(el.querySelector("h2")?.textContent||"").toLowerCase();
+   return (aliases[item.category]||[String(item.category||"").toLowerCase()]).some(a=>h.includes(a));
   });
- }catch(error){status.textContent="Published resources are temporarily unavailable. Please try again later.";console.error("Hi5 resource page:",error);}
+  return sec?.querySelector(".resource-grid")||null;
+ }
+ function title(card){return clean(card.querySelector(".resource-name")?.textContent||card.querySelector(".card-title")?.textContent||"");}
+ function sort(grid){
+  const selector=cfg.mode==="tertiary"?":scope > .card":":scope > .resource-card";
+  const cards=Array.from(grid.querySelectorAll(selector)),sorted=cards.slice().sort((a,b)=>title(a).localeCompare(title(b),undefined,{sensitivity:"base",numeric:true}));
+  if(cards.some((v,i)=>v!==sorted[i]))sorted.forEach(v=>grid.appendChild(v));
+ }
+ try{
+  let q=client.from("learning_materials").select("title,level,class_name,category,subject,file_path,is_published").eq("is_published",true).eq("level",cfg.level).ilike("class_name",cfg.cls);
+  if(cfg.category)q=q.ilike("category",cfg.category);
+  if(cfg.subject)q=q.ilike("subject",cfg.subject);
+  const {data,error}=await q.order("title",{ascending:true}).limit(500);if(error)throw error;
+  (data||[]).forEach(item=>{
+   const grid=getGrid(item);if(!grid)return;
+   const key=clean(item.title).toLowerCase();
+   if(Array.from(grid.children).some(el=>title(el).toLowerCase()===key))return;
+   const url=client.storage.from("learning-materials").getPublicUrl(item.file_path).data.publicUrl;
+   if(cfg.mode==="tertiary"){
+    const card=document.createElement("a");card.className="card";card.href=url;card.target="_blank";card.rel="noopener";
+    card.innerHTML='<span class="card-icon">📄</span><span><span class="card-title"></span><br><span class="card-desc">Open PDF resource</span></span>';
+    card.querySelector(".card-title").textContent=item.title;grid.appendChild(card);
+   }else{
+    const card=document.createElement("article");card.className="resource-card";
+    const name=document.createElement("div");name.className="resource-name";name.textContent=item.title;
+    const meta=document.createElement("div");meta.className="resource-meta";meta.textContent=[item.subject,item.category].filter(Boolean).join(" · ");
+    const actions=document.createElement("div");actions.className="actions";
+    const view=document.createElement("a");view.className="action view";view.href=url;view.target="_blank";view.rel="noopener";view.textContent="View PDF";
+    const dl=document.createElement("a");dl.className="action download";dl.href=url;dl.download=item.title;dl.textContent="Download PDF";
+    actions.append(view,dl);card.append(name,meta,actions);grid.appendChild(card);
+   }
+  });
+  document.querySelectorAll(cfg.mode==="tertiary"?".cards":".resource-grid").forEach(sort);
+  document.querySelectorAll(cfg.mode==="tertiary"?".cards":".resource-grid").forEach(grid=>new MutationObserver(()=>sort(grid)).observe(grid,{childList:true}));
+ }catch(e){console.error("Hi5 materials integration:",e);}
 })();
-</script>
-</body></html>
+</script></body></html>
