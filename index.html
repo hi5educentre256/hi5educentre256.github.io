@@ -707,6 +707,11 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 @media(max-width:700px){#content .about-page{padding:12px 10px 25px!important;border-radius:16px!important}#content .about-page .about-hero{min-height:0;padding:28px 22px!important}#content .about-page .about-card{padding:19px!important}}
 
 
+/* Founder portrait: keep the supplied photograph fitted neatly inside its designed frame */
+#content .about-page .about-founder-photo{position:relative;min-height:220px}
+#content .about-page .about-founder-photo img{display:block;width:100%;height:100%;min-height:220px;object-fit:cover;object-position:center 25%;border-radius:13px}
+@media(max-width:700px){#content .about-page .about-founder-photo{min-height:0;aspect-ratio:16/9}#content .about-page .about-founder-photo img{min-height:0}}
+
 /* Hi5 headquarters identity */
 #content .about-page .about-headquarters-hero{display:inline-flex;align-items:center;gap:11px;margin-top:15px;padding:11px 15px;border:1px solid rgba(240,211,155,.48);border-radius:13px;background:rgba(255,255,255,.09);color:#fff;font-size:12px;line-height:1.55}
 #content .about-page .about-headquarters-hero>span:first-child{display:grid;place-items:center;width:32px;height:32px;flex:0 0 32px;border-radius:10px;background:rgba(240,211,155,.18);color:#f4d49a;font-size:23px}
