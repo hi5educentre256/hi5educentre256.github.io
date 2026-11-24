@@ -43,31 +43,7 @@
 
 </main>
 
-<section id="hi5-live-learning-materials" style="margin:26px 0;padding:22px;background:#fff;border:1px solid #e4eaf1;border-radius:18px;box-shadow:0 6px 22px rgba(20,40,70,.06)">
- <div style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:8px;margin-bottom:14px">
-  <div><p style="margin:0 0 4px;color:#16834b;font-size:11px;font-weight:800;letter-spacing:1.4px">UPDATED DIRECTLY BY HI5</p><h2 style="margin:0;color:#142b43;font-size:clamp(19px,3vw,25px)">Recently Added Learning Materials</h2></div>
-  <span id="hi5-live-count" style="font-size:12px;color:#64748b">Loading…</span>
- </div>
- <div id="hi5-live-material-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px"><p style="color:#64748b">Loading published materials…</p></div>
-</section>
 <footer class="footer">© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-(async function(){
- const box=document.getElementById("hi5-live-material-list"),count=document.getElementById("hi5-live-count");
- const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
- try{
-  const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
-  const {data,error}=await client.from("learning_materials").select("title,level,class_name,category,subject,file_path,created_at").eq("is_published",true).eq("level","Primary").ilike("class_name","P5").order("created_at",{ascending:false}).limit(100);
-  if(error)throw error;
-  count.textContent=(data?.length||0)+" published resource"+((data?.length||0)===1?"":"s");
-  if(!data||!data.length){box.innerHTML='<p style="grid-column:1/-1;color:#64748b;margin:0">New materials uploaded by Hi5 will appear here automatically.</p>';return;}
-  box.innerHTML=data.map(item=>{
-   const url=client.storage.from("learning-materials").getPublicUrl(item.file_path).data.publicUrl;
-   return '<article style="padding:14px;border:1px solid #e5ebf2;border-radius:13px;background:#f8fafc;display:flex;flex-direction:column;gap:7px"><span style="font-size:10px;text-transform:uppercase;letter-spacing:.8px;font-weight:800;color:#16834b">'+esc(item.category)+'</span><strong style="color:#142b43;font-size:14px;line-height:1.45">'+esc(item.title)+'</strong><span style="font-size:12px;color:#64748b">'+esc(item.subject||"General")+" · "+esc(item.class_name)+'</span><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" style="align-self:flex-start;margin-top:4px;padding:8px 12px;background:#145c9e;color:#fff;text-decoration:none;border-radius:8px;font-size:12px;font-weight:700">Open resource ↗</a></article>';
-  }).join("");
- }catch(e){count.textContent="";box.innerHTML='<p style="grid-column:1/-1;color:#64748b;margin:0">Published materials are temporarily unavailable. Please try again later.</p>';console.error("Hi5 learning materials:",e);}
-})();
-</script>
+
 </body></html>
