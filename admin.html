@@ -404,6 +404,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     $("materialLevel").value = selectedLevel;
     $("materialClass").value = selectedClass;
     $("materialSubject").value = selectedSubject;
+    $("materialCategory").value = selectedCategory;
     const { error: metadataError } = await client.from("learning_materials").insert({
       title, level: selectedLevel, class_name: selectedClass.trim(), category: selectedCategory,
       subject: selectedSubject.trim(), file_path: path, is_published: true
