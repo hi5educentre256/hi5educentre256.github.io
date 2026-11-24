@@ -619,6 +619,21 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 @media(prefers-reduced-motion:reduce){.hi5-tv-ticker span{animation:none;padding-left:0;display:block;text-align:center;white-space:normal}}
 @media(max-width:600px){.hi5-tv-safe-label{width:100%;box-sizing:border-box}.hi5-tv-controls{gap:7px}.hi5-tv-controls button{min-width:0;flex:1;padding:11px 9px;font-size:12px}}
 
+
+/* Hi5 TV category folders and usable embedded playback */
+.hi5-tv-frame iframe{pointer-events:auto}
+.hi5-tv-folder{border:1px solid #426078;border-radius:16px;background:rgba(7,28,45,.72);padding:0 15px;overflow:hidden}
+.hi5-tv-folder-summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 2px;margin:0}
+.hi5-tv-folder-summary::-webkit-details-marker{display:none}
+.hi5-tv-folder-name{display:flex;align-items:center;gap:10px}
+.hi5-tv-folder-name h3{margin:0}
+.hi5-tv-folder-icon{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#f1d39a;color:#102b45;font-size:20px;font-weight:900;transition:transform .2s}
+.hi5-tv-folder[open] .hi5-tv-folder-icon{transform:rotate(90deg)}
+.hi5-tv-folder[open] .hi5-tv-folder-summary{border-bottom:1px solid #426078;margin-bottom:14px}
+.hi5-tv-folder .hi5-tv-video-grid{padding:0 0 15px}
+.hi5-tv-folder-summary>span:last-child{white-space:nowrap}
+@media(max-width:600px){.hi5-tv-folder{padding:0 11px}.hi5-tv-folder-summary{padding:14px 0}.hi5-tv-folder-summary>span:last-child{font-size:11px}}
+
 </style>
 </head>
 
@@ -804,12 +819,12 @@ Choose Your Level
       <button type="button" onclick="hi5TVNext()" aria-label="Next video">Next ⏭</button>
     </div>
     <div class="hi5-tv-frame">
-      <iframe id="hi5-tv-player" src="https://www.tiktok.com/player/v1/7700794305111395604?controls=0&loop=1&rel=0&music_info=0&description=0&native_context_menu=0" title="Hi5 Education Centre Nursery video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" tabindex="-1"></iframe>
+      <iframe id="hi5-tv-player" src="https://www.tiktok.com/player/v1/7700794305111395604?controls=1&loop=1&rel=0&music_info=0&description=0&native_context_menu=0" title="Hi5 Education Centre Nursery video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" tabindex="-1"></iframe>
     </div>
   </div>
   <div class="hi5-tv-categories">
-    <section class="hi5-tv-library" aria-labelledby="hi5-tv-nursery-title">
-      <div class="hi5-tv-library-title"><h3 id="hi5-tv-nursery-title">Nursery</h3><span>5 videos available</span></div>
+    <details class="hi5-tv-library hi5-tv-folder" aria-labelledby="hi5-tv-nursery-title">
+      <summary class="hi5-tv-library-title hi5-tv-folder-summary"><span class="hi5-tv-folder-name"><span class="hi5-tv-folder-icon">▸</span><h3 id="hi5-tv-nursery-title">Nursery</h3></span><span>5 videos available</span></summary>
       <div class="hi5-tv-video-grid">
         <button class="hi5-tv-thumb is-active" type="button" onclick="selectHi5TVVideo('7700794305111395604', this, 'Nursery')" aria-label="Play Nursery video 1">
           <span class="hi5-tv-thumb-art"><span class="hi5-tv-play">▶</span><span class="hi5-tv-thumb-tag">NURSERY</span></span>
@@ -832,9 +847,9 @@ Choose Your Level
           <span class="hi5-tv-thumb-caption"><strong>Nursery video 5</strong><small>Tap to play above</small></span>
         </button>
       </div>
-    </section>
-    <section class="hi5-tv-library hi5-tv-coming" aria-labelledby="hi5-tv-primary-title">
-      <div class="hi5-tv-library-title"><h3 id="hi5-tv-primary-title">Primary</h3><span>10 videos available</span></div>
+    </details>
+    <details class="hi5-tv-library hi5-tv-folder hi5-tv-coming" aria-labelledby="hi5-tv-primary-title">
+      <summary class="hi5-tv-library-title hi5-tv-folder-summary"><span class="hi5-tv-folder-name"><span class="hi5-tv-folder-icon">▸</span><h3 id="hi5-tv-primary-title">Primary</h3></span><span>10 videos available</span></summary>
       <div class="hi5-tv-video-grid">
         <button class="hi5-tv-thumb" type="button" onclick="selectHi5TVVideo('7704898219934764308', this, 'Primary')" aria-label="Play Primary video 1">
           <span class="hi5-tv-thumb-art"><span class="hi5-tv-play">▶</span><span class="hi5-tv-thumb-tag">PRIMARY</span></span>
@@ -877,9 +892,9 @@ Choose Your Level
           <span class="hi5-tv-thumb-caption"><strong>Primary · P3</strong><small>Tap to play above</small></span>
         </button>
       </div>
-    </section>
-    <section class="hi5-tv-library hi5-tv-coming" aria-labelledby="hi5-tv-secondary-title">
-      <div class="hi5-tv-library-title"><h3 id="hi5-tv-secondary-title">Secondary</h3><span>8 videos available</span></div>
+    </details>
+    <details class="hi5-tv-library hi5-tv-folder hi5-tv-coming" aria-labelledby="hi5-tv-secondary-title">
+      <summary class="hi5-tv-library-title hi5-tv-folder-summary"><span class="hi5-tv-folder-name"><span class="hi5-tv-folder-icon">▸</span><h3 id="hi5-tv-secondary-title">Secondary</h3></span><span>8 videos available</span></summary>
       <div class="hi5-tv-video-grid">
         <button class="hi5-tv-thumb" type="button" onclick="selectHi5TVVideo('7696956336055160084', this, 'Secondary')" aria-label="Play Secondary video 1">
           <span class="hi5-tv-thumb-art"><span class="hi5-tv-play">▶</span><span class="hi5-tv-thumb-tag">SECONDARY</span></span>
@@ -914,9 +929,9 @@ Choose Your Level
           <span class="hi5-tv-thumb-caption"><strong>Secondary video 8</strong><small>Tap to play above</small></span>
         </button>
       </div>
-    </section>
-    <section class="hi5-tv-library hi5-tv-coming" aria-labelledby="hi5-tv-tertiary-title">
-      <div class="hi5-tv-library-title"><h3 id="hi5-tv-tertiary-title">Tertiary</h3><span>2 videos available</span></div>
+    </details>
+    <details class="hi5-tv-library hi5-tv-folder hi5-tv-coming" aria-labelledby="hi5-tv-tertiary-title">
+      <summary class="hi5-tv-library-title hi5-tv-folder-summary"><span class="hi5-tv-folder-name"><span class="hi5-tv-folder-icon">▸</span><h3 id="hi5-tv-tertiary-title">Tertiary</h3></span><span>2 videos available</span></summary>
       <div class="hi5-tv-video-grid">
         <button class="hi5-tv-thumb" type="button" onclick="selectHi5TVVideo('7698617017640783125', this, 'Tertiary')" aria-label="Play Tertiary video 1">
           <span class="hi5-tv-thumb-art"><span class="hi5-tv-play">▶</span><span class="hi5-tv-thumb-tag">TERTIARY</span></span>
@@ -927,7 +942,7 @@ Choose Your Level
           <span class="hi5-tv-thumb-caption"><strong>Tertiary video 2</strong><small>Tap to play above</small></span>
         </button>
       </div>
-    </section>
+    </details>
   </div>
   <div class="hi5-tv-ticker" aria-label="Hi5 TV message"><span>Thank you for watching Hi5 TV • Learn Today, Lead Tomorrow • Choose your level and enjoy learning • Thank you for watching Hi5 TV •</span></div>
   <p class="hi5-tv-note">Select a programme from Nursery, Primary, Secondary or Tertiary. Use the Next and Previous buttons to move through videos in the same section. Videos are streamed from their original source and are not stored on Hi5 servers.</p>
@@ -1496,7 +1511,7 @@ function about(){
         <div class="about-level"><strong>Secondary</strong><span>S1 – S6</span></div>
         <div class="about-level"><strong>Tertiary</strong><span>Certificate, Diploma & Degree</span></div>
       </div>
-    </section>
+    </details>
 
     <section class="about-section">
       <h2 class="about-section-heading">What you can find at Hi5</h2>
@@ -1511,7 +1526,7 @@ function about(){
           <li>Teacher reference materials</li>
         </ul>
       </div>
-    </section>
+    </details>
 
     <section class="about-section about-grid">
       <article class="about-card">
@@ -1535,14 +1550,14 @@ function about(){
         <div class="about-value"><strong>Integrity</strong><span>Honesty, responsibility and respect for intellectual property.</span></div>
         <div class="about-value"><strong>Excellence</strong><span>Continuous improvement and academic success.</span></div>
       </div>
-    </section>
+    </details>
 
     <section class="about-section">
       <h2 class="about-section-heading">A commitment to better learning</h2>
       <div class="about-card">
         <p>We are committed to empowering learners, supporting teachers and assisting parents with reliable educational resources that contribute to better learning outcomes. Whether preparing lessons, revising for examinations or searching for learning materials, Hi5 is here to support the educational journey.</p>
       </div>
-    </section>
+    </details>
 
     <section class="about-section">
       <h2 class="about-section-heading">Meet the Founder</h2>
@@ -1554,7 +1569,7 @@ function about(){
           <p>Hi5 Education Centre was founded with the vision of making quality educational resources easily accessible through technology. The aim is to support learners, teachers and schools with organised, curriculum-based learning materials that promote academic excellence and lifelong learning.</p>
         </div>
       </div>
-    </section>
+    </details>
 
     <section class="about-section">
       <h2 class="about-section-heading">Get in touch</h2>
@@ -1564,7 +1579,7 @@ function about(){
         <div class="about-contact-item"><strong>Founder email</strong><a href="mailto:isakofug@gmail.com">isakofug@gmail.com</a></div>
         <div class="about-contact-item"><strong>Website</strong><a href="https://hi5educentre256.github.io/" target="_blank" rel="noopener">hi5educentre256.github.io</a></div>
       </div>
-    </section>
+    </details>
 
     <section class="about-section">
       <h2 class="about-section-heading">Stay connected</h2>
@@ -1574,7 +1589,7 @@ function about(){
         <a href="https://www.tiktok.com/@hi5educentre" target="_blank" rel="noopener">TikTok ↗</a>
         <a href="https://youtube.com/@hi5educationcentre?si=EC0LxsManuQfpsxq" target="_blank" rel="noopener">YouTube ↗</a>
       </div>
-    </section>
+    </details>
 
     <div class="about-footer"><strong>Hi5 Education Centre</strong><br>Learn Today, Lead Tomorrow<br>© 2026 Hi5 Education Centre. All Rights Reserved.</div>
   </div>
@@ -1729,11 +1744,12 @@ let hi5TVCurrentCategory = "Nursery";
 let hi5TVCurrentButton = null;
 let hi5TVWantsPlay = false;
 let hi5TVIsPlaying = false;
+let hi5TVPlayerReady = false;
 function hi5TVSend(command){
   const player=document.getElementById("hi5-tv-player");
-  if(player && player.contentWindow){
-    player.contentWindow.postMessage({type:command,value:undefined,"x-tiktok-player":true},"https://www.tiktok.com");
-  }
+  if(!player || !player.contentWindow || !hi5TVPlayerReady)return false;
+  player.contentWindow.postMessage({type:command,"x-tiktok-player":true},"*");
+  return true;
 }
 function hi5TVSetPlayLabel(){
   const control=document.getElementById("hi5-tv-play-toggle");
@@ -1741,7 +1757,7 @@ function hi5TVSetPlayLabel(){
 }
 function hi5TVTogglePlayback(){
   if(hi5TVIsPlaying){hi5TVWantsPlay=false;hi5TVSend("pause");hi5TVIsPlaying=false;}
-  else{hi5TVWantsPlay=true;hi5TVSend("play");hi5TVIsPlaying=true;}
+  else{hi5TVWantsPlay=true;if(hi5TVPlayerReady)hi5TVSend("play");}
   hi5TVSetPlayLabel();
 }
 function selectHi5TVVideo(videoId, button, category){
@@ -1751,11 +1767,12 @@ function selectHi5TVVideo(videoId, button, category){
   hi5TVCurrentButton=button||null;
   hi5TVWantsPlay=true;
   hi5TVIsPlaying=false;
-  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=0&loop=1&rel=0&music_info=0&description=0&native_context_menu=0";
+  hi5TVPlayerReady=false;
+  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=1&loop=1&rel=0&music_info=0&description=0&native_context_menu=0";
   document.querySelectorAll(".hi5-tv-thumb").forEach(item=>item.classList.remove("is-active"));
   if(button)button.classList.add("is-active");
   const label=document.getElementById("hi5-tv-now-playing");
-  if(label)label.textContent="Now playing · "+hi5TVCurrentCategory;
+  if(label)label.textContent="Selected · "+hi5TVCurrentCategory+" — loading video";
   hi5TVSetPlayLabel();
 }
 function hi5TVMove(step){
@@ -1764,26 +1781,34 @@ function hi5TVMove(step){
     return heading && heading.textContent.trim()===hi5TVCurrentCategory;
   });
   if(!section)return;
+  section.open=true;
   const items=Array.from(section.querySelectorAll(".hi5-tv-thumb"));
   if(!items.length)return;
   let index=items.indexOf(hi5TVCurrentButton);
   if(index<0)index=items.findIndex(item=>item.classList.contains("is-active"));
   if(index<0)index=0;
-  const next=(index+step+items.length)%items.length;
-  items[next].click();
+  items[(index+step+items.length)%items.length].click();
 }
 function hi5TVNext(){hi5TVMove(1);}
 function hi5TVPrevious(){hi5TVMove(-1);}
 window.addEventListener("message",function(event){
   if(event.origin!=="https://www.tiktok.com" || !event.data || event.data["x-tiktok-player"]!==true)return;
   if(event.data.type==="onPlayerReady"){
+    hi5TVPlayerReady=true;
+    const label=document.getElementById("hi5-tv-now-playing");
+    if(label)label.textContent="Ready to watch · "+hi5TVCurrentCategory;
     if(hi5TVWantsPlay)hi5TVSend("play");
   }else if(event.data.type==="onStateChange"){
     hi5TVIsPlaying=event.data.value===1;
     if(event.data.value===0 && hi5TVWantsPlay)hi5TVSend("play");
     hi5TVSetPlayLabel();
+  }else if(event.data.type==="onPlayerError"){
+    const label=document.getElementById("hi5-tv-now-playing");
+    if(label)label.textContent="This video could not be loaded. Please choose another.";
+    hi5TVWantsPlay=false;
   }
 });
+
 
 </script>
 
