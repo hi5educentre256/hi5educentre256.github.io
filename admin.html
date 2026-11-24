@@ -342,6 +342,9 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     event.preventDefault();
     clearNotice("materialNotice");
     const folder = materialFolder();
+    const selectedLevel = $("materialLevel").value;
+    const selectedClass = $("materialClass").value;
+    const selectedSubject = $("materialSubject").value;
     const file = $("materialFile").files[0];
     const title = $("materialTitle").value.trim();
     if (!folder || !title || !file) {
@@ -371,9 +374,9 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
       return;
     }
     $("materialUploadForm").reset();
-    $("materialLevel").value = "Primary";
-    $("materialClass").value = $("materialClass").value || "P1";
-    $("materialSubject").value = $("materialSubject").value || "Mathematics";
+    $("materialLevel").value = selectedLevel;
+    $("materialClass").value = selectedClass;
+    $("materialSubject").value = selectedSubject;
     showNotice("materialNotice", "Material uploaded successfully.", "success");
     await refreshMaterials();
   });
