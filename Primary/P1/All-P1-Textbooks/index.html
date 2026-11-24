@@ -24,8 +24,7 @@
 </style></head><body>
 <header class="topbar"><a class="brand" href="/" aria-label="Hi5 Education Centre home"><img src="/images/logo.png" alt="Hi5 Education Centre logo"><span><span class="brand-title">Hi5 Education Centre</span><br><span class="brand-subtitle">Learn Today, Lead Tomorrow</span></span></a></header>
 <main class="container"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/?folder=Primary">Primary</a><span>›</span><a href="../">Primary One (P1)</a><span>›</span><span>All P1 Textbooks</span></nav>
-<section class="intro"><h1>📚 All P1 Textbooks</h1><p>All currently available Primary One textbooks and learning books are collected on this page, regardless of subject. Select View PDF to preview a book or Order Textbook to request it through WhatsApp. Textbook orders are UGX 10,000 each.</p></section><section id="hi5-category-live-resources" style="margin:24px 0;padding:20px;background:#fff;border:1px solid #e4eaf1;border-radius:16px"><h2 style="margin:0 0 8px;color:#142b43">New Textbooks from Hi5 Admin</h2><p id="hi5-category-live-status" style="color:#64748b;font-size:13px">Loading new resources…</p><div id="hi5-category-live-resources" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px"></div></section>
-<h2 class="section-heading">📘 Available Primary One Textbooks</h2><p class="section-note">One convenient collection for all P1 subjects and learning areas.</p>
+<section class="intro"><h1>📚 All P1 Textbooks</h1><p>All currently available Primary One textbooks and learning books are collected on this page, regardless of subject. Select View PDF to preview a book or Order Textbook to request it through WhatsApp. Textbook orders are UGX 10,000 each.</p></section><h2 class="section-heading">📘 Available Primary One Textbooks</h2><p class="section-note">One convenient collection for all P1 subjects and learning areas.</p>
 <div class="resource-grid"><article class="resource-card"><div class="resource-info"><span class="file-icon">📘</span><div><div class="resource-name">Luganda P1 – All Terms (MOES)</div><div class="resource-meta"><span class="badge">Luganda Textbook</span></div></div></div><div class="actions"><button class="action view" type="button" data-pdf="../All-P1-Textbooks/Luganda%20P1%20ALL%20TERMS%20MOES.pdf" data-title="Preview textbook">👁 View Pages</button><a class="action buy" href="https://wa.me/256702234701?text=Hello%2C%20I%20would%20like%20to%20order%20the%20Luganda%20P1%20%E2%80%93%20All%20Terms%20(MOES)%20for%20UGX%2010%2C000." target="_blank" rel="noopener">🔒 Order Textbook</a></div></article>
 <article class="resource-card"><div class="resource-info"><span class="file-icon">📘</span><div><div class="resource-name">P.1 Home Work – Term II Textbook</div><div class="resource-meta"><span class="badge">Homework / Learning Book</span></div></div></div><div class="actions"><button class="action view" type="button" data-pdf="../All-P1-Textbooks/P.1%20HOME%20WORK%20TERM%20II%20textbook%20.pdf" data-title="Preview textbook">👁 View Pages</button><a class="action buy" href="https://wa.me/256702234701?text=Hello%2C%20I%20would%20like%20to%20order%20the%20P.1%20Home%20Work%20%E2%80%93%20Term%20II%20Textbook%20for%20UGX%2010%2C000." target="_blank" rel="noopener">🔒 Order Textbook</a></div></article>
 <article class="resource-card"><div class="resource-info"><span class="file-icon">📘</span><div><div class="resource-name">Reading Skills – Grade 1</div><div class="resource-meta"><span class="badge">Reading Textbook</span></div></div></div><div class="actions"><button class="action view" type="button" data-pdf="../All-P1-Textbooks/Reading%20Skills%20GRADE1%20textbook%20.pdf" data-title="Preview textbook">👁 View Pages</button><a class="action buy" href="https://wa.me/256702234701?text=Hello%2C%20I%20would%20like%20to%20order%20the%20Reading%20Skills%20%E2%80%93%20Grade%201%20for%20UGX%2010%2C000." target="_blank" rel="noopener">🔒 Order Textbook</a></div></article>
@@ -96,4 +95,60 @@
  document.getElementById('viewerClose').addEventListener('click',close);modal.addEventListener('click',e=>{if(e.target===modal)close();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close();});
 })();
 </script></main>
-<footer class="footer">© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer><a class="wa-float" href="https://wa.me/256702234701" target="_blank" rel="noopener">WhatsApp Hi5</a><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"><\/script><script>(async()=>{const b=document.getElementById("hi5-category-live-resources"),s=document.getElementById("hi5-category-live-status");try{const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");let q=client.from("learning_materials").select("*").eq("is_published",true).eq("level","Primary").ilike("class_name","P1");q=q.ilike("category","Textbooks");const {data,error}=await q.order("created_at",{ascending:false}).limit(100);if(error)throw error;if(!data?.length){s.textContent="No new resources published in this section yet.";return;}s.textContent=data.length+" published resources";data.forEach(x=>{const url=client.storage.from("learning-materials").getPublicUrl(x.file_path).data.publicUrl;const card=document.createElement("article");card.style.cssText="padding:14px;border:1px solid #e5ebf2;border-radius:12px;background:#f8fafc";const title=document.createElement("strong");title.textContent=x.title;const meta=document.createElement("p");meta.textContent=[x.category,x.subject,x.class_name].filter(Boolean).join(" · ");meta.style.cssText="font-size:12px;color:#64748b";const link=document.createElement("a");link.href=url;link.target="_blank";link.rel="noopener";link.textContent="View / Download";link.style.cssText="display:inline-block;padding:8px 12px;background:#145c9e;color:white;border-radius:8px;text-decoration:none;font-size:12px";card.append(title,meta,link);b.append(card);});}catch(e){s.textContent="Resources temporarily unavailable.";console.error(e);}})();<\/script></body></html>
+<footer class="footer">© 2026 Hi5 Education Centre | Learn Today, Lead Tomorrow</footer><a class="wa-float" href="https://wa.me/256702234701" target="_blank" rel="noopener">WhatsApp Hi5</a><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"><\/script><script>(async()=>{const b=document.getElementById("hi5-category-live-resources"),s=document.getElementById("hi5-category-live-status");try{const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");let q=client.from("learning_materials").select("*").eq("is_published",true).eq("level","Primary").ilike("class_name","P1");q=q.ilike("category","Textbooks");const {data,error}=await q.order("created_at",{ascending:false}).limit(100);if(error)throw error;if(!data?.length){s.textContent="No new resources published in this section yet.";return;}s.textContent=data.length+" published resources";data.forEach(x=>{const url=client.storage.from("learning-materials").getPublicUrl(x.file_path).data.publicUrl;const card=document.createElement("article");card.style.cssText="padding:14px;border:1px solid #e5ebf2;border-radius:12px;background:#f8fafc";const title=document.createElement("strong");title.textContent=x.title;const meta=document.createElement("p");meta.textContent=[x.category,x.subject,x.class_name].filter(Boolean).join(" · ");meta.style.cssText="font-size:12px;color:#64748b";const link=document.createElement("a");link.href=url;link.target="_blank";link.rel="noopener";link.textContent="View / Download";link.style.cssText="display:inline-block;padding:8px 12px;background:#145c9e;color:white;border-radius:8px;text-decoration:none;font-size:12px";card.append(title,meta,link);b.append(card);});}catch(e){s.textContent="Resources temporarily unavailable.";console.error(e);}})();<\/script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function(){
+ const cfg={"level":"Primary","cls":"P1","subject":null,"category":"Textbooks","mode":"resource"};
+ const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
+ const clean=s=>String(s||"").replace(/^\s*📄\s*/,"").trim();
+ const aliases={"Lesson Notes":["lesson notes"],"Schemes of Work":["scheme"],"Past Papers":["past papers","assessment"],"Textbooks":["textbook"]};
+ function getGrid(item){
+  if(cfg.mode==="tertiary")return document.querySelector("#resources")||document.querySelector(".cards");
+  if(cfg.category){
+   const direct=document.querySelector("#resources");if(direct)return direct;
+   const sections=Array.from(document.querySelectorAll("main section,main > section"));
+   const sec=sections.find(el=>aliases[cfg.category]?.some(a=>(el.querySelector("h2")?.textContent||"").toLowerCase().includes(a)));
+   return sec?.querySelector(".resource-grid")||document.querySelector(".resource-grid");
+  }
+  const sections=Array.from(document.querySelectorAll("main section"));
+  const sec=sections.find(el=>{
+   const h=(el.querySelector("h2")?.textContent||"").toLowerCase();
+   return (aliases[item.category]||[String(item.category||"").toLowerCase()]).some(a=>h.includes(a));
+  });
+  return sec?.querySelector(".resource-grid")||null;
+ }
+ function title(card){return clean(card.querySelector(".resource-name")?.textContent||card.querySelector(".card-title")?.textContent||"");}
+ function sort(grid){
+  const selector=cfg.mode==="tertiary"?":scope > .card":":scope > .resource-card";
+  const cards=Array.from(grid.querySelectorAll(selector)),sorted=cards.slice().sort((a,b)=>title(a).localeCompare(title(b),undefined,{sensitivity:"base",numeric:true}));
+  if(cards.some((v,i)=>v!==sorted[i]))sorted.forEach(v=>grid.appendChild(v));
+ }
+ try{
+  let q=client.from("learning_materials").select("title,level,class_name,category,subject,file_path,is_published").eq("is_published",true).eq("level",cfg.level).ilike("class_name",cfg.cls);
+  if(cfg.category)q=q.ilike("category",cfg.category);
+  if(cfg.subject)q=q.ilike("subject",cfg.subject);
+  const {data,error}=await q.order("title",{ascending:true}).limit(500);if(error)throw error;
+  (data||[]).forEach(item=>{
+   const grid=getGrid(item);if(!grid)return;
+   const key=clean(item.title).toLowerCase();
+   if(Array.from(grid.children).some(el=>title(el).toLowerCase()===key))return;
+   const url=client.storage.from("learning-materials").getPublicUrl(item.file_path).data.publicUrl;
+   if(cfg.mode==="tertiary"){
+    const card=document.createElement("a");card.className="card";card.href=url;card.target="_blank";card.rel="noopener";
+    card.innerHTML='<span class="card-icon">📄</span><span><span class="card-title"></span><br><span class="card-desc">Open PDF resource</span></span>';
+    card.querySelector(".card-title").textContent=item.title;grid.appendChild(card);
+   }else{
+    const card=document.createElement("article");card.className="resource-card";
+    const name=document.createElement("div");name.className="resource-name";name.textContent=item.title;
+    const meta=document.createElement("div");meta.className="resource-meta";meta.textContent=[item.subject,item.category].filter(Boolean).join(" · ");
+    const actions=document.createElement("div");actions.className="actions";
+    const view=document.createElement("a");view.className="action view";view.href=url;view.target="_blank";view.rel="noopener";view.textContent="View PDF";
+    const dl=document.createElement("a");dl.className="action download";dl.href=url;dl.download=item.title;dl.textContent="Download PDF";
+    actions.append(view,dl);card.append(name,meta,actions);grid.appendChild(card);
+   }
+  });
+  document.querySelectorAll(cfg.mode==="tertiary"?".cards":".resource-grid").forEach(sort);
+  document.querySelectorAll(cfg.mode==="tertiary"?".cards":".resource-grid").forEach(grid=>new MutationObserver(()=>sort(grid)).observe(grid,{childList:true}));
+ }catch(e){console.error("Hi5 materials integration:",e);}
+})();
+</script></body></html>
