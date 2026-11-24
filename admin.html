@@ -29,6 +29,14 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
 .footer{text-align:center;color:#8492a2;font-size:10px;padding:25px}
 @media(max-width:760px){.dashboard-grid{grid-template-columns:1fr}.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.side-label,.side-note{grid-column:1/-1}.editor{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:11px}.stat strong{font-size:19px}.content-head{align-items:flex-start;flex-direction:column}.top{padding:13px 15px}.brand strong{font-size:14px}.top-actions a{display:none}}
 @media(max-width:420px){main{padding:0 12px}.panel{padding:15px}.side{grid-template-columns:1fr 1fr}.module-grid{grid-template-columns:1fr}}
+
+.upload-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.file-row{display:flex;justify-content:space-between;align-items:center;gap:12px;border:1px solid var(--line);border-radius:11px;padding:12px;background:#fff}
+.file-row strong{display:block;font-size:12px;color:var(--navy);overflow-wrap:anywhere}
+.file-row small{display:block;color:var(--muted);font-size:10px;margin-top:4px}
+.file-row a{font-size:11px;color:var(--blue);font-weight:700;text-decoration:none}
+.upload-help{font-size:11px;color:var(--muted);line-height:1.6;margin:8px 0}
+@media(max-width:760px){.upload-layout{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -81,6 +89,28 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
               <div id="announcementNotice" class="notice" role="status"></div>
             </form>
             <div><h3>Existing announcements</h3><div id="announcementList" class="list"><div class="empty">Loading announcements…</div></div></div>
+          </div>
+        </div>
+
+        <div id="materialsPage" class="hidden">
+          <div class="content-head"><div><h2>Learning materials</h2><p>Upload and manage resources for your learners.</p></div></div>
+          <div class="upload-layout">
+            <form id="materialUploadForm" class="panel" style="padding:17px;box-shadow:none">
+              <h3 style="margin:0;color:var(--navy);font-size:15px">Upload a learning material</h3>
+              <p class="upload-help">Files are stored in your Hi5 learning-materials bucket. Published files can be accessed by visitors.</p>
+              <div class="field"><label for="materialLevel">Education level</label><select id="materialLevel" required><option value="Nursery">Nursery</option><option value="Primary" selected>Primary</option><option value="Secondary">Secondary</option><option value="Tertiary">Tertiary</option></select></div>
+              <div class="field"><label for="materialClass">Class / section</label><input id="materialClass" required placeholder="e.g. P1, Baby, S1 or Degree"></div>
+              <div class="field"><label for="materialSubject">Subject</label><input id="materialSubject" required placeholder="e.g. Mathematics"></div>
+              <div class="field"><label for="materialTitle">Material title</label><input id="materialTitle" required maxlength="120" placeholder="e.g. P1 Mathematics Book 1"></div>
+              <div class="field"><label for="materialFile">Choose file</label><input id="materialFile" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.jpg,.jpeg,.png,.webp" required></div>
+              <p class="upload-help">Maximum file size: 50 MB. Supported files include PDF, Word, PowerPoint, Excel and images.</p>
+              <button id="uploadMaterialBtn" class="btn btn-primary" type="submit">Upload material</button>
+              <div id="materialNotice" class="notice" role="status"></div>
+            </form>
+            <div>
+              <div class="content-head"><div><h3 style="margin:0;color:var(--navy);font-size:15px">Files in this section</h3><p id="materialFolderLabel">Choose a class and subject to view its files.</p></div><button id="refreshMaterialsBtn" class="btn btn-quiet" type="button">Refresh</button></div>
+              <div id="materialList" class="list"><div class="empty">Enter a class and subject, then tap Refresh.</div></div>
+            </div>
           </div>
         </div>
         <div id="placeholderPage" class="hidden">
@@ -253,6 +283,105 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   $("newAnnouncementBtn").addEventListener("click", resetForm);
   $("cancelEditBtn").addEventListener("click", resetForm);
 
+
+  function safeFolderPart(value) {
+    return String(value || "").trim().replace(/[^a-zA-Z0-9_-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60);
+  }
+  function materialFolder() {
+    const level = safeFolderPart($("materialLevel").value);
+    const className = safeFolderPart($("materialClass").value);
+    const subject = safeFolderPart($("materialSubject").value);
+    if (!level || !className || !subject) return "";
+    return level + "/" + className + "/" + subject;
+  }
+  async function refreshMaterials() {
+    const folder = materialFolder();
+    if (!folder) {
+      $("materialList").innerHTML = '<div class="empty">Enter a class and subject to view its files.</div>';
+      $("materialFolderLabel").textContent = "Choose a class and subject to view its files.";
+      return;
+    }
+    $("materialFolderLabel").textContent = folder.replaceAll("/", " / ");
+    $("materialList").innerHTML = '<div class="empty">Loading files…</div>';
+    const { data, error } = await client.storage.from("learning-materials").list(folder, {
+      limit: 100,
+      sortBy: { column: "created_at", order: "desc" }
+    });
+    if (error) {
+      $("materialList").innerHTML = '<div class="empty">Could not load files: ' + escapeHtml(error.message) + '</div>';
+      return;
+    }
+    const files = (data || []).filter(item => item.id);
+    if (!files.length) {
+      $("materialList").innerHTML = '<div class="empty">No files in this section yet.</div>';
+      return;
+    }
+    $("materialList").innerHTML = files.map(item => {
+      const fullPath = folder + "/" + item.name;
+      const publicUrl = client.storage.from("learning-materials").getPublicUrl(fullPath).data.publicUrl;
+      const size = item.metadata && item.metadata.size ? (item.metadata.size / 1024 / 1024).toFixed(2) + " MB" : "File";
+      return '<div class="file-row"><div><strong>' + escapeHtml(item.name) + '</strong><small>' + escapeHtml(size) + '</small><a href="' + escapeHtml(publicUrl) + '" target="_blank" rel="noopener">Open / download</a></div><button class="btn btn-danger" type="button" data-material-delete="' + escapeHtml(fullPath) + '">Delete</button></div>';
+    }).join("");
+    $("materialList").querySelectorAll("[data-material-delete]").forEach(button => {
+      button.addEventListener("click", async () => {
+        const path = button.dataset.materialDelete;
+        if (!confirm("Delete this learning material? This cannot be undone.")) return;
+        button.disabled = true;
+        const { error: deleteError } = await client.storage.from("learning-materials").remove([path]);
+        if (deleteError) {
+          showNotice("materialNotice", deleteError.message, "error");
+          button.disabled = false;
+          return;
+        }
+        showNotice("materialNotice", "File deleted successfully.", "success");
+        await refreshMaterials();
+      });
+    });
+  }
+  $("materialUploadForm").addEventListener("submit", async event => {
+    event.preventDefault();
+    clearNotice("materialNotice");
+    const folder = materialFolder();
+    const file = $("materialFile").files[0];
+    const title = $("materialTitle").value.trim();
+    if (!folder || !title || !file) {
+      showNotice("materialNotice", "Please complete the class, subject, title and file fields.", "error");
+      return;
+    }
+    if (file.size > 50 * 1024 * 1024) {
+      showNotice("materialNotice", "This file is larger than 50 MB. Please choose a smaller file.", "error");
+      return;
+    }
+    const extension = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "";
+    const titleSlug = safeFolderPart(title) || "learning-material";
+    const uniqueName = Date.now() + "-" + titleSlug + (extension ? "." + extension : "");
+    const path = folder + "/" + uniqueName;
+    const button = $("uploadMaterialBtn");
+    button.disabled = true;
+    button.textContent = "Uploading…";
+    const { error } = await client.storage.from("learning-materials").upload(path, file, {
+      cacheControl: "3600",
+      upsert: false,
+      contentType: file.type || "application/octet-stream"
+    });
+    button.disabled = false;
+    button.textContent = "Upload material";
+    if (error) {
+      showNotice("materialNotice", error.message, "error");
+      return;
+    }
+    $("materialUploadForm").reset();
+    $("materialLevel").value = "Primary";
+    $("materialClass").value = $("materialClass").value || "P1";
+    $("materialSubject").value = $("materialSubject").value || "Mathematics";
+    showNotice("materialNotice", "Material uploaded successfully.", "success");
+    await refreshMaterials();
+  });
+  $("refreshMaterialsBtn").addEventListener("click", refreshMaterials);
+  ["materialLevel", "materialClass", "materialSubject"].forEach(id => {
+    $(id).addEventListener("change", refreshMaterials);
+  });
+
   const moduleInfo = {
     materials: { title:"Learning materials", description:"Upload and organise resources for Nursery, Primary, Secondary and Tertiary learners.", cards:[
       ["Learning resources","Manage lesson notes, textbooks, schemes and past papers."],
@@ -278,9 +407,12 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   function openPage(page) {
     document.querySelectorAll(".nav-btn").forEach(button => button.classList.toggle("active", button.dataset.page === page));
     const isAnnouncements = page === "announcements";
+    const isMaterials = page === "materials";
     $("announcementsPage").classList.toggle("hidden", !isAnnouncements);
-    $("placeholderPage").classList.toggle("hidden", isAnnouncements);
-    if (!isAnnouncements) {
+    $("materialsPage").classList.toggle("hidden", !isMaterials);
+    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials);
+    if (isMaterials) refreshMaterials();
+    if (!isAnnouncements && !isMaterials) {
       const info = moduleInfo[page];
       $("placeholderTitle").textContent = info.title;
       $("placeholderDescription").textContent = info.description;
