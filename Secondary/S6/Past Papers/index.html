@@ -158,61 +158,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (async function(){
- const LEVEL="Secondary", CLASS_NAME="S6", CATEGORY="Past Papers", SUBJECT=null;
- const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
- const categoryHeading={"Lesson Notes":["Lesson Notes"],"Schemes of Work":["Schemes of Work"],"Past Papers":["Past Papers and Assessments","Past Papers"],"Textbooks":["Textbooks"]};
- function titleOf(card){return card.querySelector(".resource-name")?.textContent.trim()||card.querySelector("strong")?.textContent.trim()||"";}
- function sortGrid(grid){
-  if(!grid)return;
-  const cards=Array.from(grid.querySelectorAll(":scope > .resource-card"));
-  const sorted=cards.slice().sort((a,b)=>titleOf(a).localeCompare(titleOf(b),undefined,{sensitivity:"base",numeric:true}));
-  if(cards.some((card,index)=>card!==sorted[index]))sorted.forEach(card=>grid.appendChild(card));
- }
- function findGrid(category){
-  if(CATEGORY){
-   const direct=document.querySelector("#resources");
-   if(direct)return direct;
-   const candidates=Array.from(document.querySelectorAll("main section, main > div"));
-   const section=candidates.find(el=>categoryHeading[category]?.some(h=>el.querySelector("h2")?.textContent.trim().includes(h)));
-   return section?.querySelector(".resource-grid")||document.querySelector(".resource-grid");
-  }
-  const headings=categoryHeading[category]||[category];
-  const section=Array.from(document.querySelectorAll("main.container > section, main > section")).find(el=>headings.some(h=>el.querySelector("h2")?.textContent.trim()===h));
-  return section?.querySelector(".resource-grid")||null;
- }
- try{
-  let q=client.from("learning_materials").select("title,level,class_name,category,subject,file_path,is_published").eq("is_published",true).eq("level",LEVEL).ilike("class_name",CLASS_NAME);
-  if(CATEGORY)q=q.ilike("category",CATEGORY);
-  if(SUBJECT)q=q.ilike("subject",SUBJECT);
-  const {data,error}=await q.order("title",{ascending:true}).limit(500);
-  if(error)throw error;
-  (data||[]).forEach(item=>{
-   const grid=findGrid(item.category);
-   if(!grid)return;
-   const key=item.title.trim().toLowerCase();
-   const exists=Array.from(grid.querySelectorAll(".resource-name")).some(n=>n.textContent.trim().toLowerCase()===key);
-   if(exists)return;
-   const url=client.storage.from("learning-materials").getPublicUrl(item.file_path).data.publicUrl;
-   const card=document.createElement("article");card.className="resource-card";
-   const info=document.createElement("div");info.className="resource-info";
-   const icon=document.createElement("span");icon.className="file-icon";icon.textContent="📄";
-   const details=document.createElement("div");
-   const name=document.createElement("div");name.className="resource-name";name.textContent=item.title;
-   const meta=document.createElement("div");meta.className="resource-meta";
-   const badge=document.createElement("span");badge.className="badge "+(item.category==="Past Papers"?"exam":item.category==="Schemes of Work"?"scheme":"");badge.textContent=item.category;
-   meta.appendChild(badge);details.append(name,meta);info.append(icon,details);
-   const actions=document.createElement("div");actions.className="actions";
-   const view=document.createElement("a");view.className="action view";view.href=url;view.target="_blank";view.rel="noopener";view.textContent="👁 View PDF";
-   const download=document.createElement("a");download.className="action download";download.href=url;download.setAttribute("download",item.title);download.rel="noopener";download.textContent="⬇ Download PDF";
-   actions.append(view,download);card.append(info,actions);grid.appendChild(card);
-  });
-  document.querySelectorAll(".resource-grid").forEach(sortGrid);
-  document.querySelectorAll(".resource-grid").forEach(grid=>new MutationObserver(()=>sortGrid(grid)).observe(grid,{childList:true}));
- }catch(error){console.error("Hi5 live materials:",error);}
-})();
-</script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-(async function(){
  const cfg={"level":"Secondary","cls":"S6","subject":null,"category":"Past Papers","mode":"resource"};
  const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
  const clean=s=>String(s||"").replace(/^\s*📄\s*/,"").trim();
@@ -254,8 +199,8 @@
     card.querySelector(".card-title").textContent=item.title;grid.appendChild(card);
    }else{
     const card=document.createElement("article");card.className="resource-card";
-    const name=document.createElement("div");name.className="resource-name";name.textContent=item.title;
-    const meta=document.createElement("div");meta.className="resource-meta";meta.textContent=[item.subject,item.category].filter(Boolean).join(" · ");
+    const name=document.createElement("div");name.className="resource-name";name.textContent="📄 "+item.title;
+    const meta=document.createElement("div");meta.className="resource-meta";meta.textContent="PDF Resource";
     const actions=document.createElement("div");actions.className="actions";
     const view=document.createElement("a");view.className="action view";view.href=url;view.target="_blank";view.rel="noopener";view.textContent="View PDF";
     const dl=document.createElement("a");dl.className="action download";dl.href=url;dl.download=item.title;dl.textContent="Download PDF";
@@ -263,7 +208,7 @@
    }
   });
   document.querySelectorAll(cfg.mode==="tertiary"?".cards":".resource-grid").forEach(sort);
-  document.querySelectorAll(cfg.mode==="tertiary"?".cards":".resource-grid").forEach(grid=>new MutationObserver(()=>sort(grid)).observe(grid,{childList:true}));
+  
  }catch(e){console.error("Hi5 materials integration:",e);}
 })();
 </script></body></html>
