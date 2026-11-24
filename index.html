@@ -887,6 +887,11 @@ Choose Your Level
   </div>
 
 </section>
+<section id="hi5-announcements" style="display:none;margin:28px 0;padding:20px;background:#fff;border-radius:18px;box-shadow:0 5px 18px rgba(0,0,0,.07);border-left:5px solid #198754">
+  <div style="font-size:11px;font-weight:800;letter-spacing:1.5px;color:#198754">LATEST UPDATES</div>
+  <h2 style="margin:5px 0 12px;color:#102b45;font-size:22px">Hi5 Announcements</h2>
+  <div id="hi5-announcement-items" style="display:grid;gap:10px"></div>
+</section>
 <section class="hi5-tv-section" id="hi5-tv" aria-labelledby="hi5-tv-title">
   <div class="hi5-tv-head">
     <div>
@@ -1035,6 +1040,10 @@ Choose Your Level
     </details>
   </div>
   <p class="hi5-tv-note">Select a programme from Nursery, Primary, Secondary or Tertiary. Use the Next and Previous buttons to move through videos in the same section. Videos are streamed from their original source and are not stored on Hi5 servers.</p>
+  <div style="margin-top:24px;padding-top:18px;border-top:1px solid #426078">
+    <h3 style="color:#f2d39b;margin:0 0 12px">More from Hi5 TV</h3>
+    <div id="hi5-tv-published" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px"><p style="color:#dce9f2">Loading published programmes…</p></div>
+  </div>
 </section>
 <div class="footer">
 © 2026 Hi5 Education Centre | All Rights Reserved
@@ -1948,5 +1957,25 @@ window.addEventListener("message",function(event){
 
 </script>
 
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function(){
+ const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
+ const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ const {data:news}=await client.from("announcements").select("title,message,created_at").eq("is_published",true).order("created_at",{ascending:false}).limit(5);
+ if(news&&news.length){
+  const box=document.getElementById("hi5-announcements"),list=document.getElementById("hi5-announcement-items");
+  list.innerHTML=news.map(n=>'<article style="padding:12px 14px;background:#f5f8fb;border-radius:11px"><strong style="display:block;color:#102b45;font-size:14px">'+esc(n.title)+'</strong><p style="margin:5px 0 0;color:#526477;font-size:13px;line-height:1.65;white-space:pre-wrap">'+esc(n.message)+'</p></article>').join("");
+  box.style.display="block";
+ }
+ const {data:videos,error}=await client.from("hi5_tv").select("title,description,video_url,category,thumbnail_url").eq("is_published",true).order("created_at",{ascending:false}).limit(24);
+ const videoBox=document.getElementById("hi5-tv-published");
+ if(error){videoBox.innerHTML='<p style="color:#dce9f2">Published programmes will appear here.</p>';return;}
+ if(!videos||!videos.length){videoBox.innerHTML='<p style="color:#dce9f2">New Hi5 TV programmes will appear here when published.</p>';return;}
+ videoBox.innerHTML=videos.map(v=>'<article style="background:#0b263b;border:1px solid #426078;border-radius:13px;overflow:hidden">'+(v.thumbnail_url?'<img src="'+esc(v.thumbnail_url)+'" alt="" loading="lazy" style="width:100%;height:130px;object-fit:cover">':'')+'<div style="padding:13px"><small style="color:#f2d39b;font-weight:700">'+esc(v.category||"Hi5 TV")+'</small><strong style="display:block;color:white;margin:5px 0;font-size:14px">'+esc(v.title)+'</strong><p style="color:#dce9f2;font-size:12px;line-height:1.5;margin:0 0 10px">'+esc(v.description||"Watch this Hi5 TV programme.")+'</p><a href="'+esc(v.video_url)+'" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#f1d39a;color:#102b45;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;font-size:12px">Watch video ↗</a></div></article>').join("");
+}
+)().catch(e=>console.error("Hi5 public updates:",e));
+</script>
 </body>
 </html>
