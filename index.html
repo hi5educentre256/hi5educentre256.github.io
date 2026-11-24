@@ -605,6 +605,20 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 .hi5-tv-thumb-caption small{font-size:11px;color:#c4d6e3}
 @media(max-width:600px){.hi5-tv-frame{padding:5px}.hi5-tv-frame iframe{min-height:500px}.hi5-tv-thumb{width:100%;box-sizing:border-box}}
 
+
+/* HI5 TV safe in-site viewing controls */
+.hi5-tv-safe-label{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border:1px solid rgba(242,211,155,.55);border-radius:999px;color:#f2d39b;background:rgba(255,255,255,.08);font-size:11px;font-weight:800;letter-spacing:1.5px;white-space:nowrap}
+.hi5-tv-controls{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:0 auto 12px;max-width:760px}
+.hi5-tv-controls button{margin:0;min-width:108px;padding:12px 16px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:#f1d39a;color:#102b45;font-weight:800;font-size:13px;box-shadow:0 5px 14px rgba(0,0,0,.18)}
+.hi5-tv-controls button:hover{background:#fff0cf;transform:translateY(-1px)}
+.hi5-tv-controls .hi5-tv-main-control{background:#15966a;color:#fff;min-width:125px}
+.hi5-tv-frame iframe{pointer-events:none}
+.hi5-tv-ticker{margin:20px auto 0;max-width:900px;overflow:hidden;border:1px solid rgba(242,211,155,.45);border-radius:999px;background:#061b2c;padding:11px 0;color:#f6d99f;font-size:12px;font-weight:700;letter-spacing:.4px;white-space:nowrap}
+.hi5-tv-ticker span{display:inline-block;padding-left:100%;animation:hi5TVTicker 25s linear infinite}
+@keyframes hi5TVTicker{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@media(prefers-reduced-motion:reduce){.hi5-tv-ticker span{animation:none;padding-left:0;display:block;text-align:center;white-space:normal}}
+@media(max-width:600px){.hi5-tv-safe-label{width:100%;box-sizing:border-box}.hi5-tv-controls{gap:7px}.hi5-tv-controls button{min-width:0;flex:1;padding:11px 9px;font-size:12px}}
+
 </style>
 </head>
 
@@ -778,14 +792,19 @@ Choose Your Level
     <div>
       <div class="hi5-tv-kicker">Watch • Learn • Grow</div>
       <h2 class="hi5-tv-title" id="hi5-tv-title">Welcome to Hi5 TV</h2>
-      <p class="hi5-tv-intro">Explore educational videos and learning moments from Hi5 Education Centre. Watch our latest public TikTok videos here, then visit our channel for more.</p>
+      <p class="hi5-tv-intro">Enjoy learning videos from Hi5 Education Centre. Choose your learning level, select a programme and watch here on Hi5 TV.</p>
     </div>
-    <a class="hi5-tv-follow" href="https://www.tiktok.com/@hi5educentre" target="_blank" rel="noopener noreferrer">▶ Follow Hi5 on TikTok <span aria-hidden="true">↗</span></a>
+    <div class="hi5-tv-safe-label">✦ HI5 SCHOOL STREAM</div>
   </div>
   <div class="hi5-tv-player-wrap">
     <div class="hi5-tv-player-heading"><span class="hi5-tv-live-dot"></span><span id="hi5-tv-now-playing">Now playing · Nursery</span></div>
+    <div class="hi5-tv-controls" aria-label="Hi5 TV playback controls">
+      <button type="button" onclick="hi5TVPrevious()" aria-label="Previous video">⏮ Previous</button>
+      <button type="button" class="hi5-tv-main-control" id="hi5-tv-play-toggle" onclick="hi5TVTogglePlayback()" aria-label="Play or pause">▶ Play</button>
+      <button type="button" onclick="hi5TVNext()" aria-label="Next video">Next ⏭</button>
+    </div>
     <div class="hi5-tv-frame">
-      <iframe id="hi5-tv-player" src="https://www.tiktok.com/player/v1/7700794305111395604?music_info=1&description=1" title="Hi5 Education Centre Nursery video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>
+      <iframe id="hi5-tv-player" src="https://www.tiktok.com/player/v1/7700794305111395604?controls=0&loop=1&rel=0&music_info=0&description=0&native_context_menu=0" title="Hi5 Education Centre Nursery video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" tabindex="-1"></iframe>
     </div>
   </div>
   <div class="hi5-tv-categories">
@@ -910,7 +929,8 @@ Choose Your Level
       </div>
     </section>
   </div>
-  <p class="hi5-tv-note">Videos are streamed from TikTok and are not stored on Hi5 servers. Select a video below to play it above, or follow Hi5 on TikTok for more.</p>
+  <div class="hi5-tv-ticker" aria-label="Hi5 TV message"><span>Thank you for watching Hi5 TV • Learn Today, Lead Tomorrow • Choose your level and enjoy learning • Thank you for watching Hi5 TV •</span></div>
+  <p class="hi5-tv-note">Select a programme from Nursery, Primary, Secondary or Tertiary. Use the Next and Previous buttons to move through videos in the same section. Videos are streamed from their original source and are not stored on Hi5 servers.</p>
 </section>
 <div class="footer">
 © 2026 Hi5 Education Centre | All Rights Reserved
@@ -1705,15 +1725,64 @@ function playHi5DoorSound(){
 function enterHi5(){const intro=document.getElementById("doorIntro");if(!intro)return;playHi5DoorSound();intro.classList.add("is-opening");try{sessionStorage.setItem("hi5IntroSeen","yes");}catch(e){}setTimeout(()=>intro.classList.add("is-hidden"),1250);}
 function skipHi5Intro(){const intro=document.getElementById("doorIntro");if(!intro)return;try{sessionStorage.setItem("hi5IntroSeen","yes");}catch(e){}intro.classList.add("is-hidden");}
 
+let hi5TVCurrentCategory = "Nursery";
+let hi5TVCurrentButton = null;
+let hi5TVWantsPlay = false;
+let hi5TVIsPlaying = false;
+function hi5TVSend(command){
+  const player=document.getElementById("hi5-tv-player");
+  if(player && player.contentWindow){
+    player.contentWindow.postMessage({type:command,value:undefined,"x-tiktok-player":true},"https://www.tiktok.com");
+  }
+}
+function hi5TVSetPlayLabel(){
+  const control=document.getElementById("hi5-tv-play-toggle");
+  if(control){control.textContent=hi5TVIsPlaying?"Ⅱ Pause":"▶ Play";control.setAttribute("aria-label",hi5TVIsPlaying?"Pause video":"Play video");}
+}
+function hi5TVTogglePlayback(){
+  if(hi5TVIsPlaying){hi5TVWantsPlay=false;hi5TVSend("pause");hi5TVIsPlaying=false;}
+  else{hi5TVWantsPlay=true;hi5TVSend("play");hi5TVIsPlaying=true;}
+  hi5TVSetPlayLabel();
+}
 function selectHi5TVVideo(videoId, button, category){
   const player=document.getElementById("hi5-tv-player");
   if(!player)return;
-  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?music_info=1&description=1";
+  hi5TVCurrentCategory=category||"Nursery";
+  hi5TVCurrentButton=button||null;
+  hi5TVWantsPlay=true;
+  hi5TVIsPlaying=false;
+  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=0&loop=1&rel=0&music_info=0&description=0&native_context_menu=0";
   document.querySelectorAll(".hi5-tv-thumb").forEach(item=>item.classList.remove("is-active"));
   if(button)button.classList.add("is-active");
   const label=document.getElementById("hi5-tv-now-playing");
-  if(label)label.textContent="Now playing · "+(category||"Nursery");
+  if(label)label.textContent="Now playing · "+hi5TVCurrentCategory;
+  hi5TVSetPlayLabel();
 }
+function hi5TVMove(step){
+  const section=Array.from(document.querySelectorAll(".hi5-tv-library")).find(el=>{
+    const heading=el.querySelector(".hi5-tv-library-title h3");
+    return heading && heading.textContent.trim()===hi5TVCurrentCategory;
+  });
+  if(!section)return;
+  const items=Array.from(section.querySelectorAll(".hi5-tv-thumb"));
+  if(!items.length)return;
+  let index=items.indexOf(hi5TVCurrentButton);
+  if(index<0)index=0;
+  const next=(index+step+items.length)%items.length;
+  items[next].click();
+}
+function hi5TVNext(){hi5TVMove(1);}
+function hi5TVPrevious(){hi5TVMove(-1);}
+window.addEventListener("message",function(event){
+  if(event.origin!=="https://www.tiktok.com" || !event.data || event.data["x-tiktok-player"]!==true)return;
+  if(event.data.type==="onPlayerReady"){
+    if(hi5TVWantsPlay)hi5TVSend("play");
+  }else if(event.data.type==="onStateChange"){
+    hi5TVIsPlaying=event.data.value===1;
+    if(event.data.value===0 && hi5TVWantsPlay)hi5TVSend("play");
+    hi5TVSetPlayLabel();
+  }
+});
 
 </script>
 
