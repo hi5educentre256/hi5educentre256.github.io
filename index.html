@@ -671,6 +671,41 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 .about-card:hover,.about-level:hover,.about-contact-item:hover{transform:translateY(-2px);border-color:#c7d8e8;box-shadow:0 12px 26px rgba(15,39,68,.09)}
 @media(max-width:600px){.hi5-tv-side-mask{width:48px}.hi5-tv-side-mask:before{height:34px;max-width:calc(100vw - 48px)}}
 
+
+/* Hi5 TV final polish: immediate controls, thicker top bezel and visible LIVE label */
+.hi5-tv-controls .hi5-tv-main-control{opacity:1!important;visibility:visible!important;pointer-events:auto!important;cursor:pointer!important}
+.hi5-tv-side-mask{z-index:10!important;top:0!important;right:0!important;bottom:0!important;width:58px!important;border-radius:0 12px 12px 0!important}
+.hi5-tv-side-mask:before{z-index:10!important;height:54px!important;max-width:calc(390px - 58px)!important;border-radius:12px 0 0 0!important}
+.hi5-tv-live-badge{z-index:15!important;top:13px!important;left:13px!important;display:flex!important;visibility:visible!important;opacity:1!important;padding:7px 11px!important;background:#c51e35!important;border:1px solid rgba(255,255,255,.75)!important;color:#fff!important}
+.hi5-tv-live-badge strong{display:inline!important;color:#fff!important;font-size:12px!important;line-height:1!important;letter-spacing:1.2px!important}
+.hi5-tv-live-badge span{display:block!important;flex:0 0 8px!important;width:8px!important;height:8px!important;background:#fff!important}
+@media(max-width:600px){.hi5-tv-side-mask{width:50px!important}.hi5-tv-side-mask:before{height:48px!important;max-width:calc(100vw - 50px)!important}.hi5-tv-live-badge{top:10px!important;left:10px!important}}
+/* Strong, unmistakable About Hi5 redesign — scoped to the dynamically rendered page */
+#content .about-page{width:100%;max-width:1180px;margin:0 auto;padding:20px clamp(14px,3vw,34px) 36px!important;border-radius:26px!important;background:linear-gradient(145deg,#eaf1f8 0%,#f8fbff 48%,#e9f2f7 100%)!important;box-sizing:border-box;box-shadow:0 16px 42px rgba(12,42,70,.09)}
+#content .about-page .about-hero{min-height:270px;padding:clamp(30px,5vw,62px)!important;border:1px solid rgba(224,194,135,.55);background:radial-gradient(circle at 83% 18%,rgba(255,255,255,.18),transparent 25%),linear-gradient(120deg,#071e39 0%,#104c78 58%,#087b69 100%)!important;box-shadow:0 20px 44px rgba(7,30,57,.2)!important}
+#content .about-page .about-eyebrow{padding:7px 11px;border:1px solid rgba(240,211,155,.42);border-radius:999px;background:rgba(255,255,255,.08)}
+#content .about-page .about-hero h1{max-width:680px;font-size:clamp(32px,5.2vw,52px)!important;line-height:1.1!important}
+#content .about-page .about-hero p{font-size:15px!important;line-height:1.9!important}
+#content .about-page .about-hero-mark{background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.28),rgba(255,255,255,.04) 65%)!important;border:2px solid #e5c98e!important;box-shadow:inset 0 0 0 9px rgba(255,255,255,.05),0 18px 38px rgba(0,0,0,.2)!important}
+#content .about-page .about-section{margin-top:32px!important}
+#content .about-page .about-section-heading{margin-bottom:16px!important;color:#102f50!important;font-size:clamp(21px,2.6vw,26px)!important}
+#content .about-page .about-section-intro{font-size:14px!important;color:#526b82!important}
+#content .about-page .about-card,#content .about-page .about-level,#content .about-page .about-contact-item{background:linear-gradient(180deg,#fff 0%,#f9fcff 100%)!important;border:1px solid #d6e2ed!important;border-radius:18px!important;box-shadow:0 9px 24px rgba(15,45,75,.07)!important}
+#content .about-page .about-card{padding:25px!important}
+#content .about-page .about-level{padding:20px 14px!important}
+#content .about-page .about-level strong{font-size:15px!important;color:#123b61!important}
+#content .about-page .about-level span{font-size:12px!important;color:#5d7287!important}
+#content .about-page .about-icon{background:linear-gradient(135deg,#e4effb,#e2f5ef)!important;color:#0e6b77!important}
+#content .about-page .about-value{background:linear-gradient(145deg,#fff,#edf4fa)!important;border:1px solid #d9e4ee!important;border-radius:16px!important;padding:18px 14px!important}
+#content .about-page .about-value strong{color:#123b61!important}
+#content .about-page .about-value span{color:#5a7085!important}
+#content .about-page .about-founder{background:linear-gradient(120deg,#e5eff8,#f7fafc)!important;border:1px solid #cbdbe8!important;box-shadow:0 12px 28px rgba(15,45,75,.07)}
+#content .about-page .about-founder-photo{border:3px solid #dfc38d!important;box-shadow:0 12px 26px rgba(11,49,88,.2)!important}
+#content .about-page .about-founder-copy h3{font-size:26px!important;color:#102f50!important}
+#content .about-page .about-footer{background:linear-gradient(120deg,#071e39,#104b68)!important;border:1px solid rgba(224,194,135,.45)!important;padding:28px!important}
+#content .about-page .about-back{border-radius:999px!important;padding:10px 17px!important}
+@media(max-width:700px){#content .about-page{padding:12px 10px 25px!important;border-radius:16px!important}#content .about-page .about-hero{min-height:0;padding:28px 22px!important}#content .about-page .about-card{padding:19px!important}}
+
 </style>
 </head>
 
@@ -858,7 +893,7 @@ Choose Your Level
     <div class="hi5-tv-frame">
       <div class="hi5-tv-screen">
         <iframe id="hi5-tv-player" src="https://www.tiktok.com/player/v1/7700794305111395604?controls=1&loop=1&rel=0&music_info=0&description=0&native_context_menu=0" title="Hi5 Education Centre video player" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen onload="hi5TVOnFrameLoad()"></iframe>
-        <div class="hi5-tv-live-badge"><span></span> LIVE</div>
+        <div class="hi5-tv-live-badge"><span></span><strong>LIVE</strong></div>
         <div class="hi5-tv-side-mask" aria-hidden="true"></div>
         <div class="hi5-tv-screen-ticker" aria-label="Hi5 TV message"><span>Thank you for watching Hi5 TV • Learn Today, Lead Tomorrow • Enjoy learning with Hi5 •</span></div>
       </div>
@@ -1788,7 +1823,8 @@ let hi5TVIsPlaying = false;
 let hi5TVPlayerReady = false;
 function hi5TVSend(command){
   const player=document.getElementById("hi5-tv-player");
-  if(!player || !player.contentWindow || !hi5TVPlayerReady)return false;
+  if(!player || !player.contentWindow)return false;
+  // TikTok documents play/pause as void-valued host messages.
   player.contentWindow.postMessage({type:command,value:undefined,"x-tiktok-player":true},"*");
   return true;
 }
@@ -1807,21 +1843,11 @@ function hi5TVSetPlayLabel(){
   }
 }
 function hi5TVTogglePlayback(){
-  // Preserve the user's requested state while a newly selected video loads.
-  if(!hi5TVPlayerReady){
-    hi5TVWantsPlay=!hi5TVWantsPlay;
-    hi5TVIsPlaying=false;
-    hi5TVSetPlayLabel();
-    return;
-  }
-  if(hi5TVIsPlaying){
-    hi5TVWantsPlay=false;
-    hi5TVSend("pause");
-    hi5TVIsPlaying=false;
-  }else{
-    hi5TVWantsPlay=true;
-    hi5TVSend("play");
-  }
+  // Send the command immediately; do not block the button on a delayed ready event.
+  const shouldPause=hi5TVIsPlaying || hi5TVWantsPlay;
+  hi5TVWantsPlay=!shouldPause;
+  hi5TVSend(shouldPause?"pause":"play");
+  if(shouldPause)hi5TVIsPlaying=false;
   hi5TVSetPlayLabel();
 }
 function selectHi5TVVideo(videoId, button, category){
@@ -1832,7 +1858,8 @@ function selectHi5TVVideo(videoId, button, category){
   hi5TVWantsPlay=true;
   hi5TVIsPlaying=false;
   hi5TVPlayerReady=false;
-  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=1&loop=1&autoplay=0&rel=0&music_info=0&description=0&native_context_menu=0";
+  // Start the embed on selection to initialise TikTok's lazy player, then expose our own controls.
+  player.src="https://www.tiktok.com/player/v1/"+encodeURIComponent(videoId)+"?controls=1&loop=1&autoplay=1&rel=0&music_info=0&description=0&native_context_menu=0";
   document.querySelectorAll(".hi5-tv-thumb").forEach(item=>item.classList.remove("is-active"));
   if(button){
     button.classList.add("is-active");
@@ -1880,6 +1907,7 @@ window.addEventListener("message",function(event){
     hi5TVSetPlayLabel();
   }else if(event.data.type==="onStateChange"){
     hi5TVIsPlaying=event.data.value===1;
+    if(event.data.value===1)hi5TVWantsPlay=true;
     if(event.data.value===0 && hi5TVWantsPlay)hi5TVSend("play");
     if(event.data.value===2)hi5TVWantsPlay=false;
     hi5TVSetPlayLabel();
