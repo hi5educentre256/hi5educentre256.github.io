@@ -131,6 +131,24 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
             <div><h3>Hi5 TV library</h3><div id="tvList" class="list"><div class="empty">Loading videos…</div></div></div>
           </div>
         </div>
+        <div id="calendarPage" class="hidden">
+          <div class="content-head"><div><h2>Academic calendar</h2><p>Add term dates, examinations, holidays and school activities. Published entries appear on the public Hi5 website.</p></div></div>
+          <div class="editor">
+            <form id="calendarForm">
+              <h3 id="calendarFormHeading">Add a calendar event</h3>
+              <input id="calendarId" type="hidden">
+              <div class="field"><label for="calendarTitle">Event title</label><input id="calendarTitle" maxlength="180" required placeholder="e.g. First term opens"></div>
+              <div class="field"><label for="calendarDescription">Description</label><textarea id="calendarDescription" placeholder="Add details for parents, learners and teachers"></textarea></div>
+              <div class="field"><label for="calendarType">Event type</label><select id="calendarType" required><option>Term Opening</option><option>Term Closing</option><option>Examination</option><option>Holiday</option><option>School Event</option><option>Public Holiday</option><option>Other</option></select></div>
+              <div class="field"><label for="calendarStart">Start date</label><input id="calendarStart" type="date" required></div>
+              <div class="field"><label for="calendarEnd">End date (optional)</label><input id="calendarEnd" type="date"></div>
+              <label class="checkline"><input id="calendarPublished" type="checkbox"> Publish this event on the website</label>
+              <div class="actions"><button class="btn btn-primary" type="submit">Save calendar event</button><button id="calendarClearBtn" class="btn btn-quiet" type="button">Clear</button></div>
+              <div id="calendarNotice" class="notice" role="status"></div>
+            </form>
+            <div><h3>Calendar events</h3><div id="calendarList" class="list"><div class="empty">Loading calendar events…</div></div></div>
+          </div>
+        </div>
         <div id="placeholderPage" class="hidden">
           <div class="content-head"><div><h2 id="placeholderTitle">Management</h2><p id="placeholderDescription">This section will be configured next.</p></div></div>
           <div id="moduleCards" class="module-grid"></div>
@@ -150,6 +168,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   const $ = id => document.getElementById(id);
   let announcements = [];
   let tvItems = [];
+  let calendarItems = [];
 
   function showNotice(id, message, type) {
     const el = $(id);
@@ -455,6 +474,107 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     clearTVForm(); showNotice("tvNotice","Hi5 TV video saved successfully.","success"); await loadTV();
   });
 
+  function calendarDate(value) {
+    if (!value) return "";
+    const date = new Date(value + "T00:00:00");
+    return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("en-UG", {day:"numeric",month:"short",year:"numeric"}).format(date);
+  }
+  function calendarRange(item) {
+    const start = calendarDate(item.start_date);
+    const end = calendarDate(item.end_date);
+    return end && end !== start ? start + " – " + end : start;
+  }
+  async function loadCalendar() {
+    $("calendarList").innerHTML = '<div class="empty">Loading calendar events…</div>';
+    const {data,error} = await client.from("academic_calendar").select("*").order("start_date",{ascending:true}).order("created_at",{ascending:false});
+    if(error) {
+      $("calendarList").innerHTML = '<div class="empty">Could not load calendar events: ' + escapeHtml(error.message) + '</div>';
+      return;
+    }
+    calendarItems = data || [];
+    renderCalendar();
+  }
+  function renderCalendar() {
+    const list = $("calendarList");
+    if(!calendarItems.length) {
+      list.innerHTML = '<div class="empty">No calendar events yet. Add the first term date or school event.</div>';
+      return;
+    }
+    list.innerHTML = calendarItems.map(item => `
+      <article class="announcement">
+        <div class="announcement-top">
+          <div><h4>${escapeHtml(item.title)}</h4><p>${escapeHtml(calendarRange(item) + " · " + (item.event_type || "School Event"))}</p>${item.description ? '<p>' + escapeHtml(item.description) + '</p>' : ''}</div>
+          <span class="pill ${item.is_published ? "live" : "draft"}">${item.is_published ? "Published" : "Draft"}</span>
+        </div>
+        <div class="actions"><button class="btn btn-quiet" type="button" data-calendar-edit="${escapeHtml(item.id)}">Edit</button><button class="btn btn-danger" type="button" data-calendar-delete="${escapeHtml(item.id)}">Delete</button></div>
+      </article>`).join("");
+    list.querySelectorAll("[data-calendar-edit]").forEach(button => button.addEventListener("click", () => editCalendar(button.dataset.calendarEdit)));
+    list.querySelectorAll("[data-calendar-delete]").forEach(button => button.addEventListener("click", () => deleteCalendar(button.dataset.calendarDelete)));
+  }
+  function resetCalendarForm() {
+    $("calendarForm").reset();
+    $("calendarId").value = "";
+    $("calendarFormHeading").textContent = "Add a calendar event";
+    clearNotice("calendarNotice");
+  }
+  function editCalendar(id) {
+    const item = calendarItems.find(entry => entry.id === id);
+    if(!item) return;
+    $("calendarId").value = item.id;
+    $("calendarTitle").value = item.title || "";
+    $("calendarDescription").value = item.description || "";
+    $("calendarType").value = item.event_type || "School Event";
+    $("calendarStart").value = item.start_date || "";
+    $("calendarEnd").value = item.end_date || "";
+    $("calendarPublished").checked = !!item.is_published;
+    $("calendarFormHeading").textContent = "Edit calendar event";
+    clearNotice("calendarNotice");
+    $("calendarTitle").focus();
+  }
+  async function deleteCalendar(id) {
+    const item = calendarItems.find(entry => entry.id === id);
+    if(!item || !confirm('Delete "' + item.title + '" from the academic calendar?')) return;
+    const {error} = await client.from("academic_calendar").delete().eq("id",id);
+    if(error) { showNotice("calendarNotice",error.message,"error"); return; }
+    showNotice("calendarNotice","Calendar event deleted.","success");
+    await loadCalendar();
+  }
+  $("calendarForm").addEventListener("submit",async event => {
+    event.preventDefault();
+    clearNotice("calendarNotice");
+    const id = $("calendarId").value;
+    const start = $("calendarStart").value;
+    const end = $("calendarEnd").value || null;
+    if(end && end < start) {
+      showNotice("calendarNotice","The end date cannot be earlier than the start date.","error");
+      return;
+    }
+    const payload = {
+      title:$("calendarTitle").value.trim(),
+      description:$("calendarDescription").value.trim(),
+      event_type:$("calendarType").value,
+      start_date:start,
+      end_date:end,
+      is_published:$("calendarPublished").checked,
+      updated_at:new Date().toISOString()
+    };
+    if(!payload.title || !start) {
+      showNotice("calendarNotice","Please enter an event title and start date.","error");
+      return;
+    }
+    const button = $("calendarForm").querySelector('button[type="submit"]');
+    button.disabled = true; button.textContent = "Saving…";
+    const result = id
+      ? await client.from("academic_calendar").update(payload).eq("id",id)
+      : await client.from("academic_calendar").insert(payload);
+    button.disabled = false; button.textContent = "Save calendar event";
+    if(result.error) { showNotice("calendarNotice",result.error.message,"error"); return; }
+    resetCalendarForm();
+    showNotice("calendarNotice","Calendar event saved successfully.","success");
+    await loadCalendar();
+  });
+  $("calendarClearBtn").addEventListener("click",resetCalendarForm);
+
   const moduleInfo = {
     materials: { title:"Learning materials", description:"Upload and organise resources for Nursery, Primary, Secondary and Tertiary learners.", cards:[
       ["Learning resources","Manage lesson notes, textbooks, schemes and past papers."],
@@ -482,13 +602,16 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     const isAnnouncements = page === "announcements";
     const isMaterials = page === "materials";
     const isTV = page === "tv";
+    const isCalendar = page === "calendar";
     $("announcementsPage").classList.toggle("hidden", !isAnnouncements);
     $("materialsPage").classList.toggle("hidden", !isMaterials);
     $("tvPage").classList.toggle("hidden", !isTV);
-    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV);
+    $("calendarPage").classList.toggle("hidden", !isCalendar);
+    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV || isCalendar);
     if (isMaterials) refreshMaterials();
     if (isTV) loadTV();
-    if (!isAnnouncements && !isMaterials && !isTV) {
+    if (isCalendar) loadCalendar();
+    if (!isAnnouncements && !isMaterials && !isTV && !isCalendar) {
       const info = moduleInfo[page];
       $("placeholderTitle").textContent = info.title;
       $("placeholderDescription").textContent = info.description;
