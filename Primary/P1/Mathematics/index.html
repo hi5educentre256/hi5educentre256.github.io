@@ -113,9 +113,7 @@
     <section class="intro">
       <h1>Primary One (P1) Mathematics</h1>
       <p>Welcome to the Hi5 Education Centre Primary One Mathematics resource page. Browse the available lesson notes, scheme of work and assessment papers below. Select View PDF to open a resource or Download PDF to save it.</p>
-    </section><section id="hi5-category-live-resources" style="margin:24px 0;padding:20px;background:#fff;border:1px solid #e4eaf1;border-radius:16px"><h2 style="margin:0 0 8px;color:#142b43">New Mathematics from Hi5 Admin</h2><p id="hi5-category-live-status" style="color:#64748b;font-size:13px">Loading new resources…</p><div id="hi5-category-live-resources" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px"></div></section>
-
-    <h2 class="section-heading">📝 Mathematics Lesson Notes</h2>
+    </section><h2 class="section-heading">📝 Mathematics Lesson Notes</h2>
     <p class="section-note">Study materials to support teaching and learning.</p>
     <div class="resource-grid">
       <article class="resource-card">
@@ -225,5 +223,61 @@
  }).catch(error=>console.error('Hi5 P1 Mathematics automatic resource listing:',error));
 })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"><\/script><script>(async()=>{const b=document.getElementById("hi5-category-live-resources"),s=document.getElementById("hi5-category-live-status");try{const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");let q=client.from("learning_materials").select("*").eq("is_published",true).eq("level","Primary").ilike("class_name","P1");q=q.ilike("subject","Mathematics");const {data,error}=await q.order("created_at",{ascending:false}).limit(100);if(error)throw error;if(!data?.length){s.textContent="No new resources published in this section yet.";return;}s.textContent=data.length+" published resources";data.forEach(x=>{const url=client.storage.from("learning-materials").getPublicUrl(x.file_path).data.publicUrl;const card=document.createElement("article");card.style.cssText="padding:14px;border:1px solid #e5ebf2;border-radius:12px;background:#f8fafc";const title=document.createElement("strong");title.textContent=x.title;const meta=document.createElement("p");meta.textContent=[x.category,x.subject,x.class_name].filter(Boolean).join(" · ");meta.style.cssText="font-size:12px;color:#64748b";const link=document.createElement("a");link.href=url;link.target="_blank";link.rel="noopener";link.textContent="View / Download";link.style.cssText="display:inline-block;padding:8px 12px;background:#145c9e;color:white;border-radius:8px;text-decoration:none;font-size:12px";card.append(title,meta,link);b.append(card);});}catch(e){s.textContent="Resources temporarily unavailable.";console.error(e);}})();<\/script></body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"><\/script><script>(async()=>{const b=document.getElementById("hi5-category-live-resources"),s=document.getElementById("hi5-category-live-status");try{const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");let q=client.from("learning_materials").select("*").eq("is_published",true).eq("level","Primary").ilike("class_name","P1");q=q.ilike("subject","Mathematics");const {data,error}=await q.order("created_at",{ascending:false}).limit(100);if(error)throw error;if(!data?.length){s.textContent="No new resources published in this section yet.";return;}s.textContent=data.length+" published resources";data.forEach(x=>{const url=client.storage.from("learning-materials").getPublicUrl(x.file_path).data.publicUrl;const card=document.createElement("article");card.style.cssText="padding:14px;border:1px solid #e5ebf2;border-radius:12px;background:#f8fafc";const title=document.createElement("strong");title.textContent=x.title;const meta=document.createElement("p");meta.textContent=[x.category,x.subject,x.class_name].filter(Boolean).join(" · ");meta.style.cssText="font-size:12px;color:#64748b";const link=document.createElement("a");link.href=url;link.target="_blank";link.rel="noopener";link.textContent="View / Download";link.style.cssText="display:inline-block;padding:8px 12px;background:#145c9e;color:white;border-radius:8px;text-decoration:none;font-size:12px";card.append(title,meta,link);b.append(card);});}catch(e){s.textContent="Resources temporarily unavailable.";console.error(e);}})();<\/script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function(){
+ const cfg={"level":"Primary","cls":"P1","subject":"Mathematics","category":null,"mode":"resource"};
+ const client=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
+ const clean=s=>String(s||"").replace(/^\s*📄\s*/,"").trim();
+ const aliases={"Lesson Notes":["lesson notes"],"Schemes of Work":["scheme"],"Past Papers":["past papers","assessment"],"Textbooks":["textbook"]};
+ function getGrid(item){
+  if(cfg.mode==="tertiary")return document.querySelector("#resources")||document.querySelector(".cards");
+  if(cfg.category){
+   const direct=document.querySelector("#resources");if(direct)return direct;
+   const sections=Array.from(document.querySelectorAll("main section,main > section"));
+   const sec=sections.find(el=>aliases[cfg.category]?.some(a=>(el.querySelector("h2")?.textContent||"").toLowerCase().includes(a)));
+   return sec?.querySelector(".resource-grid")||document.querySelector(".resource-grid");
+  }
+  const sections=Array.from(document.querySelectorAll("main section"));
+  const sec=sections.find(el=>{
+   const h=(el.querySelector("h2")?.textContent||"").toLowerCase();
+   return (aliases[item.category]||[String(item.category||"").toLowerCase()]).some(a=>h.includes(a));
+  });
+  return sec?.querySelector(".resource-grid")||null;
+ }
+ function title(card){return clean(card.querySelector(".resource-name")?.textContent||card.querySelector(".card-title")?.textContent||"");}
+ function sort(grid){
+  const selector=cfg.mode==="tertiary"?":scope > .card":":scope > .resource-card";
+  const cards=Array.from(grid.querySelectorAll(selector)),sorted=cards.slice().sort((a,b)=>title(a).localeCompare(title(b),undefined,{sensitivity:"base",numeric:true}));
+  if(cards.some((v,i)=>v!==sorted[i]))sorted.forEach(v=>grid.appendChild(v));
+ }
+ try{
+  let q=client.from("learning_materials").select("title,level,class_name,category,subject,file_path,is_published").eq("is_published",true).eq("level",cfg.level).ilike("class_name",cfg.cls);
+  if(cfg.category)q=q.ilike("category",cfg.category);
+  if(cfg.subject)q=q.ilike("subject",cfg.subject);
+  const {data,error}=await q.order("title",{ascending:true}).limit(500);if(error)throw error;
+  (data||[]).forEach(item=>{
+   const grid=getGrid(item);if(!grid)return;
+   const key=clean(item.title).toLowerCase();
+   if(Array.from(grid.children).some(el=>title(el).toLowerCase()===key))return;
+   const url=client.storage.from("learning-materials").getPublicUrl(item.file_path).data.publicUrl;
+   if(cfg.mode==="tertiary"){
+    const card=document.createElement("a");card.className="card";card.href=url;card.target="_blank";card.rel="noopener";
+    card.innerHTML='<span class="card-icon">📄</span><span><span class="card-title"></span><br><span class="card-desc">Open PDF resource</span></span>';
+    card.querySelector(".card-title").textContent=item.title;grid.appendChild(card);
+   }else{
+    const card=document.createElement("article");card.className="resource-card";
+    const name=document.createElement("div");name.className="resource-name";name.textContent=item.title;
+    const meta=document.createElement("div");meta.className="resource-meta";meta.textContent=[item.subject,item.category].filter(Boolean).join(" · ");
+    const actions=document.createElement("div");actions.className="actions";
+    const view=document.createElement("a");view.className="action view";view.href=url;view.target="_blank";view.rel="noopener";view.textContent="View PDF";
+    const dl=document.createElement("a");dl.className="action download";dl.href=url;dl.download=item.title;dl.textContent="Download PDF";
+    actions.append(view,dl);card.append(name,meta,actions);grid.appendChild(card);
+   }
+  });
+  document.querySelectorAll(cfg.mode==="tertiary"?".cards":".resource-grid").forEach(sort);
+  document.querySelectorAll(cfg.mode==="tertiary"?".cards":".resource-grid").forEach(grid=>new MutationObserver(()=>sort(grid)).observe(grid,{childList:true}));
+ }catch(e){console.error("Hi5 materials integration:",e);}
+})();
+</script></body>
 </html>
