@@ -77,7 +77,7 @@
     const meta=document.createElement('div');meta.className='resource-meta';const badge=document.createElement('span');badge.className='badge textbook';badge.textContent='P3 Textbook';meta.appendChild(badge);details.appendChild(meta);info.appendChild(details);card.appendChild(info);
     const actions=document.createElement('div');actions.className='actions';
     const view=document.createElement('button');view.className='action view';view.type='button';view.dataset.pdf=folder.url+encodeURIComponent(file.name);view.textContent='👁 View Pages';actions.appendChild(view);
-    const order=document.createElement('a');order.className='action buy';order.href='https://wa.me/256702234701?text='+encodeURIComponent('Hello Hi5 Education Centre, I would like to order this Primary Three textbook: '+file.name+'. Price: UGX 10,000.');order.target='_blank';order.rel='noopener';order.textContent='🔒 Order Textbook – UGX 10,000';actions.appendChild(order);
+    const order=document.createElement('a');order.className='action buy';order.href='https://wa.me/256702234701?text='+encodeURIComponent('Hello, I would like to purchase the digital PDF (soft copy) of: '+file.name+'. I will pay UGX 10,000 via Airtel Money (0702234701).');order.target='_blank';order.rel='noopener';order.textContent='🔒 Order PDF – UGX 10,000';actions.appendChild(order);
     card.appendChild(actions);grid.appendChild(card);existing.add(key);
    }));
   }catch(error){console.error('Hi5 P3 automatic textbook listing:',error);}
