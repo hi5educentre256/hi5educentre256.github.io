@@ -1025,6 +1025,43 @@ html.dark .hi5-calendar-empty{background:#17283b!important;border-color:#526b82!
 }
 </style>
 
+
+<style id="hi5-topbar-brand-width-refinement">
+/* Give the school identity more visual weight without moving the theme control */
+.topbar .brand{
+  justify-self:start!important;
+  width:max-content!important;
+  max-width:calc(100% - 12px)!important;
+  gap:15px!important;
+  padding-right:16px!important;
+}
+.topbar .brand-text{
+  width:max-content!important;
+  max-width:100%!important;
+}
+.topbar .brand-text .title{
+  font-size:clamp(21px,2.45vw,27px)!important;
+  font-weight:850!important;
+  letter-spacing:.1px!important;
+  line-height:1.18!important;
+}
+.topbar .brand-text .subtitle{
+  font-size:clamp(11px,1.05vw,13px)!important;
+  font-weight:650!important;
+  letter-spacing:1.25px!important;
+  margin-top:5px!important;
+}
+@media(max-width:640px){
+  .topbar .brand{gap:9px!important;padding-right:2px!important}
+  .topbar .brand-text .title{font-size:clamp(14px,4.15vw,18px)!important}
+  .topbar .brand-text .subtitle{font-size:clamp(8px,2.35vw,10px)!important;letter-spacing:.55px!important;margin-top:3px!important}
+}
+@media(max-width:360px){
+  .topbar .brand-text .title{font-size:12px!important}
+  .topbar .brand-text .subtitle{font-size:7px!important;letter-spacing:.25px!important}
+}
+</style>
+
 </head>
 
 <body>
