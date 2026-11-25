@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#102b4e">
+<title>Hi5 Book Reader | Hi5 Education Centre</title>
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="/images/logo.png">
+<style>
+:root{color-scheme:dark;--navy:#0b1d33;--blue:#1769c2;--gold:#e9c47b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#1b4166,#091729 65%);color:#f7f9fc;font-family:Arial,sans-serif;min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#08182bd9;border-bottom:1px solid #ffffff20;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand img{width:38px;height:38px;border-radius:9px}.brand strong{display:block;font-size:14px}.brand small{display:block;color:#b8c9dc;font-size:11px;margin-top:3px}
+header a,.tool{color:#fff;text-decoration:none;border:1px solid #ffffff35;border-radius:9px;padding:9px 11px;background:#ffffff12;font-size:12px;white-space:nowrap}
+main{max-width:1200px;margin:auto;padding:18px 14px 28px}.heading{text-align:center;margin:8px auto 16px}.heading h1{font-size:clamp(18px,3vw,26px);margin:0 0 5px}.heading p{margin:0;color:#b9c8d8;font-size:12px}
+.toolbar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin:0 auto 16px}.tool{cursor:pointer;font-weight:600}.tool.primary{background:#1769c2;border-color:#4c91e0}.tool:disabled{opacity:.35;cursor:not-allowed}.tool.active{background:#a7792e;border-color:#e9c47b;color:#fff}
+#readerShell{position:relative;min-height:55vh;display:flex;align-items:center;justify-content:center;padding:8px 0 18px}
+#book{width:min(100%,1080px);height:min(70vh,760px);min-height:390px;margin:auto}
+#book .page{background:#fff;color:#263445;overflow:hidden}.page-content{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#fff;box-shadow:inset 0 0 14px #00000010}.page canvas{display:block;width:100%;height:100%;object-fit:contain}
+#loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#e4edf8;font-size:14px;padding:20px}#loading.error{color:#ffd0d0}
+#status{text-align:center;color:#b9c8d8;font-size:12px;min-height:18px;margin:0 0 12px}
+#thumbs{display:flex;gap:7px;justify-content:flex-start;overflow-x:auto;padding:8px 2px 14px;max-width:100%;scrollbar-width:thin}
+.thumb{flex:0 0 48px;height:62px;border:1px solid #ffffff40;border-radius:5px;background:#fff;color:#1c2b3d;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer}
+.thumb.current{outline:2px solid var(--gold);outline-offset:2px}
+.hint{text-align:center;color:#9fb2c8;font-size:11px;margin:4px 0 18px}.footer{text-align:center;color:#8fa5bd;font-size:11px;padding:12px}
+@media(max-width:600px){header{padding:10px}.brand img{width:33px;height:33px}header a{font-size:11px;padding:8px}.toolbar{gap:6px}.tool{padding:9px;font-size:11px}#book{height:62vh;min-height:380px}.heading{margin-bottom:12px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="brand"><img src="/images/logo.png" alt="Hi5"><span><strong>Hi5 Education Centre</strong><small>Learn Today, Lead Tomorrow</small></span></div><a href="./">← Back to P4 Mathematics</a></header>
+<main>
+<section class="heading"><h1 id="docTitle">📖 Book Reader</h1><p>Turn the pages, listen to the paper sound and enjoy reading.</p></section>
+<nav class="toolbar" aria-label="Book controls">
+<button class="tool" id="prev" disabled>‹ Previous</button><button class="tool primary" id="next" disabled>Next ›</button>
+<button class="tool active" id="sound" aria-pressed="true">🔊 Page sound: On</button>
+<button class="tool" id="auto">▶ Auto-turn</button>
+<button class="tool" id="zoom">＋ Zoom</button>
+<button class="tool" id="full">⛶ Fullscreen</button>
+<a class="tool" id="download" href="#" download>⬇ Download</a>
+</nav>
+<div id="status">Preparing your book…</div>
+<div id="readerShell"><div id="loading">Opening your book…</div><div id="book"></div></div>
+<div id="thumbs" aria-label="Page navigation"></div>
+<p class="hint">Tip: Swipe or drag a page corner to turn pages. Use the buttons to move page by page.</p>
+</main>
+<footer class="footer">© 2026 Hi5 Education Centre</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+<script>
+(function(){
+ const params=new URLSearchParams(location.search);
+ const file=params.get('file');
+ const title=params.get('title')||'Learning Material';
+ const loading=document.getElementById('loading'),book=document.getElementById('book'),status=document.getElementById('status');
+ const soundBtn=document.getElementById('sound'),autoBtn=document.getElementById('auto'),prevBtn=document.getElementById('prev'),nextBtn=document.getElementById('next');
+ document.getElementById('docTitle').textContent='📖 '+title;
+ if(!file){loading.textContent='No document was selected. Please return to P4 Mathematics.';loading.classList.add('error');return;}
+ let pdfUrl;try{pdfUrl=new URL(file,location.href);if(pdfUrl.protocol!=='https:'||pdfUrl.hostname!=='hi5educentre256.github.io')throw new Error('Invalid document address');}catch(e){loading.textContent='This document address is not valid.';loading.classList.add('error');return;}
+ document.getElementById('download').href=pdfUrl.href;
+ let flip=null,autoTimer=null,soundOn=true,zoomed=false,audioCtx=null;
+ function paperSound(){
+  if(!soundOn)return;
+  try{
+   const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+   audioCtx=audioCtx||new AC();if(audioCtx.state==='suspended')audioCtx.resume();
+   const duration=.24,length=Math.floor(audioCtx.sampleRate*duration),buffer=audioCtx.createBuffer(1,length,audioCtx.sampleRate),data=buffer.getChannelData(0);
+   for(let i=0;i<length;i++){const fade=Math.pow(1-i/length,2.2);data[i]=(Math.random()*2-1)*fade;}
+   const source=audioCtx.createBufferSource();source.buffer=buffer;
+   const filter=audioCtx.createBiquadFilter();filter.type='bandpass';filter.frequency.value=1250;filter.Q.value=.65;
+   const gain=audioCtx.createGain();gain.gain.setValueAtTime(.0001,audioCtx.currentTime);gain.gain.exponentialRampToValueAtTime(.24,audioCtx.currentTime+.025);gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+duration);
+   source.connect(filter);filter.connect(gain);gain.connect(audioCtx.destination);source.start();source.stop(audioCtx.currentTime+duration);
+  }catch(e){}
+ }
+ function updateControls(){
+  if(!flip)return;const current=flip.getCurrentPageIndex(),total=flip.getPageCount();
+  prevBtn.disabled=current<=0;nextBtn.disabled=current>=total-1;
+  status.textContent='Page '+(current+1)+' of '+total;
+  document.querySelectorAll('.thumb').forEach((el,i)=>el.classList.toggle('current',i===current));
+  const active=document.querySelector('.thumb.current');if(active)active.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'});
+ }
+ function stopAuto(){if(autoTimer)clearInterval(autoTimer);autoTimer=null;autoBtn.textContent='▶ Auto-turn';autoBtn.classList.remove('active');}
+ function renderBook(pdf){
+  const pages=[];
+  for(let i=1;i<=pdf.numPages;i++){
+   const page=document.createElement('div');page.className='page';
+   const content=document.createElement('div');content.className='page-content';
+   const canvas=document.createElement('canvas');canvas.setAttribute('aria-label','Page '+i);
+   content.appendChild(canvas);page.appendChild(content);book.appendChild(page);pages.push({page,canvas,num:i});
+  }
+  let chain=Promise.resolve();
+  pages.forEach(item=>{chain=chain.then(async()=>{
+   const pdfPage=await pdf.getPage(item.num),base=pdfPage.getViewport({scale:1});
+   const targetWidth=560,targetHeight=760,scale=Math.min(targetWidth/base.width,targetHeight/base.height)*1.6;
+   const viewport=pdfPage.getViewport({scale});item.canvas.width=Math.ceil(viewport.width);item.canvas.height=Math.ceil(viewport.height);
+   await pdfPage.render({canvasContext:item.canvas.getContext('2d'),viewport}).promise;
+   item.page.dataset.page=item.num;
+   const thumb=document.createElement('button');thumb.className='thumb';thumb.type='button';thumb.textContent=item.num;thumb.title='Go to page '+item.num;thumb.addEventListener('click',()=>flip&&flip.turnToPage(item.num-1));document.getElementById('thumbs').appendChild(thumb);
+   status.textContent='Loading pages… '+item.num+' / '+pdf.numPages;
+  });});
+  chain.then(()=>{
+   const PageFlip=window.St&&window.St.PageFlip;
+   if(!PageFlip)throw new Error('The page-turn reader did not load. Please refresh and try again.');
+   flip=new PageFlip(book,{width:520,height:720,size:'stretch',minWidth:260,maxWidth:560,minHeight:360,maxHeight:780,drawShadow:true,flippingTime:900,usePortrait:true,startPage:0,autoSize:true,showCover:true, mobileScrollSupport:false,maxShadowOpacity:.55});
+   flip.loadFromHTML(pages.map(p=>p.page));
+   flip.on('flip',()=>{paperSound();updateControls();});
+   flip.on('changeState',e=>{if(e.data==='read')updateControls();});
+   loading.style.display='none';updateControls();
+  }).catch(err=>{loading.textContent='Unable to prepare the book: '+err.message;loading.classList.add('error');});
+ }
+ if(!window.pdfjsLib){loading.textContent='The PDF reader could not load. Check your internet connection and refresh.';loading.classList.add('error');return;}
+ pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+ pdfjsLib.getDocument({url:pdfUrl.href}).promise.then(pdf=>{
+  status.textContent=pdf.numPages+' pages found. Preparing the book…';renderBook(pdf);
+ }).catch(err=>{loading.textContent='Could not open this PDF. Please try the normal View PDF option. ('+err.message+')';loading.classList.add('error');});
+ prevBtn.addEventListener('click',()=>flip&&flip.flipPrev());nextBtn.addEventListener('click',()=>flip&&flip.flipNext());
+ soundBtn.addEventListener('click',()=>{soundOn=!soundOn;soundBtn.textContent=soundOn?'🔊 Page sound: On':'🔇 Page sound: Off';soundBtn.classList.toggle('active',soundOn);soundBtn.setAttribute('aria-pressed',String(soundOn));if(soundOn)paperSound();});
+ autoBtn.addEventListener('click',()=>{if(autoTimer){stopAuto();return;}if(!flip)return;autoBtn.textContent='Ⅱ Stop auto-turn';autoBtn.classList.add('active');autoTimer=setInterval(()=>{if(!flip||flip.getCurrentPageIndex()>=flip.getPageCount()-1){stopAuto();return;}flip.flipNext();},2600);});
+ document.getElementById('zoom').addEventListener('click',()=>{zoomed=!zoomed;book.style.transform=zoomed?'scale(1.12)':'scale(1)';book.style.transformOrigin='center center';document.getElementById('zoom').textContent=zoomed?'－ Zoom out':'＋ Zoom';});
+ document.getElementById('full').addEventListener('click',()=>{const el=document.getElementById('readerShell');if(!document.fullscreenElement)el.requestFullscreen?.();else document.exitFullscreen?.();});
+ document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'&&flip)flip.flipNext();if(e.key==='ArrowLeft'&&flip)flip.flipPrev();});
+ window.addEventListener('beforeunload',stopAuto);
+})();
+</script>
+</body></html>
