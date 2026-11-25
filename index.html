@@ -876,6 +876,155 @@ html.dark .brand-text .subtitle{color:#c3d5e5!important}
 }
 @media(prefers-reduced-motion:reduce){.brand,.menu-toggle,.hi5-theme-toggle,.topbar-contact{transition:none!important}}
 </style>
+
+<style id="hi5-balanced-topbar-and-calendar">
+/* Balanced three-part header: navigation, school identity, theme control */
+.topbar{
+  display:grid!important;
+  grid-template-columns:48px minmax(0,1fr) 48px!important;
+  align-items:center!important;
+  justify-content:stretch!important;
+  column-gap:14px!important;
+  padding:10px clamp(14px,2.4vw,30px)!important;
+  min-height:82px!important;
+}
+.topbar .menu-toggle{
+  position:relative!important;left:auto!important;top:auto!important;
+  transform:none!important;justify-self:start!important;
+  width:46px!important;height:44px!important;margin:0!important;
+}
+.topbar .menu-toggle:hover{transform:scale(1.04)!important}
+.topbar .brand{
+  min-width:0!important;width:max-content!important;max-width:100%!important;
+  justify-self:start!important;display:flex!important;align-items:center!important;
+  gap:13px!important;margin:0!important;padding:3px 8px!important;
+}
+.topbar .brand img{flex:0 0 auto!important;width:52px!important;height:52px!important}
+.topbar .brand-text{min-width:0!important}
+.topbar .brand-text .title{
+  font-size:clamp(18px,2.05vw,24px)!important;
+  line-height:1.2!important;white-space:nowrap!important;
+}
+.topbar .brand-text .subtitle{
+  font-size:clamp(9px,.9vw,11px)!important;
+  line-height:1.35!important;letter-spacing:1px!important;
+}
+.topbar .hi5-theme-toggle{
+  position:relative!important;right:auto!important;top:auto!important;
+  transform:none!important;justify-self:end!important;
+  width:44px!important;height:44px!important;margin:0!important;
+}
+.topbar .hi5-theme-toggle:hover{transform:rotate(-8deg)!important}
+@media(max-width:640px){
+  .topbar{
+    grid-template-columns:40px minmax(0,1fr) 40px!important;
+    column-gap:8px!important;min-height:72px!important;
+    padding:8px 12px!important;
+  }
+  .topbar .menu-toggle{width:40px!important;height:40px!important;padding:9px!important}
+  .topbar .brand{gap:8px!important;padding:2px!important}
+  .topbar .brand img{width:42px!important;height:42px!important;border-radius:11px!important}
+  .topbar .brand-text .title{font-size:clamp(12px,3.7vw,16px)!important;letter-spacing:0!important}
+  .topbar .brand-text .subtitle{font-size:clamp(7px,2.1vw,9px)!important;letter-spacing:.45px!important;margin-top:2px!important}
+  .topbar .hi5-theme-toggle{width:38px!important;height:38px!important;border-radius:12px!important}
+}
+@media(max-width:360px){
+  .topbar{grid-template-columns:36px minmax(0,1fr) 36px!important;column-gap:6px!important;padding-inline:9px!important}
+  .topbar .menu-toggle{width:36px!important;height:36px!important}
+  .topbar .brand{gap:6px!important}
+  .topbar .brand img{width:36px!important;height:36px!important}
+  .topbar .brand-text .title{font-size:12px!important}
+  .topbar .brand-text .subtitle{font-size:7px!important;letter-spacing:.25px!important}
+  .topbar .hi5-theme-toggle{width:36px!important;height:36px!important}
+}
+/* More distinctive Academic Calendar visual identity */
+.hi5-calendar-section{
+  position:relative!important;overflow:hidden!important;
+  max-width:1120px!important;margin:34px auto 38px!important;
+  padding:clamp(20px,3.2vw,32px)!important;
+  border:1px solid #cbdce8!important;border-top:5px solid #15966a!important;
+  border-radius:22px!important;
+  background:radial-gradient(circle at 100% 0,rgba(21,150,106,.13),transparent 35%),linear-gradient(145deg,#fff 0%,#f1f6fb 58%,#eaf4f3 100%)!important;
+  box-shadow:0 14px 34px rgba(16,43,69,.10)!important;
+}
+.hi5-calendar-heading{
+  align-items:center!important;gap:22px!important;
+  padding:0 0 20px!important;margin:0 0 20px!important;
+  border-bottom:1px solid #d9e5ed!important;
+}
+.hi5-calendar-kicker{
+  display:inline-flex!important;align-items:center!important;
+  padding:6px 10px!important;border-radius:999px!important;
+  background:#e2f3ec!important;color:#08734f!important;
+  font-size:10px!important;letter-spacing:1.5px!important;
+}
+.hi5-calendar-heading h2{
+  margin:10px 0 7px!important;color:#102b45!important;
+  font-size:clamp(25px,4vw,34px)!important;font-weight:850!important;
+  letter-spacing:-.7px!important;
+}
+.hi5-calendar-heading p{color:#526477!important;font-size:14px!important;line-height:1.75!important}
+.hi5-calendar-icon{
+  width:66px!important;height:66px!important;flex-basis:66px!important;
+  border:1px solid rgba(255,255,255,.25)!important;border-radius:19px!important;
+  background:linear-gradient(145deg,#102b45,#167b69)!important;
+  color:#f5d89f!important;font-size:32px!important;
+  box-shadow:0 9px 20px rgba(16,43,69,.2)!important;
+}
+.hi5-calendar-grid{
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))!important;
+  gap:15px!important;
+}
+.hi5-calendar-card{
+  position:relative!important;min-width:0!important;gap:14px!important;
+  padding:17px!important;border:1px solid #d9e5ed!important;
+  border-left:4px solid #15966a!important;border-radius:16px!important;
+  background:rgba(255,255,255,.96)!important;
+  box-shadow:0 5px 16px rgba(16,43,69,.055)!important;
+  transition:transform .2s ease,box-shadow .2s ease!important;
+}
+.hi5-calendar-card:hover{transform:translateY(-3px)!important;box-shadow:0 12px 24px rgba(16,43,69,.11)!important}
+.hi5-calendar-date{
+  min-width:68px!important;padding:11px 8px!important;
+  border:1px solid #d3e9df!important;border-radius:13px!important;
+  background:linear-gradient(155deg,#e8f6ef,#e5eff8)!important;
+  color:#08734f!important;
+}
+.hi5-calendar-date strong{font-size:23px!important}
+.hi5-calendar-card h3{font-size:15px!important;font-weight:800!important;color:#102b45!important}
+.hi5-calendar-type{
+  padding:4px 8px!important;border-radius:999px!important;
+  background:#edf5f8!important;color:#176b68!important;
+  font-size:9px!important;letter-spacing:.8px!important;
+}
+.hi5-calendar-card p{font-size:13px!important;line-height:1.7!important;color:#526477!important}
+.hi5-calendar-empty{
+  padding:24px!important;border:1px dashed #a9c5d5!important;
+  border-radius:15px!important;background:rgba(255,255,255,.62)!important;
+  color:#526477!important;line-height:1.7!important;
+}
+html.dark .hi5-calendar-section{
+  border-color:#344b63!important;border-top-color:#36b88a!important;
+  background:radial-gradient(circle at 100% 0,rgba(54,184,138,.12),transparent 35%),linear-gradient(145deg,#17283b,#111d2c)!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.24)!important;
+}
+html.dark .hi5-calendar-heading{border-bottom-color:#344b63!important}
+html.dark .hi5-calendar-kicker{background:#1b443a!important;color:#a9ebcd!important}
+html.dark .hi5-calendar-heading h2,html.dark .hi5-calendar-card h3{color:#eef5ff!important}
+html.dark .hi5-calendar-heading p,html.dark .hi5-calendar-card p{color:#c0cede!important}
+html.dark .hi5-calendar-card{background:#1d3045!important;border-color:#3a526a!important;border-left-color:#36b88a!important}
+html.dark .hi5-calendar-date{background:linear-gradient(155deg,#24483f,#203c51)!important;border-color:#3c6659!important;color:#a9ebcd!important}
+html.dark .hi5-calendar-type{background:#203b4d!important;color:#a9d9ef!important}
+html.dark .hi5-calendar-empty{background:#17283b!important;border-color:#526b82!important;color:#c0cede!important}
+@media(max-width:600px){
+  .hi5-calendar-section{margin:24px 12px 30px!important;padding:18px!important;border-radius:18px!important}
+  .hi5-calendar-heading{gap:12px!important;padding-bottom:16px!important;margin-bottom:16px!important}
+  .hi5-calendar-icon{width:48px!important;height:48px!important;flex-basis:48px!important;font-size:24px!important;border-radius:14px!important}
+  .hi5-calendar-card{padding:13px!important;gap:11px!important}
+  .hi5-calendar-date{min-width:58px!important}
+}
+</style>
+
 </head>
 
 <body>
