@@ -1113,6 +1113,33 @@ html.dark .hi5-calendar-empty{background:#17283b!important;border-color:#526b82!
 }
 </style>
 
+
+<style id="hi5-topbar-remove-side-gaps">
+/* Align the identity immediately after the logo and use the centre lane naturally */
+.topbar .brand{
+  justify-content:flex-start!important;
+  text-align:left!important;
+}
+.topbar .brand-text{
+  text-align:left!important;
+  flex:1 1 auto!important;
+}
+.topbar .brand-text .title{
+  text-align:left!important;
+  font-size:clamp(30px,3.35vw,41px)!important;
+  letter-spacing:0!important;
+}
+.topbar .brand-text .subtitle{
+  text-align:left!important;
+  font-size:clamp(14px,1.5vw,19px)!important;
+  letter-spacing:clamp(.6px,.16vw,2px)!important;
+}
+@media(max-width:640px){
+  .topbar .brand-text .title{font-size:clamp(14px,4.1vw,19px)!important}
+  .topbar .brand-text .subtitle{font-size:clamp(8px,2.35vw,10px)!important}
+}
+</style>
+
 </head>
 
 <body>
