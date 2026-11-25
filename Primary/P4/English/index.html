@@ -62,8 +62,8 @@ h1{font-size:clamp(25px,5vw,34px);font-weight:800;line-height:1.25;margin:0 0 9p
     view.rel='noopener';
     actions.appendChild(view);
     if(category.kind==='textbook'){
-      const order=make('a','action download','📩 Order Textbook – UGX 10,000');
-      order.href='https://wa.me/256702234701?text='+encodeURIComponent('Hello Hi5 Education Centre, I would like to order this textbook: '+file.name+'. Price: UGX 10,000.');
+      const order=make('a','action download','🔒 Order PDF – UGX 10,000');
+      order.href='https://wa.me/256702234701?text='+encodeURIComponent('Hello, I would like to purchase the digital PDF (soft copy) of: '+file.name+'. I will pay UGX 10,000 via Airtel Money (0702234701).');
       order.target='_blank';
       order.rel='noopener';
       actions.appendChild(order);
