@@ -67,6 +67,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
         <button class="nav-btn" data-page="tv"><span class="ico">▷</span>Hi5 TV</button>
         <button class="nav-btn" data-page="radio"><span class="ico">♫</span>Hi5 Radio</button>
         <button class="nav-btn" data-page="calendar"><span class="ico">▦</span>Academic calendar</button>
+        <button class="nav-btn" data-page="learners"><span class="ico">✎</span>Learners’ Space</button>
         <button class="nav-btn" data-page="settings"><span class="ico">⚙</span>Website settings</button>
         <div class="side-note">Learn Today, Lead Tomorrow.<br>Administrator access only.</div>
       </aside>
@@ -168,6 +169,11 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
             <div><h3>Calendar events</h3><div id="calendarList" class="list"><div class="empty">Loading calendar events…</div></div></div>
           </div>
         </div>
+        <div id="learnersPage" class="hidden">
+          <div class="content-head"><div><h2>Learners’ Space submissions</h2><p>Review private learner questions and send teacher responses to the parent or guardian.</p></div><button id="refreshLearnersBtn" class="btn btn-primary" type="button">Refresh submissions</button></div>
+          <div id="learnersAdminNotice" class="notice" role="status"></div>
+          <div id="learnerSubmissionList" class="list"><div class="empty">Open this section to load learner submissions.</div></div>
+        </div>
         <div id="placeholderPage" class="hidden">
           <div class="content-head"><div><h2 id="placeholderTitle">Management</h2><p id="placeholderDescription">This section will be configured next.</p></div></div>
           <div id="moduleCards" class="module-grid"></div>
@@ -189,6 +195,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   let tvItems = [];
   let calendarItems = [];
   let radioItems = [];
+  let learnerSubmissions = [];
 
   function showNotice(id, message, type) {
     const el = $(id);
@@ -732,6 +739,80 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
       ["Display settings","Manage approved announcements and website notices."]
     ]}
   };
+  async function loadLearners() {
+    const list = $("learnerSubmissionList");
+    list.innerHTML = '<div class="empty">Loading private learner submissions…</div>';
+    $("learnersAdminNotice").className = "notice";
+    const { data, error } = await client.from("learner_submissions")
+      .select("id,learner_name,class_level,subject,guardian_name,guardian_contact,question,attachment_path,teacher_response,status,created_at,responded_at")
+      .order("created_at", { ascending: false });
+    if (error) {
+      list.innerHTML = '<div class="empty">Could not load learner submissions: ' + escapeHtml(error.message) + '</div>';
+      return;
+    }
+    learnerSubmissions = data || [];
+    await renderLearners();
+  }
+  async function renderLearners() {
+    const list = $("learnerSubmissionList");
+    if (!learnerSubmissions.length) {
+      list.innerHTML = '<div class="empty">There are no learner submissions yet.</div>';
+      return;
+    }
+    const cards = await Promise.all(learnerSubmissions.map(async item => {
+      let attachment = "";
+      if (item.attachment_path) {
+        const { data } = await client.storage.from("hi5-learner-work").createSignedUrl(item.attachment_path, 600);
+        if (data && data.signedUrl) attachment = '<p><a href="' + escapeHtml(data.signedUrl) + '" target="_blank" rel="noopener">Open attached learner work (10-minute link)</a></p>';
+      }
+      return `
+        <article class="announcement">
+          <div class="announcement-top">
+            <div>
+              <h4>${escapeHtml(item.learner_name)} · ${escapeHtml(item.class_level)}</h4>
+              <p>${escapeHtml(item.subject)} · ${escapeHtml(new Date(item.created_at).toLocaleString())}</p>
+              <p><strong>Parent / Guardian:</strong> ${escapeHtml(item.guardian_name)} · <a href="tel:${escapeHtml(item.guardian_contact)}">${escapeHtml(item.guardian_contact)}</a></p>
+              <p><strong>Question:</strong><br>${escapeHtml(item.question).replace(/\n/g,"<br>")}</p>
+              ${attachment}
+            </div>
+            <span class="pill ${item.status === "answered" ? "live" : "draft"}">${escapeHtml(item.status || "pending")}</span>
+          </div>
+          <form class="learner-response-form" data-learner-id="${escapeHtml(item.id)}">
+            <div class="field"><label>Teacher’s response</label><textarea name="teacher_response" rows="3" maxlength="5000" placeholder="Write a helpful answer for the learner…">${escapeHtml(item.teacher_response || "")}</textarea></div>
+            <div class="actions"><button class="btn btn-primary" type="submit">${item.status === "answered" ? "Update response" : "Send response"}</button></div>
+          </form>
+        </article>`;
+    }));
+    list.innerHTML = cards.join("");
+  }
+  $("learnerSubmissionList").addEventListener("submit", async event => {
+    const form = event.target.closest(".learner-response-form");
+    if (!form) return;
+    event.preventDefault();
+    const id = form.dataset.learnerId;
+    const response = new FormData(form).get("teacher_response").trim();
+    if (!response) {
+      $("learnersAdminNotice").textContent = "Please write a response before sending.";
+      $("learnersAdminNotice").className = "notice show error";
+      return;
+    }
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true; button.textContent = "Saving response…";
+    const { error } = await client.from("learner_submissions").update({
+      teacher_response: response, status: "answered", responded_at: new Date().toISOString()
+    }).eq("id", id);
+    if (error) {
+      $("learnersAdminNotice").textContent = "Could not save the response: " + error.message;
+      $("learnersAdminNotice").className = "notice show error";
+      button.disabled = false; button.textContent = "Try again";
+      return;
+    }
+    $("learnersAdminNotice").textContent = "Teacher response saved. Contact the parent or guardian using the details shown above.";
+    $("learnersAdminNotice").className = "notice show success";
+    await loadLearners();
+  });
+  $("refreshLearnersBtn").addEventListener("click", loadLearners);
+
   function openPage(page) {
     document.querySelectorAll(".nav-btn").forEach(button => button.classList.toggle("active", button.dataset.page === page));
     const isAnnouncements = page === "announcements";
@@ -739,17 +820,20 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     const isTV = page === "tv";
     const isRadio = page === "radio";
     const isCalendar = page === "calendar";
+    const isLearners = page === "learners";
     $("announcementsPage").classList.toggle("hidden", !isAnnouncements);
     $("materialsPage").classList.toggle("hidden", !isMaterials);
     $("tvPage").classList.toggle("hidden", !isTV);
     $("radioPage").classList.toggle("hidden", !isRadio);
     $("calendarPage").classList.toggle("hidden", !isCalendar);
-    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV || isRadio || isCalendar);
+    $("learnersPage").classList.toggle("hidden", !isLearners);
+    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV || isRadio || isCalendar || isLearners);
     if (isMaterials) refreshMaterials();
     if (isTV) loadTV();
     if (isRadio) loadRadio();
     if (isCalendar) loadCalendar();
-    if (!isAnnouncements && !isMaterials && !isTV && !isRadio && !isCalendar) {
+    if (isLearners) loadLearners();
+    if (!isAnnouncements && !isMaterials && !isTV && !isRadio && !isCalendar && !isLearners) {
       const info = moduleInfo[page];
       $("placeholderTitle").textContent = info.title;
       $("placeholderDescription").textContent = info.description;
