@@ -174,6 +174,39 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
           <div id="learnersAdminNotice" class="notice" role="status"></div>
           <div id="learnerSubmissionList" class="list"><div class="empty">Open this section to load learner submissions.</div></div>
         </div>
+        <div id="websiteSettingsPage" class="hidden">
+          <div class="content-head"><div><h2>Website Settings</h2><p>Update the public information and learning services shown on Hi5 Education Centre.</p></div><button id="reloadSettingsBtn" class="btn btn-quiet" type="button">Reload settings</button></div>
+          <form id="websiteSettingsForm">
+            <div class="editor">
+              <div class="module">
+                <h3>School identity and contact</h3>
+                <div class="field"><label for="settingSchoolName">School name</label><input id="settingSchoolName" maxlength="100" required></div>
+                <div class="field"><label for="settingMotto">School motto</label><input id="settingMotto" maxlength="160" required></div>
+                <div class="field"><label for="settingEmail">Public email</label><input id="settingEmail" type="email" maxlength="160"></div>
+                <div class="field"><label for="settingWhatsapp">WhatsApp number (international format)</label><input id="settingWhatsapp" maxlength="30" placeholder="+256702234701"></div>
+              </div>
+              <div class="module">
+                <h3>Online Learning</h3>
+                <label class="checkline"><input id="settingOnlineEnabled" type="checkbox"> Show Online Learning on the website</label>
+                <div class="field"><label for="settingOnlineTitle">Section title</label><input id="settingOnlineTitle" maxlength="120"></div>
+                <div class="field"><label for="settingOnlineDescription">Description</label><textarea id="settingOnlineDescription" rows="5" maxlength="1200"></textarea></div>
+              </div>
+              <div class="module">
+                <h3>Learners’ Space</h3>
+                <label class="checkline"><input id="settingLearnersEnabled" type="checkbox"> Accept and show Learners’ Space</label>
+                <div class="field"><label for="settingLearnersDescription">Section introduction</label><textarea id="settingLearnersDescription" rows="5" maxlength="1200"></textarea></div>
+              </div>
+              <div class="module">
+                <h3>Website notice</h3>
+                <label class="checkline"><input id="settingNoticeEnabled" type="checkbox"> Display a public notice</label>
+                <div class="field"><label for="settingNoticeText">Notice message</label><textarea id="settingNoticeText" rows="5" maxlength="1000" placeholder="Write an important notice for website visitors"></textarea></div>
+              </div>
+            </div>
+            <div class="actions"><button class="btn btn-primary" id="saveWebsiteSettingsBtn" type="submit">Save website settings</button></div>
+            <div id="websiteSettingsNotice" class="notice" role="status" aria-live="polite"></div>
+            <p class="upload-help">Saved settings are published to the public website. Changes to school identity, contact details and service descriptions appear after the website reloads. Never enter passwords or private administrator information here.</p>
+          </form>
+        </div>
         <div id="placeholderPage" class="hidden">
           <div class="content-head"><div><h2 id="placeholderTitle">Management</h2><p id="placeholderDescription">This section will be configured next.</p></div></div>
           <div id="moduleCards" class="module-grid"></div>
@@ -196,6 +229,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   let calendarItems = [];
   let radioItems = [];
   let learnerSubmissions = [];
+  let websiteSettings = {};
 
   function showNotice(id, message, type) {
     const el = $(id);
@@ -739,6 +773,65 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
       ["Display settings","Manage approved announcements and website notices."]
     ]}
   };
+  const defaultWebsiteSettings = {
+    school_name:"Hi5 Education Centre", motto:"Learn Today, Lead Tomorrow",
+    email:"hi5educentre256@gmail.com", whatsapp:"+256702234701",
+    online_enabled:true, online_title:"Hi5 Online Learning",
+    online_description:"Join teacher-led online lessons from home. Hi5 plans to deliver live interactive classes through Zoom, helping learners follow explanations, ask questions and learn with guidance.",
+    learners_enabled:true,
+    learners_description:"Need help with schoolwork? Send your question or attach your work. A Hi5 teacher will review it and respond through your parent or guardian’s contact.",
+    notice_enabled:false, notice_text:""
+  };
+  function fillWebsiteSettings(settings) {
+    websiteSettings = {...defaultWebsiteSettings, ...(settings || {})};
+    $("settingSchoolName").value = websiteSettings.school_name || "";
+    $("settingMotto").value = websiteSettings.motto || "";
+    $("settingEmail").value = websiteSettings.email || "";
+    $("settingWhatsapp").value = websiteSettings.whatsapp || "";
+    $("settingOnlineEnabled").checked = !!websiteSettings.online_enabled;
+    $("settingOnlineTitle").value = websiteSettings.online_title || "";
+    $("settingOnlineDescription").value = websiteSettings.online_description || "";
+    $("settingLearnersEnabled").checked = !!websiteSettings.learners_enabled;
+    $("settingLearnersDescription").value = websiteSettings.learners_description || "";
+    $("settingNoticeEnabled").checked = !!websiteSettings.notice_enabled;
+    $("settingNoticeText").value = websiteSettings.notice_text || "";
+  }
+  async function loadWebsiteSettings() {
+    $("websiteSettingsNotice").className = "notice";
+    const {data,error} = await client.from("hi5_site_settings").select("settings").eq("id",1).maybeSingle();
+    if(error) {
+      showNotice("websiteSettingsNotice","Could not load settings. Run supabase/website-settings-setup.sql in Supabase SQL Editor first. "+error.message,"error");
+      fillWebsiteSettings(defaultWebsiteSettings); return;
+    }
+    fillWebsiteSettings(data && data.settings ? data.settings : defaultWebsiteSettings);
+  }
+  $("websiteSettingsForm").addEventListener("submit", async event => {
+    event.preventDefault();
+    const button=$("saveWebsiteSettingsBtn");button.disabled=true;button.textContent="Saving…";
+    const next={
+      school_name:$("settingSchoolName").value.trim(),
+      motto:$("settingMotto").value.trim(),
+      email:$("settingEmail").value.trim(),
+      whatsapp:$("settingWhatsapp").value.trim(),
+      online_enabled:$("settingOnlineEnabled").checked,
+      online_title:$("settingOnlineTitle").value.trim(),
+      online_description:$("settingOnlineDescription").value.trim(),
+      learners_enabled:$("settingLearnersEnabled").checked,
+      learners_description:$("settingLearnersDescription").value.trim(),
+      notice_enabled:$("settingNoticeEnabled").checked,
+      notice_text:$("settingNoticeText").value.trim()
+    };
+    try {
+      const {error}=await client.from("hi5_site_settings").upsert({id:1,settings:next,updated_at:new Date().toISOString()},{onConflict:"id"});
+      if(error)throw error;
+      fillWebsiteSettings(next);
+      showNotice("websiteSettingsNotice","Website settings saved. Reload the public website to see the updates.","success");
+    } catch(error) {
+      showNotice("websiteSettingsNotice","Could not save website settings: "+error.message,"error");
+    } finally {button.disabled=false;button.textContent="Save website settings";}
+  });
+  $("reloadSettingsBtn").addEventListener("click",loadWebsiteSettings);
+
   async function loadLearners() {
     const list = $("learnerSubmissionList");
     list.innerHTML = '<div class="empty">Loading private learner submissions…</div>';
@@ -821,19 +914,22 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     const isRadio = page === "radio";
     const isCalendar = page === "calendar";
     const isLearners = page === "learners";
+    const isSettings = page === "settings";
     $("announcementsPage").classList.toggle("hidden", !isAnnouncements);
     $("materialsPage").classList.toggle("hidden", !isMaterials);
     $("tvPage").classList.toggle("hidden", !isTV);
     $("radioPage").classList.toggle("hidden", !isRadio);
     $("calendarPage").classList.toggle("hidden", !isCalendar);
     $("learnersPage").classList.toggle("hidden", !isLearners);
-    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV || isRadio || isCalendar || isLearners);
+    $("websiteSettingsPage").classList.toggle("hidden", !isSettings);
+    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV || isRadio || isCalendar || isLearners || isSettings);
     if (isMaterials) refreshMaterials();
     if (isTV) loadTV();
     if (isRadio) loadRadio();
     if (isCalendar) loadCalendar();
     if (isLearners) loadLearners();
-    if (!isAnnouncements && !isMaterials && !isTV && !isRadio && !isCalendar && !isLearners) {
+    if (isSettings) loadWebsiteSettings();
+    if (!isAnnouncements && !isMaterials && !isTV && !isRadio && !isCalendar && !isLearners && !isSettings) {
       const info = moduleInfo[page];
       $("placeholderTitle").textContent = info.title;
       $("placeholderDescription").textContent = info.description;
