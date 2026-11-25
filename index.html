@@ -1392,7 +1392,7 @@ Choose Your Level
 <section class="hi5-learners-section" id="hi5-learners-space" aria-labelledby="hi5-learners-title">
   <div class="hi5-learners-heading">
     <div><span class="hi5-learners-kicker">YOUR QUESTIONS MATTER</span><h2 id="hi5-learners-title">Hi5 Learners’ Space</h2>
-    <p>Submit your schoolwork directly to Hi5 Education Centre through WhatsApp. Complete the details below, then attach clear photographs or a document in the WhatsApp chat before sending.</p></div>
+    <p>Submit your schoolwork to Hi5 Education Centre using WhatsApp or email. Complete the details below, choose your preferred method, then attach clear photographs or documents before sending.</p></div>
     <div class="hi5-learners-symbol" aria-hidden="true">✎</div>
   </div>
   <form id="hi5-learner-form" class="hi5-learner-form">
@@ -1402,14 +1402,17 @@ Choose Your Level
       <label>Subject<input name="subject" type="text" maxlength="80" required placeholder="e.g. Mathematics or English"></label>
       <label>Topic / Assignment<input name="assignment" type="text" maxlength="160" required placeholder="Enter the topic or assignment title"></label>
       <label>Parent / Guardian’s name<input name="guardian_name" type="text" maxlength="100" required placeholder="Enter parent or guardian’s name"></label>
-      <label>Parent / Guardian’s contact<input name="guardian_contact" type="tel" maxlength="40" required placeholder="Include country code, e.g. +256…"></label>
+      <label>Parent / Guardian’s phone or WhatsApp<input name="guardian_contact" type="tel" maxlength="40" required placeholder="Include country code, e.g. +256…"></label>
+      <label class="hi5-learner-wide">Parent / Guardian’s email address (optional)<input name="guardian_email" type="email" maxlength="254" autocomplete="email" placeholder="Enter an email address"></label>
       <label class="hi5-learner-wide">Message to the teacher (optional)<textarea name="question" rows="4" maxlength="1500" placeholder="Add any explanation or tell the teacher where the learner needs help."></textarea></label>
     </div>
-    <label class="hi5-learner-consent"><input type="checkbox" name="guardian_consent" value="yes" required><span>I confirm that the learner’s parent or guardian knows about this submission and agrees to contact Hi5 about the schoolwork.</span></label>
-    <button class="hi5-learner-submit" type="submit">Continue to WhatsApp <span aria-hidden="true">→</span></button>
-    <p class="hi5-learners-privacy">After WhatsApp opens, attach clear photos, PDFs or documents to the chat and press Send. Your work is received by Hi5 through its official WhatsApp contact. Please do not share passwords or unnecessary personal information.</p>
+    <label class="hi5-learner-consent"><input type="checkbox" name="guardian_consent" value="yes" required><span>I confirm that the learner’s parent or guardian knows about this submission and agrees that Hi5 may contact them about the schoolwork.</span></label>
+    <div class="hi5-learner-submit-options">
+      <button class="hi5-learner-submit" type="submit" data-channel="whatsapp">Submit via WhatsApp <span aria-hidden="true">→</span></button>
+      <button class="hi5-learner-submit" type="submit" data-channel="email">Submit via Email <span aria-hidden="true">→</span></button>
+    </div>
+    <p class="hi5-learners-privacy">After WhatsApp or your email app opens, attach clear photographs, PDFs or documents and send your message. Attachments must be added manually. Email will be addressed to hi5educentre256@gmail.com. Please do not include passwords or unnecessary personal information.</p>
   </form>
-  <a class="hi5-learner-whatsapp" href="https://wa.me/256702234701" target="_blank" rel="noopener" hidden>Open WhatsApp</a>
 </section>
 <section class="hi5-tv-section" id="hi5-tv" aria-labelledby="hi5-tv-title">
   <div class="hi5-tv-head">
@@ -2634,27 +2637,32 @@ window.addEventListener("message",function(event){
   event.preventDefault();
   if(!form.reportValidity())return;
   const data=new FormData(form);
+  const get=name=>String(data.get(name)||"").trim();
   const lines=[
    "Hello Hi5 Education Centre,",
    "",
    "I would like to submit my child's schoolwork.",
    "",
-   "Learner's Name: "+String(data.get("learner_name")||"").trim(),
-   "Class: "+String(data.get("class_level")||"").trim(),
-   "Subject: "+String(data.get("subject")||"").trim(),
-   "Topic/Assignment: "+String(data.get("assignment")||"").trim(),
+   "Learner's Name: "+get("learner_name"),
+   "Class: "+get("class_level"),
+   "Subject: "+get("subject"),
+   "Topic/Assignment: "+get("assignment"),
    "",
-   "Parent/Guardian's Name: "+String(data.get("guardian_name")||"").trim(),
-   "Contact Number: "+String(data.get("guardian_contact")||"").trim()
+   "Parent/Guardian's Name: "+get("guardian_name"),
+   "Contact Number: "+get("guardian_contact")
   ];
-  const message=String(data.get("question")||"").trim();
-  if(message)lines.push("Message to the teacher: "+message);
-  lines.push("","I will attach the completed work in this WhatsApp chat.","Thank you.");
-  const contact=document.querySelector(".hi5-learner-whatsapp");
-  const base=contact?contact.href:"https://wa.me/256702234701";
-  const url=new URL(base);
-  url.searchParams.set("text",lines.join("\n"));
-  window.open(url.toString(),"_blank","noopener,noreferrer");
+  if(get("guardian_email"))lines.push("Parent/Guardian's Email: "+get("guardian_email"));
+  if(get("question"))lines.push("Message to the teacher: "+get("question"));
+  lines.push("","I have attached / will attach the completed work.","Thank you.");
+  const channel=event.submitter&&event.submitter.dataset.channel;
+  if(channel==="email"){
+   const subject="Learner's Work Submission - "+get("learner_name")+" ("+get("class_level")+")";
+   const url="mailto:hi5educentre256@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(lines.join("\n"));
+   window.location.href=url;
+  }else{
+   const url="https://wa.me/256702234701?text="+encodeURIComponent(lines.join("\n"));
+   window.open(url,"_blank","noopener,noreferrer");
+  }
  });
 })();
 </script>
