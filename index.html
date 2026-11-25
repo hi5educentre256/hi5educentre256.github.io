@@ -1392,24 +1392,24 @@ Choose Your Level
 <section class="hi5-learners-section" id="hi5-learners-space" aria-labelledby="hi5-learners-title">
   <div class="hi5-learners-heading">
     <div><span class="hi5-learners-kicker">YOUR QUESTIONS MATTER</span><h2 id="hi5-learners-title">Hi5 Learners’ Space</h2>
-    <p>Need help with schoolwork? Send your question or attach your work. A Hi5 teacher will review it and respond through your parent or guardian’s contact.</p></div>
+    <p>Submit your schoolwork directly to Hi5 Education Centre through WhatsApp. Complete the details below, then attach clear photographs or a document in the WhatsApp chat before sending.</p></div>
     <div class="hi5-learners-symbol" aria-hidden="true">✎</div>
   </div>
   <form id="hi5-learner-form" class="hi5-learner-form">
     <div class="hi5-learner-fields">
-      <label>Learner’s full name<input name="learner_name" type="text" maxlength="100" autocomplete="name" required placeholder="Enter learner’s name"></label>
-      <label>Class / Level<select name="class_level" required><option value="">Select class or level</option><option>Nursery</option><option>P1</option><option>P2</option><option>P3</option><option>P4</option><option>P5</option><option>P6</option><option>P7</option><option>S1</option><option>S2</option><option>S3</option><option>S4</option><option>S5</option><option>S6</option><option>Certificate</option><option>Diploma</option><option>Degree</option><option>Other</option></select></label>
-      <label>Subject<input name="subject" type="text" maxlength="80" required placeholder="e.g. Mathematics, English"></label>
-      <label>Parent / Guardian’s name<input name="guardian_name" type="text" maxlength="100" required placeholder="Adult responsible for the learner"></label>
-      <label class="hi5-learner-wide">Parent / Guardian’s phone or WhatsApp<input name="guardian_contact" type="tel" maxlength="30" required placeholder="Include country code, e.g. +256…"></label>
-      <label class="hi5-learner-wide">Your question or message<textarea name="question" rows="5" maxlength="3000" required placeholder="Explain what you need help with. You can also describe the part you do not understand."></textarea></label>
-      <label class="hi5-learner-wide">Attach your work (optional)<input name="attachment" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf,.doc,.docx,image/jpeg,image/png,image/webp,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"><small>Accepted: image, PDF or Word document. Maximum size: 10 MB.</small></label>
+      <label>Learner’s full name<input name="learner_name" type="text" maxlength="100" autocomplete="name" required placeholder="Enter learner’s full name"></label>
+      <label>Class / Level<select name="class_level" required><option value="">Select class or level</option><option>Baby Class</option><option>Middle Class</option><option>Top Class</option><option>P1</option><option>P2</option><option>P3</option><option>P4</option><option>P5</option><option>P6</option><option>P7</option><option>S1</option><option>S2</option><option>S3</option><option>S4</option><option>S5</option><option>S6</option><option>Certificate</option><option>Diploma</option><option>Degree</option><option>Other</option></select></label>
+      <label>Subject<input name="subject" type="text" maxlength="80" required placeholder="e.g. Mathematics or English"></label>
+      <label>Topic / Assignment<input name="assignment" type="text" maxlength="160" required placeholder="Enter the topic or assignment title"></label>
+      <label>Parent / Guardian’s name<input name="guardian_name" type="text" maxlength="100" required placeholder="Enter parent or guardian’s name"></label>
+      <label>Parent / Guardian’s contact<input name="guardian_contact" type="tel" maxlength="40" required placeholder="Include country code, e.g. +256…"></label>
+      <label class="hi5-learner-wide">Message to the teacher (optional)<textarea name="question" rows="4" maxlength="1500" placeholder="Add any explanation or tell the teacher where the learner needs help."></textarea></label>
     </div>
-    <label class="hi5-learner-consent"><input type="checkbox" name="guardian_consent" value="yes" required><span>I confirm that my parent or guardian knows about this submission and agrees that Hi5 may contact them about the learner’s question.</span></label>
-    <div id="hi5-learner-notice" class="hi5-learner-notice" role="status" aria-live="polite"></div>
-    <button class="hi5-learner-submit" type="submit">Send to Hi5 teachers <span aria-hidden="true">→</span></button>
+    <label class="hi5-learner-consent"><input type="checkbox" name="guardian_consent" value="yes" required><span>I confirm that the learner’s parent or guardian knows about this submission and agrees to contact Hi5 about the schoolwork.</span></label>
+    <button class="hi5-learner-submit" type="submit">Continue to WhatsApp <span aria-hidden="true">→</span></button>
+    <p class="hi5-learners-privacy">After WhatsApp opens, attach clear photos, PDFs or documents to the chat and press Send. Your work is received by Hi5 through its official WhatsApp contact. Please do not share passwords or unnecessary personal information.</p>
   </form>
-  <p class="hi5-learners-privacy">Your submission and any attached work are private. They are not displayed publicly. Please do not include passwords or unnecessary personal information.</p>
+  <a class="hi5-learner-whatsapp" href="https://wa.me/256702234701" target="_blank" rel="noopener" hidden>Open WhatsApp</a>
 </section>
 <section class="hi5-tv-section" id="hi5-tv" aria-labelledby="hi5-tv-title">
   <div class="hi5-tv-head">
@@ -2629,46 +2629,32 @@ window.addEventListener("message",function(event){
 <script>(function(){const b=document.getElementById('hi5ThemeToggle');if(!b)return;function set(t){document.documentElement.classList.toggle('dark',t==='dark');b.textContent=t==='dark'?'🌚':'🌙';const label=t==='dark'?'Switch to light theme':'Switch to dark theme';b.setAttribute('aria-label',label);b.title=label;try{localStorage.setItem('hi5-theme',t)}catch(e){}}set(document.documentElement.classList.contains('dark')?'dark':'light');b.onclick=()=>set(document.documentElement.classList.contains('dark')?'light':'dark')})();</script><script id="hi5-learners-submit-script">
 (function(){
  const form=document.getElementById("hi5-learner-form");
- if(!form||!window.supabase)return;
- const db=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
- const notice=document.getElementById("hi5-learner-notice");
- form.addEventListener("submit",async event=>{
+ if(!form)return;
+ form.addEventListener("submit",function(event){
   event.preventDefault();
-  notice.className="hi5-learner-notice";notice.textContent="";
-  const button=form.querySelector('button[type="submit"]');
-  const data=new FormData(form),file=data.get("attachment");
-  if(file&&file.size>10*1024*1024){notice.className="hi5-learner-notice show error";notice.textContent="The attachment is larger than 10 MB. Please choose a smaller file.";return;}
-  button.disabled=true;button.textContent="Submitting securely…";
-  let attachmentPath=null;
-  try{
-   if(file&&file.size){
-    const ext=(file.name.split(".").pop()||"file").toLowerCase().replace(/[^a-z0-9]/g,"");
-    attachmentPath=crypto.randomUUID()+"/work."+ext;
-    const uploaded=await db.storage.from("hi5-learner-work").upload(attachmentPath,file,{upsert:false,contentType:file.type||"application/octet-stream"});
-    if(uploaded.error)throw uploaded.error;
-   }
-   const result=await db.from("learner_submissions").insert({
-    learner_name:String(data.get("learner_name")||"").trim(),
-    class_level:String(data.get("class_level")||"").trim(),
-    subject:String(data.get("subject")||"").trim(),
-    guardian_name:String(data.get("guardian_name")||"").trim(),
-    guardian_contact:String(data.get("guardian_contact")||"").trim(),
-    question:String(data.get("question")||"").trim(),
-    attachment_path:attachmentPath
-   });
-   if(result.error)throw result.error;
-   form.reset();notice.className="hi5-learner-notice show success";notice.textContent="Thank you. Your question has been sent privately to Hi5. A teacher will review it and contact your parent or guardian using the details provided.";
-  }catch(error){
-   if(attachmentPath){
-    try{await db.storage.from("hi5-learner-work").remove([attachmentPath]);}
-    catch(cleanupError){console.warn("Hi5 learner attachment cleanup:",cleanupError);}
-   }
-   notice.className="hi5-learner-notice show error";
-   const reason=error&&error.message?error.message:"Unknown Supabase error";
-   const code=error&&error.code?" ("+error.code+")":"";
-   notice.textContent="We could not submit your work. Technical detail"+code+": "+reason+". Please share this message with Hi5 support.";
-   console.error("Hi5 learner submission:",error);
-  }finally{button.disabled=false;button.innerHTML='Send to Hi5 teachers <span aria-hidden="true">→</span>';}
+  if(!form.reportValidity())return;
+  const data=new FormData(form);
+  const lines=[
+   "Hello Hi5 Education Centre,",
+   "",
+   "I would like to submit my child's schoolwork.",
+   "",
+   "Learner's Name: "+String(data.get("learner_name")||"").trim(),
+   "Class: "+String(data.get("class_level")||"").trim(),
+   "Subject: "+String(data.get("subject")||"").trim(),
+   "Topic/Assignment: "+String(data.get("assignment")||"").trim(),
+   "",
+   "Parent/Guardian's Name: "+String(data.get("guardian_name")||"").trim(),
+   "Contact Number: "+String(data.get("guardian_contact")||"").trim()
+  ];
+  const message=String(data.get("question")||"").trim();
+  if(message)lines.push("Message to the teacher: "+message);
+  lines.push("","I will attach the completed work in this WhatsApp chat.","Thank you.");
+  const contact=document.querySelector(".hi5-learner-whatsapp");
+  const base=contact?contact.href:"https://wa.me/256702234701";
+  const url=new URL(base);
+  url.searchParams.set("text",lines.join("\n"));
+  window.open(url.toString(),"_blank","noopener,noreferrer");
  });
 })();
 </script>
