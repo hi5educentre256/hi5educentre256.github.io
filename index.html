@@ -16,7 +16,7 @@
   <link rel="canonical" href="https://hi5educentre256.github.io/">
   <link rel="icon" type="image/png" href="https://hi5educentre256.github.io/images/logo.png">
   <link rel="apple-touch-icon" href="https://hi5educentre256.github.io/images/logo.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="/manifest.webmanifest">\n<meta name="theme-color" content="#102b4e">\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-title" content="Hi5 Education Centre">\n<meta name="apple-touch-icon" href="/images/hi5-app-icon.svg">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Hi5 Education Centre provides lesson notes, schemes of work, textbooks, past papers and learning materials for Nursery, Primary, Secondary and University students in Uganda.">
 
 <meta name="keywords" content="Uganda education, lesson notes, schemes of work, textbooks, past papers, nursery, primary, secondary, university, Hi5 Education Centre">
@@ -321,21 +321,16 @@ button{
   border-top:1px solid #e5e7eb;
 }
 
-/* HI5 WHATSAPP WELCOME PANEL */
-.wa-float{position:fixed;right:18px;bottom:18px;z-index:9999;border:0;border-radius:30px;padding:12px 17px;background:#20c86a;color:#fff;display:flex;align-items:center;gap:9px;box-shadow:0 6px 22px #09233a35;cursor:pointer;font-weight:700}
-.wa-float img{width:24px;height:24px}.wa-float span{font-size:14px}
-.wa-box{position:fixed;right:18px;bottom:82px;width:min(340px,calc(100vw - 30px));background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 14px 42px #071b3640;display:none;z-index:10000;color:#243449}
-.wa-header{background:#075e54;color:#fff;padding:16px;display:flex;align-items:center;gap:11px}
-.wa-avatar{width:42px;height:42px;border-radius:50%;background:#fff;color:#075e54;display:grid;place-items:center;font-weight:800;font-size:17px}
-.wa-headcopy{flex:1}.wa-headcopy strong{display:block;font-size:14px}.wa-headcopy small{display:flex;align-items:center;gap:5px;margin-top:4px;color:#d9f4e9;font-size:11px}
-.wa-online-dot{width:7px;height:7px;background:#61e294;border-radius:50%;display:inline-block}
-.wa-close{background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer}
-.wa-body{padding:15px;background:#f4f7f5;font-size:13px}
-.wa-welcome{background:#fff;padding:12px 13px;border-radius:3px 12px 12px 12px;box-shadow:0 1px 2px #00000012;line-height:1.55;margin:0 0 12px}
-.wa-body h4{margin:14px 0 7px;font-size:11px;color:#66766e;text-transform:uppercase;letter-spacing:.06em}
-.wa-contact-list{display:grid;gap:7px}.wa-contact-list a{display:flex;justify-content:space-between;align-items:center;padding:10px 11px;background:#fff;border:1px solid #e3ebe6;border-radius:9px;color:#174c3c;text-decoration:none;font-size:12px;font-weight:600}
-.wa-contact-list a.wa-start{background:#20c86a;color:#fff;border-color:#20c86a;justify-content:center;font-size:13px}
-.wa-foot{padding:10px 14px;text-align:center;color:#7b8983;background:#fff;font-size:10px}
+/* COMPACT WHATSAPP CONTACT */
+.wa-float{position:fixed;right:16px;bottom:16px;z-index:9999;width:54px;height:54px;border:0;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 5px 18px #102b4e40;cursor:pointer}
+.wa-float img{width:29px;height:29px}
+.wa-box{position:fixed;right:16px;bottom:82px;width:min(290px,calc(100vw - 32px));background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 12px 35px #102b4e35;display:none;z-index:10000;color:#243449}
+.wa-header{background:#075e54;color:white;padding:13px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:14px}
+.wa-close{background:transparent;border:0;color:white;font-size:21px;cursor:pointer}
+.wa-body{padding:13px;background:#f5f7f5;font-size:13px}
+.wa-welcome{margin:0 0 12px;background:white;padding:11px;border-radius:3px 11px 11px 11px;line-height:1.5}
+.wa-start{display:block;text-align:center;background:#25D366;color:#fff;text-decoration:none;font-weight:700;padding:11px;border-radius:8px}
+.wa-foot{padding:8px;text-align:center;color:#748078;font-size:10px}
 @media(max-width:480px){.wa-box{right:12px;bottom:76px}.wa-float{right:12px;bottom:12px}}
   /* HERO SECTION */
 
@@ -707,6 +702,11 @@ html{scroll-behavior:smooth}body{color:var(--hi5-ink);background:#f4f7fb}body.me
 .hi5-radio-card audio{display:block;width:100%;height:42px}
 .hi5-radio-empty{grid-column:1/-1;margin:0;padding:18px;border:1px dashed #6a8294;border-radius:12px;color:#d5e1e9;font-size:13px;text-align:center}
 @media(max-width:600px){.hi5-radio-heading{align-items:flex-start}.hi5-radio-icon{width:44px;height:44px;flex-basis:44px;font-size:25px}.hi5-radio-card{padding:13px}}
+
+/* HI5 WEB APP INSTALL BUTTON */
+.install-app{position:fixed;left:16px;bottom:16px;z-index:9998;border:0;border-radius:24px;padding:11px 15px;background:#102b4e;color:#fff;font-weight:700;font-size:12px;box-shadow:0 5px 18px #102b4e35;cursor:pointer;display:none}
+.install-help{position:fixed;left:16px;bottom:72px;z-index:10001;width:min(290px,calc(100vw - 32px));padding:14px;background:#fff;color:#243449;border-radius:12px;box-shadow:0 10px 30px #102b4e35;display:none;font-size:13px;line-height:1.5}
+.install-help button{float:right;border:0;background:none;font-size:18px;cursor:pointer}
 </style>
 </head>
 
@@ -1812,45 +1812,24 @@ function loadFileIndex(){
 };
 </script>
 
-<!-- HI5 WHATSAPP CONTACT -->
-<button class="wa-float" type="button" onclick="openWA()" aria-label="Open Hi5 WhatsApp support">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt=""><span>Chat with Hi5</span>
+
+<button id="installHi5" class="install-app" type="button">＋ Install Hi5 App</button>
+<div id="installHelp" class="install-help"><button type="button" onclick="document.getElementById('installHelp').style.display='none'">×</button><strong>Install Hi5 Education Centre</strong><p>On Android, open this website in Chrome, tap the browser menu (⋮), then choose <b>Install app</b> or <b>Add to Home screen</b>.</p><p>On iPhone, tap Share, then <b>Add to Home Screen</b>.</p></div>
+<!-- COMPACT WHATSAPP CHAT -->
+<button class="wa-float" type="button" onclick="openWA()" aria-label="Chat with Hi5 on WhatsApp">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">
 </button>
-<div id="waBox" class="wa-box" role="dialog" aria-label="Hi5 contact panel" aria-modal="false">
-  <div class="wa-header">
-    <div class="wa-avatar">H5</div>
-    <div class="wa-headcopy"><strong>Hi5 Education Centre</strong><small><i class="wa-online-dot"></i> Welcome · WhatsApp support</small></div>
-    <button class="wa-close" type="button" onclick="closeWA()" aria-label="Close">×</button>
-  </div>
+<div id="waBox" class="wa-box" role="dialog" aria-label="Hi5 WhatsApp welcome">
+  <div class="wa-header"><span>Hi5 Education Centre</span><button class="wa-close" type="button" onclick="closeWA()" aria-label="Close">×</button></div>
   <div class="wa-body">
     <p class="wa-welcome">Hello, welcome to Hi5 Education Centre!<br>How may we help you today?</p>
-    <h4>Contact us</h4>
-    <div class="wa-contact-list">
-      <a href="tel:+256702234701">Call / WhatsApp <span>+256 702 234 701</span></a>
-      <a href="mailto:hi5educentre256@gmail.com">Email us <span>Send email ↗</span></a>
-      <a class="wa-start" href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre%2C%20I%20need%20some%20information." target="_blank" rel="noopener">Start WhatsApp conversation</a>
-    </div>
-    <h4>Quick links</h4>
-    <div class="wa-contact-list">
-      <a href="#" onclick="closeWA();openAbout();return false;">About Hi5 <span>↗</span></a>
-      <a href="/" onclick="closeWA()">Home <span>↗</span></a>
-    </div>
+    <a class="wa-start" href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre%2C%20I%20need%20some%20information." target="_blank" rel="noopener">Chat on WhatsApp</a>
   </div>
-  <div class="wa-foot">Your message opens securely in WhatsApp.</div>
+  <div class="wa-foot">We look forward to helping you.</div>
 </div>
-
 <script>
 function openWA(){const panel=document.getElementById("waBox");if(panel)panel.style.display="block";}
 function closeWA(){const panel=document.getElementById("waBox");if(panel)panel.style.display="none";}
-document.addEventListener("click", function(e){
-  if(!e.target.closest("#searchBox") && !e.target.closest("#suggestList")){
-    document.getElementById("suggestList").style.display = "none";
-  }
-});
-  function searchAll(query){
-  document.getElementById("searchBox").value = query;
-  openFiltered(query);
-}
 </script>
 
 <script>
@@ -2113,5 +2092,17 @@ window.addEventListener("message",function(event){
   console.error("Hi5 Radio:",error);
  }
 })();
-</script></body>
+</script>
+<script>
+(function(){
+ let deferredPrompt=null;const btn=document.getElementById('installHi5'),help=document.getElementById('installHelp');if(!btn)return;
+ const isStandalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+ if(!isStandalone){btn.style.display='block';}
+ window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredPrompt=e;btn.textContent='＋ Install Hi5 App';btn.style.display='block';});
+ btn.addEventListener('click',async function(){if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;btn.style.display='none';}else{help.style.display=help.style.display==='block'?'none':'block';}});
+ window.addEventListener('appinstalled',function(){btn.style.display='none';help.style.display='none';});
+ if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/service-worker.js').catch(function(err){console.log('Hi5 app setup:',err);});});}
+})();
+</script>
+</body>
 </html>
