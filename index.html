@@ -324,14 +324,13 @@ button{
 /* COMPACT WHATSAPP CONTACT */
 .wa-float{position:fixed;right:16px;bottom:16px;z-index:9999;width:54px;height:54px;border:0;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 5px 18px #102b4e40;cursor:pointer}
 .wa-float img{width:29px;height:29px}
-.wa-box{position:fixed;right:16px;bottom:82px;width:min(290px,calc(100vw - 32px));background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 12px 35px #102b4e35;display:none;z-index:10000;color:#243449}
-.wa-header{background:#075e54;color:white;padding:13px 14px;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:14px}
-.wa-close{background:transparent;border:0;color:white;font-size:21px;cursor:pointer}
-.wa-body{padding:13px;background:#f5f7f5;font-size:13px}
-.wa-welcome{margin:0 0 12px;background:white;padding:11px;border-radius:3px 11px 11px 11px;line-height:1.5}
-.wa-start{display:block;text-align:center;background:#25D366;color:#fff;text-decoration:none;font-weight:700;padding:11px;border-radius:8px}
-.wa-foot{padding:8px;text-align:center;color:#748078;font-size:10px}
-@media(max-width:480px){.wa-box{right:12px;bottom:76px}.wa-float{right:12px;bottom:12px}}
+.wa-box{position:fixed;right:16px;bottom:82px;width:min(225px,calc(100vw - 32px));background:#fff;border-radius:11px;overflow:hidden;box-shadow:0 8px 24px #102b4e30;display:none;z-index:10000;color:#243449}
+.wa-header{background:#075e54;color:white;padding:9px 11px;display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:12px}
+.wa-close{background:transparent;border:0;color:white;font-size:19px;cursor:pointer}
+.wa-body{padding:9px;background:#f5f7f5;font-size:12px}
+.wa-welcome{margin:0 0 8px;background:white;padding:8px;border-radius:3px 9px 9px 9px;line-height:1.4}
+.wa-start{display:block;text-align:center;background:#25D366;color:#fff;text-decoration:none;font-weight:700;padding:8px;border-radius:7px;font-size:12px}
+@media(max-width:480px){.wa-box{right:12px;bottom:76px;width:215px}.wa-float{right:12px;bottom:12px}}
   /* HERO SECTION */
 
 .hero{
@@ -1482,26 +1481,8 @@ html += `
 }
 /* PDF VIEW */
 function viewPDF(url, name = "unknown"){
-  
-  // ✅ TRACK VIEW IN GOOGLE ANALYTICS
-  gtag('event', 'view_pdf', {
-    file_name: name
-  });
-
-  stack.push(document.getElementById("content").innerHTML);
-
-  document.getElementById("content").innerHTML = `
-  <button onclick="back()">⬅ Back</button>
-
-  <div style="height:85vh;">
-    <iframe 
-      src="https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(url)}"
-      style="width:100%;height:100%;border:none;">
-    </iframe>
-  </div>
-
-  <div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>
-  `;
+  gtag('event', 'view_pdf', { file_name: name });
+  window.open(url, "_blank", "noopener");
 }
 
 function openFile(url){
@@ -1825,7 +1806,6 @@ function loadFileIndex(){
     <p class="wa-welcome">Hello, welcome to Hi5 Education Centre!<br>How may we help you today?</p>
     <a class="wa-start" href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre%2C%20I%20need%20some%20information." target="_blank" rel="noopener">Chat on WhatsApp</a>
   </div>
-  <div class="wa-foot">We look forward to helping you.</div>
 </div>
 <script>
 function openWA(){const panel=document.getElementById("waBox");if(panel)panel.style.display="block";}
