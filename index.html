@@ -2659,8 +2659,14 @@ window.addEventListener("message",function(event){
    if(result.error)throw result.error;
    form.reset();notice.className="hi5-learner-notice show success";notice.textContent="Thank you. Your question has been sent privately to Hi5. A teacher will review it and contact your parent or guardian using the details provided.";
   }catch(error){
+   if(attachmentPath){
+    try{await db.storage.from("hi5-learner-work").remove([attachmentPath]);}
+    catch(cleanupError){console.warn("Hi5 learner attachment cleanup:",cleanupError);}
+   }
    notice.className="hi5-learner-notice show error";
-   notice.textContent="We could not submit your work. The Learners’ Space may still need its Supabase setup, or the service may be temporarily unavailable. Please try again later or contact Hi5.";
+   const reason=error&&error.message?error.message:"Unknown Supabase error";
+   const code=error&&error.code?" ("+error.code+")":"";
+   notice.textContent="We could not submit your work. Technical detail"+code+": "+reason+". Please share this message with Hi5 support.";
    console.error("Hi5 learner submission:",error);
   }finally{button.disabled=false;button.innerHTML='Send to Hi5 teachers <span aria-hidden="true">→</span>';}
  });
