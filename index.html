@@ -321,73 +321,22 @@ button{
   border-top:1px solid #e5e7eb;
 }
 
-/* WHATSAPP */
-.wa-float{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:white;
-  padding:10px 14px;
-  border-radius:50px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  cursor:pointer;
-  z-index:9999;
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
-  animation: bounce 2s infinite;
-}
-
-.wa-float img{
-  width:22px;
-}
-
-.wa-float span{
-  font-weight:600;
-}
-
-@keyframes bounce{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-5px);}
-}
-
-.wa-box{
-  position:fixed;
-  bottom:80px;
-  right:20px;
-  width:260px;
-  background:white;
-  border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
-  display:none;
-  z-index:10000;
-}
-
-.wa-header{
-  background:#25D366;
-  color:white;
-  padding:12px;
-  font-weight:600;
-  display:flex;
-  justify-content:space-between;
-}
-
-.wa-body{
-  padding:12px;
-  font-size:14px;
-}
-  
-.wa-body a{
-  display:block;
-  margin-top:10px;
-  background:#25D366;
-  color:white;
-  padding:10px;
-  text-align:center;
-  border-radius:8px;
-  text-decoration:none;
-}
+/* HI5 WHATSAPP WELCOME PANEL */
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:9999;border:0;border-radius:30px;padding:12px 17px;background:#20c86a;color:#fff;display:flex;align-items:center;gap:9px;box-shadow:0 6px 22px #09233a35;cursor:pointer;font-weight:700}
+.wa-float img{width:24px;height:24px}.wa-float span{font-size:14px}
+.wa-box{position:fixed;right:18px;bottom:82px;width:min(340px,calc(100vw - 30px));background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 14px 42px #071b3640;display:none;z-index:10000;color:#243449}
+.wa-header{background:#075e54;color:#fff;padding:16px;display:flex;align-items:center;gap:11px}
+.wa-avatar{width:42px;height:42px;border-radius:50%;background:#fff;color:#075e54;display:grid;place-items:center;font-weight:800;font-size:17px}
+.wa-headcopy{flex:1}.wa-headcopy strong{display:block;font-size:14px}.wa-headcopy small{display:flex;align-items:center;gap:5px;margin-top:4px;color:#d9f4e9;font-size:11px}
+.wa-online-dot{width:7px;height:7px;background:#61e294;border-radius:50%;display:inline-block}
+.wa-close{background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer}
+.wa-body{padding:15px;background:#f4f7f5;font-size:13px}
+.wa-welcome{background:#fff;padding:12px 13px;border-radius:3px 12px 12px 12px;box-shadow:0 1px 2px #00000012;line-height:1.55;margin:0 0 12px}
+.wa-body h4{margin:14px 0 7px;font-size:11px;color:#66766e;text-transform:uppercase;letter-spacing:.06em}
+.wa-contact-list{display:grid;gap:7px}.wa-contact-list a{display:flex;justify-content:space-between;align-items:center;padding:10px 11px;background:#fff;border:1px solid #e3ebe6;border-radius:9px;color:#174c3c;text-decoration:none;font-size:12px;font-weight:600}
+.wa-contact-list a.wa-start{background:#20c86a;color:#fff;border-color:#20c86a;justify-content:center;font-size:13px}
+.wa-foot{padding:10px 14px;text-align:center;color:#7b8983;background:#fff;font-size:10px}
+@media(max-width:480px){.wa-box{right:12px;bottom:76px}.wa-float{right:12px;bottom:12px}}
   /* HERO SECTION */
 
 .hero{
@@ -1863,27 +1812,36 @@ function loadFileIndex(){
 };
 </script>
 
-<!-- WHATSAPP BUTTON -->
-<div class="wa-float" onclick="openWA()">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="28">
-  <span>Chat</span>
-</div>
-
-<div id="waBox" class="wa-box">
+<!-- HI5 WHATSAPP CONTACT -->
+<button class="wa-float" type="button" onclick="openWA()" aria-label="Open Hi5 WhatsApp support">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt=""><span>Chat with Hi5</span>
+</button>
+<div id="waBox" class="wa-box" role="dialog" aria-label="Hi5 contact panel" aria-modal="false">
   <div class="wa-header">
-    WhatsApp Support
-    <span onclick="closeWA()">✖</span>
+    <div class="wa-avatar">H5</div>
+    <div class="wa-headcopy"><strong>Hi5 Education Centre</strong><small><i class="wa-online-dot"></i> Welcome · WhatsApp support</small></div>
+    <button class="wa-close" type="button" onclick="closeWA()" aria-label="Close">×</button>
   </div>
-
   <div class="wa-body">
-    <p>Hi 👋<br>Need help? Chat with us now.</p>
-    <a href="https://wa.me/256702234701" target="_blank">Start Chat</a>
+    <p class="wa-welcome">Hello, welcome to Hi5 Education Centre!<br>How may we help you today?</p>
+    <h4>Contact us</h4>
+    <div class="wa-contact-list">
+      <a href="tel:+256702234701">Call / WhatsApp <span>+256 702 234 701</span></a>
+      <a href="mailto:hi5educentre256@gmail.com">Email us <span>Send email ↗</span></a>
+      <a class="wa-start" href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre%2C%20I%20need%20some%20information." target="_blank" rel="noopener">Start WhatsApp conversation</a>
+    </div>
+    <h4>Quick links</h4>
+    <div class="wa-contact-list">
+      <a href="#" onclick="closeWA();openAbout();return false;">About Hi5 <span>↗</span></a>
+      <a href="/" onclick="closeWA()">Home <span>↗</span></a>
+    </div>
   </div>
+  <div class="wa-foot">Your message opens securely in WhatsApp.</div>
 </div>
 
 <script>
-function openWA(){document.getElementById("waBox").style.display="block";}
-function closeWA(){document.getElementById("waBox").style.display="none";}
+function openWA(){const panel=document.getElementById("waBox");if(panel)panel.style.display="block";}
+function closeWA(){const panel=document.getElementById("waBox");if(panel)panel.style.display="none";}
 document.addEventListener("click", function(e){
   if(!e.target.closest("#searchBox") && !e.target.closest("#suggestList")){
     document.getElementById("suggestList").style.display = "none";
