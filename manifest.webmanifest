@@ -12,7 +12,6 @@
   "icons": [
     {
       "src": "/images/logo.png",
-      "sizes": "any",
       "type": "image/png",
       "purpose": "any"
     }
