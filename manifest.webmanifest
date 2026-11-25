@@ -1,0 +1,15 @@
+{
+  "id": "/",
+  "name": "Hi5 Education Centre",
+  "short_name": "Hi5 Education",
+  "description": "Learning resources for learners and teachers. Learn Today, Lead Tomorrow.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#102b4e",
+  "orientation": "any",
+  "icons": [
+    {"src": "/images/hi5-app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}
