@@ -2666,5 +2666,45 @@ window.addEventListener("message",function(event){
  });
 })();
 </script>
+<script id="hi5-public-settings-loader">
+(async function(){
+ if(!window.supabase)return;
+ const db=window.supabase.createClient("https://xybmowujsqqewkkmtrjr.supabase.co","sb_publishable_456brBGxRIFlKzipZdrtDQ_fbSkV92e");
+ try{
+  const {data,error}=await db.from("hi5_site_settings").select("settings").eq("id",1).maybeSingle();
+  if(error||!data||!data.settings)return;
+  const s=data.settings;
+  const setText=(selector,value)=>{const el=document.querySelector(selector);if(el&&typeof value==="string"&&value.trim())el.textContent=value;};
+  setText(".brand-text .title",s.school_name);
+  setText(".brand-text .subtitle",s.motto);
+  setText("#hi5-online-title",s.online_title);
+  const online=document.getElementById("hi5-online-learning");
+  if(online){online.hidden=s.online_enabled===false;setText("#hi5-online-learning .hi5-online-copy p",s.online_description);}
+  const learners=document.getElementById("hi5-learners-space");
+  if(learners){learners.hidden=s.learners_enabled===false;setText("#hi5-learners-space .hi5-learners-heading p",s.learners_description);}
+  const notice=document.getElementById("hi5-admin-public-notice");
+  if(s.notice_enabled&&s.notice_text){
+   let box=notice;
+   if(!box){
+    box=document.createElement("aside");box.id="hi5-admin-public-notice";
+    box.style.cssText="max-width:1100px;margin:18px auto;padding:14px 18px;border-left:4px solid #d4a74e;border-radius:10px;background:#fff7e6;color:#594522;font-size:13px;line-height:1.65";
+    const header=document.querySelector("header");
+    if(header&&header.parentNode)header.insertAdjacentElement("afterend",box);
+   }
+   if(box)box.textContent=s.notice_text;
+  }else if(notice)notice.hidden=true;
+  if(typeof s.whatsapp==="string"&&s.whatsapp.trim()){
+   const digits=s.whatsapp.replace(/\D/g,"");
+   document.querySelectorAll('a[href*="wa.me/"]').forEach(link=>{
+    const old=link.href;
+    try{const url=new URL(old);url.pathname="/"+digits;link.href=url.toString();}catch(e){}
+   });
+  }
+  if(typeof s.email==="string"&&s.email.trim()){
+   document.querySelectorAll('a[href^="mailto:"]').forEach(link=>link.href="mailto:"+s.email.trim());
+  }
+ }catch(error){console.warn("Hi5 public settings could not be loaded:",error);}
+})();
+</script>
 </body>
 </html>
