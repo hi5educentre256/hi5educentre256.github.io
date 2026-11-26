@@ -67,7 +67,7 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
         <button class="nav-btn" data-page="tv"><span class="ico">▷</span>Hi5 TV</button>
         <button class="nav-btn" data-page="radio"><span class="ico">♫</span>Hi5 Radio</button>
         <button class="nav-btn" data-page="calendar"><span class="ico">▦</span>Academic calendar</button>
-        <button class="nav-btn" data-page="learners"><span class="ico">✎</span>Learners’ Space</button>
+        <button class="nav-btn" data-page="online"><span class="ico">▣</span>Online Learning</button>
         <button class="nav-btn" data-page="settings"><span class="ico">⚙</span>Website settings</button>
         <div class="side-note">Learn Today, Lead Tomorrow.<br>Administrator access only.</div>
       </aside>
@@ -169,10 +169,16 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
             <div><h3>Calendar events</h3><div id="calendarList" class="list"><div class="empty">Loading calendar events…</div></div></div>
           </div>
         </div>
-        <div id="learnersPage" class="hidden">
-          <div class="content-head"><div><h2>Learners’ Space submissions</h2><p>Review private learner questions and send teacher responses to the parent or guardian.</p></div><button id="refreshLearnersBtn" class="btn btn-primary" type="button">Refresh submissions</button></div>
-          <div id="learnersAdminNotice" class="notice" role="status"></div>
-          <div id="learnerSubmissionList" class="list"><div class="empty">Open this section to load learner submissions.</div></div>
+        <div id="onlinePage" class="hidden">
+          <div class="content-head"><div><h2>Online Learning</h2><p>Key information and actions for the Hi5 online holiday teaching programme.</p></div></div>
+          <div class="module-grid">
+            <div class="module"><strong>Hi5 Online Holiday Teaching Programme</strong><p><b>3 December 2026 – 3 January 2027</b></p><p>Admissions are in progress for learners from Nursery to Senior Six (S6).</p><p>Live lessons, revision, assignments and assessments will help learners strengthen their knowledge and prepare for the next academic term.</p></div>
+            <div class="module"><strong>Weekly lesson frequency</strong><p>Nursery: time agreed with parents or guardians.</p><p>Primary: 5 sessions per week.</p><p>Secondary: 4 sessions per week.</p><p>Tertiary: 3 sessions per week.</p></div>
+            <div class="module"><strong>How applications are received</strong><p>Parents or guardians submit the online registration form and send it to Hi5 by WhatsApp or email. Applications are received in those channels, not stored in this dashboard.</p><p>Review each application, contact the parent or guardian, confirm admission and share class links only after admission.</p></div>
+            <div class="module"><strong>What to do after admission</strong><p>Confirm the learner’s level, class and contact details. Agree on Nursery lesson times with parents. Share the timetable and private class links with admitted learners.</p><p>Keep learner and guardian contact details private.</p></div>
+          </div>
+          <div class="actions"><a class="btn btn-primary" href="https://wa.me/256702234701" target="_blank" rel="noopener">Open Hi5 WhatsApp</a><a class="btn btn-quiet" href="mailto:hi5educentre256@gmail.com">Open Hi5 email</a><a class="btn btn-quiet" href="/" target="_blank" rel="noopener">View public website</a></div>
+          <p class="upload-help">To update the public Online Learning section title or description, use Website Settings. To update programme dates on the public calendar, use Academic Calendar.</p>
         </div>
         <div id="websiteSettingsPage" class="hidden">
           <div class="content-head"><div><h2>Website Settings</h2><p>Update the public information and learning services shown on Hi5 Education Centre.</p></div><button id="reloadSettingsBtn" class="btn btn-quiet" type="button">Reload settings</button></div>
@@ -207,10 +213,6 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
             <p class="upload-help">Saved settings are published to the public website. Changes to school identity, contact details and service descriptions appear after the website reloads. Never enter passwords or private administrator information here.</p>
           </form>
         </div>
-        <div id="placeholderPage" class="hidden">
-          <div class="content-head"><div><h2 id="placeholderTitle">Management</h2><p id="placeholderDescription">This section will be configured next.</p></div></div>
-          <div id="moduleCards" class="module-grid"></div>
-        </div>
       </section>
     </div>
   </section>
@@ -228,7 +230,6 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   let tvItems = [];
   let calendarItems = [];
   let radioItems = [];
-  let learnerSubmissions = [];
   let websiteSettings = {};
 
   function showNotice(id, message, type) {
@@ -751,28 +752,6 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   });
   $("radioClearBtn").addEventListener("click",resetRadioForm);
 
-  const moduleInfo = {
-    materials: { title:"Learning materials", description:"Upload and organise resources for Nursery, Primary, Secondary and Tertiary learners.", cards:[
-      ["Learning resources","Manage lesson notes, textbooks, schemes and past papers."],
-      ["File storage","Securely upload and organise PDF and other learning files."]
-    ]},
-    tv: { title:"Hi5 TV", description:"Manage the videos and programmes displayed on the public website.", cards:[
-      ["Video library","Add, update and organise Hi5 learning videos."],
-      ["Categories","Organise programmes by Nursery, Primary, Secondary and Tertiary."]
-    ]},
-    radio: { title:"Hi5 Radio", description:"Manage radio programme details and audio links.", cards:[
-      ["Radio programmes","Add programme titles, descriptions and streaming links."],
-      ["Broadcast details","Manage the station information shown to visitors."]
-    ]},
-    calendar: { title:"Academic calendar", description:"Publish important school dates, terms, events and activities.", cards:[
-      ["School events","Add dates, event details and publication status."],
-      ["Term dates","Keep term opening, closing and holiday dates organised."]
-    ]},
-    settings: { title:"Website settings", description:"Manage selected public website information from the administrator area.", cards:[
-      ["Website information","Review key Hi5 contact and public information."],
-      ["Display settings","Manage approved announcements and website notices."]
-    ]}
-  };
   const defaultWebsiteSettings = {
     school_name:"Hi5 Education Centre", motto:"Learn Today, Lead Tomorrow",
     email:"hi5educentre256@gmail.com", whatsapp:"+256702234701",
@@ -832,80 +811,6 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
   });
   $("reloadSettingsBtn").addEventListener("click",loadWebsiteSettings);
 
-  async function loadLearners() {
-    const list = $("learnerSubmissionList");
-    list.innerHTML = '<div class="empty">Loading private learner submissions…</div>';
-    $("learnersAdminNotice").className = "notice";
-    const { data, error } = await client.from("learner_submissions")
-      .select("id,learner_name,class_level,subject,guardian_name,guardian_contact,question,attachment_path,teacher_response,status,created_at,responded_at")
-      .order("created_at", { ascending: false });
-    if (error) {
-      list.innerHTML = '<div class="empty">Could not load learner submissions: ' + escapeHtml(error.message) + '</div>';
-      return;
-    }
-    learnerSubmissions = data || [];
-    await renderLearners();
-  }
-  async function renderLearners() {
-    const list = $("learnerSubmissionList");
-    if (!learnerSubmissions.length) {
-      list.innerHTML = '<div class="empty">There are no learner submissions yet.</div>';
-      return;
-    }
-    const cards = await Promise.all(learnerSubmissions.map(async item => {
-      let attachment = "";
-      if (item.attachment_path) {
-        const { data } = await client.storage.from("hi5-learner-work").createSignedUrl(item.attachment_path, 600);
-        if (data && data.signedUrl) attachment = '<p><a href="' + escapeHtml(data.signedUrl) + '" target="_blank" rel="noopener">Open attached learner work (10-minute link)</a></p>';
-      }
-      return `
-        <article class="announcement">
-          <div class="announcement-top">
-            <div>
-              <h4>${escapeHtml(item.learner_name)} · ${escapeHtml(item.class_level)}</h4>
-              <p>${escapeHtml(item.subject)} · ${escapeHtml(new Date(item.created_at).toLocaleString())}</p>
-              <p><strong>Parent / Guardian:</strong> ${escapeHtml(item.guardian_name)} · <a href="tel:${escapeHtml(item.guardian_contact)}">${escapeHtml(item.guardian_contact)}</a></p>
-              <p><strong>Question:</strong><br>${escapeHtml(item.question).replace(/\n/g,"<br>")}</p>
-              ${attachment}
-            </div>
-            <span class="pill ${item.status === "answered" ? "live" : "draft"}">${escapeHtml(item.status || "pending")}</span>
-          </div>
-          <form class="learner-response-form" data-learner-id="${escapeHtml(item.id)}">
-            <div class="field"><label>Teacher’s response</label><textarea name="teacher_response" rows="3" maxlength="5000" placeholder="Write a helpful answer for the learner…">${escapeHtml(item.teacher_response || "")}</textarea></div>
-            <div class="actions"><button class="btn btn-primary" type="submit">${item.status === "answered" ? "Update response" : "Send response"}</button></div>
-          </form>
-        </article>`;
-    }));
-    list.innerHTML = cards.join("");
-  }
-  $("learnerSubmissionList").addEventListener("submit", async event => {
-    const form = event.target.closest(".learner-response-form");
-    if (!form) return;
-    event.preventDefault();
-    const id = form.dataset.learnerId;
-    const response = new FormData(form).get("teacher_response").trim();
-    if (!response) {
-      $("learnersAdminNotice").textContent = "Please write a response before sending.";
-      $("learnersAdminNotice").className = "notice show error";
-      return;
-    }
-    const button = form.querySelector('button[type="submit"]');
-    button.disabled = true; button.textContent = "Saving response…";
-    const { error } = await client.from("learner_submissions").update({
-      teacher_response: response, status: "answered", responded_at: new Date().toISOString()
-    }).eq("id", id);
-    if (error) {
-      $("learnersAdminNotice").textContent = "Could not save the response: " + error.message;
-      $("learnersAdminNotice").className = "notice show error";
-      button.disabled = false; button.textContent = "Try again";
-      return;
-    }
-    $("learnersAdminNotice").textContent = "Teacher response saved. Contact the parent or guardian using the details shown above.";
-    $("learnersAdminNotice").className = "notice show success";
-    await loadLearners();
-  });
-  $("refreshLearnersBtn").addEventListener("click", loadLearners);
-
   function openPage(page) {
     document.querySelectorAll(".nav-btn").forEach(button => button.classList.toggle("active", button.dataset.page === page));
     const isAnnouncements = page === "announcements";
@@ -913,30 +818,20 @@ main{max-width:1120px;margin:30px auto;padding:0 18px}.intro{margin-bottom:22px}
     const isTV = page === "tv";
     const isRadio = page === "radio";
     const isCalendar = page === "calendar";
-    const isLearners = page === "learners";
+    const isOnline = page === "online";
     const isSettings = page === "settings";
     $("announcementsPage").classList.toggle("hidden", !isAnnouncements);
     $("materialsPage").classList.toggle("hidden", !isMaterials);
     $("tvPage").classList.toggle("hidden", !isTV);
     $("radioPage").classList.toggle("hidden", !isRadio);
     $("calendarPage").classList.toggle("hidden", !isCalendar);
-    $("learnersPage").classList.toggle("hidden", !isLearners);
+    $("onlinePage").classList.toggle("hidden", !isOnline);
     $("websiteSettingsPage").classList.toggle("hidden", !isSettings);
-    $("placeholderPage").classList.toggle("hidden", isAnnouncements || isMaterials || isTV || isRadio || isCalendar || isLearners || isSettings);
     if (isMaterials) refreshMaterials();
     if (isTV) loadTV();
     if (isRadio) loadRadio();
     if (isCalendar) loadCalendar();
-    if (isLearners) loadLearners();
     if (isSettings) loadWebsiteSettings();
-    if (!isAnnouncements && !isMaterials && !isTV && !isRadio && !isCalendar && !isLearners && !isSettings) {
-      const info = moduleInfo[page];
-      $("placeholderTitle").textContent = info.title;
-      $("placeholderDescription").textContent = info.description;
-      $("moduleCards").innerHTML = info.cards.map(card => `
-        <div class="module"><strong>${escapeHtml(card[0])}</strong><p>${escapeHtml(card[1])}</p><div class="soon">NEXT DEVELOPMENT PHASE</div></div>
-      `).join("");
-    }
   }
   document.querySelectorAll(".nav-btn").forEach(button => button.addEventListener("click", () => openPage(button.dataset.page)));
   client.auth.onAuthStateChange((_event, session) => {
