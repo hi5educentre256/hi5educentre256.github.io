@@ -1706,6 +1706,45 @@ let repo="hi5educentre256/hi5educentre256.github.io";
 let stack=[];
 let searchTimeout;
 let fileIndex = [];
+let hi5RepositoryTreePromise = null;
+
+/* Use a local, versioned index instead of GitHub's rate-limited API. */
+function getRepoTree(){
+  if(!hi5RepositoryTreePromise){
+    hi5RepositoryTreePromise = fetch("/assets/hi5-repository-tree.json?v=1", {cache:"no-cache"})
+      .then(response => {
+        if(!response.ok) throw new Error("Resource index could not be loaded ("+response.status+").");
+        return response.json();
+      })
+      .then(manifest => {
+        if(!manifest || !Array.isArray(manifest.tree)) throw new Error("The resource index is invalid.");
+        return manifest;
+      })
+      .catch(error => { hi5RepositoryTreePromise=null; throw error; });
+  }
+  return hi5RepositoryTreePromise;
+}
+
+function getRepoDirectory(path){
+  return getRepoTree().then(data => {
+    const prefix = path.replace(/\\/$/, "") + "/";
+    return data.tree
+      .filter(item => item.path.startsWith(prefix) && !item.path.slice(prefix.length).includes("/"))
+      .map(item => ({
+        name:item.path.slice(prefix.length),
+        type:item.type === "tree" ? "dir" : "file",
+        path:item.path,
+        download_url:item.type === "blob" ? "https://raw.githubusercontent.com/hi5educentre256/hi5educentre256.github.io/main/"+item.path : null
+      }))
+      .sort((a,b) => a.type === b.type ? a.name.localeCompare(b.name) : (a.type === "dir" ? -1 : 1));
+  });
+}
+
+function showBrowseError(message){
+  const content=document.getElementById("content");
+  if(content) content.innerHTML="<button onclick='back()'>← Back</button><div class='item' role='alert'><strong>Unable to load learning materials.</strong><p>"+message+"</p><button onclick='location.reload()'>Refresh website</button></div>";
+}
+
 
 function getFileActions(name, url){
   let lower = name.toLowerCase();
@@ -1804,8 +1843,7 @@ function openFolder(folder){
   }
   stack.push(document.getElementById("content").innerHTML);
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${folder}`)
-  .then(r=>r.json())
+  getRepoDirectory(folder)
   .then(data=>{
 
     let html = "<button onclick='back()'>⬅ Back</button><h2>"+folder+"</h2>";
@@ -1866,7 +1904,8 @@ else if (name.includes("degree")) icon = "🏅";
 
     html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
     document.getElementById("content").innerHTML = html;
-  });
+  })
+  .catch(error => showBrowseError(error.message || "Please try again."));
 }
 
 /* CLASS VIEW */
@@ -1955,8 +1994,7 @@ function openClass(path){
 
   stack.push(document.getElementById("content").innerHTML);
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-  .then(r=>r.json())
+  getRepoDirectory(path)
   .then(data=>{
 
     let html = "<button onclick='back()'>⬅ Back</button><h2>"+path+"</h2>";
@@ -2042,13 +2080,13 @@ html += `
 
     html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
     document.getElementById("content").innerHTML = html;
-  });
+  })
+  .catch(error => showBrowseError(error.message || "Please try again."));
 }
 function openFiltered(keyword){
   stack.push(document.getElementById("content").innerHTML);
 
-  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
-  .then(r => r.json())
+  getRepoTree()
   .then(data => {
 
     let html = "<button onclick='back()'>⬅ Back</button><h2>Results</h2>";
@@ -2136,7 +2174,8 @@ html += `
     }
 
     document.getElementById("content").innerHTML = html;
-  });
+  })
+  .catch(error => showBrowseError(error.message || "Please try again."));
 }
 /* PDF VIEW */
 function viewPDF(url, name = "unknown"){
@@ -2173,8 +2212,7 @@ function openMaterialsByType(path,type){
 
   stack.push(document.getElementById("content").innerHTML);
 
-  fetch(`https://api.github.com/repos/${repo}/contents/${path}`)
-  .then(r=>r.json())
+  getRepoDirectory(path)
   .then(data=>{
 
     let html = "<button onclick='back()'>⬅ Back</button><h2>Files</h2>";
@@ -2236,7 +2274,8 @@ if(show){
 
     html += `<div class="footer">© 2026 Hi5 Education Centre | All Rights Reserved</div>`;
     document.getElementById("content").innerHTML = html;
-  });
+  })
+  .catch(error => showBrowseError(error.message || "Please try again."));
 }
 
 /* ABOUT FIXED */
@@ -2388,8 +2427,7 @@ function searchSuggestions(query){
   box.style.display = "block";
 }
   function loadStats(){
-  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
-  .then(r => r.json())
+  getRepoTree()
   .then(data => {
 
     let total = 0;
@@ -2424,12 +2462,17 @@ function searchSuggestions(query){
     document.getElementById("lessons").innerText = lessons + " (Free)";
     document.getElementById("papers").innerText = papers + " (Free)";
     document.getElementById("schemes").innerText = schemes + " (Free)";
+  })
+  .catch(error => {
+    ["totalFiles","textbooks","lessons","papers","schemes"].forEach(id => {
+      const el=document.getElementById(id); if(el) el.innerText="Temporarily unavailable";
+    });
+    console.error("Hi5 resource counters:",error);
   });
 }
 
 function loadFileIndex(){
-  fetch(`https://api.github.com/repos/${repo}/git/trees/main?recursive=1`)
-  .then(r => r.json())
+  getRepoTree()
   .then(data => {
 
     fileIndex = data.tree
@@ -2440,7 +2483,8 @@ function loadFileIndex(){
         url: `https://raw.githubusercontent.com/${repo}/main/${f.path}`
       }));
 
-  });
+  })
+  .catch(error => { fileIndex=[]; console.error("Hi5 resource search index:",error); });
 }
   window.onload = function(){
   loadStats();
