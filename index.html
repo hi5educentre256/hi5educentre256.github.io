@@ -1727,7 +1727,7 @@ function getRepoTree(){
 
 function getRepoDirectory(path){
   return getRepoTree().then(data => {
-    const prefix = path.replace(/\\/$/, "") + "/";
+    const prefix = path.replace(/\/$/, "") + "/";
     return data.tree
       .filter(item => item.path.startsWith(prefix) && !item.path.slice(prefix.length).includes("/"))
       .map(item => ({
