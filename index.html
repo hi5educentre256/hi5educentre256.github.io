@@ -1198,6 +1198,41 @@ html.dark .hi5-learner-fields small,html.dark .hi5-learner-consent{color:#bdccdc
 html.dark .hi5-learner-notice.success{background:#183c30;color:#b8efd1}html.dark .hi5-learner-notice.error{background:#482a2a;color:#ffd0ca}
 @media(max-width:700px){.hi5-learners-section{margin:24px 12px;border-radius:18px}.hi5-learner-fields{grid-template-columns:1fr}.hi5-learner-fields .hi5-learner-wide{grid-column:auto}.hi5-learner-form{padding:14px}.hi5-learners-symbol{flex-basis:58px;width:58px;height:58px;font-size:27px;border-radius:17px}}
 </style>
+
+<style id="hi5-online-registration-design">
+.hi5-online-schedule,.hi5-online-registration{margin-top:22px;padding:clamp(16px,2.5vw,24px);border:1px solid #d9e5ed;border-radius:16px;background:#fff}
+.hi5-online-schedule h3,.hi5-online-registration h3{margin:0 0 8px;color:#102b45;font-size:20px}
+.hi5-online-schedule>p,.hi5-online-registration-heading p{color:#526477;line-height:1.65;font-size:13px}
+.hi5-online-schedule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:15px 0}
+.hi5-online-schedule-grid>div{padding:13px;border:1px solid #dce7ef;border-radius:12px;background:#f6f9fc;display:flex;flex-direction:column;gap:6px}
+.hi5-online-schedule-grid strong{color:#123451;font-size:14px}.hi5-online-schedule-grid span{font-size:12px;line-height:1.5;color:#526477}
+.hi5-online-registration-heading{margin-bottom:18px}
+.hi5-online-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.hi5-online-form label{display:flex;flex-direction:column;gap:6px;color:#253e56;font-size:12px;font-weight:700}
+.hi5-online-form input:not([type=checkbox]),.hi5-online-form select,.hi5-online-form textarea{box-sizing:border-box;width:100%;min-width:0;padding:12px;border:1px solid #cbd8e3;border-radius:9px;background:#fff;color:#172d43;font:inherit;font-size:13px;font-weight:400}
+.hi5-online-form input:focus,.hi5-online-form select:focus,.hi5-online-form textarea:focus{outline:2px solid #8bc9b4;outline-offset:1px}
+.hi5-online-full{grid-column:1/-1}
+.hi5-online-checks{display:grid;gap:10px;margin:18px 0;padding:14px;border-radius:12px;background:#f2f7fa}
+.hi5-online-form .hi5-online-checks label{display:flex;flex-direction:row;align-items:flex-start;gap:9px;font-size:12px;line-height:1.55;font-weight:500}
+.hi5-online-checks input{margin-top:2px;flex:0 0 auto}
+.hi5-online-terms{padding:15px;border:1px solid #e0e7ed;border-radius:12px;background:#fbfcfd}
+.hi5-online-terms h4{margin:0 0 8px;color:#16344f;font-size:14px}
+.hi5-online-terms ol{margin:0;padding-left:20px;color:#526477;font-size:11px;line-height:1.65}
+.hi5-online-terms li{margin:4px 0}
+.hi5-online-submit{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}
+.hi5-online-submit button{border:0;border-radius:10px;padding:13px 17px;background:#16835f;color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+.hi5-online-submit button+button{background:#174b78}
+.hi5-online-submit button:hover{filter:brightness(.94)}
+.hi5-online-form-note{margin:12px 0 0;color:#526477;font-size:12px;line-height:1.6}
+html.dark .hi5-online-schedule,html.dark .hi5-online-registration,html.dark .hi5-online-terms{background:#17283b;border-color:#344b63}
+html.dark .hi5-online-schedule h3,html.dark .hi5-online-registration h3,html.dark .hi5-online-terms h4,html.dark .hi5-online-form label{color:#eef5ff}
+html.dark .hi5-online-schedule>p,html.dark .hi5-online-registration-heading p,html.dark .hi5-online-terms ol,html.dark .hi5-online-form-note{color:#c0cede}
+html.dark .hi5-online-schedule-grid>div,html.dark .hi5-online-checks{background:#1d3045;border-color:#3a526c}
+html.dark .hi5-online-schedule-grid strong,html.dark .hi5-online-schedule-grid span{color:#eef5ff}
+html.dark .hi5-online-form input:not([type=checkbox]),html.dark .hi5-online-form select,html.dark .hi5-online-form textarea{background:#111c2c;color:#f3f7fc;border-color:#40556e}
+@media(max-width:720px){.hi5-online-schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.hi5-online-form-grid{grid-template-columns:1fr}.hi5-online-full{grid-column:auto}.hi5-online-submit{flex-direction:column}.hi5-online-submit button{width:100%}}
+</style>
 </head>
 
 <body>
@@ -1377,17 +1412,84 @@ Choose Your Level
 </section>
 <section class="hi5-online-section" id="hi5-online-learning" aria-labelledby="hi5-online-title">
   <div class="hi5-online-hero"><div class="hi5-online-copy">
-    <span class="hi5-online-kicker">LEARN FROM ANYWHERE</span>
+    <span class="hi5-online-kicker">FREE INITIAL LAUNCH · ADMISSIONS IN PROGRESS</span>
     <h2 id="hi5-online-title">Hi5 Online Learning</h2>
-    <p>Join teacher-led online lessons from home. Hi5 plans to deliver live interactive classes through Zoom, helping learners follow explanations, ask questions and learn with guidance.</p>
-    <a class="hi5-online-cta" href="https://wa.me/256702234701?text=Hello%20Hi5%20Education%20Centre%2C%20I%20would%20like%20to%20enquire%20about%20online%20lessons." target="_blank" rel="noopener">Enquire about online lessons <span aria-hidden="true">→</span></a>
+    <p>Register for a structured one-month programme of live, teacher-led online lessons. Study from home, interact with teachers and receive your timetable and class links after your application is reviewed.</p>
+    <a class="hi5-online-cta" href="#hi5-online-registration">Register for online studies <span aria-hidden="true">→</span></a>
   </div><div class="hi5-online-mark" aria-hidden="true"><span>▶</span><small>LIVE<br>LEARNING</small></div></div>
   <div class="hi5-online-details">
-    <article><span class="hi5-online-icon">🎥</span><div><h3>Live lessons</h3><p>Teacher-led classes with explanations and screen sharing through Zoom.</p></div></article>
-    <article><span class="hi5-online-icon">💬</span><div><h3>Ask questions</h3><p>Learners can interact with their teacher and seek clarification during lessons.</p></div></article>
-    <article><span class="hi5-online-icon">📅</span><div><h3>Lesson schedules</h3><p>Class timetables and authorised joining instructions will be shared here when published.</p></div></article>
+    <article><span class="hi5-online-icon">🎥</span><div><h3>Live lessons</h3><p>Teacher-led online classes with explanations, interaction and guided practice.</p></div></article>
+    <article><span class="hi5-online-icon">📅</span><div><h3>Organised timetable</h3><p>Receive your confirmed weekly timetable before lessons begin.</p></div></article>
+    <article><span class="hi5-online-icon">🆓</span><div><h3>Free initial launch</h3><p>There is no tuition or registration fee during the initial launch period.</p></div></article>
   </div>
-  <p class="hi5-online-note">For learner safety, Zoom meeting details should only be shared through official Hi5 channels. Younger learners should join with parent or guardian supervision.</p>
+  <div class="hi5-online-schedule">
+    <h3>Monthly programme and lesson frequency</h3>
+    <p>Each enrolment covers one month. Lessons are scheduled according to the learner's education level:</p>
+    <div class="hi5-online-schedule-grid">
+      <div><strong>Nursery</strong><span>Times agreed with parents or guardians</span></div>
+      <div><strong>Primary</strong><span>5 lessons per week</span></div>
+      <div><strong>Secondary</strong><span>4 lessons per week</span></div>
+      <div><strong>Tertiary</strong><span>3 lessons per week</span></div>
+    </div>
+    <p class="hi5-online-note">Exact lesson days and times will be confirmed by Hi5 after applications are reviewed. Nursery sessions will be arranged directly with parents or guardians.</p>
+  </div>
+  <div class="hi5-online-registration" id="hi5-online-registration">
+    <div class="hi5-online-registration-heading">
+      <span class="hi5-online-kicker">ADMISSIONS IN PROGRESS</span>
+      <h3>Register for Online Studies</h3>
+      <p>Complete the learner profile below. Choose WhatsApp or email to send the application to Hi5 Education Centre. Registration is free during the initial launch.</p>
+    </div>
+    <form id="hi5-online-registration-form" class="hi5-online-form">
+      <div class="hi5-online-form-grid">
+        <label>Learner's full name <input name="learner_name" required maxlength="100" autocomplete="name" placeholder="Enter learner's full name"></label>
+        <label>Age or age range <input name="learner_age" required maxlength="30" placeholder="e.g. 10 years"></label>
+        <label>Education level
+          <select name="level" id="hi5-online-level" required>
+            <option value="">Choose education level</option><option>Nursery</option><option>Primary</option><option>Secondary</option><option>Tertiary</option>
+          </select>
+        </label>
+        <label>Class / year / programme <input name="class_programme" required maxlength="100" placeholder="e.g. Primary 5, Senior 2, Diploma"></label>
+        <label>Subjects or area of study <input name="subjects" required maxlength="180" placeholder="List subjects or programme"></label>
+        <label>Country and town <input name="location" required maxlength="100" placeholder="e.g. Uganda, Wakiso"></label>
+        <label>Parent / guardian's full name <input name="guardian_name" required maxlength="100" autocomplete="name" placeholder="Required for learners under 18"></label>
+        <label>Parent / guardian's WhatsApp number <input name="guardian_phone" required maxlength="30" autocomplete="tel" placeholder="Include country code"></label>
+        <label>Parent / guardian's email <input name="guardian_email" type="email" required maxlength="120" autocomplete="email" placeholder="name@example.com"></label>
+        <label>Learner's email (optional) <input name="learner_email" type="email" maxlength="120" placeholder="If available"></label>
+        <label class="hi5-online-full">Preferred lesson days / times <input name="preferred_time" maxlength="150" placeholder="Nursery parents: suggest suitable times"></label>
+        <label class="hi5-online-full">Anything else we should know? (optional) <textarea name="notes" rows="3" maxlength="700" placeholder="Optional information about the learner's learning needs"></textarea></label>
+      </div>
+      <div class="hi5-online-checks">
+        <label><input type="checkbox" name="device" required> We have access to a suitable phone, tablet or computer and a reliable internet connection.</label>
+        <label><input type="checkbox" name="supervision" required> For learners under 18, a parent or guardian will help ensure safe participation in online lessons.</label>
+        <label><input type="checkbox" name="terms" required> I have read and agree to the online learning terms and understand that this is an application, not confirmed admission.</label>
+      </div>
+      <div class="hi5-online-terms">
+        <h4>Online learning terms</h4>
+        <ol>
+          <li>The initial launch is free. Hi5 will announce any future fees or changes before they take effect; no payment is due with this application.</li>
+          <li>Each enrolment period lasts one month. A new application or renewal may be required for the next month.</li>
+          <li>Applications are reviewed by Hi5. Admission depends on programme availability and is confirmed separately.</li>
+          <li>Class timetables and official meeting links are sent only after admission is confirmed.</li>
+          <li>Learners should attend regularly, arrive on time and participate respectfully.</li>
+          <li>Learners need a suitable device and internet connection. Data or internet costs are the responsibility of the family.</li>
+          <li>Parents or guardians must supervise younger learners and help them access classes safely.</li>
+          <li>Meeting links are private and must not be forwarded, posted publicly or shared with unauthorised people.</li>
+          <li>If a learner will miss a lesson, the parent or learner should notify Hi5. Make-up lessons or recordings are not guaranteed and depend on the school's arrangements.</li>
+          <li>Any class recordings, if made, are managed by Hi5 for educational purposes and must not be copied or shared without permission.</li>
+          <li>Parents or learners should use the contact details supplied in the application for official communication and promptly report changes.</li>
+          <li>Hi5 will use the information supplied to review the application, organise lessons and communicate about the programme. Do not include passwords or unnecessary sensitive personal information.</li>
+          <li>Withdrawal or a request to correct learner details should be communicated to Hi5 administration.</li>
+          <li>Certificates or formal academic credits are not implied; these will only be offered where a specific programme expressly provides for them.</li>
+        </ol>
+      </div>
+      <div class="hi5-online-submit">
+        <button type="button" id="hi5-online-whatsapp">Send application via WhatsApp</button>
+        <button type="button" id="hi5-online-email">Send application via Email</button>
+      </div>
+      <p class="hi5-online-form-note" id="hi5-online-form-note" role="status" aria-live="polite">Choose one method to send your completed application. Your application is received only after you send the prepared message or email.</p>
+    </form>
+  </div>
+  <p class="hi5-online-note">For learner safety, online class links are shared privately with admitted learners or their parents/guardians. Hi5 will never ask you to share an account password in this form.</p>
 </section>
 <section class="hi5-learners-section" id="hi5-learners-space" aria-labelledby="hi5-learners-title">
   <div class="hi5-learners-heading">
@@ -2704,6 +2806,72 @@ window.addEventListener("message",function(event){
    document.querySelectorAll('a[href^="mailto:"]').forEach(link=>link.href="mailto:"+s.email.trim());
   }
  }catch(error){console.warn("Hi5 public settings could not be loaded:",error);}
+})();
+</script>
+
+<script id="hi5-online-registration-handler">
+(() => {
+  const form = document.getElementById("hi5-online-registration-form");
+  if (!form) return;
+  const note = document.getElementById("hi5-online-form-note");
+  const whatsapp = document.getElementById("hi5-online-whatsapp");
+  const email = document.getElementById("hi5-online-email");
+  const schoolWhatsApp = "256702234701";
+  const schoolEmail = "hi5educentre256@gmail.com";
+  function collectApplication() {
+    if (!form.reportValidity()) return null;
+    const data = new FormData(form);
+    const level = String(data.get("level") || "");
+    const frequency = level === "Nursery" ? "Times agreed with parents/guardians" :
+      level === "Primary" ? "5 lessons per week" :
+      level === "Secondary" ? "4 lessons per week" : "3 lessons per week";
+    const reference = "H5OL-" + new Date().toISOString().slice(0,10).replace(/-/g,"") + "-" + Math.random().toString(36).slice(2,7).toUpperCase();
+    return [
+      "HI5 EDUCATION CENTRE — ONLINE STUDIES APPLICATION",
+      "Application reference: " + reference,
+      "Launch offer: FREE initial launch",
+      "Programme duration: One month",
+      "",
+      "LEARNER PROFILE",
+      "Learner's name: " + data.get("learner_name"),
+      "Age: " + data.get("learner_age"),
+      "Education level: " + level,
+      "Class/year/programme: " + data.get("class_programme"),
+      "Subjects/area of study: " + data.get("subjects"),
+      "Country and town: " + data.get("location"),
+      "Lesson frequency: " + frequency,
+      "Preferred days/times: " + (data.get("preferred_time") || "To be discussed"),
+      "",
+      "PARENT/GUARDIAN",
+      "Name: " + data.get("guardian_name"),
+      "WhatsApp number: " + data.get("guardian_phone"),
+      "Email: " + data.get("guardian_email"),
+      "Learner's email: " + (data.get("learner_email") || "Not provided"),
+      "",
+      "Additional information: " + (data.get("notes") || "None"),
+      "",
+      "CONFIRMATIONS",
+      "Device and internet access: Confirmed",
+      "Parent/guardian supervision for minors: Confirmed",
+      "Terms accepted: Yes",
+      "",
+      "Please review this application and contact us with the admission decision, timetable and next steps.",
+      "This application does not confirm admission. Class links should only be sent after admission is confirmed."
+    ].join("\n");
+  }
+  whatsapp.addEventListener("click", () => {
+    const message = collectApplication();
+    if (!message) return;
+    note.textContent = "WhatsApp is opening. Please review the application and press Send to deliver it to Hi5 Education Centre.";
+    window.open("https://wa.me/" + schoolWhatsApp + "?text=" + encodeURIComponent(message), "_blank", "noopener");
+  });
+  email.addEventListener("click", () => {
+    const message = collectApplication();
+    if (!message) return;
+    const subject = "Online Studies Application — Hi5 Education Centre";
+    note.textContent = "Your email app is opening. Please review the application and press Send to deliver it to Hi5 Education Centre.";
+    window.location.href = "mailto:" + schoolEmail + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(message);
+  });
 })();
 </script>
 </body>
