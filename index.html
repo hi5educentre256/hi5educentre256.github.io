@@ -1233,6 +1233,16 @@ html.dark .hi5-online-form input:not([type=checkbox]),html.dark .hi5-online-form
 @media(max-width:720px){.hi5-online-schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.hi5-online-form-grid{grid-template-columns:1fr}.hi5-online-full{grid-column:auto}.hi5-online-submit{flex-direction:column}.hi5-online-submit button{width:100%}}
 </style>
+
+<style id="hi5-topbar-title-size-adjustment">
+/* Increase the school name slightly on phones without changing its wording or moving the theme control. */
+@media(max-width:640px){
+  .topbar .brand-text .title{font-size:clamp(16px,5.2vw,21px)!important;letter-spacing:.05px!important}
+}
+@media(max-width:380px){
+  .topbar .brand-text .title{font-size:clamp(14px,4.2vw,16px)!important}
+}
+</style>
 </head>
 
 <body>
