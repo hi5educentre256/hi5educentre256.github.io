@@ -104,3 +104,19 @@ create policy "Admins can delete Hi5 Radio audio"
   on storage.objects for delete
   to authenticated
   using (bucket_id = 'hi5-radio' and public.is_admin());
+
+-- Add the Hi5 Online Holiday Teaching Programme to the admin-managed calendar.
+-- Safe to run more than once: avoids duplicate entries with the same title and start date.
+insert into public.academic_calendar (title, description, start_date, end_date, event_type, is_published)
+select
+  'Hi5 Online Holiday Teaching Programme',
+  'Online, teacher-led lessons for learners from Nursery to Senior Six (S6), including revision, assignments and assessments. The programme runs from 3 December 2026 to 3 January 2027. Admissions are in progress.',
+  date '2026-12-03',
+  date '2027-01-03',
+  'Online Holiday Programme',
+  true
+where not exists (
+  select 1 from public.academic_calendar
+  where title = 'Hi5 Online Holiday Teaching Programme'
+    and start_date = date '2026-12-03'
+);
