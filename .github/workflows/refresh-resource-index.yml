@@ -1,0 +1,60 @@
+name: Refresh Hi5 resource index
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Nursery/**"
+      - "Primary/**"
+      - "Secondary/**"
+      - "Tertiary/**"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Build resource index
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const root = process.cwd();
+          const entries = [];
+          function walk(dir) {
+            for (const item of fs.readdirSync(dir, { withFileTypes: true })) {
+              const full = path.join(dir, item.name);
+              const relative = path.relative(root, full).split(path.sep).join('/');
+              if (item.isDirectory()) {
+                entries.push({ path: relative, type: 'tree' });
+                walk(full);
+              } else if (item.isFile()) {
+                entries.push({ path: relative, type: 'blob' });
+              }
+            }
+          }
+          for (const folder of ['Nursery', 'Primary', 'Secondary', 'Tertiary']) {
+            if (fs.existsSync(folder)) walk(folder);
+          }
+          entries.sort((a, b) => a.path.localeCompare(b.path));
+          fs.mkdirSync('assets', { recursive: true });
+          fs.writeFileSync(
+            'assets/hi5-repository-tree.json',
+            JSON.stringify({ version: 1, generated_at: new Date().toISOString(), tree: entries })
+          );
+          NODE
+      - name: Commit updated index
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/hi5-repository-tree.json
+          if git diff --cached --quiet; then
+            echo "Resource index is already up to date."
+            exit 0
+          fi
+          git commit -m "Refresh learning resources index"
+          git push
