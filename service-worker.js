@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hi5-shell-v2';
+const CACHE_NAME = 'hi5-shell-v3';
 const APP_SHELL = ['/', '/manifest.webmanifest', '/images/logo.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
